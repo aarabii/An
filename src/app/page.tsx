@@ -1,7 +1,7 @@
 "use client";
 
-import { Main } from "@/pages/Main";
-import { Preloader } from "@/pages/Preloader";
+import { Main } from "@/layouts/Main";
+import { Preloader } from "@/layouts/Preloader";
 import React, { useState, useEffect } from "react";
 
 export default function Home() {
