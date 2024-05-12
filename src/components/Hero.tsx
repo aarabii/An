@@ -7,7 +7,7 @@ import data from "@/constants/details.json";
 
 export const Hero = () => {
   return (
-    <div className="border-b border-neutral-900 pd-4 lg:mb-35">
+    <div className="h-screen pd-4 lg:mb-5">
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2">
           <div className="flex flex-col items-center lg:items-start">
