@@ -12,7 +12,7 @@ export const About = () => {
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2 lg:p-8">
           <div className="flex items-center justify-center ">
-            <div className=" border-[rgba(255,255,255,0.5)] border-2 rounded-2xl">
+            <div className=" border-neutral-400 border-2 rounded-2xl">
               <figure className="relative max-w-sm transition-all duration-500 cursor-pointer filter grayscale blur-sm  hover:grayscale-0 hover:blur-none">
                 <Image
                   width={500}
@@ -27,7 +27,7 @@ export const About = () => {
         </div>
         <div className="w-full lg:w-1/2">
           <div className="flex justify-center lg:justify-start">
-            <p className="my-2 max-w-xl py-6 text-lg">{data.about}</p>
+            <p className="my-2 max-w-xl py-6 text-lg tracking-wider">{data.about}</p>
           </div>
         </div>
       </div>
