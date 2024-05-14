@@ -10,8 +10,8 @@ const Icons: React.FC<IconsProps> = ({
   className = "",
 }) => {
   return (
-    <div className="rounded-2xl border-4 border-neutral-800 p-4">
-      <ReactIconComponent className={`text-6xl ${className}`} />
+    <div className="rounded-2xl border-2 border-neutral-400 p-4 backdrop-filter backdrop-blur-sm bg-white/20">
+      <ReactIconComponent className={`text-3xl ${className}`} />
     </div>
   );
 };
