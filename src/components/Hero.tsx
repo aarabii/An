@@ -10,14 +10,14 @@ export const Hero = () => {
     <div className="h-screen">
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2">
-          <div className="flex flex-col items-center lg:items-start">
-            <h1 className="pb-16 text-argine font-argine font-thin tracking-tight lg:mt-16 text-8xl">
+          <div className="flex flex-col items-center lg:items-start mt-10 lg:mt-0">
+            <h1 className="pb-16 font-argine font-thin tracking-tight lg:mt-16 lg:text-8xl text-5xl">
               {data.name}
             </h1>
             <span className="bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 text-transparent bg-clip-text text-4xl tracking-tight">
               {data.role[0]}
             </span>
-            <p className="mt-2 max-w-xl pt-6 font-light lg:text-xl tracking-wider">
+            <p className="mt-2 sm:mt-4 max-w-xl pt-8 font-light lg:text-xl tracking-wider leading-relaxed">
               {data.bio}
             </p>
           </div>
