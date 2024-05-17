@@ -12,7 +12,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         argine: ["argine"],
-        century: ["century"],
         fezeline: ["fezeline"],
         manarope: ["manarope"],
         nasalization: ["nasalization"],

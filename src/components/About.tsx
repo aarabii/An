@@ -1,14 +1,13 @@
 import Image from "next/image";
 import aboutImage from "@/assets/pic/aboutPic.png";
 import data from "@/constants/details.json";
+import { Title } from "./common/Title";
 
 export const About = () => {
   return (
     <section id="about">
-      <h2 className="mb-20 text-center text-4xl">
-        About
-        <span className="text-neutral-500"> Me</span>
-      </h2>
+      <Title title="About" subTitle="Me" />
+
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2 lg:p-8">
           <div className="flex items-center justify-center ">
@@ -27,7 +26,9 @@ export const About = () => {
         </div>
         <div className="w-full lg:w-1/2">
           <div className="flex justify-center lg:justify-start">
-            <p className="my-2 max-w-xl py-6 text-lg tracking-wider">{data.about}</p>
+            <p className="my-2 max-w-xl py-6 text-lg tracking-wider">
+              {data.about}
+            </p>
           </div>
         </div>
       </div>

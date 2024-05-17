@@ -19,6 +19,7 @@ import { GrMysql } from "react-icons/gr";
 import { SiAdobelightroom } from "react-icons/si";
 import { SiAdobeillustrator } from "react-icons/si";
 import { SiCanva } from "react-icons/si";
+import { Title } from "./common/Title";
 
 export const Skills = () => {
   const skills = [
@@ -44,7 +45,7 @@ export const Skills = () => {
 
   return (
     <div className="border-b border-neutral-800 pb-24">
-      <h2 className="my-20 text-center text-4xl">Skills</h2>
+      <Title title="Skills" />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-9 gap-4 justify-items-center">
         {skills.map((skill, index) => (

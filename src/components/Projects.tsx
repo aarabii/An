@@ -1,10 +1,12 @@
 import { PROJECTS } from "@/constants/projects";
 import Image from "next/image";
+import { Title } from "./common/Title";
+import { TechClip } from "./common/TechClip";
 
 export const Projects = () => {
   return (
     <section id="project">
-      <h2 className="my-20 text-center text-4xl">Project</h2>
+      <Title title="Projects" />
 
       <div>
         {PROJECTS.map((proj, index) => (
@@ -24,10 +26,7 @@ export const Projects = () => {
               <h6 className="mb-2 font-semibold">{proj.name}</h6>
               <p className="mb-4 text-neutral-400">{proj.description}</p>
               {proj.tech.map((tech, index) => (
-                <span
-                  key={index}
-                  className="inline-block bg-purple-800 text-neutral-200 rounded px-2 py-1 text-sm mr-2 mt-4"
-                >{tech}</span>
+                <TechClip key={index} name={tech} />
               ))}
             </div>
           </div>

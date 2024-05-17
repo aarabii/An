@@ -1,9 +1,10 @@
 import data from '@/constants/details.json'
+import { Title } from './common/Title'
 
 export const Contact = () => {
   return (
     <section id='contact'>
-      <h2 className="my-20 text-center text-4xl">Contact</h2>
+        <Title title='Contact' />
 
         <div className='text-center tracking-tighter'>
             <p className='my-4'>For any inquiries, please contact me at:</p>

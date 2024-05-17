@@ -8,11 +8,6 @@
 }
 
 @font-face {
-  font-family: "century";
-  src: url("../assets/fonts/CenturyGothic.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "fezeline";
   src: url("../assets/fonts/Fezeline.otf") format("opentype");
 }
