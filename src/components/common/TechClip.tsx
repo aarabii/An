@@ -2,7 +2,7 @@ import { FC } from "react";
 
 interface TechClipProps {
   name: string;
-  key: number;
+  key?: number;
 }
 
 export const TechClip: FC<TechClipProps> = ({ key, name }) => {
