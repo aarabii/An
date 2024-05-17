@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import { Experience } from "@/components/Experience";
+import { Projects } from "@/components/Projects";
 
 export const Main = () => {
   return (
@@ -21,6 +22,7 @@ export const Main = () => {
         {/* will add the skills section later as it look ugly */}
         {/* <Skills /> */}
         <Experience />
+        <Projects />
       </div>
     </div>
   );
