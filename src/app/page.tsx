@@ -5,7 +5,7 @@ import { Preloader } from "@/layouts/Preloader";
 import React, { useState, useEffect } from "react";
 
 export default function Home() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
     const simulateLoading = async () => {
