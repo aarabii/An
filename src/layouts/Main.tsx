@@ -17,7 +17,8 @@ export const Main = () => {
         <Navbar />
         <Hero />
         <About />
-        <Skills />
+        {/* will add the skills section later as it look ugly */}
+        {/* <Skills /> */}
       </div>
     </div>
   );
