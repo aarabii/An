@@ -13,7 +13,7 @@ import { NavIcons } from "./common/NavIcons";
 
 export const Navbar = () => {
   return (
-    <nav className="lg:mb-20 flex items-center justify-between py-6">
+    <nav className="lg:mb-20 flex items-center justify-between py-6 z-50">
       <div className="flex flex-shrink-0 items-center">
         <Image className="x-2 w-10" src={logo} alt="Aarab Nishchal's logo" />
       </div>
