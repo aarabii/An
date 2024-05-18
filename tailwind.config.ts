@@ -17,6 +17,9 @@ const config: Config = {
         nasalization: ["nasalization"],
       },
     },
+    letterSpacing: {
+      "preloaderSpacing": "0.35em",
+    },
   },
   plugins: [],
 };
