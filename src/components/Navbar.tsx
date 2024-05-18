@@ -15,7 +15,7 @@ export const Navbar = () => {
   return (
     <nav className="lg:mb-20 flex items-center justify-between py-6 z-50">
       <div className="flex flex-shrink-0 items-center">
-        <Image className="x-2 w-10" src={logo} alt="Aarab Nishchal's logo" />
+        <Image className="x-2 w-10" placeholder="blur" src={logo} alt="Aarab Nishchal's logo" />
       </div>
 
       <div className="m-8 flex items-center justify-center gap-4 text-2xl">

@@ -19,7 +19,7 @@ export const Projects = () => {
               className="w-full lg:w-1/4"
             >
               <Image
-                src="https://source.unsplash.com/random?technology"
+                src={proj.image_url || "https://source.unsplash.com/random?technology"}
                 alt={proj.name}
                 height={150}
                 width={150}

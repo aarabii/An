@@ -23,6 +23,7 @@ export const About = () => {
                   width={500}
                   height={500}
                   src={aboutImage}
+                  placeholder="blur"
                   alt="about Image"
                   className="rounded-2xl"
                 />
