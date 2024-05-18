@@ -4,7 +4,7 @@ import { Title } from './common/Title'
 export const Contact = () => {
   return (
     <section id='contact'>
-        <Title title='Contact' />
+        <Title title='Get in Touch' />
 
         <div className='text-center tracking-tighter'>
             <p className='my-4'>For any inquiries, please contact me at:</p>

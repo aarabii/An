@@ -17,10 +17,10 @@ const container = (delay: number) => ({
 
 export const Hero = () => {
   return (
-    <div className="h-screen">
+    <div className="h-full pb-40">
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2">
-          <div className="flex flex-col items-center lg:items-start mt-10 lg:mt-0">
+          <div className="flex flex-col justify-between items-center text-center lg:text-left lg:items-start mt-10 lg:mt-0">
             <motion.h1
               variants={container(0)}
               initial="hidden"

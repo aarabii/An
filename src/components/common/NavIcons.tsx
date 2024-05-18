@@ -1,28 +1,26 @@
-import React, { FC } from "react";
-import { ToolTip } from "./ToolTip";
+import { FC } from "react";
+import { motion } from "framer-motion";
 
 interface NavIconsProps {
   icons: React.ElementType;
   className?: string;
   href?: string;
-  tooltip?: string;
 }
 
 export const NavIcons: FC<NavIconsProps> = ({
   icons: ReactIconsCompoents,
   className = "",
   href = "#",
-  tooltip = "",
 }) => {
   return (
-    <ToolTip
-      content={tooltip}
-      placement="bottom"
-      className="inline-block relative"
+    <motion.a
+      whileHover={{ scale: 1.3 }}
+      rel="noreferrer noopener"
+      target="_blank"
+      href={href}
+      className="text-slate-200 hover:text-purple-300"
     >
-      <a rel="noreferrer noopener" target="_blank" href={href} className="text-fuchsia-200">
-        <ReactIconsCompoents className={className} />
-      </a>
-    </ToolTip>
+      <ReactIconsCompoents className={className} />
+    </motion.a>
   );
 };

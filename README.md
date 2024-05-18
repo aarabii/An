@@ -4,8 +4,8 @@ My space on web
 
 ## TODO
 
-- [ ] Add Preloader
-- [ ] Add animations (framer motion)
+- [x] Add Preloader
+- [x] Add animations (framer motion)
 - [ ] Add custom error page
 - [ ] Add custom 404 page
 - [ ] Add custom 500 page
