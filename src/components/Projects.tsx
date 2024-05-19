@@ -5,7 +5,6 @@ import { TechClip } from "./common/TechClip";
 import { motion } from "framer-motion";
 
 export const Projects = () => {
-  console.log(process.env.NEXT_PUBLIC_TESTING_VERCEL_ENV);
 
   return (
     <section id="project">
