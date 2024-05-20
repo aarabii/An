@@ -19,6 +19,7 @@ const config: Config = {
     },
     letterSpacing: {
       "preloaderSpacing": "0.35em",
+      "contactFormSpacing": "0.175em",
     },
   },
   plugins: [],

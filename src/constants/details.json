@@ -2,7 +2,11 @@
   "name": "Aarab Nishchal",
   "first_name": "Aarab",
   "last_name": "Nishchal",
-  "location": "India",
+  "location": {
+    "city": "Bhubaneswar",
+    "state": "Odisha",
+    "country": "India"
+  },
   "DOB": {
     "dd": 9,
     "mm": 8,
@@ -23,11 +27,24 @@
   "desc": "I build things that lives on internet.",
   "bio": "I'm a student developer who loves building web apps for fun. I enjoy experimenting with technologies to create free, useful tools that everyone can enjoy.",
   "about": "I'm a passionate developer with a love for building user-friendly web applications. Though still a student, I've gained experience with React and various back-end technologies. I'm driven by a curiosity to learn and a desire to create tools that are both fun and functional. I'm always eager to explore new technologies and collaborate with others to bring innovative ideas to life.",
-  "instagram": "https://www.instagram.com/aarab.ii/",
-  "linkedin": "https://www.linkedin.com/in/aarab-nishchal/",
-  "github": "https://www.github.com/losier",
-  "twitter": "https://www.twitter.com/aarab_ii",
-  "facebook": "https://www.facebook.com/zzcwc",
-  "telegram": "https://t.me/aarab_ii",
-  "snapchat": "https://www.snapchat.com/add/aarab.ii"
+  "socials": {
+    "links": {
+      "instagram": "https://www.instagram.com/aarab.ii/",
+      "linkedin": "https://www.linkedin.com/in/aarab-nishchal/",
+      "github": "https://www.github.com/losier",
+      "twitter": "https://www.twitter.com/aarab_ii",
+      "facebook": "https://www.facebook.com/zzcwc",
+      "telegram": "https://t.me/aarab_ii",
+      "snapchat": "https://www.snapchat.com/add/aarab.ii"
+    },
+    "username": {
+      "instagram": "@aarab.ii",
+      "linkedin": "@aarab-nishchal",
+      "github": "@losier",
+      "twitter": "@aarab_ii",
+      "facebook": "@zzcwc",
+      "telegram": "@aarab_ii",
+      "snapchat": "@aarab.ii"
+    }
+  }
 }

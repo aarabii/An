@@ -30,7 +30,7 @@ export const Main = () => {
         {/* <Skills /> */}
         <Experience />
         <Projects />
-        {/* <Contact /> */}
+        <Contact />
       </motion.div>
     </motion.div>
   );

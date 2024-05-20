@@ -19,10 +19,10 @@ export const Navbar = () => {
       </div>
 
       <div className="m-8 flex items-center justify-center gap-4 text-2xl">
-        <NavIcons icons={FaSquareGithub} href={data.github} />
-        <NavIcons icons={FaLinkedin} href={data.linkedin} />
-        <NavIcons icons={FaSquareXTwitter} href={data.twitter} />
-        <NavIcons icons={FaSquareInstagram} href={data.instagram} />
+        <NavIcons icons={FaSquareGithub} href={data.socials.links.github} />
+        <NavIcons icons={FaLinkedin} href={data.socials.links.linkedin} />
+        <NavIcons icons={FaSquareXTwitter} href={data.socials.links.twitter} />
+        <NavIcons icons={FaSquareInstagram} href={data.socials.links.instagram} />
       </div>
     </nav>
   );
