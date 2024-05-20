@@ -26,8 +26,7 @@ export const Main = () => {
         <Navbar />
         <Hero />
         <About />
-        {/* will add the skills section later as it look ugly */}
-        {/* <Skills /> */}
+        <Skills />
         <Experience />
         <Projects />
         <Contact />
