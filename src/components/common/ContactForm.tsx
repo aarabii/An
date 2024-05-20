@@ -1,23 +1,37 @@
-import React from "react";
+import { motion } from "framer-motion";
 
 export const ContactForm = () => {
   return (
-    <div className="bg-slate-200 bg-opacity-20 border-2 text-gray-950 border-neutral-200 shadow-inner shadow-gray-800 p-6 rounded-lg">
+    <motion.div
+      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="bg-slate-200 bg-opacity-20 border-2 text-gray-950 border-neutral-200 shadow-inner shadow-gray-800 p-6 rounded-lg"
+    >
       <form className="space-y-4">
-        <input
+        <motion.input
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
           required
           type="text"
           placeholder="Name"
           className="w-full tracking-contactFormSpacing bg-slate-200 rounded-md py-3 px-4 text-sm outline-purple-200 text-gray-900 placeholder-gray-950"
         />
-        <input
+        <motion.input
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.5 }}
           required
           type="email"
           placeholder="Email"
           className="w-full tracking-contactFormSpacing rounded-md py-3 px-4 text-sm bg-slate-50 outline-purple-200 text-gray-900 placeholder-gray-950"
         />
         {/* Dropdown Menu */}
-        <select
+        <motion.select
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.5 }}
           required
           className="w-full tracking-contactFormSpacing rounded-md py-3 px-3 text-sm outline-purple-200 text-gray-900 bg-slate-200"
         >
@@ -65,14 +79,23 @@ export const ContactForm = () => {
           >
             Feature request
           </option>
-        </select>
-        <textarea
+        </motion.select>
+        <motion.textarea
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 50 }}
+          transition={{ duration: 0.5 }}
           placeholder="Message"
           rows={6}
           required
           className="w-full tracking-contactFormSpacing bg-slate-50 rounded-md px-4 text-sm pt-3 outline-purple-200 text-gray-900 placeholder-gray-950"
-        ></textarea>
-        <button
+        ></motion.textarea>
+        <motion.button
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{
+            scale: 1.05,
+          }}
           type="submit"
           className="text-slate-100 bg-purple-500 hover:bg-purple-600 font-semibold rounded-md text-sm px-4 py-3 flex items-center justify-center w-full"
         >
@@ -92,8 +115,8 @@ export const ContactForm = () => {
             />
           </svg>
           Send Message
-        </button>
+        </motion.button>
       </form>
-    </div>
+    </motion.div>
   );
 };
