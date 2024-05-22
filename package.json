@@ -1,7 +1,18 @@
 {
   "name": "an",
-  "version": "0.1.0",
+  "description": "My personal website built with Next.js and Tailwind CSS and Framer Motion.",
+  "version": "0.1.1",
   "private": true,
+  "author": {
+    "name": "Aarab Nishchal",
+    "email": "aarab.nishchal@gmail.com",
+    "url": "https://aarab.vercel.app"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/losier/an"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -25,5 +36,11 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+    "node": "21.x"
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
