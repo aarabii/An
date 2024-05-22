@@ -38,7 +38,7 @@
     "typescript": "^5"
   },
   "engines": {
-    "node": "21.x"
+    "node": "20.x"
   },
   "browserslist": [
     "defaults"
