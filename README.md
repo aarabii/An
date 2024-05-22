@@ -1,17 +1,16 @@
-# An (Aarab Nishchal) portfolio website
+# An (Aarab Nishchal)'s portfolio website
 
 My space on web
 
-## TODO
-
-- [x] Add Preloader
-- [x] Add animations (framer motion)
-- [ ] Add custom error page
-- [ ] Add custom 404 page
-- [ ] Add custom 500 page
-- [ ] Add Skills section
-- [x] Add Projects section
-- [x] Add Contact section
-- [ ] Add Blog section
-- [ ] Add Resume section
-- [ ] Add Footer
+### Upadted TODO (2024-05-22-yyyy-mm-dd)
+- [] implement EMAILJS in Contact form
+- [] Custom error pages (404, 500, etc.)
+- [] Add a ideas page
+- [] Add a resume page
+- [] Add a robots.txt page
+- [] Add a humans.txt page
+- [] Add a security.txt page
+- [] Add a sitemap.xml page
+- [] Update Readme
+- [] Fix CSS
+- [] Add footer
