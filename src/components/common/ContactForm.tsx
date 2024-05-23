@@ -1,6 +1,66 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 export const ContactForm = () => {
+  const templateID = process.env.template_key;
+  const serviceID = process.env.service_key;
+  const PublicKey = process.env.user_key;
+
+  const [isSending, setIsSending] = useState(false);
+  const [isSent, setIsSent] = useState(false);
+  const [formValues, setFormValues] = useState({
+    senderName: "",
+    senderEmail: "",
+    subject: "",
+    message: "",
+  });
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSending(true);
+
+    emailjs
+      .send(`${serviceID}`, `${templateID}`, formValues, {
+        publicKey: PublicKey,
+      })
+      .then((res) => {
+        setIsSending(false);
+        setIsSent(true);
+        console.log("Email sent successfully!", res);
+        setFormValues({
+          senderName: "",
+          senderEmail: "",
+          subject: "",
+          message: "",
+        });
+      })
+      .catch((err) => {
+        setIsSending(false);
+        setIsSent(false);
+        console.error("Email failed to send", err);
+      });
+  };
+
+  useEffect(() => {
+    if (isSent) {
+      setTimeout(() => {
+        setIsSent(false);
+      }, 3000);
+    }
+  }, [isSent]);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <motion.div
       whileInView={{ opacity: 1, x: 0 }}
@@ -8,7 +68,7 @@ export const ContactForm = () => {
       transition={{ duration: 0.5 }}
       className="bg-slate-200 bg-opacity-20 border-2 text-gray-950 border-neutral-200 shadow-inner shadow-gray-800 p-6 rounded-lg"
     >
-      <form className="space-y-4">
+      <form onSubmit={sendEmail} className="space-y-4">
         <motion.input
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -50 }}
@@ -16,6 +76,9 @@ export const ContactForm = () => {
           required
           type="text"
           placeholder="Name"
+          name="senderName"
+          onChange={handleChange}
+          value={formValues.senderName}
           className="w-full tracking-contactFormSpacing bg-slate-200 rounded-md py-3 px-4 text-sm outline-purple-200 text-gray-900 placeholder-gray-950"
         />
         <motion.input
@@ -25,6 +88,9 @@ export const ContactForm = () => {
           required
           type="email"
           placeholder="Email"
+          name="senderEmail"
+          onChange={handleChange}
+          value={formValues.senderEmail}
           className="w-full tracking-contactFormSpacing rounded-md py-3 px-4 text-sm bg-slate-50 outline-purple-200 text-gray-900 placeholder-gray-950"
         />
         {/* Dropdown Menu */}
@@ -33,6 +99,9 @@ export const ContactForm = () => {
           initial={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.5 }}
           required
+          name="subject"
+          onChange={handleChange}
+          value={formValues.subject}
           className="w-full tracking-contactFormSpacing rounded-md py-3 px-3 text-sm outline-purple-200 text-gray-900 bg-slate-200"
         >
           <option
@@ -87,6 +156,9 @@ export const ContactForm = () => {
           placeholder="Message"
           rows={6}
           required
+          name="message"
+          onChange={handleChange}
+          value={formValues.message}
           className="w-full tracking-contactFormSpacing bg-slate-50 rounded-md px-4 text-sm pt-3 outline-purple-200 text-gray-900 placeholder-gray-950"
         ></motion.textarea>
         <motion.button
@@ -114,7 +186,9 @@ export const ContactForm = () => {
               data-original="#000000"
             />
           </svg>
-          Send Message
+          {
+            isSending ? "Sending..." : isSent ? "Sent!" : "Send"
+          }
         </motion.button>
       </form>
     </motion.div>
