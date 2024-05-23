@@ -186,9 +186,7 @@ export const ContactForm = () => {
               data-original="#000000"
             />
           </svg>
-          {
-            isSending ? "Sending..." : isSent ? "Sent!" : "Send"
-          }
+          {isSending ? "Sending..." : isSent ? "Sent!" : "Send"}
         </motion.button>
       </form>
     </motion.div>
