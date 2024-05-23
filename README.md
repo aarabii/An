@@ -13,5 +13,5 @@ My space on web
 - [] Add a sitemap.xml page
 - [] Update Readme
 - [] Fix CSS
-- [] Add footer
+- [x] Add footer
 - [] Add a tost componet for custom notifications
