@@ -1,0 +1,10 @@
+# public/.well-known/security.txt
+# This file helps security researchers report security issues
+Contact: mailto:aarab.nishchal@gmail.com
+Preferred-Languages: en
+
+# The following lines are commented out because the resources are not available yet.
+# Encryption: https://aarab.vercel.app/pgp-key.txt
+# Acknowledgements: https://aarab.vercel.app/security-acknowledgements
+# Policy: https://aarab.vercel.app/security-policy
+# Hiring: https://aarab.vercel.app/jobs

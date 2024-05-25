@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aarab.vercel.app
+
+# Sitemaps
+Sitemap: https://aarab.vercel.app/sitemap.xml

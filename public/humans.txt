@@ -1,0 +1,16 @@
+# public/humans.txt
+/* TEAM */
+Name: Aarab Nishchal
+Role: Student, Software Engineer, Chief Problem Solver, Idea Mechanic, Possibility Pilot
+
+/* CONTACT */
+Twitter: @aarab_ii
+GitHub: @losier
+Email: aarab.nishchal@gmail.com
+Site: https://aarab.vercel.app
+
+/* THANKS */
+Thanks: Thanks to all the open-source contributors and the amazing community!
+
+/* SITE */
+Last update: 2024-05-25
