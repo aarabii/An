@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+     scroll-behavior: smooth !important;
+  }
+}
+
 @font-face {
   font-family: "argine";
   src: url("../assets/fonts/argine.otf") format("opentype");
