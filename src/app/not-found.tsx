@@ -1,42 +1,78 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import notFoundImage from "@/assets/pic/notFound.svg";
 
 export default function NotFound() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
-    <div className="overflow-x-hidden">
-      <div className="top-0 fixed -z-10 h-screen w-screen">
+    <section className=" overflow-x-hidden">
+      <div className="fixed inset-0 -z-10 h-full w-full">
         <div className="relative h-full w-full bg-slate-950">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         </div>
       </div>
 
-      <div className="mx-auto container ps-8 text-neutral-300">
-        <div className="flex flex-col items-center justify-center h-screen">
-          <h1 className="text-7xl font-bold text-center text-neutral-300">
-            404
-          </h1>
-          <p className="text-2xl text-center text-neutral-300">
+      <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:self-center">
+        <div className="wf-ull lg:w-1/2">
+          <p className="text-sm font-medium text-purple-400">404 error</p>
+          <h1 className="mt-3 text-2xl font-semibold text-slate md:text-3xl">
             Page not found
+          </h1>
+          <p className="mt-4 text-gray-400">
+            Sorry, the page you are looking for{" "}
+            <code className="text-slate-50 bg-purple-100 p-1 rounded bg-opacity-40 tracking-notFoundSpacing">
+              {pathname}
+            </code>{" "}
+            doesn&apos;t exist.
           </p>
 
-          <code>
-            <p className="text-xl text-center text-neutral-300">{pathname}</p>
-            don&apos;t exist in this site.
-          </code>
-
-          <div className="mt-4">
-            <a
-              href="/"
-              className="px-4 py-2 text-neutral-300 bg-cyan-600 rounded-md"
+          <div className="flex items-center mt-6 gap-x-3">
+            <button
+              onClick={() => {
+                router.back();
+              }}
+              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm  transition-colors duration-200  border rounded-lg gap-x-2 sm:w-auto  bg-gray-900 hover:bg-gray-100 hover:text-gray-800 text-gray-200 border-gray-700"
             >
-              Go Home
-            </a>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-5 h-5 rtl:rotate-180"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
+                />
+              </svg>
+
+              <span>Go back</span>
+            </button>
+
+            <button
+              onClick={() => router.push("/")}
+              className="w-1/2 px-5 py-2 text-sm tracking-wide text-slate transition-colors duration-200 rounded-lg shrink-0 sm:w-auto  hover:bg-purple-500 bg-purple-600"
+            >
+              Take me home
+            </button>
           </div>
         </div>
+
+        <div className="relative w-full mt-12 lg:w-1/2 lg:mt-0">
+          <Image
+            className="w-full max-w-lg lg:mx-auto"
+            src={notFoundImage}
+            alt="404-not-found-image"
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

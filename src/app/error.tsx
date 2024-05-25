@@ -1,13 +1,14 @@
 "use client";
 
 import type { ErrorProps as NextErrorProps } from "next/error";
+import { useRouter } from "next/navigation";
 
 interface ErrorProps extends NextErrorProps {
   error: Error;
-  reset: () => void;
 }
 
-export default function Error({ statusCode, error, reset }: ErrorProps) {
+export default function Error({ statusCode, error }: ErrorProps) {
+  const router = useRouter();
   return (
     <div className="overflow-x-hidden">
       <div className="fixed inset-0 -z-10 h-full w-full">
@@ -16,28 +17,48 @@ export default function Error({ statusCode, error, reset }: ErrorProps) {
         </div>
       </div>
 
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-4">
-          <h1 className="text-3xl md:text-5xl font-bold text-neutral-300">
-            {statusCode
-              ? `An error ${statusCode} occurred on server`
-              : "An error occurred on client"}
+      <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 flex items-center justify-center h-screen">
+        <div className="mx-auto max-w-screen-sm text-center">
+          <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-purple-500">
+            {statusCode ? statusCode : <span className="text-5xl">Error</span>}
           </h1>
-          <code className="text-xl md:text-3xl bg-neutral-800 text-neutral-300 p-4 rounded-lg whitespace-pre-wrap">
+          <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-slate-50">
+            Something went wrong.
+          </p>
+          <p className="mb-4 text-lg font-light bg-purple-200 bg-opacity-30 rounded text-gray-100">
             {error.message}
-          </code>
-          <div className="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
+          </p>
+          <div className="flex flex-row-reverse items-center mt-6 gap-x-3">
             <button
-              onClick={reset}
-              className="px-4 py-2 text-neutral-300 bg-cyan-600 rounded-md"
+              onClick={() => router.push("/")}
+              className="w-1/2 px-5 py-2 text-sm tracking-wide text-slate transition-colors duration-200 rounded-lg shrink-0 sm:w-auto  hover:bg-purple-500 bg-purple-600"
             >
-              Restart
+              Take me home
             </button>
             <button
-              onClick={() => window.close()}
-              className="px-4 py-2 text-neutral-300 bg-red-600 rounded-md"
+              onClick={() => {
+                window.close();
+              }}
+              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm  transition-colors duration-200  border rounded-lg gap-x-2 sm:w-auto  bg-gray-900 hover:bg-gray-100 hover:text-gray-800 text-gray-200 border-gray-700"
             >
-              Close Tab
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18 17.94 6M18 18 6.06 6"
+                />
+              </svg>
+
+              <span>Go back</span>
             </button>
           </div>
         </div>
