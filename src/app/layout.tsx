@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Head from 'next/head';
+import Head from "next/head";
 import "./globals.css";
 import data from "@/constants/details.json";
 
@@ -53,6 +53,11 @@ export const metadata: Metadata = {
     description: data.desc,
     images: "https://aarab.vercel.app/logo.svg",
   },
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#000000",
+  colorScheme: "dark",
+  manifest: "/manifest.json",
+  robots: "index, follow",
 };
 
 export default function RootLayout({
@@ -64,11 +69,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={data.desc} />
-        <meta name="keywords" content="Aarab Nishchal, react, portfolio, web development" />
         <link rel="canonical" href="https://aarab.vercel.app" />
-        <link rel="icon" href="/logo.svg" sizes="any" />
         <link rel="author" href="/humans.txt" />
         <link rel="security" href="/.well-known/security.txt" />
         <script type="application/ld+json">
@@ -89,7 +90,10 @@ export default function RootLayout({
               addressRegion: data.location.state,
               addressCountry: data.location.country,
             },
-            birthDate: `${data.DOB.yyyy}-${String(data.DOB.mm).padStart(2, '0')}-${String(data.DOB.dd).padStart(2, '0')}`,
+            birthDate: `${data.DOB.yyyy}-${String(data.DOB.mm).padStart(
+              2,
+              "0"
+            )}-${String(data.DOB.dd).padStart(2, "0")}`,
             email: data.email,
             sameAs: [
               data.socials.links.instagram,

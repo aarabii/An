@@ -31,13 +31,13 @@
   "about": "I'm a passionate developer with a love for building user-friendly web applications. Though still a student, I've gained experience with React and various back-end technologies. I'm driven by a curiosity to learn and a desire to create tools that are both fun and functional. I'm always eager to explore new technologies and collaborate with others to bring innovative ideas to life.",
   "socials": {
     "links": {
-      "instagram": "https://www.instagram.com/aarab.ii/",
-      "linkedin": "https://www.linkedin.com/in/aarab-nishchal/",
-      "github": "https://www.github.com/losier",
-      "twitter": "https://www.twitter.com/aarab_ii",
-      "facebook": "https://www.facebook.com/zzcwc",
-      "telegram": "https://t.me/aarab_ii",
-      "snapchat": "https://www.snapchat.com/add/aarab.ii"
+      "instagram": "/instagram",
+      "linkedin": "/linkedin",
+      "github": "/github",
+      "twitter": "/twitter",
+      "facebook": "/facebook",
+      "telegram": "/telegram",
+      "snapchat": "/snapchat"
     },
     "username": {
       "instagram": "@aarab.ii",
