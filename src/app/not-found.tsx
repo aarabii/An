@@ -20,12 +20,12 @@ export default function NotFound() {
       <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:self-center">
         <div className="wf-ull lg:w-1/2">
           <p className="text-sm font-medium text-purple-400">404 error</p>
-          <h1 className="mt-3 text-2xl font-semibold text-slate md:text-3xl">
+          <h1 className="mt-3 text-2xl font-semibold text-slate-50 md:text-3xl">
             Page not found
           </h1>
           <p className="mt-4 text-gray-400">
             Sorry, the page you are looking for{" "}
-            <code className="text-slate-50 bg-purple-100 p-1 rounded bg-opacity-40 tracking-notFoundSpacing">
+            <code className="px-2 py-1.5 text-xs font-semibold border rounded-lg bg-gray-600 text-gray-100 border-gray-500 tracking-notFoundSpacing">
               {pathname}
             </code>{" "}
             doesn&apos;t exist.
@@ -42,13 +42,13 @@ export default function NotFound() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-5 h-5 rtl:rotate-180"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
                 />
               </svg>

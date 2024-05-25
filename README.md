@@ -15,4 +15,4 @@ My space on web
 - [] Fix CSS
 - [x] Add footer
 - [] Add a tost componet for custom notifications
-- [] Fix css for error pages
+- [x] Fix css for error pages

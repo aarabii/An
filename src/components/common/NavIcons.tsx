@@ -18,7 +18,7 @@ export const NavIcons: FC<NavIconsProps> = ({
       rel="noreferrer noopener"
       target="_blank"
       href={href}
-      className="text-slate-200 hover:text-purple-300"
+      className="text-slate-200 hover:text-purple-400"
     >
       <ReactIconsCompoents className={className} />
     </motion.a>

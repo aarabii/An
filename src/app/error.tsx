@@ -25,7 +25,7 @@ export default function Error({ statusCode, error }: ErrorProps) {
           <p className="mb-4 text-3xl tracking-tight font-bold md:text-4xl text-slate-50">
             Something went wrong.
           </p>
-          <p className="mb-4 text-lg font-light bg-purple-200 bg-opacity-30 rounded text-gray-100">
+          <p className="px-2 py-1.5 text-xs font-semibold border rounded-lg bg-gray-600 text-gray-100 border-gray-500">
             {error.message}
           </p>
           <div className="flex flex-row-reverse items-center mt-6 gap-x-3">
@@ -51,9 +51,9 @@ export default function Error({ statusCode, error }: ErrorProps) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M6 18 17.94 6M18 18 6.06 6"
                 />
               </svg>
