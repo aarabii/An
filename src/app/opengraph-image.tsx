@@ -15,8 +15,8 @@ export const contentType = 'image/png'
 // Image generation
 export default async function Image() {
   // Font
-  const interSemiBold = fetch(
-    new URL('./Inter-SemiBold.ttf', import.meta.url)
+  const customFont = fetch(
+    new URL('../assets/fonts/Manrope.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer())
  
   return new ImageResponse(
@@ -43,8 +43,8 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'Inter',
-          data: await interSemiBold,
+          name: 'Manrope',
+          data: await customFont,
           style: 'normal',
           weight: 400,
         },

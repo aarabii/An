@@ -7,6 +7,9 @@
 .yarn/install-state.gz
 TemperoryTestFile
 
+# under construction files
+/src/app/ideas/
+
 # testing
 /coverage
 
