@@ -1,16 +1,14 @@
 import data from "@/constants/details.json";
 import { motion } from "framer-motion";
+
 import { ContactSocialList } from "./common/ContactSocialList";
 import { ContactList } from "./common/ContactList";
-
-import { IoMailOutline } from "react-icons/io5";
-import { PiTelegramLogo } from "react-icons/pi";
-import { IoLocationOutline } from "react-icons/io5";
-import { FaGithub } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa6";
-import { BsTwitterX } from "react-icons/bs";
-import { FaInstagram } from "react-icons/fa6";
 import { ContactForm } from "./common/ContactForm";
+
+import { PiTelegramLogo } from "react-icons/pi";
+import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
+import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
+import { BsTwitterX } from "react-icons/bs";
 
 export const Contact = () => {
   return (

@@ -3,24 +3,20 @@ import { motion } from "framer-motion";
 
 interface NavIconsProps {
   icons: React.ElementType;
-  className?: string;
-  href?: string;
+  link?: string;
 }
 
 export const NavIcons: FC<NavIconsProps> = ({
   icons: ReactIconsCompoents,
-  className = "",
-  href = "#",
+  link,
 }) => {
   return (
     <motion.a
-      whileHover={{ scale: 1.3 }}
-      rel="noreferrer noopener"
-      target="_blank"
-      href={href}
-      className="text-slate-200 hover:text-purple-400"
+      whileHover={{ scale: 1.2 }}
+      href={link}
+      className="text-slate-50 text-3xl hover:text-purple-500"
     >
-      <ReactIconsCompoents className={className} />
+      <ReactIconsCompoents />
     </motion.a>
   );
 };
