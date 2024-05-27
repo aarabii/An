@@ -1,5 +1,6 @@
 import data from "@/constants/details.json";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 // In future if i want to use Image on my HERO section
 
@@ -16,6 +17,7 @@ const container = (delay: number) => ({
 });
 
 export const Hero = () => {
+  const router = useRouter();
   return (
     <div className="h-full pb-40">
       <div className="flex flex-wrap">
@@ -25,7 +27,7 @@ export const Hero = () => {
               variants={container(0)}
               initial="hidden"
               animate="visible"
-              className="pb-16 font-argine font-thin tracking-tight lg:mt-16 lg:text-8xl text-5xl"
+              className="pb-16 font-argine font-thin tracking-tight lg:mt-8 lg:text-8xl text-5xl"
             >
               {data.name}
             </motion.h1>
@@ -45,6 +47,16 @@ export const Hero = () => {
             >
               {data.bio}
             </motion.p>
+
+            <motion.button
+              variants={container(1.2)}
+              initial="hidden"
+              animate="visible"
+              onClick={() => router.push("/resume")}
+              className="mt-8 px-6 py-3 bg-purple-700 bg-opacity-60 text-white font-semibold text-lg rounded-lg shadow-md hover:bg-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-700 focus:ring-opacity-50 transition duration-300"
+            >
+              View Resume
+            </motion.button>
           </div>
         </div>
         {/* <div className="w-full lg:w-1/2 lg:p-8">
