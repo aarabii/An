@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { NavIcons } from "./common/NavIcons";
@@ -13,6 +12,7 @@ import {
   FaSquareXTwitter,
   FaSquareInstagram,
 } from "react-icons/fa6";
+import { Images } from "./common/Images";
 
 export const Navbar = () => {
   const router = useRouter();
@@ -20,9 +20,9 @@ export const Navbar = () => {
   return (
     <nav className="lg:mb-20 flex items-center justify-between z-50">
       <div className="flex items-center">
-        <Image
-          className="w-10 h-10"
-          src={logo}
+        <Images
+          className="max-w-10 max-h-10"
+          url={logo}
           alt="Aarab Nishchal's logo"
           width={40}
           height={40}

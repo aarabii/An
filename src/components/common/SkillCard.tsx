@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import { Images } from "./Images";
 
 interface SkillCardProps {
   title: string;
@@ -23,12 +23,12 @@ export const SkillCard: FC<SkillCardProps> = ({
       onMouseLeave={onHoverEnd}
     >
       <div className="flex flex-row items-center justify-center gap-3">
-        <Image
-          src={icon}
+        <Images
+          url={icon}
           alt={title}
           width={40}
           height={40}
-          className="rounded-lg  drop-shadow-md"
+          className="rounded-lg  drop-shadow-md max-w-10 max-h-10"
         />
         <small className="text-slate-100 text-xs sm:text-lg">{title}</small>
       </div>

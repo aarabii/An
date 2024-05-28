@@ -1,8 +1,8 @@
 import { PROJECTS } from "@/constants/projects";
-import Image from "next/image";
 import { Title } from "./common/Title";
 import { TechClip } from "./common/TechClip";
 import { motion } from "framer-motion";
+import { Images } from "./common/Images";
 
 export const Projects = () => {
 
@@ -19,12 +19,11 @@ export const Projects = () => {
               transition={{ duration: 1 }}
               className="w-full lg:w-1/4"
             >
-              <Image
-                src={proj.image_url || "https://source.unsplash.com/random?technology"}
+              <Images
+                url={proj.image_url || "https://source.unsplash.com/random?technology"}
                 alt={proj.name}
                 height={150}
                 width={150}
-                loading="lazy"
                 className="mb-6 rounded"
               />
             </motion.div>
