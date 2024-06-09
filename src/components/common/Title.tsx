@@ -1,5 +1,10 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
+import localFont from "next/font/local";
+
+const nasalization = localFont({
+  src: "../../assets/fonts/nasalization.otf",
+});
 
 interface TitleProps {
   title: string;
@@ -13,9 +18,9 @@ export const Title: FC<TitleProps> = ({ title, subTitle }) => {
       initial={{ opacity: 0, y: -100 }}
       transition={{ duration: 0.5 }}
       whileHover={{
-        scale: 1.05
+        scale: 1.05,
       }}
-      className="mb-10 font-nasalization text-slate-200 text-center text-4xl"
+      className={`${nasalization.className} mb-10 text-slate-200 text-center text-4xl`}
     >
       {title}
       {subTitle && <span className="text-purple-200"> Me</span>}

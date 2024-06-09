@@ -1,10 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
+
+import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
+
 import { NavIcons } from "./common/NavIcons";
 
 import logo from "@/assets/logo/an_white_bg_removed.png";
 import data from "@/constants/details.json";
+
+const fezeline = localFont({
+  src: "../assets/fonts/fezeline.otf",
+});
 
 import {
   FaSquareGithub,
@@ -27,21 +34,17 @@ export const Navbar = () => {
           width={40}
           height={40}
         />
-        <span className="ml-2 hidden md:block text-xl sm:text-sm lg:text-3xl font-light font-fezeline">
+        <span
+          className={`${fezeline.className} ml-2 hidden md:block text-xl sm:text-sm lg:text-3xl font-light`}
+        >
           Aarab Nishchal
         </span>
       </div>
 
       <div className="flex justify-center items-center md:order-2 space-x-3">
         <div className="m-8 hidden md:flex items-center justify-center gap-4 text-2xl">
-          <NavIcons
-            icons={FaSquareGithub}
-            link={data.socials.links.github}
-          />
-          <NavIcons
-            icons={FaLinkedin}
-            link={data.socials.links.linkedin}
-          />
+          <NavIcons icons={FaSquareGithub} link={data.socials.links.github} />
+          <NavIcons icons={FaLinkedin} link={data.socials.links.linkedin} />
           <NavIcons
             icons={FaSquareXTwitter}
             link={data.socials.links.twitter}

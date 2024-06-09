@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import data from "@/constants/details.json";
 
+import localFont from "next/font/local";
+
+const manrope = localFont({
+  src: "../assets/fonts/manrope.ttf",
+});
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Aarab Nishchal",
@@ -63,8 +69,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true} className="scroll-smooth">
-      <body>{children}</body>
+    <html lang="en" suppressHydrationWarning={true} className={`scroll-smooth`}>
+      <body className={manrope.className}>{children}</body>
     </html>
   );
 }

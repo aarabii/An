@@ -9,18 +9,10 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        argine: ["argine"],
-        fezeline: ["fezeline"],
-        manarope: ["manarope"],
-        nasalization: ["nasalization"],
-      },
-    },
     letterSpacing: {
-      "preloaderSpacing": "0.35em",
-      "contactFormSpacing": "0.175em",
-      "notFoundSpacing": "0.1em",
+      preloaderSpacing: "0.35em",
+      contactFormSpacing: "0.175em",
+      notFoundSpacing: "0.1em",
     },
   },
   plugins: [],

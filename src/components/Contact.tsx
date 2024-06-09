@@ -1,5 +1,6 @@
 import data from "@/constants/details.json";
 import { motion } from "framer-motion";
+import localFont from "next/font/local";
 
 import { ContactSocialList } from "./common/ContactSocialList";
 import { ContactList } from "./common/ContactList";
@@ -9,6 +10,10 @@ import { PiTelegramLogo } from "react-icons/pi";
 import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
+
+const nasalization = localFont({
+  src: "../assets/fonts/nasalization.otf",
+});
 
 export const Contact = () => {
   return (
@@ -21,7 +26,7 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl font-nasalization font-extrabold text-neutral-100"
+                className={`${nasalization.className} text-4xl font-extrabold text-neutral-100`}
               >
                 Get in Touch
               </motion.h1>

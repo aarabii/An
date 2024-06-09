@@ -3,6 +3,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Images } from "./common/Images";
 
+import localFont from "next/font/local";
+
+const fezeline = localFont({
+  src: "../assets/fonts/fezeline.otf",
+});
+
 export const Footer = () => {
   return (
     <motion.footer
@@ -24,7 +30,9 @@ export const Footer = () => {
               width={50}
               height={50}
             />
-            <span className="self-center text-2xl font-fezeline whitespace-nowrap text-slate-100">
+            <span
+              className={`${fezeline.className} self-center text-2xl whitespace-nowrap text-slate-100`}
+            >
               Aarab Nishchal
             </span>
           </Link>

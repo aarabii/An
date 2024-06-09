@@ -3,31 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-     scroll-behavior: smooth !important;
+  html,
+  body,
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth !important;
   }
-}
-
-@font-face {
-  font-family: "argine";
-  src: url("../assets/fonts/argine.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "fezeline";
-  src: url("../assets/fonts/Fezeline.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "manarope";
-  src: url("../assets/fonts/Manrope.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "nasalization";
-  src: url("../assets/fonts/nasalization.otf") format("opentype");
-}
-
-:root {
-  font-family: "manarope";
 }

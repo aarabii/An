@@ -1,6 +1,11 @@
 import data from "@/constants/details.json";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import localFont from "next/font/local";
+
+const argine = localFont({
+  src: "../assets/fonts/argine.otf",
+});
 
 // In future if i want to use Image on my HERO section
 
@@ -27,7 +32,7 @@ export const Hero = () => {
               variants={container(0)}
               initial="hidden"
               animate="visible"
-              className="pb-16 font-argine font-thin tracking-tight lg:mt-20 lg:text-8xl text-5xl"
+              className={`${argine.className} pb-16 font-thin tracking-tight lg:mt-20 lg:text-8xl text-5xl`}
             >
               {data.name}
             </motion.h1>
