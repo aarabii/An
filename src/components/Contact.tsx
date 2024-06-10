@@ -11,8 +11,10 @@ import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 
+import { nasalizationLocation } from "@/util/fontLocation";
+
 const nasalization = localFont({
-  src: "../assets/fonts/nasalization.otf",
+  src: nasalizationLocation,
 });
 
 export const Contact = () => {

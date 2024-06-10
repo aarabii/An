@@ -1,12 +1,15 @@
-import data from "@/constants/details.json";
 import { useRouter } from "next/navigation";
 import localFont from "next/font/local";
 import { motion } from "framer-motion";
+
 import { Button } from "./common/Button";
+
+import data from "@/constants/details.json";
 import { useScreenSize } from "@/util/hook/useScreenSize";
+import { argineLocation } from "@/util/fontLocation";
 
 const argine = localFont({
-  src: "../assets/fonts/argine.otf",
+  src: argineLocation,
 });
 
 const container = (delay: number) => ({

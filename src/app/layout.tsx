@@ -3,8 +3,10 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 
+import { manropeLocation } from "@/util/fontLocation";
+
 const manrope = localFont({
-  src: "../assets/fonts/manrope.ttf",
+  src: manropeLocation,
 });
 
 export const metadata: Metadata = {

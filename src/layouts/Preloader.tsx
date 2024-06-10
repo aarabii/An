@@ -3,8 +3,10 @@ import { FC } from "react";
 import data from "@/constants/details.json";
 import localFont from "next/font/local";
 
+import { nasalizationLocation } from "@/util/fontLocation";
+
 const nasalization = localFont({
-  src: "../assets/fonts/nasalization.otf",
+  src: nasalizationLocation,
 });
 
 interface H1ComponentProps {

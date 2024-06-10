@@ -6,12 +6,13 @@ import { useRouter } from "next/navigation";
 
 import data from "@/constants/details.json";
 import { toBase64, convertImage } from "@/util/BlurData";
-
-const fezeline = localFont({
-  src: "../assets/fonts/fezeline.otf",
-});
+import { fezelineLocation } from "@/util/fontLocation";
 
 import { Button } from "../components/common/Button";
+
+const fezeline = localFont({
+  src: fezelineLocation,
+});
 
 export const Navbar = ({ className }: { className: string }) => {
   const router = useRouter();

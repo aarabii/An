@@ -5,9 +5,10 @@ import localFont from "next/font/local";
 import { toBase64, convertImage } from "@/util/BlurData";
 
 import data from "@/constants/details.json";
+import { fezelineLocation } from "@/util/fontLocation";
 
 const fezeline = localFont({
-  src: "../assets/fonts/fezeline.otf",
+  src: fezelineLocation,
 });
 
 import { FaLinkedin, FaGithub, FaInstagram, FaXTwitter } from "react-icons/fa6";

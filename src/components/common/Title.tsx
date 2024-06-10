@@ -2,8 +2,10 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import localFont from "next/font/local";
 
+import { nasalizationLocation } from "@/util/fontLocation";
+
 const nasalization = localFont({
-  src: "../../assets/fonts/nasalization.otf",
+  src: nasalizationLocation,
 });
 
 interface TitleProps {
