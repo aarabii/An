@@ -1,24 +1,11 @@
-import type { MetadataRoute } from "next";
+import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: ["/"],
-        disallow: "/api/",
-      },
-      {
-        userAgent: "Googlebot",
-        allow: ["/"],
-        disallow: "/api/",
-      },
-      {
-        userAgent: ["Applebot", "Bingbot"],
-        allow: ["/"],
-        disallow: "/api/",
-      },
-    ],
+    rules: {
+      userAgent: "*",
+      allow: "/",
+    },
     sitemap: "https://aarab.vercel.app/sitemap.xml",
   };
 }

@@ -3,7 +3,6 @@ import Link from "next/link";
 import localFont from "next/font/local";
 
 import { toBase64, convertImage } from "@/util/BlurData";
-import logo from "@/assets/logo/an_white_bg_removed.png";
 
 import data from "@/constants/details.json";
 
@@ -20,7 +19,7 @@ export const Footer = () => {
         <div className="py-6 flex justify-between items-center flex-col gap-8 lg:flex-row">
           <div className="flex items-center gap-3">
             <Image
-              src={logo}
+              src="/logo.svg"
               alt="Ideascribe Logo"
               width={40}
               height={40}

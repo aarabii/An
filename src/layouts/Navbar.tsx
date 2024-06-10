@@ -4,7 +4,6 @@ import Image from "next/image";
 import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
 
-import logo from "@/assets/logo/an_white_bg_removed.png";
 import data from "@/constants/details.json";
 import { toBase64, convertImage } from "@/util/BlurData";
 
@@ -23,8 +22,8 @@ export const Navbar = ({ className }: { className: string }) => {
     >
       <div className="flex items-center gap-3">
         <Image
-          src={logo}
-          alt="Ideascribe Logo"
+          src="/logo.svg"
+          alt="Aarab's Logo"
           width={40}
           height={40}
           placeholder="blur"

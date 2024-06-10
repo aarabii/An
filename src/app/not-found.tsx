@@ -2,8 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
-import notFoundImage from "@/assets/pic/notFound.svg";
 import Image from "next/image";
+
+import notFoundImage from "../assets/pic/notFound.svg";
 
 export default function NotFound() {
   const pathname = usePathname();

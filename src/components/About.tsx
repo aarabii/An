@@ -2,7 +2,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { toBase64, convertImage } from "@/util/BlurData";
-import aboutImage from "@/assets/pic/aboutPic.png";
+
 import data from "@/constants/details.json";
 
 import { Title } from "./common/Title";
@@ -25,7 +25,7 @@ export const About = () => {
                 <Image
                   width={500}
                   height={500}
-                  src={aboutImage}
+                  src="/me.png"
                   alt="about Image"
                   className="rounded-2xl"
                   placeholder="blur"
