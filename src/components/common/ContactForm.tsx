@@ -66,7 +66,7 @@ export const ContactForm = () => {
       whileInView={{ opacity: 1, x: 0 }}
       initial={{ opacity: 0, x: 100 }}
       transition={{ duration: 0.5 }}
-      className="bg-slate-200 bg-opacity-20 border-2 text-gray-950 border-neutral-200 shadow-inner shadow-gray-800 p-6 rounded-lg"
+      className="bg-slate-200 bg-opacity-20 border-2 text-gray-950 border-slate-200 shadow-inner shadow-gray-800 p-6 rounded-lg"
     >
       <form onSubmit={sendEmail} className="space-y-4">
         <motion.input

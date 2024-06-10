@@ -1,6 +1,6 @@
 # An (Aarab Nishchal)'s portfolio website
 
-<kbd>My space on web</kbd> to showcase my work, skills, and contact information. The design predominantly uses shades of purple, neutral, gray, and slate from Tailwind CSS.
+<kbd>My space on web</kbd> to showcase my work, skills, and contact information. The design predominantly uses shades of purple, slate, gray, and slate from Tailwind CSS.
 
 <!-- Logo -->
 <p align="center">
@@ -35,7 +35,7 @@
 
 ## Project Overview
 
-This is a portfolio website built with Next.js 14, Framer Motion, and Tailwind CSS. It showcases my work, skills, and contact information. The design predominantly uses shades of purple, neutral, gray, and slate from Tailwind CSS.
+This is a portfolio website built with Next.js 14, Framer Motion, and Tailwind CSS. It showcases my work, skills, and contact information. The design predominantly uses shades of purple, slate, gray, and slate from Tailwind CSS.
 
 **Live Demo:** [https://aarab.vercel.app](https://aarab.vercel.app)
 
@@ -136,11 +136,13 @@ This is a portfolio website built with Next.js 14, Framer Motion, and Tailwind C
 5. **Run the development server:**
    ```bash
     npm run dev
-    ```
+   ```
 6. **Open [http://localhost:3000](http://localhost:3000) to view it in the browser.**
 
 ## Customization
+
 You can easily make this project your own by editing the following files:
+
 - `src/constants/details.json`: Update personal details and social links.
 - `public/logo.svg` and `src/assets/logos/[4logo].png`: Replace with your own logos.
 - `src/assets/pic/aboutPic.png`: Replace with your own Pic.
@@ -148,13 +150,16 @@ You can easily make this project your own by editing the following files:
 - `src/assets`: Add your own images and fonts if you want.
 
 ## Color Scheme
+
 The project uses the following color scheme from Tailwind CSS:
+
 - **Purple Shades**
-- **Neutral**
+- **slate**
 - **Gray**
 - **Slate**
 
 ## Resources
+
 - **Next.js**: [https://nextjs.org/](https://nextjs.org/)
 - **Framer Motion**: [https://www.framer.com/motion/](https://www.framer.com/motion/)
 - **Tailwind CSS**: [https://tailwindcss.com/](https://tailwindcss.com/)
@@ -163,6 +168,7 @@ The project uses the following color scheme from Tailwind CSS:
 - **Tailwind Components**: [https://flowbite.com/](https://flowbite.com/)
 
 ## Socials
+
 - **Instagram**: [@aarab.ii](https://www.instagram.com/aarab.ii/)
 - **LinkedIn**: [Aarab Nishchal](https://www.linkedin.com/in/aarab-nishchal/)
 - **GitHub**: [losier](https://www.github.com/losier)
@@ -172,7 +178,9 @@ The project uses the following color scheme from Tailwind CSS:
 - **Snapchat**: [aarab.ii](https://www.snapchat.com/add/aarab.ii)
 
 ## TODOs
+
 ### Updated TODO (2024-05-22)
+
 - [ ] Add an ideas page
 - [ ] Add a resume page
 - [ ] Update Readme

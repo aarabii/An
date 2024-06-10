@@ -1,8 +1,11 @@
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { toBase64, convertImage } from "@/util/BlurData";
 import aboutImage from "@/assets/pic/aboutPic.png";
 import data from "@/constants/details.json";
+
 import { Title } from "./common/Title";
-import { motion } from "framer-motion";
-import Image from "next/image";
 
 export const About = () => {
   return (
@@ -17,7 +20,7 @@ export const About = () => {
           className="w-full lg:w-1/2 lg:p-8"
         >
           <div className="flex items-center justify-center ">
-            <div className=" border-neutral-400 border-2 rounded-2xl">
+            <div className=" border-slate-500 border-2 rounded-2xl">
               <figure className="relative max-w-sm transition-all duration-500 cursor-pointer filter grayscale blur-sm  hover:grayscale-0 hover:blur-none">
                 <Image
                   width={500}
@@ -25,6 +28,15 @@ export const About = () => {
                   src={aboutImage}
                   alt="about Image"
                   className="rounded-2xl"
+                  placeholder="blur"
+                  loading="lazy"
+                  quality="100"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                    convertImage(700, 475)
+                  )}`}
+                  style={{
+                    objectFit: "cover",
+                  }}
                 />
               </figure>
             </div>
@@ -36,7 +48,7 @@ export const About = () => {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-1/2"
         >
-          <div className="flex justify-center text-center lg:text-right lg:justify-start">
+          <div className="flex justify-center text-center lg:text-left lg:justify-start">
             <p className="my-2 max-w-xl py-6 text-lg tracking-wider">
               {data.about}
             </p>

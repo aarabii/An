@@ -1,14 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Skills } from "@/components/Skills";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
+
+import { Footer } from "./Footer";
 
 export const Main = () => {
   return (
@@ -16,7 +16,7 @@ export const Main = () => {
       initial={{ opacity: 0.5 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="overflow-x-hidden text-neutral-300 antialiased selection:bg-cyan-300 selection:text-cyan-300"
+      className="overflow-x-hidden text-slate-300 antialiased selection:bg-cyan-300 selection:text-cyan-300"
     >
       <div className="top-0 fixed -z-10 h-full w-full">
         {/* This is the background*/}
@@ -30,8 +30,9 @@ export const Main = () => {
         <Experience />
         <Projects />
         <Contact />
-        {/* <Footer /> */}
       </motion.div>
+
+      <Footer />
     </motion.div>
   );
 };

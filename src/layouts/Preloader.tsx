@@ -18,7 +18,7 @@ const H1_Compoent: FC<H1ComponentProps> = ({ name, y_initialValue }) => {
       initial={{ y: y_initialValue, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}
-      className={`${nasalization.className} text-neutral-200`}
+      className={`${nasalization.className} text-slate-200`}
     >
       {name}
     </motion.h1>
@@ -35,7 +35,7 @@ export const Preloader = () => {
           transition={{ duration: 1 }}
           className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"
         ></motion.div>
-        <div className="flex justify-center items-center tracking-preloaderSpacing mx-auto container text-2xl text-neutral-400">
+        <div className="flex justify-center items-center tracking-preloaderSpacing mx-auto container text-2xl text-slate-400">
           <H1_Compoent name={data.first_name} y_initialValue={100} />
           <motion.span
             initial={{ opacity: 0 }}

@@ -70,17 +70,8 @@ const nextConfig = {
       {
         source: "/skills",
         destination: "/",
-      }
-    ];
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "source.unsplash.com",
-        port: '',
       },
-    ],
+    ];
   },
   env: {
     service_key: process.env.EMAILJS_SERVICE_ID,

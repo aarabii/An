@@ -26,7 +26,7 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.5 }}
-                className={`${nasalization.className} text-4xl font-extrabold text-neutral-100`}
+                className={`${nasalization.className} text-4xl font-extrabold text-slate-100`}
               >
                 Get in Touch
               </motion.h1>
@@ -34,7 +34,7 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
-                className="text-sm text-neutral-300 mt-3"
+                className="text-sm text-slate-300 mt-3"
               >
                 Open to any adventure that involves learning and making cool
                 stuff!
@@ -44,41 +44,41 @@ export const Contact = () => {
                   icon={<IoMailOutline />}
                   link={`mailto:${data.email}`}
                   text={data.email}
-                  initial={-100}
+                  initial={-50}
                 />
                 <ContactList
                   icon={<PiTelegramLogo />}
                   link={data.socials.links.telegram}
                   text={data.socials.username.telegram}
-                  initial={100}
+                  initial={50}
                 />
                 <ContactList
                   icon={<IoLocationOutline />}
                   link={`https://www.google.com/maps/place/${data.location.city}+${data.location.state}+${data.location.country}`}
                   text={`${data.location.city}, ${data.location.state}, ${data.location.country}`}
-                  initial={-100}
+                  initial={-50}
                 />
               </ul>
               <ul className="flex mt-12 space-x-4">
                 <ContactSocialList
                   child={<FaGithub />}
                   link={data.socials.links.github}
-                  intitial={-50}
+                  intitial={-10}
                 />
                 <ContactSocialList
                   child={<FaLinkedinIn />}
                   link={data.socials.links.linkedin}
-                  intitial={50}
+                  intitial={10}
                 />
                 <ContactSocialList
                   child={<BsTwitterX />}
                   link={data.socials.links.twitter}
-                  intitial={-50}
+                  intitial={-10}
                 />
                 <ContactSocialList
                   child={<FaInstagram />}
                   link={data.socials.links.instagram}
-                  intitial={50}
+                  intitial={10}
                 />
               </ul>
             </div>

@@ -9,7 +9,7 @@ export const TechClip: FC<TechClipProps> = ({ keyValue, name }) => {
   return (
     <span
       key={keyValue}
-      className="bg-purple-800 text-neutral-200 px-2 py-1 text-sm mr-2 mt-4 inline-flex items-center rounded font-semibold "
+      className="bg-purple-800 text-slate-200 px-2 py-1 text-sm mr-2 mt-4 inline-flex items-center rounded font-semibold capitalize"
     >
       {name}
     </span>

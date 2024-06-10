@@ -30,7 +30,7 @@ export const ContactList: FC<ContactListProps> = ({
         rel="noopener noreferrer"
         className="flex items-center"
       >
-        <div className="text-neutral-100">{icon}</div>
+        <div className="text-slate-100">{icon}</div>
 
         <strong className="text-slate-100 text-md ml-3">{text}</strong>
       </Link>

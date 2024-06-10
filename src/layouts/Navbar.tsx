@@ -1,26 +1,26 @@
 "use client";
 
-import React from "react";
-
+import Image from "next/image";
 import localFont from "next/font/local";
 import { useRouter } from "next/navigation";
 
 import logo from "@/assets/logo/an_white_bg_removed.png";
 import data from "@/constants/details.json";
+import { toBase64, convertImage } from "@/util/BlurData";
 
 const fezeline = localFont({
   src: "../assets/fonts/fezeline.otf",
 });
 
-import { toBase64, convertImage } from "@/util/BlurData";
-import Image from "next/image";
-import { Button } from "./common/Button";
+import { Button } from "../components/common/Button";
 
-export const Navbar = () => {
+export const Navbar = ({ className }: { className: string }) => {
   const router = useRouter();
 
   return (
-    <nav className="z-50 bg-background dark:bg-[#080402] bg-opacity-20 fixed top-0 flex items-center justify-between w-full p-4 transition-all duration-300">
+    <nav
+      className={`${className} z-50  fixed top-0 flex items-center justify-between w-full p-4 transition-all duration-300 bg-gray-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-30`}
+    >
       <div className="flex items-center gap-3">
         <Image
           src={logo}
@@ -37,7 +37,7 @@ export const Navbar = () => {
             objectFit: "cover",
           }}
         />
-        <p className={`font-semibold text-slate-300 ${fezeline.className}`}>
+        <p className={`font-semibold text-slate-100 ${fezeline.className}`}>
           {data.name}
         </p>
       </div>

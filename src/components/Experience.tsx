@@ -17,7 +17,7 @@ export const Experience = () => {
               transition={{ duration: 1 }}
               className="w-full lg:w-1/4"
             >
-              <p className="mb-2 text-sm text-neutral-400">{exp.year}</p>
+              <p className="mb-2 text-base text-slate-200">{exp.year}</p>
             </motion.div>
             <motion.div
               whileInView={{ opacity: 1, x: 0 }}
@@ -29,7 +29,7 @@ export const Experience = () => {
                 {exp.role} -{" "}
                 <span className="text-sm text-purple-200">{exp.company}</span>
               </h6>
-              <p className="mb-4 text-neutral-400">{exp.description}</p>
+              <p className="mb-4 text-slate-400">{exp.description}</p>
               {exp.technologies.map((tec, index) => (
                 <TechClip key={index} name={tec} />
               ))}
