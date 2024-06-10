@@ -11,4 +11,8 @@
     box-sizing: border-box;
     scroll-behavior: smooth !important;
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }

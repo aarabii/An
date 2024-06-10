@@ -24,14 +24,13 @@ export const Main = () => {
       </div>
 
       <motion.div className="mx-auto container px-8">
-        <Navbar />
         <Hero />
         <About />
         <Skills />
         <Experience />
         <Projects />
         <Contact />
-        <Footer />
+        {/* <Footer /> */}
       </motion.div>
     </motion.div>
   );

@@ -71,7 +71,7 @@ export const ContactForm = () => {
       <form onSubmit={sendEmail} className="space-y-4">
         <motion.input
           whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -10 }}
           transition={{ duration: 0.5 }}
           required
           type="text"
@@ -83,7 +83,7 @@ export const ContactForm = () => {
         />
         <motion.input
           whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 10 }}
           transition={{ duration: 0.5 }}
           required
           type="email"
@@ -96,14 +96,13 @@ export const ContactForm = () => {
         {/* Dropdown Menu */}
         <motion.select
           whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -10 }}
           transition={{ duration: 0.5 }}
           required
           name="subject"
           onChange={handleChange}
           value={formValues.subject}
           defaultValue={"General inquries"}
-          
           className="w-full tracking-contactFormSpacing rounded-md py-3 px-3 text-sm outline-purple-200 text-gray-900 bg-slate-200"
         >
           <option
@@ -145,7 +144,7 @@ export const ContactForm = () => {
         </motion.select>
         <motion.textarea
           whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0, x: 10 }}
           transition={{ duration: 0.5 }}
           placeholder="Message"
           rows={6}
@@ -157,7 +156,7 @@ export const ContactForm = () => {
         ></motion.textarea>
         <motion.button
           whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
           whileHover={{
             scale: 1.05,

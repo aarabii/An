@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import notFoundImage from "@/assets/pic/notFound.svg";
-import { Images } from "@/components/common/Images";
+import Image from "next/image";
 
 export default function NotFound() {
   const pathname = usePathname();
@@ -66,9 +66,9 @@ export default function NotFound() {
         </div>
 
         <div className="relative w-full mt-12 lg:w-1/2 lg:mt-0">
-          <Images
+          <Image
             className="w-full max-w-lg lg:mx-auto"
-            url={notFoundImage}
+            src={notFoundImage}
             alt="404-not-found-image"
             quality={100}
           />

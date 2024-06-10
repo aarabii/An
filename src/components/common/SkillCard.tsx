@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { motion } from "framer-motion";
-import { Images } from "./Images";
+import Image from "next/image";
 
 interface SkillCardProps {
   title: string;
@@ -23,8 +23,8 @@ export const SkillCard: FC<SkillCardProps> = ({
       onMouseLeave={onHoverEnd}
     >
       <div className="flex flex-row items-center justify-center gap-3">
-        <Images
-          url={icon}
+        <Image
+          src={icon}
           alt={title}
           width={40}
           height={40}

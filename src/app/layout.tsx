@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import data from "@/constants/details.json";
 
 import localFont from "next/font/local";
+
+import data from "@/constants/details.json";
 
 const manrope = localFont({
   src: "../assets/fonts/manrope.ttf",

@@ -1,9 +1,9 @@
 import logo from "@/assets/logo/an_white_bg_removed.png";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Images } from "./common/Images";
 
 import localFont from "next/font/local";
+import Image from "next/image";
 
 const fezeline = localFont({
   src: "../assets/fonts/fezeline.otf",
@@ -23,8 +23,8 @@ export const Footer = () => {
             href="./"
             className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
           >
-            <Images
-              url={logo}
+            <Image
+              src={logo}
               className="h-8 w-8"
               alt="Aarab Logo"
               width={50}

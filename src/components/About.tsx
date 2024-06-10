@@ -2,7 +2,7 @@ import aboutImage from "@/assets/pic/aboutPic.png";
 import data from "@/constants/details.json";
 import { Title } from "./common/Title";
 import { motion } from "framer-motion";
-import { Images } from "./common/Images";
+import Image from "next/image";
 
 export const About = () => {
   return (
@@ -19,10 +19,10 @@ export const About = () => {
           <div className="flex items-center justify-center ">
             <div className=" border-neutral-400 border-2 rounded-2xl">
               <figure className="relative max-w-sm transition-all duration-500 cursor-pointer filter grayscale blur-sm  hover:grayscale-0 hover:blur-none">
-                <Images
+                <Image
                   width={500}
                   height={500}
-                  url={aboutImage}
+                  src={aboutImage}
                   alt="about Image"
                   className="rounded-2xl"
                 />
@@ -36,7 +36,7 @@ export const About = () => {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-1/2"
         >
-          <div className="flex justify-center lg:justify-start">
+          <div className="flex justify-center text-center lg:text-right lg:justify-start">
             <p className="my-2 max-w-xl py-6 text-lg tracking-wider">
               {data.about}
             </p>

@@ -2,10 +2,8 @@ import { PROJECTS } from "@/constants/projects";
 import { Title } from "./common/Title";
 import { TechClip } from "./common/TechClip";
 import { motion } from "framer-motion";
-import { Images } from "./common/Images";
 
 export const Projects = () => {
-
   return (
     <section id="project">
       <Title title="Projects" />
@@ -19,13 +17,7 @@ export const Projects = () => {
               transition={{ duration: 1 }}
               className="w-full lg:w-1/4"
             >
-              <Images
-                url={proj.image_url || "https://source.unsplash.com/random?technology"}
-                alt={proj.name}
-                height={150}
-                width={150}
-                className="mb-6 rounded"
-              />
+              SOmethingf
             </motion.div>
 
             <motion.div
