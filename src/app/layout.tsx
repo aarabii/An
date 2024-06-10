@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import localFont from "next/font/local";
-
-import { manropeLocation } from "@/util/fontLocation";
-
-const manrope = localFont({
-  src: manropeLocation,
-});
-
 export const metadata: Metadata = {
   title: "Aarab Nishchal",
   description:
@@ -69,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning={true} className={`scroll-smooth`}>
-      <body className={manrope.className}>{children}</body>
+      <body className="font-manrope">{children}</body>
     </html>
   );
 }

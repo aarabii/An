@@ -14,6 +14,14 @@ const config: Config = {
       contactFormSpacing: "0.175em",
       notFoundSpacing: "0.1em",
     },
+    extend: {
+      fontFamily: {
+        argine: ["--font-argine"],
+        fezeline: ["--font-fezeline"],
+        nasalization: ["--font-nasalization"],
+        manrope: ["--font-manrope"],
+      },
+    },
   },
   plugins: [],
 };

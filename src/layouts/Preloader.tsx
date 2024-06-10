@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
 import { FC } from "react";
 import data from "@/constants/details.json";
-import localFont from "next/font/local";
-
-import { nasalizationLocation } from "@/util/fontLocation";
-
-const nasalization = localFont({
-  src: nasalizationLocation,
-});
 
 interface H1ComponentProps {
   name: string;
@@ -20,7 +13,7 @@ const H1_Compoent: FC<H1ComponentProps> = ({ name, y_initialValue }) => {
       initial={{ y: y_initialValue, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}
-      className={`${nasalization.className} text-slate-200`}
+      className="text-slate-200 font-nasalization"
     >
       {name}
     </motion.h1>

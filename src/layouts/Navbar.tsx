@@ -6,13 +6,8 @@ import { useRouter } from "next/navigation";
 
 import data from "@/constants/details.json";
 import { toBase64, convertImage } from "@/util/BlurData";
-import { fezelineLocation } from "@/util/fontLocation";
 
 import { Button } from "../components/common/Button";
-
-const fezeline = localFont({
-  src: fezelineLocation,
-});
 
 export const Navbar = ({ className }: { className: string }) => {
   const router = useRouter();
@@ -37,7 +32,7 @@ export const Navbar = ({ className }: { className: string }) => {
             objectFit: "cover",
           }}
         />
-        <p className={`font-semibold text-slate-100 ${fezeline.className}`}>
+        <p className="font-semibold text-slate-100 font-fezeline">
           {data.name}
         </p>
       </div>

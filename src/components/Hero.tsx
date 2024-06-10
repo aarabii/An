@@ -1,16 +1,10 @@
 import { useRouter } from "next/navigation";
-import localFont from "next/font/local";
 import { motion } from "framer-motion";
 
 import { Button } from "./common/Button";
 
 import data from "@/constants/details.json";
 import { useScreenSize } from "@/util/hook/useScreenSize";
-import { argineLocation } from "@/util/fontLocation";
-
-const argine = localFont({
-  src: argineLocation,
-});
 
 const container = (delay: number) => ({
   hidden: { x: -100, opacity: 0 },
@@ -31,7 +25,7 @@ export const Hero = () => {
           variants={container(0)}
           initial="hidden"
           animate="visible"
-          className={`${argine.className} lg:text-9xl text-7xl font-normal`}
+          className="lg:text-9xl font-argine text-7xl font-normal"
         >
           {screenSize.width > 1024 ? data.name : data.first_name}
         </motion.h1>

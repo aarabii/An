@@ -15,4 +15,27 @@
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @font-face {
+    font-family: --font-argine;
+    font-weight: 500;
+    src: url(/ui/fonts/argine.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: --font-fezeline;
+    font-weight: 500;
+    src: url(/ui/fonts/fezeline.otf) format("opentype");
+  }
+
+  @font-face {
+    font-family: --font-manrope;
+    font-weight: 500;
+    src: url(/ui/fonts/manrope.ttf) format("truetype");
+  }
+  @font-face {
+    font-family: --font-nasalization;
+    font-weight: 500;
+    src: url(/ui/fonts/nasalization.otf) format("opentype");
+  }
 }

@@ -11,12 +11,6 @@ import { IoLocationOutline, IoMailOutline } from "react-icons/io5";
 import { FaGithub, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 
-import { nasalizationLocation } from "@/util/fontLocation";
-
-const nasalization = localFont({
-  src: nasalizationLocation,
-});
-
 export const Contact = () => {
   return (
     <section id="contact">
@@ -28,7 +22,7 @@ export const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.5 }}
-                className={`${nasalization.className} text-4xl font-extrabold text-slate-100`}
+                className="text-4xl font-nasalization font-extrabold text-slate-100"
               >
                 Get in Touch
               </motion.h1>

@@ -1,15 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import localFont from "next/font/local";
 
 import { toBase64, convertImage } from "@/util/BlurData";
 
 import data from "@/constants/details.json";
-import { fezelineLocation } from "@/util/fontLocation";
-
-const fezeline = localFont({
-  src: fezelineLocation,
-});
 
 import { FaLinkedin, FaGithub, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
@@ -34,7 +28,7 @@ export const Footer = () => {
                 objectFit: "cover",
               }}
             />
-            <p className={`font-semibold text-slate-300 ${fezeline.className}`}>
+            <p className="font-semibold text-slate-300 font-fezeline">
               {data.name}
             </p>
           </div>
