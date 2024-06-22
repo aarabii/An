@@ -29,11 +29,6 @@
   }
 
   @font-face {
-    font-family: --font-manrope;
-    font-weight: 500;
-    src: url(/ui/fonts/manrope.ttf) format("truetype");
-  }
-  @font-face {
     font-family: --font-nasalization;
     font-weight: 500;
     src: url(/ui/fonts/nasalization.otf) format("opentype");

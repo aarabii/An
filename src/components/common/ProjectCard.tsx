@@ -1,10 +1,9 @@
 import { FC } from "react";
 import Link from "next/link";
-
 import { motion } from "framer-motion";
-
 import { TechClip } from "./TechClip";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { Meteors } from "../ui/Meteors"; // Make sure this import is correct according to your project structure
 
 interface ProjectCardProps {
   title: string;
@@ -23,40 +22,39 @@ export const ProjectCard: FC<ProjectCardProps> = ({
 }) => {
   return (
     <motion.div
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{
-        scale: 1.1,
-      }}
-      className="rounded-lg border bg-card text-card-foreground w-full max-w-sm mx-auto bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20 border-gray-100 shadow-[inset_0px_0px_5px_0px_#e2e8f0]"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      className="relative rounded-lg border w-full max-w-sm mx-auto shadow-xl overflow-hidden"
     >
-      <div className="p-6 flex flex-row items-center justify-between space-y-0 pb-2">
-        <h3 className="leading-none tracking-tight text-2xl font-medium capitalize">
-          {title}
-        </h3>
-        <div className="flex flex-row gap-3">
-          <Link
-            href={hostedAt}
-            rel="noopener noreferrer"
-            target="_blank"
-            passHref
-          >
-            <FiExternalLink className="h-4 w-4 text-muted-foreground" />
-          </Link>
-          <Link href={git} rel="noopener noreferrer" target="_blank" passHref>
-            <FiGithub className="h-4 w-4 text-muted-foreground" />
-          </Link>
+      <div className="relative p-6 bg-gray-900 bg-opacity-40 rounded-lg flex flex-col justify-between">
+        <div className="flex flex-row items-center justify-between pb-2">
+          <h3 className="leading-none tracking-tight text-2xl cursor-pointer font-medium capitalize text-slate-100">
+            <Link
+              href={hostedAt}
+              rel="noopener noreferrer"
+              target="_blank"
+              passHref
+            >
+              {title}
+            </Link>
+          </h3>
+          <div className="flex flex-row gap-3">
+            <Link href={git} rel="noopener noreferrer" target="_blank" passHref>
+              <FiGithub className="h-5 w-5 text-slate-200" />
+            </Link>
+          </div>
+        </div>
+        <div className="pt-2">
+          <div className="text-sm text-slate-400">{desc}</div>
+          <div className="flex flex-wrap gap-1 mt-2">
+            {tech.map((tech, index) => (
+              <TechClip key={index} name={tech} />
+            ))}
+          </div>
         </div>
       </div>
-      <div className="p-6 pt-0">
-        <div className="text-sm">{desc}</div>
-        <p className="text-muted-foreground">
-          {tech.map((tech, index) => (
-            <TechClip key={index} name={tech} />
-          ))}
-        </p>
-      </div>
+
+      <Meteors number={5} className="opacity-30 -z-30" />
     </motion.div>
   );
 };

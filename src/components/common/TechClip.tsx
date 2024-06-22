@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 interface TechClipProps {
   name: string;
@@ -7,11 +8,13 @@ interface TechClipProps {
 
 export const TechClip: FC<TechClipProps> = ({ keyValue, name }) => {
   return (
-    <span
+    <motion.span
       key={keyValue}
-      className="bg-purple-800 text-slate-200 px-2 py-1 text-sm mr-2 mt-4 inline-flex items-center rounded font-semibold capitalize"
+      className="relative inline-flex items-center px-2 py-1 text-sm mr-2 mt-4 text-slate-200 bg-purple-800 rounded font-light capitalize"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
     >
-      {name}
-    </span>
+      <span className="relative z-10">{name}</span>
+    </motion.span>
   );
 };

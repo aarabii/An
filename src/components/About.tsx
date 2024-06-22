@@ -6,6 +6,7 @@ import { toBase64, convertImage } from "@/util/BlurData";
 import data from "@/constants/details.json";
 
 import { Title } from "./common/Title";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 export const About = () => {
   return (
@@ -50,7 +51,7 @@ export const About = () => {
         >
           <div className="flex justify-center text-center lg:text-left lg:justify-start">
             <p className="my-2 max-w-xl py-6 text-lg tracking-wider">
-              {data.about}
+              <TextGenerateEffect words={data.about} />
             </p>
           </div>
         </motion.div>

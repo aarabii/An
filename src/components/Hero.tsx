@@ -5,6 +5,8 @@ import { Button } from "./common/Button";
 
 import data from "@/constants/details.json";
 import { useScreenSize } from "@/util/hook/useScreenSize";
+import { Meteors } from "./ui/Meteors";
+import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 const container = (delay: number) => ({
   hidden: { x: -100, opacity: 0 },
@@ -43,7 +45,7 @@ export const Hero = () => {
           animate="visible"
           className="w-full lg:w-1/2 font-light text-sm lg:text-xl tracking-wider leading-relaxed"
         >
-          {data.bio}
+          <TextGenerateEffect words={data.bio} />
         </motion.p>
         <motion.div className="flex justify-center lg:justify-start">
           <Button
@@ -53,6 +55,7 @@ export const Hero = () => {
             Resume
           </Button>
         </motion.div>
+        <Meteors number={Math.floor(Math.random() * 50)} />
       </div>
     </header>
   );
