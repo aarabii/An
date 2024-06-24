@@ -40,7 +40,7 @@ const nextConfig = {
       },
       {
         source: "leetcode",
-        destination: "https://leetcode.com/aarabii",
+        destination: "https://leetcode.com/u/aarabii",
         permanent: true,
       },
       {
