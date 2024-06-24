@@ -1,7 +1,7 @@
 {
   "name": "an",
   "description": "My personal website built with Next.js and Tailwind CSS and Framer Motion.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "author": {
     "name": "Aarab Nishchal",

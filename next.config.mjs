@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   async redirects() {
     return [
       {
         source: "/github",
-        destination: "https://www.github.com/losier",
+        destination: "https://www.github.com/aarabii",
         permanent: true,
       },
       {
@@ -38,13 +39,13 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/email",
-        destination: "mailto:aarab.nishchal@gmail.com",
+        source: "leetcode",
+        destination: "https://leetcode.com/aarabii",
         permanent: true,
       },
       {
-        source: "/resume",
-        destination: "/resume.pdf",
+        source: "/email",
+        destination: "mailto:aarab.nishchal@gmail.com",
         permanent: true,
       },
     ];

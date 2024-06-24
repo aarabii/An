@@ -9,18 +9,7 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    letterSpacing: {
-      preloaderSpacing: "0.35em",
-      contactFormSpacing: "0.175em",
-      notFoundSpacing: "0.1em",
-    },
     extend: {
-      fontFamily: {
-        argine: ["--font-argine"],
-        fezeline: ["--font-fezeline"],
-        nasalization: ["--font-nasalization"],
-        manrope: ["--font-manrope"],
-      },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
         shimmer: "shimmer 2s linear infinite",

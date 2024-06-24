@@ -1,14 +1,16 @@
 "use client";
+
 import { useEffect } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
-import { cn } from "@/util/cn";
 
 export const TextGenerateEffect = ({
   words,
   className,
+  speed = 2,
 }: {
   words: string;
   className?: string;
+  speed?: number;
 }) => {
   const [scope, animate] = useAnimate();
   let wordsArray = words.split(" ");
@@ -19,16 +21,16 @@ export const TextGenerateEffect = ({
         opacity: 1,
       },
       {
-        duration: 2,
+        duration: speed,
         delay: stagger(0.2),
       }
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scope.current]);
+  }, [scope.current, speed]);
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope}>
+      <motion.span ref={scope}>
         {wordsArray.map((word, idx) => {
           return (
             <motion.span key={word + idx} className="opacity-0">
@@ -36,13 +38,13 @@ export const TextGenerateEffect = ({
             </motion.span>
           );
         })}
-      </motion.div>
+      </motion.span>
     );
   };
 
   return (
-    <div className="mt-2">
-      <div className=" leading-snug tracking-wide">{renderWords()}</div>
-    </div>
+    <span className={`mt-2 ${className}`}>
+      <span className="leading-snug tracking-wide">{renderWords()}</span>
+    </span>
   );
 };

@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Manropes } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Aarab Nishchal",
@@ -42,20 +40,20 @@ export const metadata: Metadata = {
     title: "Aarab Nishchal",
     description:
       "I'm a student developer who loves building web apps for fun. I enjoy experimenting with technologies to create free, useful tools that everyone can enjoy.",
-    images: [{ url: "/thumbnail.png" }],
+    images: [{ url: "/images/thumbnail.png" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Aarab Nishchal",
     description:
       "I'm a student developer who loves building web apps for fun. I enjoy experimenting with technologies to create free, useful tools that everyone can enjoy.",
-    images: [{ url: "/thumbnail.png" }],
+    images: [{ url: "/images/thumbnail.png" }],
     creator: "@aarab_ii",
   },
   alternates: {
     canonical: "/",
   },
-  icons: "/logo.svg",
+  icons: "/images/logo.svg",
   metadataBase: new URL("https://aarab.vercel.app"),
 };
 
@@ -65,8 +63,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true} className={`scroll-smooth`}>
-      <body className={inter.className}>{children}</body>
+    <html lang="en">
+      <body className={Manropes.className}>{children}</body>
     </html>
   );
 }

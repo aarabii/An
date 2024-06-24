@@ -1,0 +1,42 @@
+export const SELF_DATA = {
+  name: "Aarab Nishchal",
+  first_name: "Aarab",
+  last_name: "Nishchal",
+  jobTitle: "student",
+  workFor: "KIIT University",
+  current_location: {
+    city: "Bhubaneswar",
+    state: "Odisha",
+    country: "India",
+  },
+  DOB: {
+    dd: 9,
+    mm: 8,
+    yyyy: 2004,
+  },
+  email: "aarab.nishchal@gmail.com",
+  role: [
+    "Chief Problem Solver",
+    "Idea Mechanic",
+    "Possibility Pilot",
+    "Chaos Coordinator",
+    "Chief Tinkerer",
+    "Glitch Gladiator",
+    "Solution Sorcerer",
+    "Joyful Juggler",
+  ],
+  desc: "I build things that lives on internet.",
+  bio: "I'm a student developer who loves building web apps for fun. I enjoy experimenting with technologies to create free, useful tools that everyone can enjoy.",
+  about:
+    "I'm a passionate developer with a love for building user-friendly web applications. Though still a student, I've gained experience with React and various back-end technologies. I'm driven by a curiosity to learn and a desire to create tools that are both fun and functional. I'm always eager to explore new technologies and collaborate with others to bring innovative ideas to life.",
+  socials_username: {
+    instagram: "aarab.ii",
+    linkedin: "aarab-nishchal",
+    leetcode: "aarabii",
+    github: "aarabii",
+    twitter: "aarab_ii",
+    facebook: "zzcwc",
+    telegram: "aarab_ii",
+    snapchat: "aarab.ii",
+  },
+};
