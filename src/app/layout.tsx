@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Manropes } from "./fonts";
+import keywords from "./keywords";
 
 export const metadata: Metadata = {
   title: "Aarab Nishchal",
@@ -15,27 +16,7 @@ export const metadata: Metadata = {
   ],
   creator: "Aarab Nishchal",
   referrer: "origin-when-cross-origin",
-  keywords: [
-    "Aarab Nishchal",
-    "Aarab",
-    "Nishchal",
-    "aarabii",
-    "aarab",
-    "caya",
-    "portfolio",
-    "developer",
-    "web developer",
-    "web",
-    "developer",
-    "web development",
-    "web design",
-    "design",
-    "react",
-    "next",
-    "nextjs",
-    "tailwind",
-    "framer-motion",
-  ],
+  keywords: keywords,
   openGraph: {
     title: "Aarab Nishchal",
     description:
