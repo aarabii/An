@@ -34,9 +34,9 @@ export const ResumeRender = () => {
   }
 
   return (
-    <div className="w-full h-full sm:w-screen flex flex-col items-center justify-center p-4">
+    <div className="w-full h-full flex flex-col items-center justify-center p-4">
       <Document
-        className="w-screen"
+        className="z-0"
         file="/docs/resume.pdf"
         onLoadSuccess={onDocumentLoadSuccess}
       >
