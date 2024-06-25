@@ -1,3 +1,6 @@
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -45,7 +48,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={Manropes.className}>{children}</body>
+      <body className={Manropes.className}>
+        {children}
+        <SpeedInsights />
+        <Analytics />
+      </body>
     </html>
   );
 }
