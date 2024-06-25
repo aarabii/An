@@ -54,6 +54,11 @@ const nextConfig = {
         destination: "mailto:aarab.nishchal@gmail.com",
         permanent: true,
       },
+      {
+        source: "/resume",
+        destination: "/docs/resume.pdf",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
