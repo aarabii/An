@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 import { Footer } from "@/components/common/Footer";
 import { Navbar } from "@/components/common/Navbar";
@@ -10,9 +11,11 @@ import { Preloader } from "@/components/common/Preloader";
 import useScrollDirection from "@/hooks/useScrollDirection";
 
 const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
+  const scrollDirection = useScrollDirection();
+  const router = useRouter();
+
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [isTop, setIsTop] = useState<boolean>(true);
-  const scrollDirection = useScrollDirection();
 
   useEffect(() => {
     const simulateLoading = async () => {
@@ -40,6 +43,8 @@ const HomePageLayout = ({ children }: { children: React.ReactNode }) => {
       {isLoaded ? (
         <div className="flex-1 flex flex-col">
           <Navbar
+            btnText="Resume"
+            btnFnc={() => router.push("/resume")}
             className={`transition-transform duration-300 ${
               scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
             } ${isTop ? "" : "border-b border-slate-300"}`}

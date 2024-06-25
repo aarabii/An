@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Manropes } from "../fonts";
 
 export const metadata: Metadata = {
   title: "Resume | Aarab Nishchal",
@@ -26,8 +25,8 @@ export const metadata: Metadata = {
 const Resumelayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html>
-      <body className={inter.className}>
-        <main>{children}</main>
+      <body className={`${Manropes.className} overflow-x-hidden`}>
+        {children}
       </body>
     </html>
   );

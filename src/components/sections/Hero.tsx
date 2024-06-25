@@ -58,7 +58,7 @@ export const Hero = () => {
             Resume
           </button>
         </motion.div>
-        <Meteors number={Math.floor(Math.random() * 50)} />
+        {/* <Meteors number={Math.floor(Math.random() * 50)} /> */}
       </div>
     </header>
   );

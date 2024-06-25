@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { IconType } from "react-icons";
 
 import { customBlurDataURL } from "@/utils/Blurdata";
 
@@ -9,7 +10,15 @@ import { SELF_DATA } from "@/constant/self";
 
 import { MoonDance } from "@/app/fonts";
 
-export const Navbar = ({ className }: { className: string }) => {
+export const Navbar = ({
+  className,
+  btnText,
+  btnFnc,
+}: {
+  className: string;
+  btnText: string;
+  btnFnc: () => void;
+}) => {
   const router = useRouter();
   return (
     <nav
@@ -36,9 +45,9 @@ export const Navbar = ({ className }: { className: string }) => {
       <div className="flex items-center md:ml-auto">
         <button
           className="w-32 text-purple-400 border-purple-400 border-2 rounded-md px-4 py-2 hover:bg-purple-400 hover:text-black hover:font-semibold"
-          onClick={() => router.push("/resume")}
+          onClick={btnFnc}
         >
-          Resume
+          {btnText}
         </button>
       </div>
     </nav>
