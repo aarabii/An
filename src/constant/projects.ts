@@ -14,10 +14,11 @@ export const PROJECT_DATA = [
     tech: ["Convex", "Clerk", "Edgestore"],
   },
   {
-    name: "Visibo",
-    description: "Integrate all your online content into one place",
-    github_link: "",
-    demo: "https://aarabii.github.io/v3/",
-    tech: ["Convex", "Shadcn/ui", "tailwind"],
+    name: "CraftoGram",
+    description:
+      "Crafto-Gram helps you create unique and engaging Instagram bios and descriptions with ease.",
+    github_link: "https://github.com/aarabii/crafto",
+    demo: "https://craftogram.vercel.app/",
+    tech: ["Groq", "Vercel AI SDK", "Zod"],
   },
 ];
