@@ -10,53 +10,13 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/github",
-        destination: "https://www.github.com/aarabii",
-        permanent: true,
-      },
-      {
-        source: "/linkedin",
-        destination: "https://www.linkedin.com/in/aarab-nishchal",
-        permanent: true,
-      },
-      {
-        source: "/twitter",
-        destination: "https://www.twitter.com/aarab_ii",
-        permanent: true,
-      },
-      {
-        source: "/instagram",
-        destination: "https://www.instagram.com/aarab.ii",
-        permanent: true,
-      },
-      {
-        source: "/facebook",
-        destination: "https://www.facebook.com/zzcwc",
-        permanent: true,
-      },
-      {
-        source: "/telegram",
-        destination: "https://t.me/aarab_ii",
-        permanent: true,
-      },
-      {
-        source: "/snapchat",
-        destination: "https://www.snapchat.com/add/aarab.ii",
-        permanent: true,
-      },
-      {
-        source: "/leetcode",
-        destination: "https://leetcode.com/u/aarabii",
+        source: "/resume",
+        destination: "/docs/resume.pdf",
         permanent: true,
       },
       {
         source: "/email",
         destination: "mailto:aarab.nishchal@gmail.com",
-        permanent: true,
-      },
-      {
-        source: "/resume",
-        destination: "/docs/resume.pdf",
         permanent: true,
       },
     ];
@@ -82,6 +42,38 @@ const nextConfig = {
       {
         source: "/skills",
         destination: "/",
+      },
+      {
+        source: "/github",
+        destination: "https://www.github.com/aarabii",
+      },
+      {
+        source: "/linkedin",
+        destination: "https://www.linkedin.com/in/aarab-nishchal",
+      },
+      {
+        source: "/twitter",
+        destination: "https://www.twitter.com/aarab_ii",
+      },
+      {
+        source: "/instagram",
+        destination: "https://www.instagram.com/aarab.ii",
+      },
+      {
+        source: "/facebook",
+        destination: "https://www.facebook.com/zzcwc",
+      },
+      {
+        source: "/telegram",
+        destination: "https://t.me/aarab_ii",
+      },
+      {
+        source: "/snapchat",
+        destination: "https://www.snapchat.com/add/aarab.ii",
+      },
+      {
+        source: "/leetcode",
+        destination: "https://leetcode.com/u/aarabii",
       },
     ];
   },
