@@ -1,4 +1,22 @@
-import { Manrope, Moon_Dance, Nova_Square, Square_Peg } from "next/font/google";
+import localFont from "next/font/local";
+
+import { Manrope, Ballet, Red_Hat_Mono } from "next/font/google";
+
+export const nasalization = localFont({
+  src: "../assets/fonts/nasalization.otf",
+  weight: "100",
+  style: "normal",
+  preload: true,
+  fallback: ["arial", "Helvetica", "sans-serif"],
+});
+
+export const quentin = localFont({
+  src: "../assets/fonts/quentin.otf",
+  weight: "400",
+  style: "normal",
+  preload: true,
+  fallback: ["Georgia", "Times New Roman", "serif"],
+});
 
 export const Manropes = Manrope({
   subsets: ["latin"],
@@ -7,23 +25,7 @@ export const Manropes = Manrope({
   preload: true,
 });
 
-export const MoonDance = Moon_Dance({
-  subsets: ["latin"],
-  weight: "400",
-  style: "normal",
-  fallback: ["cursive", "sans-serif"],
-  preload: true,
-});
-
-export const NovaSquare = Nova_Square({
-  subsets: ["latin"],
-  weight: "400",
-  style: "normal",
-  fallback: ["cursive", "sans-serif"],
-  preload: true,
-});
-
-export const SquarePeg = Square_Peg({
+export const redHat = Red_Hat_Mono({
   subsets: ["latin"],
   weight: "400",
   style: "normal",

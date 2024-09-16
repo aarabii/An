@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { IconType } from "react-icons";
 
 import { customBlurDataURL } from "@/utils/Blurdata";
 
 import { SELF_DATA } from "@/constant/self";
 
-import { MoonDance } from "@/app/fonts";
+import { redHat } from "@/app/fonts";
 
 export const Navbar = ({
   className,
@@ -38,7 +37,7 @@ export const Navbar = ({
             objectFit: "cover",
           }}
         />
-        <h2 className={`${MoonDance.className} text-3xl text-slate-100`}>
+        <h2 className={`${redHat.className} text-3xl text-slate-100`}>
           {SELF_DATA.name}
         </h2>
       </div>

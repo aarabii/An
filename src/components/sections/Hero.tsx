@@ -9,7 +9,7 @@ import { SELF_DATA } from "@/constant/self";
 import { Meteors } from "../ui/Meteors";
 import { TextGenerateEffect } from "../ui/TextGenerateEffect";
 
-import { MoonDance } from "@/app/fonts";
+import { quentin } from "@/app/fonts";
 
 const container = (delay: number) => ({
   hidden: { x: -100, opacity: 0 },
@@ -30,7 +30,7 @@ export const Hero = () => {
           variants={container(0)}
           initial="hidden"
           animate="visible"
-          className={`${MoonDance.className} lg:text-9xl text-7xl font-normal`}
+          className={`${quentin.className} lg:text-9xl text-7xl font-normal`}
         >
           {screenSize.width > 1024 ? SELF_DATA.name : SELF_DATA.first_name}
         </motion.h1>

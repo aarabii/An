@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FC } from "react";
 
-import { NovaSquare } from "@/app/fonts";
+import { nasalization } from "@/app/fonts";
 
 import { SELF_DATA } from "@/constant/self";
 
@@ -18,7 +18,7 @@ const H1_Compoent: FC<H1ComponentProps> = ({ name, y_initialValue }) => {
       initial={{ y: y_initialValue, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1 }}
-      className={`text-slate-200 text-4xl ${NovaSquare.className}`}
+      className={`text-slate-200 text-4xl ${nasalization.className}`}
     >
       {name}
     </motion.h1>

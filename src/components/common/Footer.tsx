@@ -11,7 +11,7 @@ import { customBlurDataURL } from "@/utils/Blurdata";
 import { FaLinkedin, FaGithub, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
 
-import { MoonDance } from "@/app/fonts";
+import { quentin } from "@/app/fonts";
 
 export const Footer = () => {
   return (
@@ -33,7 +33,7 @@ export const Footer = () => {
               }}
             />
             <h2
-              className={`${MoonDance.className} cursor-pointer text-4xl font-semibold text-slate-300`}
+              className={`${quentin.className} cursor-pointer text-4xl font-semibold text-slate-300`}
             >
               {SELF_DATA.name}
             </h2>
@@ -66,12 +66,12 @@ export const Footer = () => {
             />
           </div>
         </div>
-        <div className="py-7 border-t border-slate-400">
+        <div className="py-7 border-t border-purple-500">
           <div className="flex items-center justify-center">
-            <code className="text-slate-200 ">
+            <code className="text-purple-300 ">
               Made with ❤️ by{" "}
               <span
-                className="cursor-pointer"
+                className="cursor-pointer text-slate-200"
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               >
                 Aarab Nishchal

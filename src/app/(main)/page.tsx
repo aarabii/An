@@ -16,7 +16,7 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
       </div>
 
-      <div className="mx-auto container px-8">
+      <div className="mx-auto container cursor-default select-none px-8">
         <Hero />
         <About />
         <Skills />
@@ -31,7 +31,7 @@ export default function Home() {
 const MotionDivHome = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
-      className="overflow-x-hidden text-slate-300 antialiased selection:bg-slate-700 selection:text-slate-100"
+      className="overflow-x-hidden text-slate-300 antialiased"
       initial={{ opacity: 0.5 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}

@@ -30,7 +30,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
       className="relative rounded-lg border w-full max-w-sm mx-auto shadow-xl overflow-hidden"
     >
-      <div className="relative p-6 bg-gray-900 bg-opacity-40 rounded-lg flex flex-col justify-between">
+      <div className="relative p-6 bg-gray-900 h-full bg-opacity-40 rounded-lg flex flex-col justify-between">
         <div className="flex flex-row items-center justify-between pb-2">
           <h3 className="leading-none tracking-tight text-2xl cursor-pointer font-medium capitalize text-slate-100">
             <Link
@@ -58,7 +58,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
         </div>
       </div>
 
-      <Meteors number={5} className="opacity-30 -z-30" />
+      <Meteors number={10} className="opacity-30 -z-30" />
     </motion.div>
   );
 };
