@@ -52,9 +52,9 @@ export const Contact = () => {
                 />
 
                 <ContactList
-                  Icon={PiTelegramLogo}
-                  link={`https://t.me/${SELF_DATA.socials_username.telegram}`}
-                  text={`@${SELF_DATA.socials_username.telegram}`}
+                  Icon={FaInstagram}
+                  link={`https://instagram.com/${SELF_DATA.socials_username.instagram}`}
+                  text={`@${SELF_DATA.socials_username.instagram}`}
                   initial={25}
                 />
 
@@ -79,8 +79,8 @@ export const Contact = () => {
                 />
 
                 <ContactSocial
-                  Icon={FaInstagram}
-                  link={`https://www.instagram.com/${SELF_DATA.socials_username.instagram}`}
+                  Icon={PiTelegramLogo}
+                  link={`https://t.me/${SELF_DATA.socials_username.telegram}`}
                   initial={-10}
                 />
 

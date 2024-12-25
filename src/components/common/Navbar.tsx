@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import { customBlurDataURL } from "@/utils/Blurdata";
 
@@ -18,7 +17,6 @@ export const Navbar = ({
   btnText: string;
   btnFnc: () => void;
 }) => {
-  const router = useRouter();
   return (
     <nav
       className={`${className} flex items-center justify-between w-screen z-50 fixed p-4 transition-all duration-300 bg-slate-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40`}
