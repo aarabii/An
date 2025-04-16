@@ -4,16 +4,15 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     config.resolve.alias.encoding = false;
+    config.module.rules.push({
+      test: /\.node/,
+      use: "raw-loader",
+    });
 
     return config;
   },
   async redirects() {
     return [
-      {
-        source: "/resume",
-        destination: "/docs/resume.pdf",
-        permanent: true,
-      },
       {
         source: "/email",
         destination: "mailto:aarab.nishchal@gmail.com",
