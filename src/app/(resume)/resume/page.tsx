@@ -1,25 +1,24 @@
-import PDFViewer from "@/components/sections/Resume";
-import { Metadata } from "next";
-import React from "react";
+"use client";
 
-// Add metadata for SEO
-export const metadata: Metadata = {
-  title: "Aarab Nishchal - Resume",
-  description:
-    "Professional resume of Aarab Nishchal. View and download PDF format.",
-};
+import { motion } from "framer-motion";
+import Resume from "@/components/sections/Resume";
 
 export default function ResumePage() {
   return (
-    <div className="bg-slate-900 min-h-screen text-slate-50">
-      <main className="container mx-auto px-2 py-6 min-h-screen">
-        {/* <header className="mb-6">
-          <h1 className="text-3xl md:text-4xl font-bold text-fuchsia-400 mb-2">
-            Aarab&apos;s Resume
-          </h1>
-        </header> */}
-        <PDFViewer />
+    <motion.div
+      className="overflow-x-hidden text-slate-300 antialiased"
+      initial={{ opacity: 0.5 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className="top-0 fixed -z-10 h-full w-full">
+        <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#63e_100%)]"></div>
+      </div>
+
+      {/* Add padding-top to account for navbar height */}
+      <main className="m-auto container cursor-default select-none min-h-screen pt-24">
+        <Resume />
       </main>
-    </div>
+    </motion.div>
   );
 }

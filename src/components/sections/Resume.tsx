@@ -58,10 +58,11 @@ export default function Resume() {
       style.textContent = `
         .rpv-core__inner-page {
           padding: 0 !important;
+          background-color: transparent !important;
+
         }
         .rpv-core__inner-pages {
           padding: 0 !important;
-          background-color: #ff00ff !important;
 
         }
         .rpv-core__viewer {
@@ -124,7 +125,7 @@ export default function Resume() {
         </Tooltip>
       </TooltipProvider>
 
-      <div className="bg-secondary text-secondary-foreground px-2 py-1 rounded text-sm min-w-14 text-center">
+      <div className="px-2 py-1 rounded text-sm min-w-14 text-center">
         {Math.round(scale * 100)}%
       </div>
 
