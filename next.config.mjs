@@ -18,6 +18,11 @@ const nextConfig = {
         destination: "mailto:aarab.nishchal@gmail.com",
         permanent: true,
       },
+      {
+        source: "/directresume",
+        destination: "/docs/MyResume.pdf",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
