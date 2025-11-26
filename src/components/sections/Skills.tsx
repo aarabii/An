@@ -77,18 +77,7 @@ const Marquee: FC<MarqueeProps> = ({ skills, direction }) => {
 export const Skills = () => {
   return (
     <section id="skills" className="py-16 overflow-hidden relative">
-      <motion.div
-        className="absolute top-1/2 right-0 w-64 h-64 bg-violet/5 rounded-full blur-3xl"
-        animate={{
-          x: [0, 50, 0],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      <div className="absolute top-1/2 right-0 w-64 h-64 bg-violet/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-8">

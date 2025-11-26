@@ -2,8 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: false, // Keep image optimization enabled
-    // domains: ["aarab.vercel.app"],
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -20,7 +19,6 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
 
-  // Headers for better SEO and security
   async headers() {
     return [
       {
@@ -37,6 +35,10 @@ const nextConfig: NextConfig = {
           {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
+          },
+          {
+            key: "X-Robots-Tag",
+            value: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
           },
         ],
       },
@@ -60,7 +62,6 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Redirects for SEO
   async redirects() {
     return [
       {

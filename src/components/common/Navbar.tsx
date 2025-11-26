@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 import { RiMenu4Fill, RiCloseLargeFill } from "react-icons/ri";
 
@@ -15,29 +16,37 @@ import { selfData } from "@/constant";
 export const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const pathname = usePathname();
+  const isResumePage = pathname === "/resume";
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      setIsScrolled(currentScrollY > 100);
-
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-        setIsMenuOpen(false);
+      // Optimize state updates to avoid unnecessary re-renders
+      if (currentScrollY > 100 && !isScrolled) {
+        setIsScrolled(true);
+      } else if (currentScrollY <= 100 && isScrolled) {
+        setIsScrolled(false);
       }
 
-      setLastScrollY(currentScrollY);
+      if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        if (!isVisible) setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        if (isVisible) {
+          setIsVisible(false);
+          setIsMenuOpen(false);
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [isScrolled, isVisible]);
 
   return (
     <nav
@@ -86,7 +95,15 @@ export const Navbar = () => {
               asChild
               className="border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200"
             >
-              <Link href="/resume">Resume</Link>
+              {isResumePage ? (
+                <a href="/docs/Aarab_Nishchal_Resume.pdf" download="Aarab_Nishchal_Resume.pdf">
+                  Download Resume
+                </a>
+              ) : (
+                <Link href="/resume">
+                  Resume
+                </Link>
+              )}
             </Button>
           </div>
 
@@ -122,13 +139,24 @@ export const Navbar = () => {
                 asChild
                 className="w-full border-primary/30 hover:border-primary hover:bg-primary/10 transition-all duration-200"
               >
-                <Link
-                  href="/resume"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="flex items-center justify-center"
-                >
-                  Resume
-                </Link>
+                {isResumePage ? (
+                  <a
+                    href="/docs/Aarab_Nishchal_Resume.pdf"
+                    download="Aarab_Nishchal_Resume.pdf"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-center"
+                  >
+                    Download Resume
+                  </a>
+                ) : (
+                  <Link
+                    href="/resume"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center justify-center"
+                  >
+                    Resume
+                  </Link>
+                )}
               </Button>
             </div>
           </div>

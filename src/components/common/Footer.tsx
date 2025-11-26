@@ -87,6 +87,8 @@ export const Footer = () => {
                 alt="Logo"
                 width={40}
                 height={40}
+                loading="lazy"
+                sizes="40px"
                 className="w-10 h-10 object-contain bg-transparent border border-primary/90 p-1.5 rounded-xl shadow-lg"
               />
             </motion.span>
@@ -134,7 +136,7 @@ export const Footer = () => {
       {floatingParticles.map((particle, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 rounded-full opacity-30"
+          className="absolute w-1 h-1 rounded-full opacity-30 pointer-events-none"
           style={{
             background: particle.color,
             left: particle.x,

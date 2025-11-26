@@ -1,6 +1,10 @@
-import { selfData } from "@/constant";
+import { selfData, skillsData } from "@/constant";
 
 export function generatePersonStructuredData() {
+  const skills = skillsData.flatMap((category) =>
+    category.data.map((skill) => skill.title)
+  );
+
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -11,6 +15,10 @@ export function generatePersonStructuredData() {
     worksFor: {
       "@type": "Organization",
       name: selfData.workFor,
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "KIIT University",
     },
     email: selfData.email,
     address: {
@@ -27,6 +35,7 @@ export function generatePersonStructuredData() {
     ],
     url: "https://aarab.vercel.app",
     description: selfData.bio,
+    knowsAbout: skills,
   };
 }
 

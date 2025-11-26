@@ -21,9 +21,8 @@ export const About = () => {
       ref={ref}
       className="py-24 max-w-6xl mx-auto relative overflow-hidden"
     >
-      {/* Enhanced Background Blobs */}
       <motion.div
-        className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl"
+        className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
         style={{ background: "hsl(var(--primary) / 0.08)" }}
         initial={{ scale: 0.8, opacity: 0 }}
         animate={
@@ -47,7 +46,7 @@ export const About = () => {
       />
 
       <motion.div
-        className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl"
+        className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl pointer-events-none"
         style={{ background: "hsl(var(--secondary) / 0.06)" }}
         initial={{ scale: 0.6, opacity: 0 }}
         animate={
@@ -73,7 +72,6 @@ export const About = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-x-hidden">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Profile Image Section */}
           <motion.div
             className="flex justify-center md:justify-start"
             initial={{ opacity: 0, x: -60 }}
@@ -96,12 +94,10 @@ export const About = () => {
                 },
               }}
             >
-              {/* Enhanced Image Container with Glass Effect and B&W to Color Hover */}
               <div
                 className="w-full max-w-md h-80 rounded-2xl overflow-hidden relative glass-card border-2 group/image"
                 style={{ borderColor: "hsl(var(--glass-border))" }}
               >
-                {/* Profile Image with B&W to Color Effect */}
                 <motion.div
                   initial={{ scale: 1.1, opacity: 0 }}
                   animate={
@@ -115,19 +111,18 @@ export const About = () => {
                   <Image
                     src={"/images/me.png"}
                     alt="Profile Picture"
-                    width={384}
-                    height={320}
-                    className="w-full h-full object-cover transition-all duration-700 ease-in-out filter grayscale group-hover/image:grayscale-0 group-hover/image:scale-105"
+                    fill
+                    loading="lazy"
+                    sizes="(max-width: 768px) 100vw, 448px"
+                    className="object-cover transition-all duration-700 ease-in-out filter grayscale group-hover/image:grayscale-0 group-hover/image:scale-105"
                   />
-                  
-                  {/* Subtle overlay for enhanced effect */}
+
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 opacity-0 group-hover/image:opacity-100 transition-opacity duration-700" />
                 </motion.div>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Content Section */}
           <motion.div
             className="space-y-8"
             initial={{ opacity: 0, x: 60 }}
@@ -138,7 +133,6 @@ export const About = () => {
               ease: [0.25, 0.46, 0.45, 0.94],
             }}
           >
-            {/* Enhanced Title */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -156,7 +150,6 @@ export const About = () => {
               </h2>
             </motion.div>
 
-            {/* Enhanced Paragraphs */}
             <motion.div
               className="space-y-6 leading-relaxed"
               style={{ color: "hsl(var(--foreground) / 0.8)" }}
@@ -167,7 +160,7 @@ export const About = () => {
               {selfData.about.map((paragraph, index) => (
                 <motion.p
                   key={index}
-                  className="text-xs"
+                  className="text-xs hover:text-primary-foreground transition-colors duration-200"
                   initial={{ opacity: 0, y: 15 }}
                   animate={
                     isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }
@@ -179,7 +172,6 @@ export const About = () => {
                   }}
                   whileHover={{
                     x: 4,
-                    color: "hsl(var(--primary-foreground))",
                     transition: { duration: 0.2 },
                   }}
                 >
@@ -188,7 +180,6 @@ export const About = () => {
               ))}
             </motion.div>
 
-            {/* Enhanced Location */}
             <motion.div
               className="flex items-center gap-4 text-sm"
               initial={{ opacity: 0, y: 20 }}
@@ -211,7 +202,7 @@ export const About = () => {
                   href={`https://www.google.com/maps/place/${selfData.current_location.city}+${selfData.current_location.state}+${selfData.current_location.country}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 glass-card px-6 py-3 rounded-full hover:glass-intense group transition-all duration-300"
+                  className="flex items-center gap-3 px-6 py-3 rounded-full border border-primary/20 hover:border-primary/50 group transition-all duration-300"
                 >
                   <motion.div
                     animate={

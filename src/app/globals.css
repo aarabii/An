@@ -254,6 +254,7 @@ body {
     border: 1px solid hsl(var(--glass-border));
     box-shadow: var(--glass-glow);
     transition: all 0.3s ease;
+    will-change: transform, box-shadow;
   }
 
   .glass-card:hover {
@@ -268,6 +269,7 @@ body {
     backdrop-filter: var(--glass-backdrop-intense);
     border: 1px solid hsl(var(--glass-border-hover));
     box-shadow: var(--glass-glow-intense);
+    will-change: transform, box-shadow;
   }
 
   .glass-shimmer::before {
@@ -280,6 +282,7 @@ body {
     background: var(--glass-shimmer);
     transition: left 0.8s ease-in-out;
     z-index: 1;
+    will-change: left;
   }
 
   .glass-shimmer:hover::before {

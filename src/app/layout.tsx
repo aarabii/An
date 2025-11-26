@@ -28,12 +28,46 @@ export const metadata: Metadata = {
   ],
   creator: "Aarab Nishchal",
   referrer: "origin-when-cross-origin",
+  category: "Portfolio",
+  classification: "Software Development",
   keywords: keywords,
   metadataBase: new URL("https://aarab.vercel.app"),
 
   // SEO Enhancements
   alternates: {
     canonical: "https://aarab.vercel.app",
+    languages: {
+      "en-US": "https://aarab.vercel.app",
+    },
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "google-site-verification-code", // Placeholder, user needs to provide or I'll leave as comment
+    yandex: "yandex-verification-code",
+    other: {
+      "me": ["mailto:aarab.nishchal@gmail.com"],
+    },
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Aarab Nishchal",
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: {
+    telephone: false,
+    date: false,
+    address: false,
+    email: false,
   },
   icons: {
     icon: [
@@ -63,7 +97,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 
   openGraph: {
-    title: "Aarab Nishchal",
+    title: "Aarab Nishchal | Student Developer & Creative Coder",
     description:
       "Explore Aarab Nishchal’s portfolio featuring projects in React, Next.js, AI, and developer tools. Discover a world of creative web applications and open-source experiments.",
     url: "https://aarab.vercel.app",
@@ -79,10 +113,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  other: {
+    "article:published_time": "2024-01-01T00:00:00.000Z",
+    "article:modified_time": new Date().toISOString(),
+  },
 
   twitter: {
     card: "summary_large_image",
-    title: "Aarab Nishchal",
+    title: "Aarab Nishchal | Student Developer",
     description:
       "Check out Aarab Nishchal’s personal portfolio and dev projects using Next.js, React, Tailwind, and modern web tech.",
     images: ["/images/thumbnail.png"],
@@ -100,8 +138,11 @@ export default function RootLayout({
   const organizationStructuredData = generateOrganizationStructuredData();
 
   return (
-    <html lang="en">
-      <head>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${mono.variable} ${nasalization.variable} ${quentine.variable} font-sans`}
+        suppressHydrationWarning
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -120,11 +161,6 @@ export default function RootLayout({
             __html: JSON.stringify(organizationStructuredData),
           }}
         />
-      </head>
-      <body
-        className={`${inter.variable} ${mono.variable} ${nasalization.variable} ${quentine.variable} font-sans`}
-        suppressHydrationWarning={true}
-      >
         {children}
         <Toaster position="bottom-right" richColors closeButton />
         <Analytics />

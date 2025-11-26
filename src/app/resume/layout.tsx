@@ -40,12 +40,12 @@ export default function ResumeLayout({
 
   return (
     <>
-      {/* Preload the PDF for better performance */}
       <link
         rel="preload"
         href="/docs/Aarab_Nishchal_Resume.pdf"
-        as="document"
+        as="fetch"
         type="application/pdf"
+        crossOrigin="anonymous"
       />
       <script
         type="application/ld+json"

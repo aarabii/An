@@ -98,7 +98,7 @@ const ContactItem: React.FC<ContactItemProps> = ({
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      className="glass-card p-4 rounded-xl transition-all duration-300 hover:glass-intense group cursor-pointer"
+      className="p-4 rounded-xl transition-all duration-300 hover:bg-white/5 group cursor-pointer border border-transparent hover:border-primary/20"
     >
       <div className="flex items-center space-x-4">
         <motion.div

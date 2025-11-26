@@ -2,10 +2,10 @@ export const keywords = [
   "Aarab Nishchal",
   "Aarab",
   "Nishchal",
-  "aarabii", // GitHub username
-  "aarab.vercel.app", // Portfolio URL
-  "aarab.nishchal@gmail.com", // Email for search
-  "linkedin/in/aarab-nishchal", // LinkedIn profile
+  "aarabii",
+  "aarab.vercel.app",
+  "aarab.nishchal@gmail.com",
+  "linkedin/in/aarab-nishchal",
   "Aarab Nishchal portfolio",
   "Aarab Nishchal developer",
   "Aarab Nishchal software engineer",
