@@ -1,5 +1,5 @@
 export const resumeKeywords = [
-  // Personal Branding
+
   "Aarab Nishchal",
   "Aarab Nishchal resume",
   "Aarab Nishchal CV",
@@ -15,7 +15,7 @@ export const resumeKeywords = [
   "B.Tech Computer Science",
   "KIIT University",
 
-  // Core Programming Languages
+
   "JavaScript",
   "TypeScript",
   "Python",
@@ -27,7 +27,7 @@ export const resumeKeywords = [
   "SQL",
   "NoSQL",
 
-  // Frontend Technologies
+
   "React.js",
   "Next.js",
   "React Native",
@@ -48,7 +48,7 @@ export const resumeKeywords = [
   "Single Page Applications",
   "SPA",
 
-  // Backend Technologies
+
   "Node.js",
   "Express.js",
   "Next.js API Routes",
@@ -64,7 +64,7 @@ export const resumeKeywords = [
   "JWT",
   "OAuth",
 
-  // Databases
+
   "MongoDB",
   "PostgreSQL",
   "MySQL",
@@ -80,7 +80,7 @@ export const resumeKeywords = [
   "ACID Properties",
   "Database Indexing",
 
-  // Cloud & DevOps
+
   "AWS",
   "Google Cloud Platform",
   "Microsoft Azure",
@@ -100,7 +100,7 @@ export const resumeKeywords = [
   "Cloud Computing",
   "Serverless Architecture",
 
-  // AI/ML Technologies
+
   "Machine Learning",
   "Deep Learning",
   "Neural Networks",
@@ -126,7 +126,7 @@ export const resumeKeywords = [
   "Data Science",
   "Data Analysis",
 
-  // Testing & Quality Assurance
+
   "Unit Testing",
   "Integration Testing",
   "End-to-End Testing",
@@ -143,7 +143,7 @@ export const resumeKeywords = [
   "Code Review",
   "Debugging",
 
-  // Software Development Practices
+
   "Agile Development",
   "Scrum",
   "Kanban",
@@ -161,7 +161,7 @@ export const resumeKeywords = [
   "Refactoring",
   "Technical Documentation",
 
-  // Data Structures & Algorithms
+
   "Data Structures",
   "Algorithms",
   "Big O Notation",
@@ -178,7 +178,7 @@ export const resumeKeywords = [
   "Recursion",
   "Problem Solving",
 
-  // Tools & IDEs
+
   "Visual Studio Code",
   "VS Code",
   "IntelliJ IDEA",
@@ -194,7 +194,7 @@ export const resumeKeywords = [
   "yarn",
   "pnpm",
 
-  // Soft Skills (ATS Important)
+
   "Problem Solving",
   "Critical Thinking",
   "Team Collaboration",
@@ -211,7 +211,7 @@ export const resumeKeywords = [
   "Mentoring",
   "Code Review",
 
-  // Industry Experience
+
   "Internship",
   "Entry Level",
   "Junior Developer",
@@ -225,7 +225,7 @@ export const resumeKeywords = [
   "Personal Projects",
   "Portfolio Projects",
 
-  // Certifications & Achievements
+
   "HackerRank Certificate",
   "FreeCodeCamp Certificate",
   "AMCAT Certificate",
@@ -235,7 +235,7 @@ export const resumeKeywords = [
   "GitHub Contributions",
   "Open Source Contributions",
 
-  // Project Categories
+
   "Web Applications",
   "Mobile Applications",
   "Desktop Applications",
@@ -254,7 +254,7 @@ export const resumeKeywords = [
   "Machine Learning Projects",
   "AI Projects",
 
-  // Location & Availability
+
   "Bhubaneswar",
   "Odisha",
   "India",
@@ -267,7 +267,7 @@ export const resumeKeywords = [
   "Available Immediately",
   "Flexible Schedule",
 
-  // Education Keywords
+
   "Computer Science",
   "Software Engineering",
   "Information Technology",
@@ -280,7 +280,7 @@ export const resumeKeywords = [
   "Coursework",
   "Capstone Project",
 
-  // Industry Buzzwords
+
   "Digital Transformation",
   "Innovation",
   "Technology Solutions",

@@ -118,7 +118,7 @@ export const Footer = () => {
         <div className="text-xs text-center text-muted-foreground space-y-2">
           <p className="flex items-center justify-center gap-2">
             Made with
-            <button onClick={toggleHeart} className="text-primary">
+            <button onClick={toggleHeart} className="text-primary" aria-label="Toggle heart">
               {isHeartFilled ? <TbHeartFilled /> : <TbHeart />}
             </button>
             by

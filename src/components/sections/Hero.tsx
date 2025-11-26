@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,11 +11,7 @@ import { quentine, mono } from "@/app/fonts";
 
 export const Hero = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, {
-    once: false,
-    margin: "-80px",
-    amount: 0.1,
-  });
+
 
   return (
     <section

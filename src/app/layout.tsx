@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   keywords: keywords,
   metadataBase: new URL("https://aarab.vercel.app"),
 
-  // SEO Enhancements
+
   alternates: {
     canonical: "https://aarab.vercel.app",
     languages: {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "google-site-verification-code", // Placeholder, user needs to provide or I'll leave as comment
+    google: "google-site-verification-code",
     yandex: "yandex-verification-code",
     other: {
       "me": ["mailto:aarab.nishchal@gmail.com"],
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" }, // fallback
+      { url: "/favicon.ico", sizes: "any" },
     ],
     shortcut: "/favicon.ico",
     apple: [

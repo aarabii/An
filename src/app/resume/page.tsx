@@ -1,14 +1,12 @@
 "use client";
 
-import { Fragment, useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Navbar, Footer, Background } from "@/components/common";
 import { nasalization } from "@/app/fonts";
 import { PDFErrorBoundary } from "@/components/PDFErrorBoundary";
 import {
   HiDownload,
-  HiZoomIn,
-  HiZoomOut,
   HiOutlineArrowsExpand,
   HiExternalLink,
 } from "react-icons/hi";
@@ -23,16 +21,15 @@ interface DocumentWithFullscreen extends Document {
   msExitFullscreen?: () => Promise<void>;
 }
 
-// Utility to detect browser capabilities - Removed as simplified viewer doesn't use it
-// const getBrowserInfo = () => { ... };
+
 
 export default function Resume() {
-  const [zoom, setZoom] = useState(100);
+
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   const PDF_URL = "/docs/Aarab_Nishchal_Resume.pdf";
 
-  const ref = useRef(null);
+
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -61,13 +58,7 @@ export default function Resume() {
     };
   }, []);
 
-  const handleZoomIn = () => {
-    setZoom((prev) => Math.min(prev + 25, 200));
-  };
 
-  const handleZoomOut = () => {
-    setZoom((prev) => Math.max(prev - 25, 50));
-  };
 
   const toggleFullscreen = () => {
     if (!isFullscreen) {
@@ -85,9 +76,9 @@ export default function Resume() {
       if (document.exitFullscreen) {
         document.exitFullscreen();
       } else if ((document as DocumentWithFullscreen).webkitExitFullscreen) {
-        (document as DocumentWithFullscreen).webkitExitFullscreen();
+        (document as DocumentWithFullscreen).webkitExitFullscreen?.();
       } else if ((document as DocumentWithFullscreen).msExitFullscreen) {
-        (document as DocumentWithFullscreen).msExitFullscreen();
+        (document as DocumentWithFullscreen).msExitFullscreen?.();
       }
       setIsFullscreen(false);
     }
@@ -208,11 +199,6 @@ export default function Resume() {
                 <div className="pdf-viewer">
                   <div
                     className="flex justify-center items-start min-h-full p-4"
-                    style={{
-                      transform: `scale(${zoom / 100})`,
-                      transformOrigin: "top center",
-                      transition: "transform 0.3s ease-in-out",
-                    }}
                   >
                     <iframe
                       src={`${PDF_URL}#view=FitH&toolbar=0&navpanes=0&scrollbar=1`}

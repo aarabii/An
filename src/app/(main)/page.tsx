@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { Navbar, Footer } from "@/components/common";
 import {
@@ -26,7 +26,6 @@ export default function Home() {
   return (
     <div className="min-h-screen relative">
       <Background />
-      <Fragment>
         <Navbar />
         <Hero />
         <About />
@@ -35,9 +34,8 @@ export default function Home() {
         <Projects />
         <Contact />
         <Footer />
-      </Fragment>
 
-      {/* Content */}
+
     </div>
   );
 }

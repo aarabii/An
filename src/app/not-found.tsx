@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Fragment } from "react";
+
 import Link from "next/link";
 
 import { FaHouse, FaArrowLeft } from "react-icons/fa6";
@@ -17,13 +17,10 @@ export default function NotFound() {
 
   return (
     <div className="min-h-screen relative flex flex-col">
-      {/* Background Component */}
-      <Background />
 
-      <Fragment>
         <Navbar />
 
-        {/* Main content - perfectly centered */}
+
         <main className="flex-1 flex items-center justify-center px-6 py-16">
           <div className="max-w-4xl mx-auto w-full text-center">
             <motion.div
@@ -32,7 +29,7 @@ export default function NotFound() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              {/* Error Title */}
+
               <motion.div
                 className="space-y-6"
                 initial={{ opacity: 0, y: 30 }}
@@ -51,7 +48,7 @@ export default function NotFound() {
                 </h2>
               </motion.div>
 
-              {/* Error Message */}
+
               <motion.div
                 className="space-y-6 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
@@ -78,7 +75,7 @@ export default function NotFound() {
                 </p>
               </motion.div>
 
-              {/* Action Buttons */}
+
               <motion.div
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -111,7 +108,7 @@ export default function NotFound() {
                 </Button>
               </motion.div>
 
-              {/* Helpful Links */}
+
               <motion.div
                 className="pt-8"
                 initial={{ opacity: 0, y: 20 }}
@@ -151,7 +148,6 @@ export default function NotFound() {
         </main>
 
         <Footer />
-      </Fragment>
     </div>
   );
 }

@@ -14,7 +14,7 @@ body {
 
 @layer base {
   :root {
-    /* Base Colors - Ultra-dark foundation with subtle warmth */
+
     --background: 240 15% 2%;
     --foreground: 220 8% 94%;
 
