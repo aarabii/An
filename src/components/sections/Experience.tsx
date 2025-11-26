@@ -21,42 +21,8 @@ export function Experience() {
       className="py-24 max-w-6xl mx-auto relative overflow-hidden"
     >
       {/* Background decoration */}
-      <motion.div
-        className="absolute top-1/3 right-0 w-56 h-56 bg-accent/5 rounded-full blur-3xl"
-        animate={
-          isInView
-            ? {
-                scale: [1, 1.3, 1],
-                opacity: [0.1, 0.25, 0.1],
-                y: [0, -20, 0],
-              }
-            : { scale: 1, opacity: 0 }
-        }
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
 
-      <motion.div
-        className="absolute bottom-1/3 left-0 w-40 h-40 bg-primary/5 rounded-full blur-3xl"
-        animate={
-          isInView
-            ? {
-                scale: [0.9, 1.2, 0.9],
-                opacity: [0.1, 0.2, 0.1],
-                y: [0, 15, 0],
-              }
-            : { scale: 0.9, opacity: 0 }
-        }
-        transition={{
-          duration: 11,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 3,
-        }}
-      />
+
 
       <div className="container mx-auto max-w-4xl px-4">
         <motion.div

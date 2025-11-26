@@ -8,6 +8,8 @@ import { selfData } from "@/constant";
 import Link from "next/link";
 import { LuMapPinned } from "react-icons/lu";
 
+
+
 export const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, {
@@ -21,55 +23,6 @@ export const About = () => {
       ref={ref}
       className="py-24 max-w-6xl mx-auto relative overflow-hidden"
     >
-      <motion.div
-        className="absolute top-0 left-0 w-80 h-80 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "hsl(var(--primary) / 0.08)" }}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={
-          isInView
-            ? {
-                scale: [0.8, 1.1, 1],
-                opacity: [0, 0.4, 0.15, 0.3],
-                x: [0, 40, -20, 0],
-                y: [0, -15, 30, 0],
-              }
-            : {
-                scale: 0.8,
-                opacity: 0,
-              }
-        }
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      <motion.div
-        className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl pointer-events-none"
-        style={{ background: "hsl(var(--secondary) / 0.06)" }}
-        initial={{ scale: 0.6, opacity: 0 }}
-        animate={
-          isInView
-            ? {
-                scale: [0.6, 1, 0.9, 1],
-                opacity: [0, 0.25, 0.35, 0.2],
-                x: [0, -25, 15, 0],
-                y: [0, 20, -15, 0],
-              }
-            : {
-                scale: 0.6,
-                opacity: 0,
-              }
-        }
-        transition={{
-          duration: 9,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1.5,
-        }}
-      />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 overflow-x-hidden">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -100,16 +53,13 @@ export const About = () => {
               >
                 <motion.div
                   initial={{ scale: 1.1, opacity: 0 }}
-                  animate={
-                    isInView
-                      ? { scale: 1, opacity: 1 }
-                      : { scale: 1.1, opacity: 0 }
-                  }
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.7, delay: 0.3 }}
                   className="relative w-full h-full"
                 >
                   <Image
-                    src={"/images/me.png"}
+                    src="/images/me.png"
                     alt="Profile Picture"
                     fill
                     loading="lazy"

@@ -22,8 +22,7 @@ export const Projects = () => {
       id="project"
       className="py-24 max-w-6xl mx-auto relative overflow-hidden"
     >
-      <div className="absolute top-1/4 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-48 h-48 bg-secondary/5 rounded-full blur-3xl opacity-50 pointer-events-none" />
+
 
       <div className="mx-auto px-4 lg:px-8 relative">
         <motion.div
