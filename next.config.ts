@@ -1,7 +1,78 @@
 import type { NextConfig } from "next";
+import { socials } from "./constant";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    unoptimized: false,
+    qualities: [75, 100],
+  },
 
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
+          },
+        ],
+      },
+      {
+        source: "/docs/:path*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
+          },
+          {
+            key: "Content-Type",
+            value: "application/pdf",
+          },
+          {
+            key: "Content-Disposition",
+            value: "inline",
+          },
+        ],
+      },
+    ];
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/email",
+        destination: "mailto:aarab.nishchal@gmail.com",
+        permanent: true,
+      },
+      {
+        source: "/direct-resume",
+        destination: "/docs/Aarab_Nishchal_Resume.pdf",
+        permanent: true,
+      },
+      ...socials.map((social) => ({
+        source: `/${social.name.toLowerCase()}`,
+        destination: social.url.toString(),
+        permanent: true,
+      })),
+    ];
+  },
+};
 export default nextConfig;
