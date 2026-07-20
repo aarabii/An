@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { cursiveFont } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 
+import { profile } from "@/constant";
+
 const RESUME_PATH = "/docs/Aarab_Nishchal_Resume.pdf";
 
 export const Navbar = () => {
@@ -87,7 +89,7 @@ export const Navbar = () => {
               />
             </div>
             <span className={cn(cursiveFont.className, "text-primary text-lg")}>
-              {/* {selfData.name} */}Aarab Nishchal
+              {profile.name.full}
             </span>
           </Link>
 
