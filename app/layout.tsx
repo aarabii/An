@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { mainFont, headingFont, signatureFont, cursiveFont } from "@/app/fonts";
+import { Background } from "@/components/mics";
 
 export const metadata: Metadata = {
   title: "Aarab Nishchal",
@@ -26,7 +27,10 @@ export default function RootLayout({
         cursiveFont.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Background />
+      </body>
     </html>
   );
 }
