@@ -61,7 +61,7 @@ export const Navbar = () => {
     >
       <div
         className={cn(
-          "floating-nav rounded-2xl px-4 sm:px-6 py-3 bg-glass-bg transition-all duration-300 max-w-7xl mx-auto border border-primary/10",
+          "floating-nav rounded-2xl px-4 sm:px-6 py-3 bg-glass-bg backdrop-blur-sm transition-all duration-300 max-w-7xl mx-auto border border-primary/10",
           isScrolled ? "shadow-xl" : "shadow-lg"
         )}
       >
