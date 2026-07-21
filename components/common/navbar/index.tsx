@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { cursiveFont } from "@/app/fonts";
+import { mono } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 
 import { profile } from "@/constant";
@@ -88,8 +88,8 @@ export const Navbar = () => {
                 style={{ objectFit: "cover" }}
               />
             </div>
-            <span className={cn(cursiveFont.className, "text-primary text-lg")}>
-              {profile.name.full}
+            <span className={cn(mono.className, "text-primary text-lg")}>
+              {profile.name.first}.
             </span>
           </Link>
 

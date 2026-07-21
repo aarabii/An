@@ -1,12 +1,17 @@
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
-export const mainFont = Geist({
+export const main = Geist({
   variable: "--font-mainFont",
   subsets: ["latin"],
 });
 
-export const headingFont = localFont({
+export const mono = Geist_Mono({
+  variable: "--font-monoFont",
+  subsets: ["latin"],
+});
+
+export const heading = localFont({
   src: [
     {
       path: "../assets/fonts/nasalization.otf",
@@ -18,7 +23,7 @@ export const headingFont = localFont({
   display: "swap",
 });
 
-export const signatureFont = localFont({
+export const signature = localFont({
   src: [
     {
       path: "../assets/fonts/bastliga-one.otf",
@@ -30,10 +35,14 @@ export const signatureFont = localFont({
   display: "swap",
 });
 
-export const cursiveFont = localFont({
+export const respira = localFont({
   src: [
-    { path: "../assets/fonts/quentin.otf", weight: "400", style: "normal" },
+    {
+      path: "../assets/fonts/respira-black.ttf",
+      weight: "400",
+      style: "normal",
+    },
   ],
-  variable: "--font-cursiveFont",
+  variable: "--font-respiraFont",
   display: "swap",
 });

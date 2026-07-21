@@ -28,6 +28,11 @@ interface DOB {
   yyyy: number;
 }
 
+interface Titles {
+  constant_word: string;
+  rotating_word: string[];
+}
+
 interface Profile {
   name: Name;
   email: string;
@@ -36,6 +41,7 @@ interface Profile {
   DOB: DOB;
   curr_location: Location;
   about: string[];
+  hero_titles: Titles;
   quote: string;
 }
 
@@ -81,6 +87,17 @@ export const profile: Profile = {
     "I don't have everything figured out, and thatapos;s kind of the point. I chase whatever looks interesting, disappear down unnecessary rabbit holes, and somehow come back with either something cool or a very specific lesson on what never to do again.",
     "Still learning. Still shipping. Still pretending console.log was part of the debugging strategy all along.",
   ],
+
+  hero_titles: {
+    constant_word: "Stay",
+    rotating_word: [
+      "Goated 🐐",
+      "Unbothered",
+      "Unmatched",
+      "Unhinged",
+      "Unfuckwithable",
+    ],
+  },
 
   quote: "Stay GOATED 🐐",
 };

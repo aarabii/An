@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 
-import { mainFont, headingFont, signatureFont, cursiveFont } from "@/app/fonts";
+import { main, heading, signature, mono, respira } from "@/app/fonts";
 import { Background } from "@/components/mics";
 
 export const metadata: Metadata = {
@@ -21,10 +21,11 @@ export default function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        mainFont.variable,
-        headingFont.variable,
-        signatureFont.variable,
-        cursiveFont.variable,
+        main.variable,
+        heading.variable,
+        signature.variable,
+        mono.variable,
+        respira.variable,
       )}
     >
       <body className="min-h-full flex flex-col">
