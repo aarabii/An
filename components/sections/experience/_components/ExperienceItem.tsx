@@ -2,14 +2,9 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
-import {
-  ArrowUpRight,
-  ArrowDownRight,
-  Calendar,
-  ExternalLink,
-} from "lucide-react";
+import { Calendar, ExternalLink } from "lucide-react";
 import { type Experience, type ExperienceDate } from "@/constant";
-import { TechBadge } from "./TechBadge";
+import { TechBadge } from "@/components/common";
 import { cn } from "@/lib/utils";
 
 interface ExperienceItemProps {

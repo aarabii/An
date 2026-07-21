@@ -7,8 +7,6 @@ interface Project {
     live?: URL;
     github?: URL;
   };
-
-  status?: "active" | "completed" | "archived";
 }
 
 export const projects: Project[] = [
@@ -18,7 +16,6 @@ export const projects: Project[] = [
       "A terminal-native AI coding CLI designed for an interactive developer experience, featuring session management, a command palette, and a customizable theme system.",
     technologies: ["TypeScript", "React", "Bun", "OpenTUI"],
     links: {},
-    status: "active",
   },
   {
     name: "Next Flow",
@@ -36,7 +33,6 @@ export const projects: Project[] = [
       "Prisma",
     ],
     links: {},
-    status: "completed",
   },
   {
     name: "TestIQ",
@@ -52,7 +48,6 @@ export const projects: Project[] = [
       "RAG",
     ],
     links: {},
-    status: "completed",
   },
   {
     name: "VidyaMarg",
@@ -68,7 +63,6 @@ export const projects: Project[] = [
       "Supabase",
     ],
     links: {},
-    status: "completed",
   },
   {
     name: "Ideascribe",
@@ -76,7 +70,6 @@ export const projects: Project[] = [
       "A note-taking application with a modern block-based editor and real-time data synchronization for creating and organizing rich, structured notes.",
     technologies: ["Next.js", "TypeScript", "Convex", "BlockNote"],
     links: {},
-    status: "completed",
   },
   {
     name: "Curely",
@@ -91,7 +84,6 @@ export const projects: Project[] = [
       "Voice AI",
     ],
     links: {},
-    status: "completed",
   },
   {
     name: "Orphia",
@@ -105,6 +97,5 @@ export const projects: Project[] = [
       "Hugging Face",
     ],
     links: {},
-    status: "completed",
   },
 ];
