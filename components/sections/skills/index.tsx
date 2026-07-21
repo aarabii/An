@@ -19,7 +19,6 @@ export const SkillsSection = () => {
           <Marquee
             key={index}
             reverse={index % 2 === 1}
-            pauseOnHover
             repeat={4}
             className="[--duration:35s] [--gap:1rem] md:[--gap:1.25rem] py-1.5"
           >
