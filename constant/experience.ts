@@ -1,10 +1,10 @@
-interface ExperienceDate {
+export interface ExperienceDate {
   dd: number;
   mm: string;
   yyyy: number;
 }
 
-interface BaseExperience {
+export interface BaseExperience {
   role: string;
   startDate: ExperienceDate;
   description: string[];
@@ -13,7 +13,7 @@ interface BaseExperience {
   technologies: string[];
 }
 
-type Experience =
+export type Experience =
   | (BaseExperience & {
       current: true;
       // endDate?: never;
@@ -24,6 +24,32 @@ type Experience =
     });
 
 export const experience: Experience[] = [
+  {
+    role: "AI Engineer Intern",
+    startDate: {
+      dd: 2,
+      mm: "July",
+      yyyy: 2026,
+    },
+    current: true,
+    description: [
+      "Building AI-powered features for internal SaaS products, integrating LLM providers into production workflows.",
+      "Developing AI agents to automate repetitive business processes across case management, CRM intelligence, and media placement systems.",
+      "Supporting integration of AI services into web-based applications, working across prompt engineering, automation, and data pipeline tasks.",
+      "Contributing to internal documentation and research on applied generative AI use cases for the company's SaaS platform.",
+    ],
+    company: "Ascend HSI",
+    companySite: "https://ascendhsi.com/",
+    technologies: [
+      "Next.js",
+      "Python",
+      "LLMs",
+      "OpenAI",
+      "Prompt Engineering",
+      "AI Agents",
+      "Automation",
+    ],
+  },
   {
     role: "Software Developer Intern",
     startDate: {
@@ -46,18 +72,5 @@ export const experience: Experience[] = [
     company: "Unstop",
     companySite: "https://unstop.com/",
     technologies: ["n8n", "REST APIs", "Git", "Jenkins", "Jira"],
-  },
-  {
-    role: "AI Engineer Intern",
-    startDate: {
-      dd: 2,
-      mm: "July",
-      yyyy: 2026,
-    },
-    current: true,
-    description: ["Working on agentic AI workflows and LLM applications."],
-    company: "Ascend HSI",
-    companySite: "https://ascendhsi.com/",
-    technologies: ["Next.js", "Python", "LLMs"],
   },
 ];

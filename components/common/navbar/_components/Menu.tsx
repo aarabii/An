@@ -44,17 +44,6 @@ export const Menu = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   const handleSectionClick = (e: React.MouseEvent, link: string) => {
     e.preventDefault();
     setOpen(false);
@@ -64,7 +53,9 @@ export const Menu = () => {
     if (pathname === "/") {
       const element = document.getElementById(targetId);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
       } else {
         window.history.pushState(null, "", `#${targetId}`);
       }
