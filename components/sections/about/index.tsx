@@ -5,14 +5,32 @@ import { useScroll, useMotionValueEvent } from "motion/react";
 import { profile } from "@/constant";
 import { SectionHeader } from "@/components/common";
 
-import { StatementCard } from "./_components/StatementCard";
+import { StatementCard, type SlideItem } from "./_components/StatementCard";
 import { OriginCard } from "./_components/OriginCard";
 import { SignatureCard } from "./_components/SignatureCard";
+import { EducationSlide } from "./_components/EducationSlide";
+import { CodingStatsSlide } from "./_components/CodingStatsSlide";
+import { QuoteSlide } from "./_components/QuoteSlide";
 
-export const AboutSection = () => {
+const DEFAULT_SLIDES: SlideItem[] = [
+  profile.about[0],
+  <EducationSlide key="edu" />,
+  <CodingStatsSlide key="stats" />,
+  <QuoteSlide key="quote" quote={profile.quote} />,
+];
+
+interface AboutSectionProps {
+  slides?: SlideItem[];
+  imageSrc?: string | string[];
+}
+
+export const AboutSection = ({
+  slides = DEFAULT_SLIDES,
+  imageSrc = "/images/me.png",
+}: AboutSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
-  const totalItems = profile.about.length;
+  const totalItems = slides.length;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,13 +63,13 @@ export const AboutSection = () => {
           {/* Bento Grid — The Brief | Origin */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <StatementCard
-              statements={profile.about}
+              slides={slides}
               activeIndex={activeIndex}
               onSelectIndex={handleSelectIndex}
               index={0}
             />
             <OriginCard
-              imageSrc="/images/me.png"
+              imageSrc={imageSrc}
               activeIndex={activeIndex}
               onSelectIndex={handleSelectIndex}
               index={1}

@@ -33,7 +33,7 @@ export const HeroRole = ({ constantWord, rotatingWords }: HeroRoleProps) => {
               rotationInterval={2500}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               staggerDuration={0.02}
-              splitBy="__SINGLE__"
+              splitBy="none"
               loop
               auto
               mainClassName="block whitespace-nowrap font-mono text-lg font-bold text-foreground sm:text-2xl md:text-3xl"

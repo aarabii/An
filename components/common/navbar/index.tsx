@@ -3,22 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { mono } from "@/app/fonts";
-import { Button } from "@/components/ui/button";
-
+import { Menu } from "./_components/Menu";
 import { profile } from "@/constant";
-
-const RESUME_PATH = "/docs/Aarab_Nishchal_Resume.pdf";
 
 export const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const pathname = usePathname();
-  const isResumePage = pathname === "/resume";
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -63,13 +56,13 @@ export const Navbar = () => {
       className={cn(
         "fixed top-4 left-0 right-0 z-50 transition-all duration-300 ease-out",
         isScrolled ? "pt-0 px-2 sm:px-4" : "px-2 sm:px-2",
-        isVisible ? "translate-y-0" : "-translate-y-full",
+        isVisible ? "translate-y-0" : "-translate-y-full"
       )}
     >
       <div
         className={cn(
           "floating-nav rounded-2xl px-4 sm:px-6 py-3 bg-glass-bg transition-all duration-300 max-w-7xl mx-auto border border-primary/10",
-          isScrolled ? "shadow-xl" : "shadow-lg",
+          isScrolled ? "shadow-xl" : "shadow-lg"
         )}
       >
         <div className="flex items-center justify-between">
@@ -94,44 +87,10 @@ export const Navbar = () => {
           </Link>
 
           <div>
-            <ResumeButton isResumePage={isResumePage} />
+            <Menu />
           </div>
         </div>
       </div>
     </nav>
   );
 };
-
-function ResumeButton({
-  isResumePage,
-  className,
-  onClick,
-}: {
-  isResumePage: boolean;
-  className?: string;
-  onClick?: () => void;
-}) {
-  return (
-    <Button
-      variant="outline"
-      className={cn(
-        "border-primary/10 hover:border-primary hover:bg-primary/10 transition-all duration-200",
-        className,
-      )}
-    >
-      {isResumePage ? (
-        <a
-          href={RESUME_PATH}
-          download="Aarab_Nishchal_Resume.pdf"
-          onClick={onClick}
-        >
-          Download Resume
-        </a>
-      ) : (
-        <Link href="/resume" onClick={onClick}>
-          Resume
-        </Link>
-      )}
-    </Button>
-  );
-}

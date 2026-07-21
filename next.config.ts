@@ -69,7 +69,7 @@ const nextConfig: NextConfig = {
       },
       ...socials.map((social) => ({
         source: `/${social.name.toLowerCase()}`,
-        destination: social.url.toString(),
+        destination: social.url,
         permanent: true,
       })),
     ];

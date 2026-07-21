@@ -77,22 +77,24 @@ export const OriginCard = ({
         />
 
         {/* Bottom dotted indicators for images */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 px-2.5 py-1 rounded-full bg-card/60 backdrop-blur-md border border-border/50">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => onSelectIndex?.(i)}
-              className={cn(
-                "w-1.5 h-1.5 rounded-full transition-all duration-300 focus:outline-none",
-                i === currentImgIndex
-                  ? "bg-foreground scale-110"
-                  : "bg-muted-foreground/30 hover:bg-muted-foreground/60 cursor-pointer"
-              )}
-              title={`Image ${i + 1} of ${images.length}`}
-              aria-label={`Image ${i + 1}`}
-            />
-          ))}
-        </div>
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 px-2.5 py-1 rounded-full bg-card/60 backdrop-blur-md border border-border/50">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => onSelectIndex?.(i)}
+                className={cn(
+                  "w-1.5 h-1.5 rounded-full transition-all duration-300 focus:outline-none",
+                  i === currentImgIndex
+                    ? "bg-foreground scale-110"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/60 cursor-pointer"
+                )}
+                title={`Image ${i + 1} of ${images.length}`}
+                aria-label={`Image ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </BentoCard>
   );

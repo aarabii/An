@@ -99,6 +99,13 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
         }));
       }
 
+      if (splitBy === 'none') {
+        return [{
+          characters: [currentText],
+          needsSpace: false
+        }];
+      }
+
       return currentText.split(splitBy).map((part, i, arr) => ({
         characters: [part],
         needsSpace: i !== arr.length - 1

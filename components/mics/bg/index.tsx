@@ -195,9 +195,24 @@ export const Background = () => {
     resizeCanvas();
 
     let animationFrameId: number;
+    let isPaused = false;
     const startTime = performance.now();
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        isPaused = true;
+        cancelAnimationFrame(animationFrameId);
+      } else {
+        if (isPaused) {
+          isPaused = false;
+          animationFrameId = requestAnimationFrame(render);
+        }
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     const render = () => {
+      if (document.hidden) return;
       const elapsed = (performance.now() - startTime) * 0.001; // seconds
 
       const targetMouse = mouseRef.current;
@@ -217,6 +232,7 @@ export const Background = () => {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", resizeCanvas);
       gl.deleteProgram(program);

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useCodingStats } from "../../../../hook/useCodingStats";
+import { useCodingStats } from "@/hooks/useCodingStats";
 
 export const CodingStatsSlide = () => {
   const { github, loading } = useCodingStats();
@@ -28,7 +28,7 @@ export const CodingStatsSlide = () => {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-1">
           {[...Array(4)].map((_, i) => (
             <div
-              key={i}
+              key={`stat-skeleton-${i}`}
               className="h-16 rounded-lg bg-muted/40 animate-pulse"
             />
           ))}

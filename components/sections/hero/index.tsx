@@ -13,7 +13,10 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative flex h-screen w-full items-center overflow-hidden px-6 select-none md:px-12 lg:px-20">
+    <section
+      id="hero"
+      className="relative flex h-screen w-full items-center overflow-hidden px-6 select-none md:px-12 lg:px-20"
+    >
       <div className="mx-auto w-full max-w-5xl">
         <div className="flex flex-col items-start w-full">
           <HeroName

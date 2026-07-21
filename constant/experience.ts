@@ -9,7 +9,7 @@ interface BaseExperience {
   startDate: ExperienceDate;
   description: string[];
   company: string;
-  companySite: URL;
+  companySite: string;
   technologies: string[];
 }
 
@@ -44,7 +44,7 @@ export const experience: Experience[] = [
       "Tracked sprint progress and maintained technical documentation in Jira and Confluence",
     ],
     company: "Unstop",
-    companySite: new URL("https://unstop.com/"),
+    companySite: "https://unstop.com/",
     technologies: ["n8n", "REST APIs", "Git", "Jenkins", "Jira"],
   },
   {
@@ -55,9 +55,9 @@ export const experience: Experience[] = [
       yyyy: 2026,
     },
     current: true,
-    description: [""],
+    description: ["Working on agentic AI workflows and LLM applications."],
     company: "Ascend HSI",
-    companySite: new URL("https://ascendhsi.com/"),
-    technologies: [""],
+    companySite: "https://ascendhsi.com/",
+    technologies: ["Next.js", "Python", "LLMs"],
   },
 ];

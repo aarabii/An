@@ -15,7 +15,7 @@ import { SiLeetcode } from "react-icons/si";
 interface Social {
   name: string;
   handle: string;
-  url: URL;
+  url: string;
   icon: IconType;
 }
 
@@ -23,49 +23,49 @@ export const socials = [
   {
     name: "GitHub",
     handle: "aarabii",
-    url: new URL("https://github.com/aarabii"),
+    url: "https://github.com/aarabii",
     icon: FaGithub,
   },
   {
     name: "LinkedIn",
     handle: "aarab-nishchal",
-    url: new URL("https://linkedin.com/in/aarab-nishchal"),
+    url: "https://linkedin.com/in/aarab-nishchal",
     icon: FaLinkedin,
   },
   {
     name: "Instagram",
     handle: "aarab.ii",
-    url: new URL("https://instagram.com/aarab.ii"),
+    url: "https://instagram.com/aarab.ii",
     icon: FaInstagram,
   },
   {
     name: "X",
     handle: "aarab_ii",
-    url: new URL("https://x.com/aarab_ii"),
+    url: "https://x.com/aarab_ii",
     icon: FaXTwitter,
   },
   {
     name: "LeetCode",
     handle: "aarabii",
-    url: new URL("https://leetcode.com/u/aarabii"),
+    url: "https://leetcode.com/u/aarabii",
     icon: SiLeetcode,
   },
   {
     name: "Facebook",
     handle: "zzcwc",
-    url: new URL("https://facebook.com/zzcwc"),
+    url: "https://facebook.com/zzcwc",
     icon: FaFacebook,
   },
   {
     name: "Snapchat",
     handle: "aarab.ii",
-    url: new URL("https://snapchat.com/add/aarab.ii"),
+    url: "https://snapchat.com/add/aarab.ii",
     icon: FaSnapchat,
   },
   {
     name: "Telegram",
     handle: "aarab_ii",
-    url: new URL("https://t.me/aarab_ii"),
+    url: "https://t.me/aarab_ii",
     icon: FaTelegram,
   },
 ] satisfies Social[];
