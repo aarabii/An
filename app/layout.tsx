@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 import { main, heading, signature, mono, respira } from "@/app/fonts";
 import { Background } from "@/components/mics";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Aarab Nishchal",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <Background />
+        <Toaster />
       </body>
     </html>
   );
