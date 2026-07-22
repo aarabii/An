@@ -7,7 +7,6 @@ import { SectionHeader } from "@/components/common";
 
 import { StatementCard, type SlideItem } from "./_components/StatementCard";
 import { OriginCard } from "./_components/OriginCard";
-import { SignatureCard } from "./_components/SignatureCard";
 import { EducationSlide } from "./_components/EducationSlide";
 import { CodingStatsSlide } from "./_components/CodingStatsSlide";
 import { QuoteSlide } from "./_components/QuoteSlide";
@@ -47,7 +46,8 @@ export const AboutSection = ({
     const rect = containerRef.current.getBoundingClientRect();
     const scrollTop = window.scrollY + rect.top;
     const scrollHeight = rect.height - window.innerHeight;
-    const targetScroll = scrollTop + (index / totalItems) * Math.max(0, scrollHeight);
+    const targetScroll =
+      scrollTop + (index / totalItems) * Math.max(0, scrollHeight);
     window.scrollTo({ top: targetScroll, behavior: "smooth" });
   };
 
@@ -75,12 +75,8 @@ export const AboutSection = ({
               index={1}
             />
           </div>
-
-          {/* Closing Signature */}
-          <SignatureCard name={profile.name.full} index={2} />
         </div>
       </section>
     </div>
   );
 };
-
