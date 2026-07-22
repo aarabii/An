@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { render, pretty } from "@react-email/render";
 import { isValidEmail } from "@/lib/validators";
 
-import { EmailTemplate } from "@/Template/Email";
+import { EmailTemplate } from "@/template/email";
 import { rateLimit } from "@/lib/rate-limit";
 
 function sanitize(input: string): string {
