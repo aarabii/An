@@ -35,8 +35,8 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        "relative grid grid-cols-1 gap-6 py-8 transition-colors duration-300 md:grid-cols-12 md:gap-8 md:py-10 border border-white/15 bg-white/5 backdrop-blur-xl p-4 m-4 rounded-md",
-        "border-b border-white/10",
+        "relative grid grid-cols-1 gap-6 py-8 transition-colors duration-300 md:grid-cols-12 md:gap-8 md:py-10 border border-primary/15 bg-primary/5 backdrop-blur-xl p-4 m-4 rounded-md",
+        "border-b border-primary/10",
       )}
     >
       <div className="flex flex-col justify-start md:col-span-5">
@@ -46,7 +46,7 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
               href={item.companySite}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-heading text-lg font-bold uppercase tracking-tight text-white transition-colors group-hover:text-accent sm:text-xl md:text-2xl"
+              className="inline-flex items-center gap-1.5 font-heading text-lg font-bold uppercase tracking-tight text-primary transition-colors group-hover:text-accent sm:text-xl md:text-2xl"
             >
               <span>{item.company}</span>
               <ExternalLink className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100 text-accent" />
@@ -57,7 +57,7 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
               {item.role}
             </p>
 
-            <div className="mt-2 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/70">
+            <div className="mt-2 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-primary/70">
               <Calendar className="h-3.5 w-3.5 text-accent" />
               <span>{dateRange}</span>
             </div>
@@ -66,7 +66,7 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
       </div>
 
       <div className="flex flex-col justify-between gap-6 md:col-span-7">
-        <ul className="flex flex-col gap-2.5 text-sm leading-relaxed text-white/85 sm:text-base">
+        <ul className="flex flex-col gap-2.5 text-sm leading-relaxed text-primary/85 sm:text-base">
           {item.description.map((desc, i) => (
             <li
               key={i}

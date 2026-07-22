@@ -195,7 +195,7 @@ export const StepForm = () => {
   return (
     <div className="w-full max-w-md flex flex-col gap-2">
       {/* Top progress indicator & back button */}
-      <div className="flex items-center justify-between text-xs font-mono text-white/80 font-semibold mb-1">
+      <div className="flex items-center justify-between text-xs font-mono text-primary/80 font-semibold mb-1">
         <span className="tracking-wider text-accent">
           {currentStepConfig.label}
         </span>
@@ -204,7 +204,7 @@ export const StepForm = () => {
             type="button"
             onClick={handlePrev}
             disabled={isSubmitting}
-            className="flex items-center gap-1 text-white/70 hover:text-white transition-colors"
+            className="flex items-center gap-1 text-primary/70 hover:text-primary transition-colors"
           >
             <ArrowLeft className="size-3 text-accent" />
             <span>back</span>
@@ -213,7 +213,7 @@ export const StepForm = () => {
       </div>
 
       {/* Input container matching reference image style */}
-      <div className="relative border-b border-white/20 pb-2 focus-within:border-accent transition-colors">
+      <div className="relative border-b border-primary/20 pb-2 focus-within:border-accent transition-colors">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -236,7 +236,7 @@ export const StepForm = () => {
                 placeholder={currentStepConfig.placeholder}
                 rows={2}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-base text-white placeholder:text-white/40 outline-none resize-none"
+                className="w-full bg-transparent font-mono text-base text-primary placeholder:text-primary/40 outline-none resize-none"
               />
             ) : (
               <input
@@ -246,7 +246,7 @@ export const StepForm = () => {
                 onKeyDown={handleKeyDown}
                 placeholder={currentStepConfig.placeholder}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-base text-white placeholder:text-white/40 outline-none"
+                className="w-full bg-transparent font-mono text-base text-primary placeholder:text-primary/40 outline-none"
               />
             )}
 
@@ -254,7 +254,7 @@ export const StepForm = () => {
               type="button"
               onClick={handleNext}
               disabled={isSubmitting}
-              className="shrink-0 p-1 rounded-md text-secondary hover:text-foreground hover:bg-white/5 transition-all disabled:opacity-50"
+              className="shrink-0 p-1 rounded-md text-secondary hover:text-foreground hover:bg-primary/5 transition-all disabled:opacity-50"
               title={
                 currentStep === STEPS.length - 1 ? "Send message" : "Next step"
               }

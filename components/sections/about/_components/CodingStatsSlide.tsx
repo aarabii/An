@@ -35,7 +35,7 @@ export const CodingStatsSlide = () => {
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-white/5">
+          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-primary/5">
             <span className="text-xl sm:text-2xl font-bold text-foreground">
               {github?.repos ?? 0}
             </span>

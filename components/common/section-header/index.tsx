@@ -30,7 +30,7 @@ export const SectionHeader = ({
       <span
         className={cn(
           "pointer-events-none absolute -top-15 select-none font-heading",
-          "text-[120px] font-black leading-none text-white/10 italic drop-shadow-sms",
+          "text-[120px] font-black leading-none text-primary/20 italic drop-shadow-sm",
           "sm:text-[160px] md:text-[200px]",
           isRight ? "right-0" : "left-0",
         )}
@@ -44,7 +44,7 @@ export const SectionHeader = ({
           isRight && "flex-row-reverse",
         )}
       >
-        <h2 className="font-heading text-lg uppercase tracking-[0.2em] text-white/90 font-semibold sm:text-xl md:text-2xl">
+        <h2 className="font-heading text-lg uppercase tracking-[0.2em] text-primary/90 font-semibold sm:text-xl md:text-2xl">
           {title}
         </h2>
         {/* <div

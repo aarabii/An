@@ -9,9 +9,9 @@ export const RotatingTextHero = ({
   rotating_words: string[];
 }) => {
   return (
-    <div className="flex items-center font-mono text-base sm:text-xl md:text-2xl font-medium tracking-tight text-white/80">
+    <div className="flex items-center font-mono text-base sm:text-xl md:text-2xl font-medium tracking-tight text-primary/80">
       <div className="inline-flex items-center text-left">
-        <span className="text-white/50 font-light mr-2 sm:mr-2.5 whitespace-nowrap">
+        <span className="text-primary/50 font-light mr-2 sm:mr-2.5 whitespace-nowrap">
           {constant_word}
         </span>
         <div className="text-left min-w-[14ch] inline-flex">
@@ -23,7 +23,7 @@ export const RotatingTextHero = ({
             splitBy="none"
             loop
             auto
-            mainClassName="block whitespace-nowrap font-mono text-base sm:text-xl md:text-2xl font-bold text-white text-left"
+            mainClassName="block whitespace-nowrap font-mono text-base sm:text-xl md:text-2xl font-bold text-primary text-left"
             elementLevelClassName="inline-block"
           />
         </div>

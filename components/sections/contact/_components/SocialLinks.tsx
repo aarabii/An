@@ -16,7 +16,7 @@ export const SocialLinks = () => {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-white/80 font-medium transition-colors hover:text-white"
+            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-primary/80 font-medium transition-colors hover:text-primary"
           >
             {/* Corner brackets on hover */}
             <span className="absolute -top-1 -left-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">

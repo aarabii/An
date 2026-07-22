@@ -1,6 +1,6 @@
 # Aarab Nishchal
 
-+91-9546457837 · aarab.nishchal@gmail.com  
++91-9546457837 · aarab.nishchal@gmail.com
 aarab.vercel.app · linkedin.com/in/aarab-nishchal · github.com/aarabii
 
 ## Technical Skills
@@ -18,7 +18,8 @@ aarab.vercel.app · linkedin.com/in/aarab-nishchal · github.com/aarabii
 ## Experience
 
 ### Ascend HSI
-**Jul 2026 – Present**  
+
+**Jul 2026 – Present**
 **AI Engineer Intern** — Remote
 
 - Building AI-powered features for internal SaaS products, integrating LLM providers into production workflows
@@ -27,7 +28,8 @@ aarab.vercel.app · linkedin.com/in/aarab-nishchal · github.com/aarabii
 - Contributing to internal documentation and research on applied generative AI use cases for the company’s SaaS platform
 
 ### Unstop
-**Sep 2024 – Jun 2026**  
+
+**Sep 2024 – Jun 2026**
 **Software Developer Intern** — Remote
 
 - Integrated AI-driven n8n automation workflows across internal REST API endpoints and a custom CMS, adding white-label support and dynamic window-title configuration
@@ -39,7 +41,8 @@ aarab.vercel.app · linkedin.com/in/aarab-nishchal · github.com/aarabii
 ## Projects
 
 ### Koda-Arc
-**React 19 · OpenTUI · Hono · Prisma 7 · PostgreSQL · Zod · TypeScript · Bun**  
+
+**React 19 · OpenTUI · Hono · Prisma 7 · PostgreSQL · Zod · TypeScript · Bun**
 GitHub
 
 - Architected a full-stack monorepo coding agent CLI with four packages: a React 19 terminal UI, a Hono API server, a Prisma/PostgreSQL data layer, and a shared type-safe contract layer
@@ -48,7 +51,8 @@ GitHub
 - Engineered shared Zod schemas and a model registry across all packages to keep the CLI, server, and database layers consistent and type-safe
 
 ### NextFlow
-**Next.js 16 · React Flow Renderer · Trigger.dev · Transloadit · Gemini · Neon · Prisma**  
+
+**Next.js 16 · React Flow Renderer · Trigger.dev · Transloadit · Gemini · Neon · Prisma**
 GitHub | Live
 
 - Built a full-stack AI workflow builder using Next.js 16 and React Flow Renderer, letting users compose LLM and media-processing pipelines with draggable, connectable nodes
@@ -57,21 +61,23 @@ GitHub | Live
 - Added Clerk authentication, Zod-validated forms, and Zustand state management, with a Shadcn UI and Tailwind CSS interface for the workflow canvas
 
 ### TestIQ
-**LangChain · ChromaDB · Ollama · Tree-sitter · Python**  
+
+**LangChain · ChromaDB · Ollama · Tree-sitter · Python**
 GitHub
 
 - Built a CLI RAG pipeline using LangChain and ChromaDB to analyze codebases and auto-generate unit tests, achieving 60 passing tests across 4 development phases
 - Engineered a self-correcting validation loop with Tree-sitter (AST parsing) and Ollama (local inference) to eliminate invalid test output before finalization
 
 ### Ideascribe
-**Convex · Clerk · React · BlockNote · Edgestore**  
+
+**Convex · Clerk · React · BlockNote · Edgestore**
 GitHub | Live
 
 - Engineered a note taking application for developers, integrating BlockNote for dynamic rich-text editing, Convex for rapid state synchronization, and Edge Store for scalable cloud asset management
 
 ## Education
 
-**B.Tech, Computer Science & Engineering**  
+**B.Tech, Computer Science & Engineering**
 2022 – 2026
 
 Kalinga Institute of Industrial Technology
