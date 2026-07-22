@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { main, heading, signature, mono, serif } from "@/app/fonts";
-import { Background } from "@/components/mics";
+import { Background, PreLoader } from "@/components/mics";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
@@ -30,7 +30,10 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        {children}
+        <PreLoader />
+        <div id="app-content" className="min-h-full flex flex-col flex-1">
+          {children}
+        </div>
         <Background />
         <Toaster />
       </body>
