@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import { socials } from "@/constant";
 
-const RESUME_PATH = "/docs/Aarab_Nishchal_Resume.pdf";
+const RESUME_PATH = "/docs/aarab_nishchal_resume.pdf";
 
 export interface MenuItem {
   label: string;

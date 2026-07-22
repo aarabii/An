@@ -64,7 +64,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/direct-resume",
-        destination: "/docs/Aarab_Nishchal_Resume.pdf",
+        destination: "/docs/aarab_nishchal_resume.pdf",
         permanent: true,
       },
       ...socials.map((social) => ({
