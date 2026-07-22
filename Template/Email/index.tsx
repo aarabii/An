@@ -38,7 +38,6 @@ export function EmailTemplate({
 
       <Body style={main}>
         <Container style={container}>
-          {/* Header Card */}
           <Section style={headerSection}>
             <Row>
               <Column style={{ width: "48px" }}>
@@ -58,7 +57,6 @@ export function EmailTemplate({
             </Row>
           </Section>
 
-          {/* Main Content Card */}
           <Section style={cardBody}>
             <Text style={greeting}>Hi {userName},</Text>
 
@@ -72,7 +70,6 @@ export function EmailTemplate({
               possible.
             </Text>
 
-            {/* Message Card */}
             <Section style={messageCard}>
               <Text style={cardBadge}>YOUR MESSAGE</Text>
 
@@ -94,7 +91,6 @@ export function EmailTemplate({
               meantime, feel free to reply directly to this email.
             </Text>
 
-            {/* Interactive Reply CTA */}
             <Section style={ctaSection}>
               <Button href={`mailto:${profile.email}`} style={ctaButton}>
                 Reply to Email
@@ -103,7 +99,6 @@ export function EmailTemplate({
 
             <Hr style={divider} />
 
-            {/* Social Links Grid */}
             <Section style={socialSection}>
               <Text style={socialHeader}>CONNECT WITH ME</Text>
 
@@ -123,7 +118,6 @@ export function EmailTemplate({
             </Section>
           </Section>
 
-          {/* Footer */}
           <Section style={footerSection}>
             <Text style={footerText}>
               <strong>{profile.name.full}</strong>
