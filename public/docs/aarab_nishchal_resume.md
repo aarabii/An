@@ -1,7 +1,7 @@
 # Aarab Nishchal
 
 +91-9546457837 · aarab.nishchal@gmail.com
-aarab.vercel.app · linkedin.com/in/aarab-nishchal · github.com/aarabii
+[aarab.vercel.app](https://aarab.vercel.app) · [linkedin.com/in/aarab-nishchal](https://linkedin.com/in/aarab-nishchal) · [github.com/aarabii](https://github.com/aarabii)
 
 ## Technical Skills
 

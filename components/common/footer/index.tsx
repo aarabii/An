@@ -22,7 +22,7 @@ export const Footer = () => {
 
           <Separator
             orientation="vertical"
-            className="hidden md:block order-2 md:order-3 mx-4 lg:mx-6 self-stretch min-h-[200px]"
+            className="hidden md:block order-2 md:order-3 mx-4 lg:mx-6 self-stretch min-h-50"
           />
 
           {/* Social Column */}
@@ -32,7 +32,7 @@ export const Footer = () => {
 
           <Separator
             orientation="vertical"
-            className="hidden md:block order-3 md:order-5 mx-4 lg:mx-6 self-stretch min-h-[200px]"
+            className="hidden md:block order-3 md:order-5 mx-4 lg:mx-6 self-stretch min-h-50"
           />
 
           {/* Connect Column */}

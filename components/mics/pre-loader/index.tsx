@@ -19,7 +19,7 @@ export const PreLoader = () => {
   const shouldShow = useSyncExternalStore(
     emptySubscribe,
     getClientSnapshot,
-    getServerSnapshot
+    getServerSnapshot,
   );
 
   const [hasEnded, setHasEnded] = useState(false);
@@ -87,7 +87,7 @@ export const PreLoader = () => {
             opacity: 0,
             transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
           }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-transparent select-none text-primary overflow-hidden w-full h-full pointer-events-auto"
+          className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-transparent select-none text-primary overflow-hidden w-full h-full pointer-events-auto"
         >
           <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden z-10">
             {/* Hero Main Content Matching Container */}
