@@ -1,8 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { GradientBackground } from "@/components/sections/hero/_components/GradientBg";
 
 export const Background = () => {
+  return (
+    <div className="fixed inset-0 -z-50 h-full w-full overflow-hidden pointer-events-none">
+      <GradientBackground />
+    </div>
+  );
+};
+
+/*
+// Previous Background component commented out temporarily:
+import { useEffect, useRef, useState } from "react";
+
+export const BackgroundOld = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [webglSupported, setWebglSupported] = useState(true);
 
@@ -271,3 +283,4 @@ export const Background = () => {
     </div>
   );
 };
+*/

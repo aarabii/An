@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { cn } from "@/lib/utils";
 
-import { main, heading, signature, mono, respira } from "@/app/fonts";
+import { main, heading, signature, mono, serif } from "@/app/fonts";
 import { Background } from "@/components/mics";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -26,7 +26,7 @@ export default function RootLayout({
         heading.variable,
         signature.variable,
         mono.variable,
-        respira.variable,
+        serif.variable,
       )}
     >
       <body className="min-h-full flex flex-col">

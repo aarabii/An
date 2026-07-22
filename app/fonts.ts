@@ -1,13 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import localFont from "next/font/local";
 
 export const main = Geist({
-  variable: "--font-mainFont",
+  variable: "--font-main",
   subsets: ["latin"],
 });
 
+export const serif = Instrument_Serif({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
 export const mono = Geist_Mono({
-  variable: "--font-monoFont",
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -19,7 +26,7 @@ export const heading = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-headingFont",
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -31,18 +38,6 @@ export const signature = localFont({
       style: "normal",
     },
   ],
-  variable: "--font-signatureFont",
-  display: "swap",
-});
-
-export const respira = localFont({
-  src: [
-    {
-      path: "../assets/fonts/respira-black.ttf",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-respiraFont",
+  variable: "--font-signature",
   display: "swap",
 });

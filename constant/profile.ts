@@ -30,7 +30,7 @@ interface DOB {
 
 interface Titles {
   constant_word: string;
-  rotating_word: string[];
+  rotating_words: string[];
 }
 
 interface Profile {
@@ -90,7 +90,7 @@ export const profile: Profile = {
 
   hero_titles: {
     constant_word: "Stay",
-    rotating_word: [
+    rotating_words: [
       "Goated 🐐",
       "Unbothered",
       "Unmatched",
