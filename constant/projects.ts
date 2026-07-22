@@ -1,21 +1,32 @@
-interface Project {
+export interface Project {
   name: string;
   description: string;
   technologies: string[];
-
   links: {
-    live?: URL;
-    github?: URL;
+    live?: string;
+    github?: string;
   };
 }
 
-export const projects: Project[] = [
+export const selected_works: Project[] = [
   {
     name: "KodaArc",
     description:
       "A terminal-native AI coding CLI designed for an interactive developer experience, featuring session management, a command palette, and a customizable theme system.",
-    technologies: ["TypeScript", "React", "Bun", "OpenTUI"],
-    links: {},
+    technologies: [
+      "TypeScript",
+      "React",
+      "Bun",
+      "OpenTUI",
+      "Hono",
+      "Gemini",
+      "Vercel AI SDK",
+      "Prisma",
+      "Neon",
+    ],
+    links: {
+      github: "https://github.com/aarabii/kodaarc",
+    },
   },
   {
     name: "Next Flow",
@@ -32,7 +43,10 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Prisma",
     ],
-    links: {},
+    links: {
+      live: "https://next-flow-automation.vercel.app/",
+      github: "https://github.com/aarabii/next-flow",
+    },
   },
   {
     name: "TestIQ",
@@ -47,8 +61,23 @@ export const projects: Project[] = [
       "Tree-sitter",
       "RAG",
     ],
-    links: {},
+    links: {
+      github: "https://github.com/aarabii/testiq",
+    },
   },
+  {
+    name: "Ideascribe",
+    description:
+      "A note-taking application with a modern block-based editor and real-time data synchronization for creating and organizing rich, structured notes.",
+    technologies: ["Next.js", "TypeScript", "Convex", "BlockNote"],
+    links: {
+      github: "https://github.com/aarabii/ideascribe",
+      live: "https://ideascribe.vercel.app/",
+    },
+  },
+];
+
+export const works: Project[] = [
   {
     name: "VidyaMarg",
     description:
@@ -64,13 +93,7 @@ export const projects: Project[] = [
     ],
     links: {},
   },
-  {
-    name: "Ideascribe",
-    description:
-      "A note-taking application with a modern block-based editor and real-time data synchronization for creating and organizing rich, structured notes.",
-    technologies: ["Next.js", "TypeScript", "Convex", "BlockNote"],
-    links: {},
-  },
+
   {
     name: "Curely",
     description:
