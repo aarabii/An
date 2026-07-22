@@ -83,7 +83,7 @@ export const Menu = () => {
       }
       return acc;
     },
-    []
+    [],
   );
 
   return (
@@ -108,7 +108,7 @@ export const Menu = () => {
       <SheetContent
         side="right"
         showCloseButton={false}
-        className="z-[10000] border-l border-sidebar-border bg-sidebar/95 backdrop-blur-2xl text-sidebar-foreground w-full max-w-sm sm:max-w-md h-full flex flex-col p-0 gap-0"
+        className="z-999 border-l border-sidebar-border bg-sidebar/95 backdrop-blur-2xl text-sidebar-foreground w-full max-w-sm sm:max-w-md h-full flex flex-col p-0 gap-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Navigation Menu</SheetTitle>
@@ -179,7 +179,7 @@ export const Menu = () => {
                         <span className="font-mono text-xs text-accent">
                           {String(SECTION_ITEMS.length + idx + 1).padStart(
                             2,
-                            "0"
+                            "0",
                           )}
                         </span>
                       </a>
@@ -195,7 +195,7 @@ export const Menu = () => {
                         <span className="font-mono text-xs text-accent/80 font-medium">
                           {String(SECTION_ITEMS.length + idx + 1).padStart(
                             2,
-                            "0"
+                            "0",
                           )}
                         </span>
                       </Link>

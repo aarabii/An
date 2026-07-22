@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight, ArrowLeft, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, Loader2, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 import { isValidEmail } from "@/lib/validators";
 
@@ -196,7 +196,9 @@ export const StepForm = () => {
     <div className="w-full max-w-md flex flex-col gap-2">
       {/* Top progress indicator & back button */}
       <div className="flex items-center justify-between text-xs font-mono text-white/80 font-semibold mb-1">
-        <span className="tracking-wider text-accent">{currentStepConfig.label}</span>
+        <span className="tracking-wider text-accent">
+          {currentStepConfig.label}
+        </span>
         {currentStep > 0 && (
           <button
             type="button"
@@ -253,7 +255,9 @@ export const StepForm = () => {
               onClick={handleNext}
               disabled={isSubmitting}
               className="shrink-0 p-1 rounded-md text-secondary hover:text-foreground hover:bg-white/5 transition-all disabled:opacity-50"
-              title={currentStep === STEPS.length - 1 ? "Send message" : "Next step"}
+              title={
+                currentStep === STEPS.length - 1 ? "Send message" : "Next step"
+              }
             >
               {isSubmitting ? (
                 <Loader2 className="size-4 animate-spin text-accent" />

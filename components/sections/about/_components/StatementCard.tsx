@@ -37,7 +37,7 @@ export const StatementCard = ({
 
   return (
     <BentoCard
-      className="sm:col-span-2 md:col-span-2 flex flex-col justify-center min-h-[260px] sm:min-h-[280px] relative pr-12 overflow-hidden"
+      className="sm:col-span-2 md:col-span-2 flex flex-col justify-center min-h-65 sm:min-h-70 relative pr-12 overflow-hidden"
       index={index}
     >
       <div className="relative pl-4 sm:pl-6 py-2 flex-1 flex flex-col justify-center">
@@ -63,7 +63,7 @@ export const StatementCard = ({
                 "w-1 rounded-full transition-all duration-300 focus:outline-none",
                 i === activeIndex
                   ? "h-6 bg-foreground"
-                  : "h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60 cursor-pointer"
+                  : "h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60 cursor-pointer",
               )}
               title={`Slide ${i + 1} of ${totalSlides}`}
               aria-label={`Go to slide ${i + 1}`}
@@ -74,7 +74,3 @@ export const StatementCard = ({
     </BentoCard>
   );
 };
-
-
-
-

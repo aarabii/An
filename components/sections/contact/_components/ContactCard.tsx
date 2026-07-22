@@ -13,7 +13,7 @@ export const ContactCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.08] p-6 sm:p-10 md:p-14 backdrop-blur-xl shadow-2xl text-white"
+      className="relative w-full overflow-hidden rounded-3xl border border-white/15 bg-white/5 p-6 sm:p-10 md:p-14 backdrop-blur-xl shadow-2xl text-white"
     >
       {/* Ambient background glow */}
       <div className="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full bg-accent/20 blur-3xl" />
