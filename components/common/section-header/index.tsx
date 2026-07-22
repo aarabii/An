@@ -29,8 +29,8 @@ export const SectionHeader = ({
     >
       <span
         className={cn(
-          "pointer-events-none absolute -top-6 select-none font-heading",
-          "text-[120px] font-black leading-none text-foreground/7 italic",
+          "pointer-events-none absolute -top-15 select-none font-heading",
+          "text-[120px] font-black leading-none text-white/10 italic drop-shadow-sms",
           "sm:text-[160px] md:text-[200px]",
           isRight ? "right-0" : "left-0",
         )}
@@ -44,17 +44,17 @@ export const SectionHeader = ({
           isRight && "flex-row-reverse",
         )}
       >
-        <h2 className="font-heading text-lg uppercase tracking-[0.2em] text-muted-foreground sm:text-xl md:text-2xl">
+        <h2 className="font-heading text-lg uppercase tracking-[0.2em] text-white/90 font-semibold sm:text-xl md:text-2xl">
           {title}
         </h2>
-        <div
+        {/* <div
           className={cn(
             "h-px flex-1",
             isRight
-              ? "bg-linear-to-l from-border/60 to-transparent"
-              : "bg-linear-to-r from-border/60 to-transparent",
+              ? "bg-linear-to-l from-fuchsia-500/50 to-transparent"
+              : "bg-linear-to-r from-fuchsia-500/50 to-transparent",
           )}
-        />
+        /> */}
       </div>
     </motion.div>
   );

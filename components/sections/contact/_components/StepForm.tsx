@@ -179,12 +179,12 @@ export const StepForm = () => {
         animate={{ opacity: 1, scale: 1 }}
         className="flex flex-col items-start gap-2 py-4 text-left font-mono"
       >
-        <p className="text-xs text-muted-foreground">
+        <p className="text-xs text-secondary">
           I will get back to you as soon as possible.
         </p>
         <button
           onClick={resetForm}
-          className="mt-1 text-xs underline underline-offset-4 text-muted-foreground hover:text-foreground transition-colors"
+          className="mt-1 text-xs underline underline-offset-4 text-secondary hover:text-foreground transition-colors"
         >
           Send another message
         </button>
@@ -195,23 +195,23 @@ export const StepForm = () => {
   return (
     <div className="w-full max-w-md flex flex-col gap-2">
       {/* Top progress indicator & back button */}
-      <div className="flex items-center justify-between text-xs font-mono text-muted-foreground/60 mb-1">
-        <span className="tracking-wider">{currentStepConfig.label}</span>
+      <div className="flex items-center justify-between text-xs font-mono text-white/80 font-semibold mb-1">
+        <span className="tracking-wider text-accent">{currentStepConfig.label}</span>
         {currentStep > 0 && (
           <button
             type="button"
             onClick={handlePrev}
             disabled={isSubmitting}
-            className="flex items-center gap-1 hover:text-foreground transition-colors"
+            className="flex items-center gap-1 text-white/70 hover:text-white transition-colors"
           >
-            <ArrowLeft className="size-3" />
+            <ArrowLeft className="size-3 text-accent" />
             <span>back</span>
           </button>
         )}
       </div>
 
       {/* Input container matching reference image style */}
-      <div className="relative border-b border-border/80 pb-2 focus-within:border-accent transition-colors">
+      <div className="relative border-b border-white/20 pb-2 focus-within:border-accent transition-colors">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -234,7 +234,7 @@ export const StepForm = () => {
                 placeholder={currentStepConfig.placeholder}
                 rows={2}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-sm text-foreground/90 placeholder:text-muted-foreground/40 outline-none resize-none"
+                className="w-full bg-transparent font-mono text-base text-white placeholder:text-white/40 outline-none resize-none"
               />
             ) : (
               <input
@@ -244,7 +244,7 @@ export const StepForm = () => {
                 onKeyDown={handleKeyDown}
                 placeholder={currentStepConfig.placeholder}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-sm text-foreground/90 placeholder:text-muted-foreground/40 outline-none"
+                className="w-full bg-transparent font-mono text-base text-white placeholder:text-white/40 outline-none"
               />
             )}
 
@@ -252,7 +252,7 @@ export const StepForm = () => {
               type="button"
               onClick={handleNext}
               disabled={isSubmitting}
-              className="shrink-0 p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all disabled:opacity-50"
+              className="shrink-0 p-1 rounded-md text-secondary hover:text-foreground hover:bg-white/5 transition-all disabled:opacity-50"
               title={currentStep === STEPS.length - 1 ? "Send message" : "Next step"}
             >
               {isSubmitting ? (
@@ -279,7 +279,7 @@ export const StepForm = () => {
 
       {/* Helper hint for textarea step */}
       {currentStep === 3 && !error && (
-        <span className="text-[10px] font-mono text-muted-foreground/40 mt-0.5">
+        <span className="text-[10px] font-mono text-secondary/40 mt-0.5">
           Press Ctrl+Enter or click arrow to send
         </span>
       )}

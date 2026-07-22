@@ -16,10 +16,10 @@ export const CodingStatsSlide = () => {
       className="flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">
+        <span className="text-xs uppercase tracking-widest text-secondary font-semibold">
           GitHub Stats
         </span>
-        <span className="text-xs text-muted-foreground font-mono">
+        <span className="text-xs text-secondary font-mono">
           @{github?.handle || "aarabii"}
         </span>
       </div>
@@ -35,37 +35,31 @@ export const CodingStatsSlide = () => {
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-card/60">
+          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-white/5">
             <span className="text-xl sm:text-2xl font-bold text-foreground">
               {github?.repos ?? 0}
             </span>
-            <span className="text-[11px] text-muted-foreground mt-0.5">
+            <span className="text-[11px] text-secondary mt-0.5">
               Repositories
             </span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-card/60">
+          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
             <span className="text-xl sm:text-2xl font-bold text-foreground">
               {github?.followers ?? 0}
             </span>
-            <span className="text-[11px] text-muted-foreground mt-0.5">
-              Followers
-            </span>
+            <span className="text-[11px] text-secondary mt-0.5">Followers</span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-card/60">
+          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
             <span className="text-xl sm:text-2xl font-bold text-foreground">
               {github?.following ?? 0}
             </span>
-            <span className="text-[11px] text-muted-foreground mt-0.5">
-              Following
-            </span>
+            <span className="text-[11px] text-secondary mt-0.5">Following</span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-card/60">
+          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
             <span className="text-xl sm:text-2xl font-bold text-foreground">
               {github?.gists ?? 0}
             </span>
-            <span className="text-[11px] text-muted-foreground mt-0.5">
-              Gists
-            </span>
+            <span className="text-[11px] text-secondary mt-0.5">Gists</span>
           </div>
         </div>
       )}

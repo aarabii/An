@@ -122,7 +122,7 @@ export const Menu = () => {
           </span>
           <button
             onClick={() => setOpen(false)}
-            className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-muted-foreground hover:text-foreground hover:bg-white/10 transition-all cursor-pointer"
+            className="p-1.5 rounded-lg bg-white/5 border border-white/10 text-secondary hover:text-foreground hover:bg-white/10 transition-all cursor-pointer"
             aria-label="Close sidebar"
           >
             <X className="w-4 h-4 text-accent" />
@@ -219,7 +219,7 @@ export const Menu = () => {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative px-2.5 py-1 text-xs font-medium text-muted-foreground hover:text-accent transition-colors duration-200 group inline-block"
+                className="relative px-2.5 py-1 text-xs font-medium text-secondary hover:text-accent transition-colors duration-200 group inline-block"
               >
                 <span className="absolute top-0 left-0 w-1.5 h-1.5 border-t border-l border-accent opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none" />
                 <span className="absolute top-0 right-0 w-1.5 h-1.5 border-t border-r border-accent opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none" />

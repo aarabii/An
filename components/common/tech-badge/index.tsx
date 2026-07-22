@@ -9,7 +9,7 @@ export const TechBadge = ({ name, className }: TechBadgeProps) => {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-md border border-border/60 bg-muted/30 px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-accent/40 hover:bg-accent/10 hover:text-foreground",
+        "inline-flex items-center rounded-lg border border-white/15 bg-white/[0.08] px-3 py-1.5 text-xs font-medium text-white/90 shadow-sm transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.14] hover:text-white hover:scale-[1.02]",
         className,
       )}
     >

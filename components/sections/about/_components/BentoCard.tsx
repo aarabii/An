@@ -29,9 +29,9 @@ export const BentoCard = ({
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        "relative rounded-2xl border border-border/50 bg-card/40 backdrop-blur-xl p-6",
-        "transition-[border-color,transform] duration-300",
-        "hover:border-accent/20 hover:-translate-y-0.5",
+        "relative rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl p-6 shadow-xl text-white",
+        "transition-[border-color,transform,background-color] duration-300",
+        "hover:border-accent/30 hover:-translate-y-0.5",
         className,
       )}
     >

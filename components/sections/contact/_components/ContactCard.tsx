@@ -13,16 +13,16 @@ export const ContactCard = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full overflow-hidden rounded-3xl border border-border/40 bg-card/30 p-6 sm:p-10 md:p-14 backdrop-blur-xl shadow-2xl"
+      className="relative w-full overflow-hidden rounded-3xl border border-white/15 bg-white/[0.08] p-6 sm:p-10 md:p-14 backdrop-blur-xl shadow-2xl text-white"
     >
       {/* Ambient background glow */}
-      <div className="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full bg-accent/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-24 -right-24 size-72 rounded-full bg-secondary/10 blur-3xl" />
+      <div className="pointer-events-none absolute -top-24 -left-24 size-72 rounded-full bg-accent/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -right-24 size-72 rounded-full bg-accent/15 blur-3xl" />
 
       <div className="relative z-10 flex flex-col gap-10 md:gap-12">
         {/* Top Part: Big Heading + Step Form */}
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
-          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl text-foreground tracking-wide select-none">
+          <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl text-white font-bold tracking-wide select-none drop-shadow-md">
             let&apos;s talk
           </h2>
 

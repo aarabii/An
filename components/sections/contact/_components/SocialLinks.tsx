@@ -5,7 +5,7 @@ import { socials } from "@/constant/social";
 export const SocialLinks = () => {
   return (
     <div className="flex flex-col gap-3">
-      <span className="font-mono text-xs text-muted-foreground/40 lowercase">
+      <span className="font-mono text-xs text-secondary lowercase">
         let&apos;s build something epic.
       </span>
 
@@ -16,23 +16,23 @@ export const SocialLinks = () => {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-white/80 font-medium transition-colors hover:text-white"
           >
             {/* Corner brackets on hover */}
-            <span className="absolute -top-1 -left-1 text-[10px] text-muted-foreground/0 group-hover:text-accent transition-colors">
+            <span className="absolute -top-1 -left-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">
               ┌
             </span>
-            <span className="absolute -top-1 -right-1 text-[10px] text-muted-foreground/0 group-hover:text-accent transition-colors">
+            <span className="absolute -top-1 -right-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">
               ┐
             </span>
-            <span className="absolute -bottom-1 -left-1 text-[10px] text-muted-foreground/0 group-hover:text-accent transition-colors">
+            <span className="absolute -bottom-1 -left-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">
               └
             </span>
-            <span className="absolute -bottom-1 -right-1 text-[10px] text-muted-foreground/0 group-hover:text-accent transition-colors">
+            <span className="absolute -bottom-1 -right-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">
               ┘
             </span>
 
-            <span className="text-muted-foreground/40 group-hover:text-accent transition-colors">
+            <span className="text-accent group-hover:text-accent transition-colors">
               •
             </span>
             <span className="lowercase">{social.name}</span>

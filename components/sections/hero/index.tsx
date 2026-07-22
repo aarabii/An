@@ -1,7 +1,7 @@
 "use client";
 
 import { serif } from "@/app/fonts";
-import { GradientBackground } from "./_components/GradientBg";
+import { GradientBackground } from "../../mics/bg/GradientBg";
 import { profile } from "@/constant";
 import { RotatingTextHero } from "./_components/RotatingTextHero";
 import { ActionBtn } from "./_components/ActionBtn";

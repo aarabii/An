@@ -5,6 +5,7 @@ import { Separator as SeparatorPrimitive } from "@base-ui/react/separator";
 
 import { profile } from "@/constant/profile";
 import { cn } from "@/lib/utils";
+import { signature } from "@/app/fonts";
 
 interface ExtraSeparatorProps {
   label?: React.ReactNode;
@@ -39,7 +40,12 @@ function Separator({
           className={cn("h-px flex-1 bg-primary/80", className)}
           {...props}
         />
-        <span className="shrink-0 font-signature text-2xl tracking-wider text-primary sm:text-3xl">
+        <span
+          className={cn(
+            signature.className,
+            "shrink-0 font-signature text-2xl tracking-wider text-primary sm:text-3xl",
+          )}
+        >
           {content}
         </span>
         <SeparatorPrimitive
