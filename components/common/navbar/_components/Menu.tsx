@@ -34,7 +34,6 @@ const SECTION_ITEMS: MenuItem[] = [
 
 const BASE_PAGE_ITEMS: MenuItem[] = [
   { label: "Resume", link: "/resume" },
-  { label: "Gallery", link: "/gallery" },
   { label: "Projects", link: "/projects" },
   { label: "Blog", link: "/blogs" },
 ];
