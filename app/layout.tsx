@@ -6,16 +6,24 @@ import { cn } from "@/lib/utils";
 import { main, heading, signature, mono, serif } from "@/app/fonts";
 import { Background, PreLoader } from "@/components/mics";
 import { Toaster } from "@/components/ui/sonner";
+import {
+  constructMetadata,
+  generatePersonJsonLd,
+  generateWebSiteJsonLd,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Aarab Nishchal",
-};
+export const metadata: Metadata = constructMetadata({
+  useTitleTemplate: true,
+});
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const personJsonLd = generatePersonJsonLd();
+  const websiteJsonLd = generateWebSiteJsonLd();
+
   return (
     <html
       lang="en"
@@ -29,6 +37,14 @@ export default function RootLayout({
         serif.variable,
       )}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([personJsonLd, websiteJsonLd]),
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col">
         <PreLoader />
         <div id="app-content" className="min-h-full flex flex-col flex-1">

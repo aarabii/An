@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import { Fragment } from "react";
 import { Footer, Navbar } from "@/components/common";
 import {
   HeroSection,
@@ -7,7 +9,10 @@ import {
   WorkSection,
   ContactSection,
 } from "@/components/sections";
-import { Fragment } from "react";
+import { constructMetadata } from "@/lib/seo";
+import { PAGE_SEO } from "@/constant/seo";
+
+export const metadata: Metadata = constructMetadata(PAGE_SEO.home);
 
 export default function Home() {
   return (
