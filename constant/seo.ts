@@ -52,7 +52,7 @@ export const SITE_SEO = {
   },
   creator: "Aarab Nishchal",
   publisher: "Aarab Nishchal",
-  defaultOgImage: "/og-image.png",
+  defaultOgImage: "/images/thumbnail.png",
   twitterHandle: `@${xSocial?.handle || "aarab_ii"}`,
   socialLinks: socials.map((s) => s.url),
   locale: "en_US",
