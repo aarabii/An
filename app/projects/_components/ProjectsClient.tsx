@@ -2,13 +2,10 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
 
 import { Footer, Navbar } from "@/components/common";
 import { WorkCard } from "@/components/sections/work/_components/WorkCard";
 import { selected_works, works } from "@/constant/projects";
-import { heading } from "@/app/fonts";
-import { cn } from "@/lib/utils";
 import { GithubSection } from "./GithubSection";
 import { ProjectsHeader } from "./ProjectsHeader";
 
@@ -22,30 +19,25 @@ export default function ProjectsClient() {
 
       {/* Backdrop filter overlay above global background canvas/shader */}
       <div className="relative z-10 bg-black/40 backdrop-blur-md flex-1 flex flex-col w-full">
-        <main className="flex-1 pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full space-y-16">
-          <ProjectsHeader totalFeaturedCount={allProjects.length} />
+        <main className="flex-1 pt-24 sm:pt-28 pb-24 px-6 md:px-12 lg:px-20 max-w-5xl mx-auto w-full space-y-16">
+          <ProjectsHeader />
 
           {/* Section 1: Featured Selected Works & Projects */}
           <section className="space-y-8">
-            <div className="flex items-center gap-3 border-b border-border/40 pb-3">
-              <Sparkles className="w-5 h-5 text-accent" />
-              <h2
-                className={cn(
-                  heading.className,
-                  "text-xl sm:text-2xl uppercase tracking-wider text-primary font-bold"
-                )}
-              >
-                Featured Projects
+            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-neutral-400">
+                // Featured Projects ({allProjects.length})
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
               {allProjects.map((project, idx) => (
                 <motion.div
                   key={project.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
+                  className="h-full"
                 >
                   <WorkCard
                     name={project.name}
@@ -59,7 +51,7 @@ export default function ProjectsClient() {
             </div>
           </section>
 
-          {/* Section 2: Live GitHub Repositories (Excluding featured projects) */}
+          {/* Section 2: Live GitHub Repositories */}
           <GithubSection constantProjects={allProjects} />
         </main>
 
@@ -68,3 +60,4 @@ export default function ProjectsClient() {
     </div>
   );
 }
+

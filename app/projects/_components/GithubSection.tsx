@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import { ChevronDown, Loader2, RefreshCw, Search } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 
-import { heading } from "@/app/fonts";
 import { Project } from "@/constant/projects";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 import { cn } from "@/lib/utils";
@@ -41,20 +40,15 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
       {/* Section Title & Toolbar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-            <FaGithub className="w-5 h-5" />
+          <div className="w-9 h-9 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+            <FaGithub className="w-4 h-4" />
           </div>
           <div>
-            <h2
-              className={cn(
-                heading.className,
-                "text-xl sm:text-2xl uppercase tracking-wider text-primary font-bold"
-              )}
-            >
-              More Repositories on GitHub
+            <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-neutral-300">
+              // More Repositories on GitHub
             </h2>
-            <p className="text-xs font-mono text-muted-foreground">
-              Live fetched from @aarabii GitHub account (cached to preserve rate limit)
+            <p className="text-[11px] font-mono text-neutral-500">
+              Public repos from @aarabii
             </p>
           </div>
         </div>
@@ -62,18 +56,18 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
         <div className="flex items-center gap-2.5 w-full sm:w-auto">
           {/* Search Bar */}
           <div className="relative flex-1 sm:w-64">
-            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+            <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-neutral-500" />
             <input
               type="text"
-              placeholder="Search repos..."
+              placeholder="Filter repositories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-card/60 border border-border/60 rounded-xl pl-9 pr-3 py-1.5 text-xs font-mono text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-accent/60 transition-colors backdrop-blur-md"
+              className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl pl-9 pr-3 py-1.5 text-xs font-mono text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-accent/60 transition-colors backdrop-blur-md"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-muted-foreground hover:text-foreground"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-neutral-500 hover:text-neutral-300"
               >
                 Clear
               </button>
@@ -84,8 +78,8 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
           <button
             onClick={refetch}
             disabled={loading}
-            className="p-2 rounded-xl border border-border/60 bg-card/60 hover:bg-card text-muted-foreground hover:text-foreground transition-colors cursor-pointer disabled:opacity-50"
-            title="Bypass Cache & Refetch GitHub API"
+            className="p-2 rounded-xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900 text-neutral-400 hover:text-neutral-200 transition-colors cursor-pointer disabled:opacity-50"
+            title="Refetch GitHub API"
             aria-label="Refresh GitHub Repos"
           >
             <RefreshCw

@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 import { SectionHeader } from "@/components/common";
 
-export const ProjectsHeader: React.FC = () => {
+export const BlogsHeader: React.FC = () => {
   return (
     <header className="space-y-6">
       {/* Top Navigation Bar */}
@@ -24,12 +24,11 @@ export const ProjectsHeader: React.FC = () => {
         </Link>
       </motion.div>
 
-      {/* Section Header with Main Page Numbering & Styling */}
+      {/* Section Header */}
       <div className="pt-4">
-        <SectionHeader number="06" title="Projects & Open Source" align="left" />
+        <SectionHeader number="07" title="Blog & Articles" align="left" />
         <p className="text-xs sm:text-sm font-mono text-neutral-400 max-w-2xl leading-relaxed -mt-10">
-          Projects, tools, and late-night experiments. Featured builds upfront,
-          live GitHub repositories below.
+          Technical writing, thoughts, tutorials, and deep-dives on full-stack development, AI, and software engineering.
         </p>
       </div>
     </header>

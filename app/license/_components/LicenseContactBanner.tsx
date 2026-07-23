@@ -3,40 +3,31 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Mail } from "lucide-react";
-
-import { heading } from "@/app/fonts";
 import { profile } from "@/constant";
-import { cn } from "@/lib/utils";
 
 export const LicenseContactBanner = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.3 }}
-      className="mt-16 rounded-3xl border border-primary/20 bg-linear-to-r from-accent/15 via-card/50 to-secondary/15 backdrop-blur-xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl"
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="rounded-[28px] border border-neutral-800 bg-neutral-950 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-2xl"
     >
-      <div className="space-y-2 text-center sm:text-left">
-        <h3
-          className={cn(
-            heading.className,
-            "text-xl sm:text-2xl uppercase tracking-wider text-primary font-bold"
-          )}
-        >
-          Need a Custom Commercial License?
+      <div className="space-y-1.5">
+        <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-white">
+          Commercial Permission & Custom Licensing
         </h3>
-        <p className="text-xs sm:text-sm text-muted-foreground font-mono max-w-xl">
-          Have questions about using this codebase for commercial projects,
-          agency deliverables, or custom development? Feel free to reach out.
+        <p className="text-xs font-mono text-neutral-400 max-w-xl leading-relaxed">
+          Need a commercial license for client projects, agency work, or template distribution? Drop me an email.
         </p>
       </div>
 
       <a
         href={`mailto:${profile.email}?subject=License%20Inquiry%20-%20Aarab%20Nishchal%20Portfolio`}
-        className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-accent text-accent-foreground hover:bg-accent/90 font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-lg hover:shadow-accent/25 hover:scale-105 shrink-0"
+        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shrink-0"
       >
         <Mail className="w-4 h-4" />
-        <span>Contact Author</span>
+        <span>Contact Aarab</span>
       </a>
     </motion.div>
   );

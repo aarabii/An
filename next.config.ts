@@ -5,6 +5,24 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: false,
     qualities: [75, 100],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "prod-files-secure.s3.us-west-2.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "s3.us-west-2.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.notion.so",
+      },
+    ],
   },
 
   async headers() {
@@ -55,6 +73,11 @@ const nextConfig: NextConfig = {
       {
         source: "/home",
         destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/blog",
+        destination: "/blogs",
         permanent: true,
       },
       {

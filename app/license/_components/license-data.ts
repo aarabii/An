@@ -1,26 +1,43 @@
 import { profile } from "@/constant";
 
-export interface LicenseSectionItem {
-  term: string;
-  desc: string;
-}
-
-export interface LicenseSection {
-  id: string;
-  num: string;
+export interface HumanLicenseRule {
   title: string;
-  subtitle: string;
-  badge?: string;
-  badgeType?: "success" | "danger";
-  items?: LicenseSectionItem[];
-  points?: string[];
-  examples?: string[];
+  items: string[];
 }
 
-export interface LicenseFAQ {
-  q: string;
-  a: string;
-}
+export const HUMAN_LICENSE_SUMMARY: {
+  allowed: HumanLicenseRule;
+  prohibited: HumanLicenseRule;
+  terms: HumanLicenseRule;
+} = {
+  allowed: {
+    title: "Allowed",
+    items: [
+      "Fork, clone, and customize the source code freely for your personal website or portfolio.",
+      "Modify styles, components, layout, and content to fit your own identity.",
+      "Deploy to your custom domain, Vercel, Netlify, GitHub Pages, or any host.",
+      "Use the repository for personal learning, experimentation, or non-commercial projects.",
+    ],
+  },
+  prohibited: {
+    title: "Prohibited",
+    items: [
+      "Reselling or distributing this codebase as a paid or free starter kit, template, or theme.",
+      "Building client sites for payment using this repository as a deliverable.",
+      "Removing or altering the LICENSE file in your repository.",
+      "Claiming original authorship of the core design system or codebase structure.",
+    ],
+  },
+  terms: {
+    title: "Terms & Attribution",
+    items: [
+      "Attribution on your live deployed site is optional (footer credit link appreciated!).",
+      "Keeping the LICENSE file in your repository satisfies all mandatory credit requirements.",
+      "Personal bio, photos, resume details, and project content must be replaced with your own.",
+      "No trademark rights granted to Aarab Nishchal's name, logo, or brand identity.",
+    ],
+  },
+};
 
 export const RAW_LICENSE_TEXT = `# Custom Portfolio License
 
@@ -66,13 +83,6 @@ worldwide, royalty-free, non-exclusive license to:
 4. Use it privately for learning, experimentation, or internal
    non-commercial tooling.
 
-Example (allowed): A developer forks this repo, replaces the name,
-photos, projects, and color scheme, and publishes it as their own
-personal portfolio at their-name.dev.
-
-Example (allowed): A freelancer forks this repo, customizes it,
-and uses it as their own public portfolio to attract clients.
-
 ---
 
 ## 3. Restrictions
@@ -92,17 +102,6 @@ You may NOT, under any circumstances:
    distributions.
 5. Claim original authorship of the underlying codebase, design
    system, or structure.
-
-Example (not allowed): A freelancer clones this repo, changes the
-name and content, and sells it to a client as a custom-built portfolio
-website.
-
-Example (not allowed): Someone forks this repo and publishes it on
-a marketplace (e.g., ThemeForest, Gumroad, a template store) as a free
-or paid "portfolio template."
-
-Example (not allowed): A company uses this codebase as the base for
-a commercial SaaS product or template-selling business.
 
 ---
 
@@ -152,138 +151,3 @@ be replaced by the User with their own content.
 
 For licensing questions, commercial use exceptions, or written
 permission requests, contact: ${profile.email}`;
-
-export const SECTIONS_DATA: LicenseSection[] = [
-  {
-    id: "definitions",
-    num: "01",
-    title: "Definitions",
-    subtitle: "Core terms governing this agreement",
-    items: [
-      {
-        term: "Software",
-        desc: "The source code, styles, React/Next.js components, design assets, and documentation contained in this repository.",
-      },
-      {
-        term: "Personal Use",
-        desc: "Using the Software (modified or unmodified) to build and publish your own individual or organizational portfolio, website, or resume for yourself.",
-      },
-      {
-        term: "Resale",
-        desc: "Distributing, sublicensing, selling, or offering the Software — in original or modified form — as a standalone product, template, theme, starter kit, or paid client deliverable.",
-      },
-    ],
-  },
-  {
-    id: "permissions",
-    num: "02",
-    title: "Grant of Permission",
-    subtitle: "What you are explicitly allowed to do",
-    badge: "Allowed",
-    badgeType: "success",
-    points: [
-      "Clone and fork this repository freely.",
-      "Modify the Software in any way — content, styling, structure, and functionality — to fit your personal portfolio.",
-      "Deploy and publish your modified version as your personal site on Vercel, Netlify, GitHub Pages, or a custom domain.",
-      "Use the codebase privately for learning, experimentation, or internal non-commercial tooling.",
-    ],
-    examples: [
-      "A developer forks this repo, replaces the name, photos, projects, and color scheme, and publishes it as their own portfolio.",
-      "A freelancer customizes this template to showcase their own projects and skills to land clients.",
-    ],
-  },
-  {
-    id: "restrictions",
-    num: "03",
-    title: "Restrictions & Limitations",
-    subtitle: "What is strictly prohibited",
-    badge: "Prohibited",
-    badgeType: "danger",
-    points: [
-      "Do NOT resell or redistribute the Software as a paid or free template, boilerplate, or starter kit.",
-      "Do NOT build client deliverables from this Software for payment (e.g. agencies selling customized clones to clients).",
-      "Do NOT sublicense the Software to third parties under altered terms.",
-      "Do NOT remove or alter the LICENSE file or copyright notice in your repository.",
-      "Do NOT claim original authorship of the underlying codebase or design system.",
-    ],
-    examples: [
-      "Cloning this repo, changing colors, and selling it on Fiverr/Upwork as a custom client project.",
-      "Publishing this repo on marketplaces like ThemeForest, Gumroad, or GitHub as a template starter kit.",
-      "Using this codebase as the foundation for a commercial SaaS template store.",
-    ],
-  },
-  {
-    id: "attribution",
-    num: "04",
-    title: "Attribution Guidelines",
-    subtitle: "How credit and copyright attribution works",
-    points: [
-      "Attribution on your live deployed website is OPTIONAL (a credit link in your footer is appreciated!).",
-      "Retaining the LICENSE file in your public repository satisfies all mandatory attribution requirements.",
-      "You must not claim to have created the base architecture from scratch.",
-    ],
-  },
-  {
-    id: "termination",
-    num: "05",
-    title: "Termination of Rights",
-    subtitle: "Conditions causing automatic license termination",
-    points: [
-      "Any violation of Section 3 (Restrictions) automatically revokes all rights granted under this license.",
-      "Upon termination, you must immediately cease all public deployment, distribution, and use of the Software.",
-    ],
-  },
-  {
-    id: "warranty",
-    num: "06",
-    title: "No Warranty & Liability",
-    subtitle: "Provided AS IS without guarantees",
-    points: [
-      'The Software is provided "AS IS", without warranty of any kind, express or implied.',
-      "In no event shall the Author (Aarab Nishchal) be liable for any claim, damages, or liabilities arising from the use of this code.",
-    ],
-  },
-  {
-    id: "governing",
-    num: "07",
-    title: "Governing Terms & Assets",
-    subtitle: "Protection of personal identity and media",
-    points: [
-      "This license does NOT grant rights to the Author's personal name, brand, logo, or identity.",
-      "All personal photos, resume details, and bio content specific to Aarab Nishchal MUST be replaced before publishing.",
-    ],
-  },
-  {
-    id: "contact",
-    num: "08",
-    title: "Contact & Exceptions",
-    subtitle: "Commercial licensing and permissions",
-    points: [
-      "For commercial use exceptions, licensing inquiries, or written permission requests, reach out directly.",
-      `Email: ${profile.email}`,
-    ],
-  },
-];
-
-export const FAQS: LicenseFAQ[] = [
-  {
-    q: "Can I use this codebase for my own developer portfolio?",
-    a: "Yes, absolutely! You can fork, clone, edit, and publish your own version of this portfolio on your custom domain, Vercel, Netlify, or any hosting platform.",
-  },
-  {
-    q: "Do I need to pay anything or add a credit link to my site?",
-    a: "No payment is required — this license is 100% royalty-free for personal use. Adding a credit link in your footer (e.g. 'Based on template by Aarab Nishchal') is completely optional, though always appreciated!",
-  },
-  {
-    q: "Can I sell a modified version of this website to a client?",
-    a: "No. You cannot build client projects for money using this template, nor can you sell it as a template or theme on Gumroad, ThemeForest, or any platform.",
-  },
-  {
-    q: "Can I keep my fork private or open-source on GitHub?",
-    a: "Either is fine! As long as you keep the LICENSE file inside your repository, you are fully compliant.",
-  },
-  {
-    q: "Can I use the design system or components in my open-source project?",
-    a: "Yes! You can adapt individual components or styling patterns for your personal open-source projects.",
-  },
-];
