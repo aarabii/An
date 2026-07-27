@@ -16,25 +16,25 @@ interface FormData {
 const STEPS = [
   {
     id: "email",
-    label: "Step 1/4",
+    label: "STEP 01 / 04",
     placeholder: "[ enter email address ]",
     type: "email",
   },
   {
     id: "name",
-    label: "Step 2/4",
+    label: "STEP 02 / 04",
     placeholder: "[ enter your name ]",
     type: "text",
   },
   {
     id: "reason",
-    label: "Step 3/4",
+    label: "STEP 03 / 04",
     placeholder: "[ reason for contacting ]",
     type: "text",
   },
   {
     id: "message",
-    label: "Step 4/4",
+    label: "STEP 04 / 04",
     placeholder: "[ write your message... ]",
     type: "textarea",
   },
@@ -179,12 +179,12 @@ export const StepForm = () => {
         animate={{ opacity: 1, scale: 1 }}
         className="flex flex-col items-start gap-2 py-4 text-left font-mono"
       >
-        <p className="text-xs text-secondary">
-          I will get back to you as soon as possible.
+        <p className="text-xs text-accent">
+          Message received! I will get back to you as soon as possible.
         </p>
         <button
           onClick={resetForm}
-          className="mt-1 text-xs underline underline-offset-4 text-secondary hover:text-foreground transition-colors"
+          className="mt-1 text-xs underline underline-offset-4 text-neutral-400 hover:text-white transition-colors cursor-pointer"
         >
           Send another message
         </button>
@@ -195,7 +195,7 @@ export const StepForm = () => {
   return (
     <div className="w-full max-w-md flex flex-col gap-2">
       {/* Top progress indicator & back button */}
-      <div className="flex items-center justify-between text-xs font-mono text-primary/80 font-semibold mb-1">
+      <div className="flex items-center justify-between text-xs font-mono text-neutral-400 font-semibold mb-1">
         <span className="tracking-wider text-accent">
           {currentStepConfig.label}
         </span>
@@ -204,16 +204,16 @@ export const StepForm = () => {
             type="button"
             onClick={handlePrev}
             disabled={isSubmitting}
-            className="flex items-center gap-1 text-primary/70 hover:text-primary transition-colors"
+            className="flex items-center gap-1 text-neutral-400 hover:text-white transition-colors cursor-pointer"
           >
-            <ArrowLeft className="size-3 text-accent" />
+            <ArrowLeft className="size-3.5 text-accent" />
             <span>back</span>
           </button>
         )}
       </div>
 
-      {/* Input container matching reference image style */}
-      <div className="relative border-b border-primary/20 pb-2 focus-within:border-accent transition-colors">
+      {/* Minimal Line Input Container */}
+      <div className="relative border-b border-neutral-700/80 pb-2 focus-within:border-accent transition-colors">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentStep}
@@ -236,7 +236,7 @@ export const StepForm = () => {
                 placeholder={currentStepConfig.placeholder}
                 rows={2}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-base text-primary placeholder:text-primary/40 outline-none resize-none"
+                className="w-full bg-transparent font-mono text-base sm:text-lg text-white placeholder:text-neutral-500/70 outline-none resize-none"
               />
             ) : (
               <input
@@ -246,7 +246,7 @@ export const StepForm = () => {
                 onKeyDown={handleKeyDown}
                 placeholder={currentStepConfig.placeholder}
                 disabled={isSubmitting}
-                className="w-full bg-transparent font-mono text-base text-primary placeholder:text-primary/40 outline-none"
+                className="w-full bg-transparent font-mono text-base sm:text-lg text-white placeholder:text-neutral-500/70 outline-none"
               />
             )}
 
@@ -254,7 +254,7 @@ export const StepForm = () => {
               type="button"
               onClick={handleNext}
               disabled={isSubmitting}
-              className="shrink-0 p-1 rounded-md text-secondary hover:text-foreground hover:bg-primary/5 transition-all disabled:opacity-50"
+              className="shrink-0 p-1.5 rounded-md text-neutral-400 hover:text-accent hover:bg-neutral-900/60 transition-all cursor-pointer disabled:opacity-50"
               title={
                 currentStep === STEPS.length - 1 ? "Send message" : "Next step"
               }
@@ -283,10 +283,11 @@ export const StepForm = () => {
 
       {/* Helper hint for textarea step */}
       {currentStep === 3 && !error && (
-        <span className="text-[10px] font-mono text-secondary/40 mt-0.5">
+        <span className="text-[10px] font-mono text-neutral-500 mt-0.5">
           Press Ctrl+Enter or click arrow to send
         </span>
       )}
     </div>
   );
 };
+

@@ -9,7 +9,7 @@ interface ExperienceListProps {
 
 export const ExperienceList = ({ items }: ExperienceListProps) => {
   return (
-    <div className="flex w-full flex-col">
+    <div className="mt-8 flex w-full flex-col gap-6 sm:gap-8">
       {items.map((item, index) => (
         <ExperienceItem
           key={`${item.company}-${index}`}
@@ -20,3 +20,4 @@ export const ExperienceList = ({ items }: ExperienceListProps) => {
     </div>
   );
 };
+

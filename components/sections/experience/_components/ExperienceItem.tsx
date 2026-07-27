@@ -27,53 +27,51 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, x: -20, y: 20 }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -20, y: 20 }}
-      whileHover={{ y: -4, borderColor: "rgba(56, 189, 248, 0.4)" }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{
-        duration: 0.6,
+        duration: 0.5,
         delay: index * 0.1,
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        "relative grid grid-cols-1 gap-6 py-8 transition-colors duration-300 md:grid-cols-12 md:gap-8 md:py-10 border border-primary/15 bg-primary/5 backdrop-blur-xl p-6 my-4 rounded-xl shadow-lg",
+        "group relative w-full flex flex-col gap-6 rounded-2xl sm:rounded-3xl border border-neutral-800/60 bg-neutral-900/30 p-6 sm:p-8 backdrop-blur-md transition-all duration-300 hover:border-neutral-700/80 hover:bg-neutral-900/50 hover:shadow-xl",
       )}
     >
-      <div className="flex flex-col justify-start md:col-span-5">
-        <div className="flex items-start gap-3">
-          <div className="group flex flex-col gap-1">
-            <a
-              href={item.companySite}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 font-heading text-lg font-bold uppercase tracking-tight text-primary transition-colors group-hover:text-accent sm:text-xl md:text-2xl"
-            >
-              <span>{item.company}</span>
-              <ExternalLink className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100 text-accent" />
-            </a>
+      {/* Header Section: Company, Role & Date */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between border-b border-neutral-800/60 pb-4">
+        <div className="flex flex-col gap-1">
+          <a
+            href={item.companySite}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-heading text-xl font-bold uppercase tracking-tight text-white transition-colors hover:text-accent sm:text-2xl"
+          >
+            <span>{item.company}</span>
+            <ExternalLink className="h-4 w-4 opacity-70 transition-opacity group-hover:opacity-100 text-accent shrink-0" />
+          </a>
 
-            {/* Role */}
-            <p className="text-sm font-semibold text-accent sm:text-base">
-              {item.role}
-            </p>
+          <p className="font-mono text-xs sm:text-sm font-semibold text-accent tracking-wide">
+            {item.role}
+          </p>
+        </div>
 
-            <div className="mt-2 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-primary/70">
-              <Calendar className="h-3.5 w-3.5 text-accent" />
-              <span>{dateRange}</span>
-            </div>
-          </div>
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 font-mono text-xs font-medium shrink-0 self-start sm:self-auto">
+          <Calendar className="h-3.5 w-3.5 text-accent shrink-0" />
+          <span>{dateRange}</span>
         </div>
       </div>
 
-      <div className="flex flex-col justify-between gap-6 md:col-span-7">
-        <ul className="flex flex-col gap-2.5 text-sm leading-relaxed text-primary/85 sm:text-base">
+      {/* Content Section: Description & Tech Badges */}
+      <div className="flex flex-col justify-between gap-6">
+        <ul className="flex flex-col gap-2.5 font-mono text-xs sm:text-sm leading-relaxed text-neutral-300">
           {item.description.map((desc, i) => (
             <motion.li
               key={i}
               initial={{ opacity: 0, x: -10 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-              transition={{ duration: 0.4, delay: index * 0.1 + i * 0.05 + 0.2 }}
-              className="relative pl-5 before:absolute before:left-0 before:top-2.5 before:h-2 before:w-2 before:rounded-full before:bg-accent before:shadow-sm before:shadow-accent/50"
+              transition={{ duration: 0.4, delay: index * 0.1 + i * 0.05 + 0.15 }}
+              className="relative pl-5 before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent before:shadow-xs before:shadow-accent/50"
             >
               {desc}
             </motion.li>
@@ -81,7 +79,7 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
         </ul>
 
         {item.technologies.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-neutral-800/40">
             {item.technologies.map((tech) => (
               <TechBadge key={tech} name={tech} />
             ))}
@@ -91,3 +89,4 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
     </motion.div>
   );
 };
+

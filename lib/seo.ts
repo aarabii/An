@@ -100,11 +100,93 @@ export function generateWebSiteJsonLd() {
     "@type": "WebSite",
     name: SITE_SEO.siteName,
     url: SITE_SEO.siteUrl,
+    description: SITE_SEO.defaultDescription,
     author: {
       "@type": "Person",
       name: SITE_SEO.author.name,
     },
+    publisher: {
+      "@type": "Person",
+      name: SITE_SEO.author.name,
+    },
+    hasPart: [
+      {
+        "@type": "WebPage",
+        name: "Projects & Selected Works",
+        url: `${SITE_SEO.siteUrl}/projects`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Blog & Technical Articles",
+        url: `${SITE_SEO.siteUrl}/blogs`,
+      },
+      {
+        "@type": "WebPage",
+        name: "Resume & Curriculum Vitae",
+        url: `${SITE_SEO.siteUrl}/resume`,
+      },
+      {
+        "@type": "DigitalDocument",
+        name: "Aarab Nishchal Resume PDF",
+        fileFormat: "application/pdf",
+        url: `${SITE_SEO.siteUrl}/direct-resume`,
+      },
+      {
+        "@type": "WebPage",
+        name: "License",
+        url: `${SITE_SEO.siteUrl}/license`,
+      },
+    ],
   };
+}
+
+/**
+ * JSON-LD Schema Generator for Site Navigation (Google Sitelinks)
+ */
+export function generateSiteNavigationJsonLd() {
+  const baseUrl = SITE_SEO.siteUrl;
+
+  const siteLinks = [
+    {
+      name: "Projects & Selected Works",
+      description:
+        "Explore full-stack web applications, AI tools, and open-source GitHub repositories created by Aarab Nishchal.",
+      url: `${baseUrl}/projects`,
+    },
+    {
+      name: "Blog & Technical Articles",
+      description:
+        "Read technical articles and insights on full-stack development, Next.js, and AI engineering.",
+      url: `${baseUrl}/blogs`,
+    },
+    {
+      name: "Resume & Curriculum Vitae",
+      description:
+        "Professional background, technical skills, education, and career experience of Aarab Nishchal.",
+      url: `${baseUrl}/resume`,
+    },
+    {
+      name: "Direct Resume PDF",
+      description:
+        "Direct view and download of the official resume PDF of Aarab Nishchal.",
+      url: `${baseUrl}/direct-resume`,
+    },
+    {
+      name: "License & Terms",
+      description:
+        "Software license, usage permissions, and copyright terms for portfolio source code.",
+      url: `${baseUrl}/license`,
+    },
+  ];
+
+  return siteLinks.map((item, index) => ({
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    position: index + 1,
+    name: item.name,
+    description: item.description,
+    url: item.url,
+  }));
 }
 
 /**

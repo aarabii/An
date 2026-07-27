@@ -5,7 +5,7 @@ import BlogPostClient from "./_components/BlogPostClient";
 import { constructMetadata, generateArticleJsonLd } from "@/lib/seo";
 import { SITE_SEO } from "@/constant/seo";
 
-export const revalidate = 60; // Revalidate post content every 60 seconds
+export const revalidate = 86400; // Revalidate post content once a day (86400 seconds)
 
 type Props = {
   params: Promise<{ slug: string }>;

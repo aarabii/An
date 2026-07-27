@@ -49,7 +49,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "X-Robots-Tag",
-            value: "noindex, nofollow",
+            value: "index, follow, max-snippet:-1",
           },
           {
             key: "X-Frame-Options",

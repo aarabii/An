@@ -7,7 +7,8 @@ import { socials } from "@/constant/social";
 import { SITE_SEO, PAGE_SEO } from "@/constant/seo";
 import { getAllPosts } from "@/lib/notion";
 
-export const revalidate = 3600; // Revalidate dynamic llms.txt hourly
+export const dynamic = "force-static";
+export const revalidate = false; // Statically generated at build time
 
 export async function GET() {
   const baseUrl = SITE_SEO.siteUrl;
@@ -116,7 +117,7 @@ export async function GET() {
   return new NextResponse(content, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
-      "Cache-Control": "public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400",
+      "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800",
     },
   });
 }

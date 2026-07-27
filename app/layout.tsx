@@ -11,6 +11,7 @@ import {
   constructMetadata,
   generatePersonJsonLd,
   generateWebSiteJsonLd,
+  generateSiteNavigationJsonLd,
 } from "@/lib/seo";
 
 export const metadata: Metadata = constructMetadata({
@@ -24,6 +25,7 @@ export default function RootLayout({
 }>) {
   const personJsonLd = generatePersonJsonLd();
   const websiteJsonLd = generateWebSiteJsonLd();
+  const siteNavJsonLd = generateSiteNavigationJsonLd();
 
   return (
     <html
@@ -42,7 +44,11 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([personJsonLd, websiteJsonLd]),
+            __html: JSON.stringify([
+              personJsonLd,
+              websiteJsonLd,
+              ...siteNavJsonLd,
+            ]),
           }}
         />
       </head>
