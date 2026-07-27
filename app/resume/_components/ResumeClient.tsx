@@ -60,7 +60,7 @@ export default function ResumeClient() {
           </div>
 
           {/* PDF Viewer Container */}
-          <div className="relative w-full h-[650px] sm:h-[900px] rounded-3xl overflow-hidden border border-border/60 bg-black/60 shadow-2xl backdrop-blur-xl">
+          <div className="relative w-full h-162 sm:h-225 rounded-3xl overflow-hidden border border-border/60 bg-black/60 shadow-2xl backdrop-blur-xl">
             <object
               key={key}
               data={`${RESUME_PATH}#toolbar=1&navpanes=0&scrollbar=1`}
