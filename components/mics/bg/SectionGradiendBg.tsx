@@ -2,11 +2,20 @@
 
 import { GrainGradient } from "@paper-design/shaders-react";
 
-interface WorkGradiendBgProps {
+interface SectionGradiendBgProps {
   colors: string[];
+  shape:
+    | "truchet"
+    | "wave"
+    | "dots"
+    | "corners"
+    | "ripple"
+    | "blob"
+    | "sphere"
+    | undefined;
 }
 
-export function WorkGradiendBg({ colors }: WorkGradiendBgProps) {
+export function SectionGradiendBg({ colors, shape }: SectionGradiendBgProps) {
   return (
     <div className="absolute inset-0">
       <GrainGradient
@@ -15,7 +24,7 @@ export function WorkGradiendBg({ colors }: WorkGradiendBgProps) {
         softness={0.76}
         intensity={0.45}
         noise={0.25}
-        shape="truchet"
+        shape={shape}
         offsetX={0}
         offsetY={0}
         scale={1}

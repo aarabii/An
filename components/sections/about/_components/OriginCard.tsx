@@ -12,6 +12,12 @@ interface OriginCardProps {
   index?: number;
 }
 
+const GRADIENT_PALETTE = [
+  "hsl(198, 93%, 60%)",
+  "hsl(221, 83%, 53%)",
+  "hsl(243, 75%, 59%)",
+];
+
 export const OriginCard = ({
   imageSrc,
   activeIndex = 0,
@@ -23,9 +29,13 @@ export const OriginCard = ({
   const currentImage = images[currentImgIndex] || images[0];
 
   return (
-    <BentoCard className="flex flex-col p-0 overflow-hidden relative" index={index}>
-      {/* Photo with scanline overlay + grayscale-to-color hover */}
-      <div className="group relative aspect-square w-full overflow-hidden">
+    <BentoCard
+      gradientColors={GRADIENT_PALETTE}
+      className="flex flex-col p-0 overflow-hidden relative min-h-72 sm:min-h-80 justify-between"
+      index={index}
+    >
+      {/* Photo Container */}
+      <div className="group relative flex-1 aspect-square w-full overflow-hidden bg-neutral-950">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentImgIndex}
@@ -45,7 +55,7 @@ export const OriginCard = ({
           </motion.div>
         </AnimatePresence>
 
-        {/* Scanline overlay */}
+        {/* Subtle Scanline Overlay */}
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04] z-10"
           style={{
@@ -54,31 +64,23 @@ export const OriginCard = ({
           }}
         />
 
-        {/* Corner brackets on the image */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-3 z-10
-            before:absolute before:top-0 before:left-0
-            before:size-3 before:border-t before:border-l
-            before:border-border/40
-            after:absolute after:top-0 after:right-0
-            after:size-3 after:border-t after:border-r
-            after:border-border/40"
-        />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-3 z-10
-            before:absolute before:bottom-0 before:left-0
-            before:size-3 before:border-b before:border-l
-            before:border-border/40
-            after:absolute after:right-0 after:bottom-0
-            after:size-3 after:border-r after:border-b
-            after:border-border/40"
-        />
+        {/* Monospace Tech Corner Brackets */}
+        <span className="pointer-events-none absolute top-3 left-3 z-10 font-mono text-[10px] text-accent/70">
+          ┌
+        </span>
+        <span className="pointer-events-none absolute top-3 right-3 z-10 font-mono text-[10px] text-accent/70">
+          ┐
+        </span>
+        <span className="pointer-events-none absolute bottom-3 left-3 z-10 font-mono text-[10px] text-accent/70">
+          └
+        </span>
+        <span className="pointer-events-none absolute bottom-3 right-3 z-10 font-mono text-[10px] text-accent/70">
+          ┘
+        </span>
 
-        {/* Bottom dotted indicators for images */}
+        {/* Image Pagination Indicators */}
         {images.length > 1 && (
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 px-2.5 py-1 rounded-full bg-card/60 backdrop-blur-md border border-border/50">
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20 px-3 py-1 rounded-full bg-neutral-950/80 backdrop-blur-md border border-neutral-800">
             {images.map((_, i) => (
               <button
                 key={i}
@@ -86,8 +88,8 @@ export const OriginCard = ({
                 className={cn(
                   "w-1.5 h-1.5 rounded-full transition-all duration-300 focus:outline-none",
                   i === currentImgIndex
-                    ? "bg-foreground scale-110"
-                    : "bg-muted-foreground/30 hover:bg-muted-foreground/60 cursor-pointer"
+                    ? "bg-accent scale-125 shadow-sm"
+                    : "bg-neutral-600 hover:bg-neutral-400 cursor-pointer",
                 )}
                 title={`Image ${i + 1} of ${images.length}`}
                 aria-label={`Image ${i + 1}`}
@@ -99,6 +101,3 @@ export const OriginCard = ({
     </BentoCard>
   );
 };
-
-
-

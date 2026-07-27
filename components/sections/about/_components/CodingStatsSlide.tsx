@@ -16,50 +16,59 @@ export const CodingStatsSlide = () => {
       className="flex flex-col gap-3"
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs uppercase tracking-widest text-secondary font-semibold">
-          GitHub Stats
+        <span className="font-mono text-xs uppercase tracking-widest text-accent font-semibold">
+          // GitHub Metrics
         </span>
-        <span className="text-xs text-secondary font-mono">
+        <span className="font-mono text-xs text-neutral-400">
           @{github?.handle || "aarabii"}
         </span>
       </div>
 
       {loading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-1">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-1">
           {[...Array(4)].map((_, i) => (
             <div
               key={`stat-skeleton-${i}`}
-              className="h-16 rounded-lg bg-muted/40 animate-pulse"
+              className="h-16 rounded-xl bg-neutral-900/80 border border-neutral-800 animate-pulse"
             />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-primary/5">
-            <span className="text-xl sm:text-2xl font-bold text-foreground">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+          <div className="flex flex-col p-3 rounded-xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
+            <span className="font-mono text-xl sm:text-2xl font-extrabold text-white">
               {github?.repos ?? 0}
             </span>
-            <span className="text-[11px] text-secondary mt-0.5">
-              Repositories
+            <span className="font-mono text-[10px] uppercase text-neutral-400 mt-1 font-semibold">
+              Repos
             </span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
-            <span className="text-xl sm:text-2xl font-bold text-foreground">
+
+          <div className="flex flex-col p-3 rounded-xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
+            <span className="font-mono text-xl sm:text-2xl font-extrabold text-white">
               {github?.followers ?? 0}
             </span>
-            <span className="text-[11px] text-secondary mt-0.5">Followers</span>
+            <span className="font-mono text-[10px] uppercase text-neutral-400 mt-1 font-semibold">
+              Followers
+            </span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
-            <span className="text-xl sm:text-2xl font-bold text-foreground">
+
+          <div className="flex flex-col p-3 rounded-xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
+            <span className="font-mono text-xl sm:text-2xl font-extrabold text-white">
               {github?.following ?? 0}
             </span>
-            <span className="text-[11px] text-secondary mt-0.5">Following</span>
+            <span className="font-mono text-[10px] uppercase text-neutral-400 mt-1 font-semibold">
+              Following
+            </span>
           </div>
-          <div className="flex flex-col p-2.5 rounded-lg border border-border bg-wwhite/5">
-            <span className="text-xl sm:text-2xl font-bold text-foreground">
+
+          <div className="flex flex-col p-3 rounded-xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-md">
+            <span className="font-mono text-xl sm:text-2xl font-extrabold text-white">
               {github?.gists ?? 0}
             </span>
-            <span className="text-[11px] text-secondary mt-0.5">Gists</span>
+            <span className="font-mono text-[10px] uppercase text-neutral-400 mt-1 font-semibold">
+              Gists
+            </span>
           </div>
         </div>
       )}

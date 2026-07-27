@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { TechBadge } from "@/components/common/tech-badge";
-import { WorkGradiendBg } from "./WorkGradiendBg";
+import { SectionGradiendBg } from "../../../mics/bg/SectionGradiendBg";
 
 export interface WorkCardProps {
   name: string;
@@ -58,7 +58,7 @@ export const WorkCard = ({
     >
       {/* Gradient Background */}
       <div className="relative h-44 w-full shrink-0 overflow-hidden sm:h-52">
-        <WorkGradiendBg colors={gradientColors} />
+        <SectionGradiendBg colors={gradientColors} shape="truchet" />
       </div>
 
       {/* Dark Folder Section */}
