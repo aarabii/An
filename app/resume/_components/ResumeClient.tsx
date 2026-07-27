@@ -60,13 +60,43 @@ export default function ResumeClient() {
           </div>
 
           {/* PDF Viewer Container */}
-          <div className="relative w-full h-[750px] sm:h-[900px] rounded-3xl overflow-hidden border border-border/60 bg-black/60 shadow-2xl backdrop-blur-xl">
-            <iframe
+          <div className="relative w-full h-[650px] sm:h-[900px] rounded-3xl overflow-hidden border border-border/60 bg-black/60 shadow-2xl backdrop-blur-xl">
+            <object
               key={key}
-              src={`${RESUME_PATH}#toolbar=1&navpanes=0&scrollbar=1`}
+              data={`${RESUME_PATH}#toolbar=1&navpanes=0&scrollbar=1`}
+              type="application/pdf"
               className="w-full h-full border-0"
-              title="Aarab Nishchal Resume PDF"
-            />
+              aria-label="Aarab Nishchal Resume PDF"
+            >
+              <iframe
+                src={`${RESUME_PATH}#toolbar=1&navpanes=0&scrollbar=1`}
+                className="w-full h-full border-0"
+                title="Aarab Nishchal Resume PDF"
+              >
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4 bg-card/80">
+                  <p className="text-sm text-muted-foreground">
+                    Your browser does not support embedded PDF preview.
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <a
+                      href={RESUME_PATH}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-xl bg-accent text-accent-foreground font-mono text-xs font-semibold"
+                    >
+                      View PDF Fullscreen
+                    </a>
+                    <a
+                      href={RESUME_PATH}
+                      download="aarab_nishchal_resume.pdf"
+                      className="px-4 py-2 rounded-xl border border-border text-foreground font-mono text-xs"
+                    >
+                      Download PDF
+                    </a>
+                  </div>
+                </div>
+              </iframe>
+            </object>
           </div>
         </main>
 
