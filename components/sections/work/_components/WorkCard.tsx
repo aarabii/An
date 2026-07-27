@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { TechBadge } from "@/components/common/tech-badge";
 import { WorkGradiendBg } from "./WorkGradiendBg";
 
@@ -43,7 +44,18 @@ export const WorkCard = ({
   const gradientColors = GRADIENTS[index % GRADIENTS.length] ?? GRADIENTS[0];
 
   return (
-    <div className="group relative flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-neutral-800 bg-neutral-950 shadow-2xl transition-all duration-300 hover:border-neutral-700">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{
+        duration: 0.6,
+        delay: (index % 2) * 0.15,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-[28px] border border-neutral-800 bg-neutral-950 shadow-2xl transition-colors duration-300 hover:border-neutral-600 hover:shadow-accent/5"
+    >
       {/* Gradient Background */}
       <div className="relative h-44 w-full shrink-0 overflow-hidden sm:h-52">
         <WorkGradiendBg colors={gradientColors} />
@@ -99,31 +111,35 @@ export const WorkCard = ({
 
               <div className="flex items-center gap-4">
                 {liveUrl && (
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     href={liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-xs font-semibold tracking-wider text-neutral-400 uppercase transition-colors hover:text-white hover:underline"
                   >
                     LIVE
-                  </a>
+                  </motion.a>
                 )}
 
                 {githubUrl && (
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     href={githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-mono text-xs font-semibold tracking-wider text-neutral-400 uppercase transition-colors hover:text-white hover:underline"
                   >
                     GITHUB
-                  </a>
+                  </motion.a>
                 )}
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

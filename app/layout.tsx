@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 
 import { main, heading, signature, mono, serif } from "@/app/fonts";
 import { Background, PreLoader } from "@/components/mics";
+import { SmoothScrollProvider } from "@/components/common";
 import { Toaster } from "@/components/ui/sonner";
 import {
   constructMetadata,
@@ -46,12 +47,14 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <PreLoader />
-        <div id="app-content" className="min-h-full flex flex-col flex-1">
-          {children}
-        </div>
-        <Background />
-        <Toaster />
+        <SmoothScrollProvider>
+          <PreLoader />
+          <div id="app-content" className="min-h-full flex flex-col flex-1">
+            {children}
+          </div>
+          <Background />
+          <Toaster />
+        </SmoothScrollProvider>
       </body>
     </html>
   );

@@ -27,16 +27,16 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      initial={{ opacity: 0, x: -20, y: 20 }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: -20, y: 20 }}
+      whileHover={{ y: -4, borderColor: "rgba(56, 189, 248, 0.4)" }}
       transition={{
         duration: 0.6,
         delay: index * 0.1,
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        "relative grid grid-cols-1 gap-6 py-8 transition-colors duration-300 md:grid-cols-12 md:gap-8 md:py-10 border border-primary/15 bg-primary/5 backdrop-blur-xl p-4 m-4 rounded-md",
-        "border-b border-primary/10",
+        "relative grid grid-cols-1 gap-6 py-8 transition-colors duration-300 md:grid-cols-12 md:gap-8 md:py-10 border border-primary/15 bg-primary/5 backdrop-blur-xl p-6 my-4 rounded-xl shadow-lg",
       )}
     >
       <div className="flex flex-col justify-start md:col-span-5">
@@ -68,12 +68,15 @@ export const ExperienceItem = ({ item, index }: ExperienceItemProps) => {
       <div className="flex flex-col justify-between gap-6 md:col-span-7">
         <ul className="flex flex-col gap-2.5 text-sm leading-relaxed text-primary/85 sm:text-base">
           {item.description.map((desc, i) => (
-            <li
+            <motion.li
               key={i}
+              initial={{ opacity: 0, x: -10 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+              transition={{ duration: 0.4, delay: index * 0.1 + i * 0.05 + 0.2 }}
               className="relative pl-5 before:absolute before:left-0 before:top-2.5 before:h-2 before:w-2 before:rounded-full before:bg-accent before:shadow-sm before:shadow-accent/50"
             >
               {desc}
-            </li>
+            </motion.li>
           ))}
         </ul>
 

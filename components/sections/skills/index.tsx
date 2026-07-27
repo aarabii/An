@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "motion/react";
 import { SectionHeader } from "@/components/common";
 import { skillsData } from "@/constant/skills";
 
@@ -15,12 +18,19 @@ export const SkillsSection = () => {
         <SectionHeader number="03" title="Skills" align="right" />
       </div>
 
-      <div className="relative w-full flex flex-col gap-4 md:gap-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full flex flex-col gap-4 md:gap-6"
+      >
         {skillsData.map((skillCategory, index) => (
           <Marquee
             key={index}
             reverse={index % 2 === 1}
             repeat={4}
+            pauseOnHover
             className="[--duration:35s] [--gap:1rem] md:[--gap:1.25rem] py-1.5"
           >
             {skillCategory.data.map((skill, skillIndex) => (
@@ -33,7 +43,7 @@ export const SkillsSection = () => {
             ))}
           </Marquee>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

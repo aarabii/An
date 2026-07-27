@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { Separator } from "@/components/ui/separator";
 
 import { FirstName } from "./_components/FirstName";
@@ -11,7 +12,13 @@ import { CopyrightBar } from "./_components/CopyrightBar";
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-black/80 backdrop-blur-2xl text-foreground pt-8 pb-8 px-4 sm:px-8 md:px-12 border-t border-border/40">
+    <motion.footer
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="w-full bg-black/80 backdrop-blur-2xl text-foreground pt-8 pb-8 px-4 sm:px-8 md:px-12 border-t border-border/40"
+    >
       <div className="max-w-7xl mx-auto flex flex-col">
         {/* Top Section Grid & Flex Ordering */}
         <div className="flex flex-col md:flex-row items-stretch justify-between gap-8 md:gap-0">
@@ -55,7 +62,7 @@ export const Footer = () => {
         {/* Bottom Section: Rounded-md Container with Mono Text */}
         <CopyrightBar />
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

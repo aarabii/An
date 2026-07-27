@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { socials } from "@/constant/social";
 
 export const SocialLinks = () => {
@@ -11,12 +12,14 @@ export const SocialLinks = () => {
 
       <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 sm:gap-x-8">
         {socials.map((social) => (
-          <a
+          <motion.a
             key={social.name}
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-primary/80 font-medium transition-colors hover:text-primary"
+            className="group relative inline-flex items-center gap-1.5 px-2 py-1 font-mono text-xs text-primary/80 font-medium transition-colors hover:text-primary cursor-pointer"
           >
             {/* Corner brackets on hover */}
             <span className="absolute -top-1 -left-1 text-[10px] text-secondary/0 group-hover:text-accent transition-colors">
@@ -36,7 +39,7 @@ export const SocialLinks = () => {
               •
             </span>
             <span className="lowercase">{social.name}</span>
-          </a>
+          </motion.a>
         ))}
       </div>
     </div>

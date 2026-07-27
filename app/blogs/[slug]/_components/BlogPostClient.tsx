@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import { motion } from "motion/react";
+import { motion, useScroll, useSpring } from "motion/react";
 import { ArrowLeft, Calendar, Tag } from "lucide-react";
 import { Footer, Navbar } from "@/components/common";
 import { Post } from "@/lib/notion";
@@ -16,9 +16,27 @@ interface BlogPostClientProps {
 
 export default function BlogPostClient({ post, markdownContent }: BlogPostClientProps) {
   const { title, description, keywords, date, coverUrl } = post.meta;
+  const articleRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: articleRef,
+    offset: ["start start", "end end"],
+  });
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   return (
-    <div className="min-h-screen flex flex-col relative text-foreground">
+    <div ref={articleRef} className="min-h-screen flex flex-col relative text-foreground">
+      {/* Top Reading Scroll Progress Bar */}
+      <motion.div
+        style={{ scaleX, transformOrigin: "left" }}
+        className="fixed top-0 left-0 right-0 h-1 bg-accent z-50 shadow-[0_0_10px_rgba(56,189,248,0.8)] pointer-events-none"
+      />
+
       <Navbar />
 
       <div className="relative z-10 bg-black/40 backdrop-blur-md flex-1 flex flex-col w-full">

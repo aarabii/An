@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
+import { motion } from "motion/react";
 import { ExternalLink, GitFork, Star } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
-
-import { cn } from "@/lib/utils";
 
 export interface GithubRepo {
   id: number;
@@ -31,11 +30,14 @@ export const GithubRepoCard: React.FC<GithubRepoCardProps> = ({ repo }) => {
   });
 
   return (
-    <a
+    <motion.a
+      whileHover={{ y: -4, scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 350, damping: 25 }}
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col justify-between p-5 rounded-2xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-xl hover:border-neutral-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl shadow-md overflow-hidden"
+      className="group relative flex flex-col justify-between p-5 rounded-2xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-xl hover:border-neutral-700 transition-colors duration-300 shadow-md overflow-hidden"
     >
       {/* Background glow on hover */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/15 transition-all pointer-events-none" />
@@ -104,6 +106,6 @@ export const GithubRepoCard: React.FC<GithubRepoCardProps> = ({ repo }) => {
           Updated {formattedDate}
         </span>
       </div>
-    </a>
+    </motion.a>
   );
 };
