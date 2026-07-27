@@ -12,11 +12,7 @@ interface OriginCardProps {
   index?: number;
 }
 
-const GRADIENT_PALETTE = [
-  "hsl(198, 93%, 60%)",
-  "hsl(221, 83%, 53%)",
-  "hsl(243, 75%, 59%)",
-];
+const GRADIENT_PALETTE = ["#38BDF8", "#2563EB", "#4F46E5"];
 
 export const OriginCard = ({
   imageSrc,

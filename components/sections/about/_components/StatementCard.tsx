@@ -27,11 +27,7 @@ const DEFAULT_SLIDES: SlideItem[] = [
 ];
 
 const SLIDE_LABELS = ["01 BRIEF", "02 EDU", "03 STATS", "04 QUOTE"];
-const GRADIENT_PALETTE = [
-  "hsl(271, 81%, 56%)",
-  "hsl(239, 84%, 67%)",
-  "hsl(258, 90%, 66%)",
-];
+const GRADIENT_PALETTE = ["#c6750c", "#beae60", "#d7cbc6"];
 
 export const StatementCard = ({
   slides = DEFAULT_SLIDES,

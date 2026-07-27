@@ -17,16 +17,16 @@ export interface WorkCardProps {
 
 const GRADIENTS: string[][] = [
   // Orange → Amber → Red
-  ["hsl(25, 95%, 53%)", "hsl(38, 92%, 50%)", "hsl(0, 72%, 51%)"],
+  ["#F97316", "#F59E0B", "#EF4444"],
 
   // Purple → Indigo → Violet
-  ["hsl(271, 81%, 56%)", "hsl(239, 84%, 67%)", "hsl(258, 90%, 66%)"],
+  ["#9333EA", "#6366F1", "#8B5CF6"],
 
   // Sky → Blue → Deep Indigo
-  ["hsl(198, 93%, 60%)", "hsl(221, 83%, 53%)", "hsl(243, 75%, 59%)"],
+  ["#38BDF8", "#2563EB", "#4F46E5"],
 
   // Emerald → Teal → Cyan
-  ["hsl(158, 64%, 52%)", "hsl(173, 80%, 40%)", "hsl(189, 94%, 43%)"],
+  ["#10B981", "#0D9488", "#06B6D4"],
 ];
 
 export const WorkCard = ({
