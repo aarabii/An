@@ -56,10 +56,6 @@ const nextConfig: NextConfig = {
             value: "SAMEORIGIN",
           },
           {
-            key: "Content-Type",
-            value: "application/pdf",
-          },
-          {
             key: "Content-Disposition",
             value: "inline",
           },
