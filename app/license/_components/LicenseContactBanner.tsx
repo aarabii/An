@@ -11,13 +11,13 @@ export const LicenseContactBanner = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="rounded-[28px] border border-neutral-800 bg-neutral-950 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-2xl"
+      className="rounded-[28px] border border-border bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-2xl"
     >
       <div className="space-y-1.5">
-        <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-white">
+        <h3 className="font-mono text-sm font-bold uppercase tracking-wider text-foreground">
           Commercial Permission & Custom Licensing
         </h3>
-        <p className="text-xs font-mono text-neutral-400 max-w-xl leading-relaxed">
+        <p className="text-xs font-mono text-muted-foreground max-w-xl leading-relaxed">
           Need a commercial license for client projects, agency work, or template distribution? Drop me an email.
         </p>
       </div>

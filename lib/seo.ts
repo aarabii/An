@@ -224,3 +224,105 @@ export function generateArticleJsonLd({
     ...(image && { image: [image] }),
   };
 }
+
+/**
+ * JSON-LD Schema Generator for Organization (Homepage)
+ */
+export function generateOrganizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_SEO.siteName,
+    url: SITE_SEO.siteUrl,
+    logo: `${SITE_SEO.siteUrl}/images/thumbnail.png`,
+    sameAs: Array.from(SITE_SEO.socialLinks),
+  };
+}
+
+/**
+ * JSON-LD Schema Generator for BreadcrumbList (Nested Pages)
+ */
+export function generateBreadcrumbJsonLd(
+  items: { name: string; url: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url.startsWith("http") ? item.url : `${SITE_SEO.siteUrl}${item.url}`,
+    })),
+  };
+}
+
+/**
+ * JSON-LD Schema Generator for ProfilePage (Resume)
+ */
+export function generateProfilePageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    name: `Resume & CV of ${SITE_SEO.author.name}`,
+    url: `${SITE_SEO.siteUrl}/resume`,
+    mainEntity: generatePersonJsonLd(),
+  };
+}
+
+/**
+ * JSON-LD Schema Generator for CollectionPage / Blog List
+ */
+export function generateBlogCollectionJsonLd(
+  posts: Array<{ title: string; slug: string; description?: string; date?: string }>
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Blog & Technical Articles",
+    description: "Technical articles, tutorials, and insights on full-stack development, Next.js, and AI engineering.",
+    url: `${SITE_SEO.siteUrl}/blogs`,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: posts.map((post, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE_SEO.siteUrl}/blogs/${post.slug}`,
+        name: post.title,
+        ...(post.description && { description: post.description }),
+      })),
+    },
+  };
+}
+
+/**
+ * JSON-LD Schema Generator for Projects ItemList
+ */
+export function generateProjectsItemListJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Projects & Selected Works",
+    description: "Full-stack web applications, AI tools, and open-source GitHub repositories.",
+    url: `${SITE_SEO.siteUrl}/projects`,
+    mainEntity: {
+      "@type": "ItemList",
+      name: "Portfolio Projects",
+      itemListElement: [
+        {
+          "@type": "SoftwareApplication",
+          name: "Viber - AI Customer Support Agent Platform",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+        },
+        {
+          "@type": "SoftwareApplication",
+          name: "Scribe - AI Document Summarizer",
+          applicationCategory: "DeveloperApplication",
+          operatingSystem: "Web",
+        },
+      ],
+    },
+  };
+}
+

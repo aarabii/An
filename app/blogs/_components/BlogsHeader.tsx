@@ -17,7 +17,7 @@ export const BlogsHeader: React.FC = () => {
       >
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-accent transition-colors group px-3.5 py-2 rounded-xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-xl hover:border-neutral-700"
+          className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-accent transition-colors group px-3.5 py-2 rounded-xl border border-border bg-card/80 backdrop-blur-xl hover:border-card-border-hover"
         >
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
           <span>Return to Portfolio</span>
@@ -27,7 +27,7 @@ export const BlogsHeader: React.FC = () => {
       {/* Section Header */}
       <div className="pt-4">
         <SectionHeader number="07" title="Blog & Articles" align="left" />
-        <p className="text-xs sm:text-sm font-mono text-neutral-400 max-w-2xl leading-relaxed -mt-10">
+        <p className="text-xs sm:text-sm font-mono text-muted-foreground max-w-2xl leading-relaxed -mt-10">
           Technical writing, thoughts, tutorials, and deep-dives on full-stack development, AI, and software engineering.
         </p>
       </div>

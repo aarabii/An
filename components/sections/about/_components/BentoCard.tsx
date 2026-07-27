@@ -33,7 +33,7 @@ export const BentoCard = ({
         ease: [0.16, 1, 0.3, 1],
       }}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-[28px] border border-neutral-800 bg-neutral-950 p-6 shadow-2xl text-white transition-colors duration-300 hover:border-neutral-700 hover:shadow-accent/5",
+        "group relative flex flex-col overflow-hidden rounded-[28px] border border-border bg-card p-6 shadow-2xl text-foreground transition-colors duration-300 hover:border-card-border-hover hover:shadow-accent/5",
         className,
       )}
     >
@@ -41,7 +41,7 @@ export const BentoCard = ({
       {gradientColors && (
         <div className="absolute top-0 left-0 right-0 h-32 w-full overflow-hidden opacity-30 pointer-events-none group-hover:opacity-40 transition-opacity">
           <SectionGradiendBg colors={gradientColors} shape="wave" />
-          <div className="absolute inset-0 bg-linear-to-b from-transparent via-neutral-950/80 to-neutral-950" />
+          <div className="absolute inset-0 bg-linear-to-b from-transparent via-card/80 to-card" />
         </div>
       )}
 

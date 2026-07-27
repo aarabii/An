@@ -24,25 +24,25 @@ export default function LicenseClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="rounded-[28px] border border-neutral-800 bg-neutral-950 p-6 sm:p-8 space-y-6 shadow-2xl"
+            className="rounded-[28px] border border-border bg-card p-6 sm:p-8 space-y-6 shadow-2xl"
           >
-            <div className="border-b border-neutral-800 pb-3">
-              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-neutral-400">
+            <div className="border-b border-border pb-3">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 // The Deal (TL;DR Summary)
               </h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
               {/* Allowed Column */}
-              <div className="p-5 rounded-2xl border border-emerald-500/20 bg-emerald-950/10 flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider">
+              <div className="p-5 rounded-2xl border border-success-border bg-success-bg flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-success-foreground font-bold uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4 shrink-0" />
                   <span>{HUMAN_LICENSE_SUMMARY.allowed.title}</span>
                 </div>
-                <ul className="space-y-2 text-neutral-300 leading-relaxed">
+                <ul className="space-y-2 text-foreground/90 leading-relaxed">
                   {HUMAN_LICENSE_SUMMARY.allowed.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-emerald-500 font-bold mt-0.5">•</span>
+                      <span className="text-success font-bold mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -50,15 +50,15 @@ export default function LicenseClient() {
               </div>
 
               {/* Prohibited Column */}
-              <div className="p-5 rounded-2xl border border-rose-500/20 bg-rose-950/10 flex flex-col gap-3">
-                <div className="flex items-center gap-2 text-rose-400 font-bold uppercase tracking-wider">
+              <div className="p-5 rounded-2xl border border-error-border bg-error-bg flex flex-col gap-3">
+                <div className="flex items-center gap-2 text-error-foreground font-bold uppercase tracking-wider">
                   <XCircle className="w-4 h-4 shrink-0" />
                   <span>{HUMAN_LICENSE_SUMMARY.prohibited.title}</span>
                 </div>
-                <ul className="space-y-2 text-neutral-300 leading-relaxed">
+                <ul className="space-y-2 text-foreground/90 leading-relaxed">
                   {HUMAN_LICENSE_SUMMARY.prohibited.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-rose-500 font-bold mt-0.5">•</span>
+                      <span className="text-error font-bold mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -71,7 +71,7 @@ export default function LicenseClient() {
                   <Info className="w-4 h-4 shrink-0" />
                   <span>{HUMAN_LICENSE_SUMMARY.terms.title}</span>
                 </div>
-                <ul className="space-y-2 text-neutral-300 leading-relaxed">
+                <ul className="space-y-2 text-foreground/90 leading-relaxed">
                   {HUMAN_LICENSE_SUMMARY.terms.items.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="text-accent font-bold mt-0.5">•</span>
@@ -88,18 +88,18 @@ export default function LicenseClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="rounded-[28px] border border-neutral-800 bg-neutral-950 p-6 sm:p-8 space-y-4 shadow-2xl"
+            className="rounded-[28px] border border-border bg-card p-6 sm:p-8 space-y-4 shadow-2xl"
           >
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-neutral-400">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 // Official License Text (LICENSE)
               </h2>
-              <span className="font-mono text-[11px] text-neutral-500">
+              <span className="font-mono text-[11px] text-muted-foreground">
                 Plain Markdown
               </span>
             </div>
 
-            <pre className="p-5 rounded-2xl bg-black/80 border border-neutral-800/80 font-mono text-xs text-neutral-300 overflow-x-auto whitespace-pre-wrap leading-relaxed select-all">
+            <pre className="p-5 rounded-2xl bg-muted/80 border border-border font-mono text-xs text-foreground/90 overflow-x-auto whitespace-pre-wrap leading-relaxed select-all">
               {RAW_LICENSE_TEXT}
             </pre>
           </motion.section>

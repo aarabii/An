@@ -41,7 +41,7 @@ export const LicenseHeader = () => {
       >
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-neutral-400 hover:text-accent transition-colors group px-3.5 py-2 rounded-xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-xl hover:border-neutral-700"
+          className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-accent transition-colors group px-3.5 py-2 rounded-xl border border-border bg-card/80 backdrop-blur-xl hover:border-card-border-hover"
         >
           <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
           <span>Return to Portfolio</span>
@@ -67,7 +67,7 @@ export const LicenseHeader = () => {
 
           <button
             onClick={handleDownload}
-            className="inline-flex items-center gap-2 text-xs font-mono px-4 py-2 rounded-xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900 text-neutral-400 hover:text-neutral-200 transition-all cursor-pointer shadow-sm active:scale-95"
+            className="inline-flex items-center gap-2 text-xs font-mono px-4 py-2 rounded-xl border border-border bg-card hover:bg-card-hover text-muted-foreground hover:text-foreground transition-all cursor-pointer shadow-sm active:scale-95"
           >
             <Download className="w-3.5 h-3.5 text-accent" />
             <span className="hidden sm:inline">Download</span>
@@ -78,7 +78,7 @@ export const LicenseHeader = () => {
       {/* Section Header with Main Page Numbering & Styling */}
       <div className="pt-4">
         <SectionHeader number="07" title="License & Terms" align="left" />
-        <p className="text-xs sm:text-sm font-mono text-neutral-400 max-w-2xl leading-relaxed -mt-10">
+        <p className="text-xs sm:text-sm font-mono text-muted-foreground max-w-2xl leading-relaxed -mt-10">
           You can clone this, fork it, and build your own portfolio with it. Just don&apos;t
           package it up to sell as a template or pretend you wrote the whole thing from scratch.
         </p>

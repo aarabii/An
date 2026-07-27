@@ -24,8 +24,8 @@ export default function BlogsClient({ posts }: BlogsClientProps) {
           <BlogsHeader />
 
           <section className="space-y-8">
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
-              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-neutral-400">
+            <div className="flex items-center justify-between border-b border-border pb-3">
+              <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 // Published Articles ({posts.length})
               </h2>
             </div>
@@ -34,15 +34,15 @@ export default function BlogsClient({ posts }: BlogsClientProps) {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="py-16 px-6 text-center border border-dashed border-neutral-800 rounded-2xl bg-neutral-900/20 backdrop-blur-sm space-y-4"
+                className="py-16 px-6 text-center border border-dashed border-border rounded-2xl bg-card/40 backdrop-blur-sm space-y-4"
               >
-                <div className="w-12 h-12 rounded-full bg-neutral-800/80 border border-neutral-700 flex items-center justify-center mx-auto text-accent">
+                <div className="w-12 h-12 rounded-full bg-muted border border-border flex items-center justify-center mx-auto text-accent">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-foreground">
                   No Articles Published Yet
                 </h3>
-                <p className="text-neutral-400 text-sm max-w-md mx-auto font-mono">
+                <p className="text-muted-foreground text-sm max-w-md mx-auto font-mono">
                   New blog posts and technical deep-dives will appear here once published in Notion.
                 </p>
               </motion.div>
@@ -58,10 +58,10 @@ export default function BlogsClient({ posts }: BlogsClientProps) {
                   >
                     <Link
                       href={`/blogs/${post.slug}`}
-                      className="h-full rounded-2xl border border-neutral-800/80 bg-neutral-900/40 backdrop-blur-md overflow-hidden hover:border-accent/40 transition-all duration-300 group flex flex-col hover:shadow-xl hover:shadow-accent/5"
+                      className="h-full rounded-2xl border border-border bg-card/60 backdrop-blur-md overflow-hidden hover:border-card-border-hover transition-all duration-300 group flex flex-col hover:shadow-xl hover:shadow-accent/5"
                     >
                       {post.coverUrl && (
-                        <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-neutral-950">
+                        <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-card">
                           <Image
                             src={post.coverUrl}
                             alt={post.title}
@@ -90,19 +90,19 @@ export default function BlogsClient({ posts }: BlogsClientProps) {
                           </h3>
 
                           {post.description && (
-                            <p className="text-xs sm:text-sm text-neutral-400 line-clamp-3 leading-relaxed">
+                            <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3 leading-relaxed">
                               {post.description}
                             </p>
                           )}
                         </div>
 
-                        <div className="pt-2 border-t border-neutral-800/60 flex items-center justify-between gap-3">
+                        <div className="pt-2 border-t border-border flex items-center justify-between gap-3">
                           {post.keywords.length > 0 ? (
                             <div className="flex flex-wrap gap-1.5">
                               {post.keywords.slice(0, 3).map((tag) => (
                                 <span
                                   key={tag}
-                                  className="bg-neutral-800/60 border border-neutral-700/50 text-neutral-300 font-mono text-[10px] px-2 py-0.5 rounded-md"
+                                  className="bg-muted border border-border text-muted-foreground font-mono text-[10px] px-2 py-0.5 rounded-md"
                                 >
                                   #{tag}
                                 </span>

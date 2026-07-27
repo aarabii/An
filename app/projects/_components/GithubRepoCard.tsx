@@ -37,7 +37,7 @@ export const GithubRepoCard: React.FC<GithubRepoCardProps> = ({ repo }) => {
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative flex flex-col justify-between p-5 rounded-2xl border border-neutral-800 bg-neutral-950/80 backdrop-blur-xl hover:border-neutral-700 transition-colors duration-300 shadow-md overflow-hidden"
+      className="group relative flex flex-col justify-between p-5 rounded-2xl border border-border bg-card/80 backdrop-blur-xl hover:border-card-border-hover transition-colors duration-300 shadow-md overflow-hidden"
     >
       {/* Background glow on hover */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-full blur-2xl group-hover:bg-accent/15 transition-all pointer-events-none" />

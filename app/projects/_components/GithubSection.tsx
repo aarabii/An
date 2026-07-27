@@ -62,12 +62,12 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
               placeholder="Filter repositories..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-neutral-950/80 border border-neutral-800 rounded-xl pl-9 pr-3 py-1.5 text-xs font-mono text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-accent/60 transition-colors backdrop-blur-md"
+              className="w-full bg-card/80 border border-border rounded-xl pl-9 pr-3 py-1.5 text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent/60 transition-colors backdrop-blur-md"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-neutral-500 hover:text-neutral-300"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-muted-foreground hover:text-foreground"
               >
                 Clear
               </button>
@@ -78,7 +78,7 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
           <button
             onClick={refetch}
             disabled={loading}
-            className="p-2 rounded-xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900 text-neutral-400 hover:text-neutral-200 transition-colors cursor-pointer disabled:opacity-50"
+            className="p-2 rounded-xl border border-border bg-card hover:bg-card-hover text-muted-foreground hover:text-foreground transition-colors cursor-pointer disabled:opacity-50"
             title="Refetch GitHub API"
             aria-label="Refresh GitHub Repos"
           >
@@ -99,11 +99,11 @@ export const GithubSection: React.FC<GithubSectionProps> = ({
 
       {/* Error State */}
       {error && displayedRepos.length === 0 && (
-        <div className="p-6 rounded-2xl border border-rose-500/30 bg-rose-950/10 font-mono text-xs text-rose-400 text-center">
+        <div className="p-6 rounded-2xl border border-error-border bg-error-bg font-mono text-xs text-error-foreground text-center">
           <p>Unable to load GitHub repositories: {error}</p>
           <button
             onClick={refetch}
-            className="mt-3 px-4 py-1.5 rounded-lg border border-rose-500/40 bg-rose-500/10 text-rose-300 hover:bg-rose-500/20 transition-colors cursor-pointer"
+            className="mt-3 px-4 py-1.5 rounded-lg border border-error-border bg-error-bg text-error-foreground hover:bg-error-border/30 transition-colors cursor-pointer"
           >
             Try Again
           </button>
