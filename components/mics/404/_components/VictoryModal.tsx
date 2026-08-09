@@ -1,18 +1,30 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { useRouter } from "next/navigation";
+import { motion } from "motion/react";
 import {
-  FaTrophy,
-  FaStar,
-  FaDownload,
-  FaAward,
-  FaRotateRight,
-  FaHouse,
-  FaUser,
-} from "react-icons/fa6";
+  Trophy,
+  Star,
+  Download,
+  Award,
+  RotateCcw,
+  Home,
+  User,
+} from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { formatTime, downloadSVGTrophy, downloadPNGFromSVG } from "../utils";
+import { serif, mono } from "@/app/fonts";
+import { cn } from "@/lib/utils";
 
 interface VictoryModalProps {
   isOpen: boolean;
@@ -31,8 +43,6 @@ export const VictoryModal: React.FC<VictoryModalProps> = ({
   const [playerName, setPlayerName] = useState<string>("");
   const [isDownloading, setIsDownloading] = useState<"svg" | "png" | null>(null);
 
-  if (!isOpen) return null;
-
   const handleDownloadSVG = () => {
     setIsDownloading("svg");
     downloadSVGTrophy(moves, timeSeconds, playerName);
@@ -47,99 +57,113 @@ export const VictoryModal: React.FC<VictoryModalProps> = ({
   };
 
   return (
-    <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: 10 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative bg-neutral-900 border border-white/15 rounded-3xl max-w-md w-full p-6 sm:p-8 text-center overflow-hidden"
-        >
-          {/* Victory Trophy Icon Art */}
-          <div className="relative mx-auto size-24 sm:size-28 rounded-full bg-amber-500/10 border border-amber-400/40 flex items-center justify-center mb-4">
-            <FaTrophy className="size-12 sm:size-14 text-amber-400 animate-bounce" />
-            <FaStar className="absolute top-2 right-2 size-5 text-amber-300 animate-pulse" />
-          </div>
+    <Dialog open={isOpen}>
+      <DialogContent showCloseButton={false} className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border text-foreground rounded-3xl p-6 sm:p-8">
+        <DialogHeader className="text-center items-center">
+          {/* Victory Trophy Icon Art Animated with motion/react */}
+          <motion.div
+            animate={{
+              y: [0, -12, 0],
+              scale: [1, 1.06, 1],
+            }}
+            transition={{
+              duration: 1.4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="relative mx-auto size-20 sm:size-24 rounded-full bg-amber-500/10 border border-amber-400/30 flex items-center justify-center mb-3"
+          >
+            <Trophy className="size-10 sm:size-12 text-amber-400" />
+            <motion.div
+              animate={{ opacity: [0.4, 1, 0.4], scale: [0.9, 1.2, 0.9] }}
+              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-2 right-2"
+            >
+              <Star className="size-4 text-amber-300" />
+            </motion.div>
+          </motion.div>
 
-          {/* Title & Description */}
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <DialogTitle className={cn(serif.className, "text-2xl sm:text-3xl text-foreground font-normal tracking-tight")}>
             Victory Unlocked! 🎉
-          </h2>
-          <p className="text-sm text-muted-foreground mt-1.5 mb-5">
+          </DialogTitle>
+
+          <DialogDescription className="text-xs sm:text-sm text-muted-foreground mt-1">
             You matched all 20 tiles in the 404 grid! Customize and download your trophy below.
-          </p>
+          </DialogDescription>
+        </DialogHeader>
 
-          {/* Stats Summary Box */}
-          <div className="grid grid-cols-2 gap-3 bg-neutral-950 border border-white/10 rounded-2xl p-3.5 mb-5">
-            <div className="text-center border-r border-white/10 pr-2">
-              <div className="text-xs text-muted-foreground uppercase tracking-wider">Total Moves</div>
-              <div className="text-2xl font-black text-amber-400 mt-0.5">{moves}</div>
-            </div>
-            <div className="text-center pl-2">
-              <div className="text-xs text-muted-foreground uppercase tracking-wider">Time Taken</div>
-              <div className="text-2xl font-black text-emerald-400 mt-0.5">{formatTime(timeSeconds)}</div>
-            </div>
+        {/* Stats Summary Box */}
+        <div className={cn(mono.className, "grid grid-cols-2 gap-3 bg-muted/40 border border-border rounded-2xl p-3 my-2 text-center")}>
+          <div className="border-r border-border pr-2">
+            <div className="text-[11px] text-muted-foreground uppercase tracking-wider">Total Moves</div>
+            <div className="text-2xl font-bold text-amber-400 mt-0.5">{moves}</div>
           </div>
-
-          {/* Player Name Input Field */}
-          <div className="mb-5 text-left">
-            <label className="block text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-1.5 ml-1">
-              Player Name (Optional)
-            </label>
-            <div className="relative flex items-center">
-              <FaUser className="absolute left-3.5 size-3.5 text-muted-foreground pointer-events-none" />
-              <input
-                type="text"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Enter Name (optional)"
-                maxLength={30}
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-neutral-950 border border-white/15 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-emerald-400 transition-colors"
-              />
-            </div>
+          <div className="pl-2">
+            <div className="text-[11px] text-muted-foreground uppercase tracking-wider">Time Taken</div>
+            <div className="text-2xl font-bold text-accent mt-0.5">{formatTime(timeSeconds)}</div>
           </div>
+        </div>
 
-          {/* Trophy & Card Download Buttons */}
-          <div className="space-y-3 mb-6">
-            <button
-              onClick={handleDownloadSVG}
-              disabled={isDownloading !== null}
-              className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-neutral-950 font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer disabled:opacity-50"
-            >
-              <FaDownload className="size-4" />
-              <span>{isDownloading === "svg" ? "Generating SVG..." : "Download SVG Trophy"}</span>
-            </button>
-
-            <button
-              onClick={handleDownloadPNG}
-              disabled={isDownloading !== null}
-              className="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-foreground font-semibold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer disabled:opacity-50"
-            >
-              <FaAward className="size-4 text-emerald-400" />
-              <span>{isDownloading === "png" ? "Converting to PNG..." : "Download PNG Trophy"}</span>
-            </button>
+        {/* Player Name Input Field */}
+        <div className="space-y-1.5 text-left">
+          <label className={cn(mono.className, "block text-[11px] font-medium text-muted-foreground uppercase tracking-wider ml-1")}>
+            Player Name (Optional)
+          </label>
+          <div className="relative flex items-center">
+            <User className="absolute left-3 size-4 text-muted-foreground pointer-events-none" />
+            <Input
+              type="text"
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Enter Name for Trophy"
+              maxLength={30}
+              className={cn(mono.className, "pl-9 bg-background/50 border-border text-foreground text-xs sm:text-sm rounded-xl h-10")}
+            />
           </div>
+        </div>
 
-          {/* Action Buttons: Play Again & Go Home */}
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onPlayAgain}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-sm font-medium text-foreground transition-all cursor-pointer"
-            >
-              <FaRotateRight className="size-3.5" />
-              <span>Play Again</span>
-            </button>
-            <button
-              onClick={() => router.push("/")}
-              className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-bold text-sm transition-all cursor-pointer"
-            >
-              <FaHouse className="size-3.5" />
-              <span>Go Home</span>
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    </AnimatePresence>
+        {/* Trophy & Card Download Buttons */}
+        <div className="space-y-2 pt-2">
+          <Button
+            onClick={handleDownloadSVG}
+            disabled={isDownloading !== null}
+            className="w-full gap-2 rounded-xl bg-accent text-accent-foreground font-semibold hover:bg-accent/90"
+          >
+            <Download className="w-4 h-4" />
+            <span>{isDownloading === "svg" ? "Generating SVG..." : "Download SVG Trophy"}</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            onClick={handleDownloadPNG}
+            disabled={isDownloading !== null}
+            className="w-full gap-2 rounded-xl border-border bg-background/40 hover:bg-muted text-foreground font-medium"
+          >
+            <Award className="w-4 h-4 text-emerald-400" />
+            <span>{isDownloading === "png" ? "Converting to PNG..." : "Download PNG Trophy"}</span>
+          </Button>
+        </div>
+
+        {/* Action Buttons: Play Again & Go Home */}
+        <DialogFooter className="flex flex-row gap-2 sm:justify-stretch pt-2">
+          <Button
+            variant="secondary"
+            onClick={onPlayAgain}
+            className={cn(mono.className, "flex-1 gap-2 rounded-xl text-xs h-10")}
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Play Again</span>
+          </Button>
+          <Button
+            onClick={() => router.push("/")}
+            className={cn(mono.className, "flex-1 gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs h-10")}
+          >
+            <Home className="w-3.5 h-3.5" />
+            <span>Go Home</span>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
+

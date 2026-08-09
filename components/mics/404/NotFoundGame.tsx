@@ -3,20 +3,60 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
-import { FaHouse } from "react-icons/fa6";
+import { Home } from "lucide-react";
 import { CardTile } from "./types";
 import { ICON_POOL } from "./constants";
-import { GoBackButton } from "./_components/GoBackButton";
 import { GameHeader } from "./_components/GameHeader";
 import { GameStats } from "./_components/GameStats";
 import { TileGrid } from "./_components/TileGrid";
 import { VictoryModal } from "./_components/VictoryModal";
+import { Navbar, Footer } from "@/components/common";
+import { Button } from "@/components/ui/button";
+import { mono } from "@/app/fonts";
+import { cn } from "@/lib/utils";
+
+function mulberry32(a: number) {
+  return function () {
+    let t = (a += 0x6d2b79f5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
 
 export const NotFoundGame: React.FC = () => {
   const router = useRouter();
 
-  // Game state
-  const [tiles, setTiles] = useState<CardTile[]>([]);
+  const createShuffledTiles = useCallback((seed?: number): CardTile[] => {
+    const cards: CardTile[] = [];
+    const rng = seed !== undefined ? mulberry32(seed) : Math.random;
+
+    ICON_POOL.forEach((iconData) => {
+      cards.push({
+        instanceId: `${iconData.id}-1`,
+        pairId: iconData.id,
+        iconData,
+      });
+      cards.push({
+        instanceId: `${iconData.id}-2`,
+        pairId: iconData.id,
+        iconData,
+      });
+    });
+
+    // Fisher-Yates shuffle
+    for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
+
+    return cards;
+  }, []);
+
+  // Game state (deterministic initial state for SSR/hydration)
+  const [tiles, setTiles] = useState<CardTile[]>(() =>
+    createShuffledTiles(404),
+  );
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [matchedIndices, setMatchedIndices] = useState<Set<number>>(new Set());
   const [moves, setMoves] = useState<number>(0);
@@ -27,27 +67,7 @@ export const NotFoundGame: React.FC = () => {
 
   // Initialize or reset game
   const initializeGame = useCallback(() => {
-    const cards: CardTile[] = [];
-    ICON_POOL.forEach((iconData) => {
-      cards.push({
-        instanceId: `${iconData.id}-1-${Math.random()}`,
-        pairId: iconData.id,
-        iconData,
-      });
-      cards.push({
-        instanceId: `${iconData.id}-2-${Math.random()}`,
-        pairId: iconData.id,
-        iconData,
-      });
-    });
-
-    // Fisher-Yates shuffle
-    for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
-    }
-
-    setTiles(cards);
+    setTiles(createShuffledTiles());
     setFlippedIndices([]);
     setMatchedIndices(new Set());
     setMoves(0);
@@ -55,11 +75,7 @@ export const NotFoundGame: React.FC = () => {
     setIsChecking(false);
     setIsGameActive(false);
     setIsCompleted(false);
-  }, []);
-
-  useEffect(() => {
-    initializeGame();
-  }, [initializeGame]);
+  }, [createShuffledTiles]);
 
   // Timer effect
   useEffect(() => {
@@ -122,47 +138,55 @@ export const NotFoundGame: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-background text-foreground flex flex-col items-center justify-center relative overflow-x-hidden p-4 sm:p-6 md:p-8">
-      {/* Top Left Go Back Button */}
-      <GoBackButton />
+    <div className="min-h-screen flex flex-col relative text-foreground select-none">
+      <Navbar />
 
-      {/* Top Right Stats Bar */}
-      <GameStats
-        moves={moves}
-        timeSeconds={timeSeconds}
-        matchedPairsCount={matchedIndices.size / 2}
-      />
+      <div className="relative z-10 bg-black/40 backdrop-blur-md flex-1 flex flex-col w-full">
+        <main className="flex-1 pt-24 sm:pt-28 pb-16 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto w-full flex flex-col items-center justify-center">
+          {/* Extended Horizontal Game Stats Bar */}
+          <div className="w-full max-w-3xl mb-6 sm:mb-8">
+            <GameStats
+              moves={moves}
+              timeSeconds={timeSeconds}
+              matchedPairsCount={matchedIndices.size / 2}
+              onReset={initializeGame}
+            />
+          </div>
 
-      {/* Main Content Area */}
-      <main className="flex flex-col items-center justify-center text-center my-auto py-12 max-w-4xl w-full">
-        {/* Header Text */}
-        <GameHeader />
+          {/* Header Text */}
+          <GameHeader />
 
-        {/* 404 Tile Grid Mini Game Container */}
-        <TileGrid
-          tiles={tiles}
-          flippedIndices={flippedIndices}
-          matchedIndices={matchedIndices}
-          onTileClick={handleTileClick}
-          onReset={initializeGame}
-        />
+          {/* 404 Tile Grid Mini Game Container */}
+          <TileGrid
+            tiles={tiles}
+            flippedIndices={flippedIndices}
+            matchedIndices={matchedIndices}
+            onTileClick={handleTileClick}
+            onReset={initializeGame}
+          />
 
-        {/* Bottom Home Page Button (matching screenshot style) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-6"
-        >
-          <button
-            onClick={() => router.push("/")}
-            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-bold text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          {/* Bottom Home Page Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-6 sm:mt-8"
           >
-            <span>Home page</span>
-            <FaHouse className="size-3.5" />
-          </button>
-        </motion.div>
-      </main>
+            <Button
+              onClick={() => router.push("/")}
+              className={cn(
+                mono.className,
+                "gap-2 px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-black font-bold text-xs sm:text-sm shadow-lg shadow-emerald-500/20 hover:scale-105 active:scale-95 transition-all cursor-pointer",
+              )}
+            >
+              <span>Return Home</span>
+              <Home className="w-4 h-4" />
+            </Button>
+          </motion.div>
+        </main>
+
+        <Footer />
+      </div>
 
       {/* VICTORY MODAL & TROPHY DOWNLOAD DIALOG */}
       <VictoryModal
