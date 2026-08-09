@@ -25,10 +25,16 @@ export interface ConstructMetadataOptions {
 const xSocial = socials.find((s) => s.name === "X");
 const githubSocial = socials.find((s) => s.name === "GitHub");
 
+function resolveSiteUrl() {
+  if (process.env.NODE_ENV === "development") return "http://localhost:3000";
+
+  return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
+}
+
 export const SITE_SEO = {
   siteName: "Aarab Nishchal",
   siteTitle: "Aarab Nishchal - AI Engineer & Full-Stack Developer",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://aarab.vercel.app",
+  siteUrl: resolveSiteUrl(),
   titleTemplate: "%s | Aarab Nishchal",
   defaultDescription:
     "Personal portfolio, articles, full-stack projects, and CV of Aarab Nishchal — AI Engineer Intern & Full-Stack Developer specializing in Next.js, React, Node.js, and LLM integrations.",
@@ -46,7 +52,7 @@ export const SITE_SEO = {
   ],
   author: {
     name: "Aarab Nishchal",
-    url: process.env.NEXT_PUBLIC_SITE_URL || "https://aarab.vercel.app",
+    url: resolveSiteUrl(),
     email: "aarab.nishchal@gmail.com",
     handle: `@${githubSocial?.handle || "aarabii"}`,
   },
