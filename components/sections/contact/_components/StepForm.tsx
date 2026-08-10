@@ -132,7 +132,7 @@ export const StepForm = () => {
     setError(null);
 
     try {
-      const res = await fetch("/api/send", {
+      const res = await fetch("/api/resend-send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
