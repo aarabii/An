@@ -42,6 +42,10 @@ const nextConfig: NextConfig = {
             key: "Referrer-Policy",
             value: "origin-when-cross-origin",
           },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=63072000; includeSubDomains; preload",
+          },
         ],
       },
       {
@@ -61,6 +65,19 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/.well-known/security.txt",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/plain; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400",
+          },
+        ],
+      },
     ];
   },
 
@@ -77,13 +94,18 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/email",
-        destination: "mailto:aarab.nishchal@gmail.com",
+        source: "/llm.txt",
+        destination: "/llms.txt",
         permanent: true,
       },
       {
-        source: "/direct-resume",
-        destination: "/docs/aarab_nishchal_resume.pdf",
+        source: "/security.txt",
+        destination: "/.well-known/security.txt",
+        permanent: true,
+      },
+      {
+        source: "/email",
+        destination: "mailto:aarab.nishchal@gmail.com",
         permanent: true,
       },
       ...socials.map((social) => ({

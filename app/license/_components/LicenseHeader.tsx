@@ -77,7 +77,7 @@ export const LicenseHeader = () => {
 
       {/* Section Header with Main Page Numbering & Styling */}
       <div className="pt-4">
-        <SectionHeader number="07" title="License & Terms" align="left" />
+        <SectionHeader as="h1" number="07" title="License & Terms" align="left" />
         <p className="text-xs sm:text-sm font-mono text-muted-foreground max-w-2xl leading-relaxed -mt-10">
           You can clone this, fork it, and build your own portfolio with it. Just don&apos;t
           package it up to sell as a template or pretend you wrote the whole thing from scratch.

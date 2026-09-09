@@ -121,15 +121,6 @@
   }
 }
 
-body.preloader-active #app-content {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-#app-content {
-  transition: opacity 0.5s ease-in-out;
-}
-
 /* Lenis Smooth Scroll CSS */
 html.lenis, html.lenis body {
   height: auto;

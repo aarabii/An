@@ -26,7 +26,7 @@ export const BlogsHeader: React.FC = () => {
 
       {/* Section Header */}
       <div className="pt-4">
-        <SectionHeader number="07" title="Blog & Articles" align="left" />
+        <SectionHeader as="h1" number="07" title="Blog & Articles" align="left" />
         <p className="text-xs sm:text-sm font-mono text-muted-foreground max-w-2xl leading-relaxed -mt-10">
           Technical writing, thoughts, tutorials, and deep-dives on full-stack development, AI, and software engineering.
         </p>

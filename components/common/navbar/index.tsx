@@ -86,10 +86,10 @@ export const Navbar = () => {
             >
               <Image
                 src="/images/logo.svg"
-                alt="logo"
+                alt="Aarab Nishchal Logo"
                 width={40}
                 height={40}
-                loading="lazy"
+                priority
                 quality={100}
                 style={{ objectFit: "cover" }}
               />

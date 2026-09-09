@@ -3,6 +3,7 @@ import {
   SITE_SEO,
   type ConstructMetadataOptions,
 } from "@/constant/seo";
+import { selected_works, works } from "@/constant/projects";
 
 /**
  * Constructs a fully compliant Next.js Metadata object with centralized SEO fallbacks.
@@ -24,7 +25,10 @@ export function constructMetadata({
   const metaKeywords = keywords?.length
     ? keywords
     : Array.from(SITE_SEO.defaultKeywords);
-  const metaImage = image || SITE_SEO.defaultOgImage;
+  const rawImage = image || SITE_SEO.defaultOgImage;
+  const absoluteImageUrl = rawImage.startsWith("http")
+    ? rawImage
+    : `${SITE_SEO.siteUrl}${rawImage.startsWith("/") ? "" : "/"}${rawImage}`;
   const canonicalUrl = `${SITE_SEO.siteUrl}${path}`;
 
   return {
@@ -53,7 +57,7 @@ export function constructMetadata({
       ...(publishedTime && { publishedTime }),
       images: [
         {
-          url: metaImage,
+          url: absoluteImageUrl,
           width: 1200,
           height: 630,
           alt: metaTitle,
@@ -61,11 +65,11 @@ export function constructMetadata({
       ],
     },
     twitter: {
-      card: metaImage ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title: metaTitle,
       description: metaDescription,
       creator: SITE_SEO.twitterHandle,
-      images: [metaImage],
+      images: [absoluteImageUrl],
     },
     robots: noIndex
       ? {
@@ -234,7 +238,7 @@ export function generateOrganizationJsonLd() {
     "@type": "Organization",
     name: SITE_SEO.siteName,
     url: SITE_SEO.siteUrl,
-    logo: `${SITE_SEO.siteUrl}/images/thumbnail.png`,
+    logo: `${SITE_SEO.siteUrl}/images/social_card.png`,
     sameAs: Array.from(SITE_SEO.socialLinks),
   };
 }
@@ -299,29 +303,26 @@ export function generateBlogCollectionJsonLd(
  * JSON-LD Schema Generator for Projects ItemList
  */
 export function generateProjectsItemListJsonLd() {
+  const allProjects = [...selected_works, ...works];
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Projects & Selected Works",
-    description: "Full-stack web applications, AI tools, and open-source GitHub repositories.",
+    description: "Full-stack web applications, AI tools, and open-source GitHub repositories built by Aarab Nishchal.",
     url: `${SITE_SEO.siteUrl}/projects`,
     mainEntity: {
       "@type": "ItemList",
       name: "Portfolio Projects",
-      itemListElement: [
-        {
-          "@type": "SoftwareApplication",
-          name: "Viber - AI Customer Support Agent Platform",
-          applicationCategory: "BusinessApplication",
-          operatingSystem: "Web",
-        },
-        {
-          "@type": "SoftwareApplication",
-          name: "Scribe - AI Document Summarizer",
-          applicationCategory: "DeveloperApplication",
-          operatingSystem: "Web",
-        },
-      ],
+      itemListElement: allProjects.map((project, index) => ({
+        "@type": "SoftwareApplication",
+        position: index + 1,
+        name: project.name,
+        description: project.description,
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Web",
+        ...(project.links.live && { url: project.links.live }),
+        ...(project.links.github && { sameAs: project.links.github }),
+      })),
     },
   };
 }

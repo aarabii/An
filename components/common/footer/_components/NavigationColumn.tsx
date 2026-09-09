@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: "ABOUT", href: "/#about" },
   { label: "PROJECTS", href: "/#work" },
   { label: "EXPERIENCE", href: "/#experience" },
-  { label: "BLOG", href: "/blog" },
+  { label: "BLOG", href: "/blogs" },
   { label: "CONTACT", href: "/#contact" },
 ];
 
@@ -19,7 +19,7 @@ export const NavigationColumn = () => {
       <span
         className={cn(
           mono.className,
-          "text-xs font-semibold tracking-widest text-muted-foreground uppercase mb-1"
+          "text-xs font-semibold tracking-widest text-muted-foreground uppercase mb-1",
         )}
       >
         NAVIGATION

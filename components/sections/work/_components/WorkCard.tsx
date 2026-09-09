@@ -117,6 +117,7 @@ export const WorkCard = ({
                     href={liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit live deployment of ${name}`}
                     className="font-mono text-xs font-semibold tracking-wider text-muted-foreground uppercase transition-colors hover:text-foreground hover:underline"
                   >
                     LIVE
@@ -130,6 +131,7 @@ export const WorkCard = ({
                     href={githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`View source code of ${name} on GitHub`}
                     className="font-mono text-xs font-semibold tracking-wider text-muted-foreground uppercase transition-colors hover:text-foreground hover:underline"
                   >
                     GITHUB

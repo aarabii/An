@@ -26,18 +26,25 @@ const xSocial = socials.find((s) => s.name === "X");
 const githubSocial = socials.find((s) => s.name === "GitHub");
 
 function resolveSiteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) return process.env.NEXT_PUBLIC_SITE_URL;
+  if (process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
   if (process.env.NODE_ENV === "development") return "http://localhost:3000";
 
-  return `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
+  return "https://aarab.me";
 }
 
 export const SITE_SEO = {
   siteName: "Aarab Nishchal",
-  siteTitle: "Aarab Nishchal - AI Engineer & Full-Stack Developer",
+  siteTitle: "Aarab Nishchal | AI Engineer & Next.js Full-Stack Developer",
   siteUrl: resolveSiteUrl(),
   titleTemplate: "%s | Aarab Nishchal",
   defaultDescription:
-    "Personal portfolio, articles, full-stack projects, and CV of Aarab Nishchal — AI Engineer Intern & Full-Stack Developer specializing in Next.js, React, Node.js, and LLM integrations.",
+    "Personal portfolio, articles, full-stack builds, and engineering CV of Aarab Nishchal — AI Engineer specializing in Next.js, LLM integrations, and intelligent systems.",
   defaultKeywords: [
     "Aarab Nishchal",
     "Aarab Nishchal Portfolio",
@@ -58,7 +65,7 @@ export const SITE_SEO = {
   },
   creator: "Aarab Nishchal",
   publisher: "Aarab Nishchal",
-  defaultOgImage: "/images/thumbnail.png",
+  defaultOgImage: "/images/social_card.png",
   twitterHandle: `@${xSocial?.handle || "aarab_ii"}`,
   socialLinks: socials.map((s) => s.url),
   locale: "en_US",
@@ -82,9 +89,9 @@ export const PAGE_SEO: Record<
   PageSeoConfig
 > = {
   home: {
-    title: "Aarab Nishchal - AI Engineer & Full-Stack Developer",
+    title: "Aarab Nishchal | AI Engineer & Next.js Full-Stack Developer",
     description:
-      "Welcome to the official portfolio of Aarab Nishchal. Discover full-stack web applications, AI engineering projects, technical articles, and experience.",
+      "Portfolio and selected works of Aarab Nishchal. Discover production AI agents, Next.js applications, automation workflows, and technical writing.",
     keywords: [
       "Aarab Nishchal",
       "Aarab Nishchal Portfolio",
@@ -97,9 +104,9 @@ export const PAGE_SEO: Record<
     type: "website",
   },
   projects: {
-    title: "Projects & Works",
+    title: "AI & Full-Stack Projects, Open Source Apps",
     description:
-      "Explore full-stack web applications, AI tools, CLI automation frameworks, and open-source GitHub repositories created by Aarab Nishchal.",
+      "Explore production-ready AI tools, CLI automation frameworks, visual workflow builders, and open-source GitHub repositories by Aarab Nishchal.",
     keywords: [
       "Aarab Nishchal Projects",
       "Full Stack Applications",
@@ -113,9 +120,9 @@ export const PAGE_SEO: Record<
     type: "website",
   },
   blogs: {
-    title: "Blog & Technical Articles",
+    title: "Technical Blog: Next.js, AI Agents & LLMs",
     description:
-      "Explore technical articles, tutorials, and insights on full-stack development, Next.js, AI engineering, and software design by Aarab Nishchal.",
+      "In-depth tutorials, system architecture breakdowns, and engineering insights on Next.js 16, LLM integrations, AI agents, and full-stack performance.",
     keywords: [
       "Aarab Nishchal Blog",
       "Web Development Articles",
@@ -128,9 +135,9 @@ export const PAGE_SEO: Record<
     type: "website",
   },
   resume: {
-    title: "Resume & CV",
+    title: "Aarab Nishchal Resume | AI Engineer & Full-Stack Developer",
     description:
-      "Curriculum vitae and professional experience of Aarab Nishchal - AI Engineer Intern & Full-Stack Developer specializing in Next.js, React, Node.js, and LLM integrations.",
+      "Curriculum vitae and professional experience of Aarab Nishchal — AI Engineer Intern & Full-Stack Developer with experience at Ascend HSI and Unstop.",
     keywords: [
       "Aarab Nishchal Resume",
       "Aarab Nishchal CV",
@@ -144,7 +151,7 @@ export const PAGE_SEO: Record<
     type: "profile",
   },
   license: {
-    title: "License & Terms of Usage",
+    title: "Software License & Open Source Terms",
     description:
       "Official software license, usage permissions, restrictions, and copyright terms for Aarab Nishchal's portfolio source code and design system.",
     keywords: [

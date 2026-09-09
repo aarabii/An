@@ -92,7 +92,9 @@ export const PreLoader = () => {
           <div className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden z-10">
             {/* Hero Main Content Matching Container */}
             <section className="relative z-10 flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto px-6 py-20 min-h-screen">
-              <h1
+              <div
+                role="status"
+                aria-label="Loading portfolio"
                 className={`${serif.className} text-primary text-center text-balance font-normal tracking-tight text-6xl sm:text-7xl md:text-8xl lg:text-9xl drop-shadow-md flex flex-wrap items-center justify-center gap-x-[0.25em]`}
               >
                 <motion.span
@@ -119,7 +121,7 @@ export const PreLoader = () => {
                 >
                   {profile.name.last}
                 </motion.span>
-              </h1>
+              </div>
             </section>
           </div>
         </motion.div>

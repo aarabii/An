@@ -8,12 +8,14 @@ interface SectionHeaderProps {
   number: string;
   title: string;
   align?: "left" | "right";
+  as?: "h1" | "h2" | "h3";
 }
 
 export const SectionHeader = ({
   number,
   title,
   align = "left",
+  as: Component = "h2",
 }: SectionHeaderProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -44,9 +46,9 @@ export const SectionHeader = ({
           isRight && "flex-row-reverse",
         )}
       >
-        <h2 className="font-heading text-lg uppercase tracking-[0.2em] text-primary/90 font-semibold sm:text-xl md:text-2xl">
+        <Component className="font-heading text-lg uppercase tracking-[0.2em] text-primary/90 font-semibold sm:text-xl md:text-2xl">
           {title}
-        </h2>
+        </Component>
         {/* <div
           className={cn(
             "h-px flex-1",

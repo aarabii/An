@@ -124,9 +124,9 @@ export default function BlogPostClient({ post, markdownContent }: BlogPostClient
             <ReactMarkdown
               components={{
                 h1: ({ children }) => (
-                  <h1 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-foreground mt-10 mb-4 border-b border-border pb-2">
+                  <h2 className="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-foreground mt-10 mb-4 border-b border-border pb-2">
                     {children}
-                  </h1>
+                  </h2>
                 ),
                 h2: ({ children }) => (
                   <h2 className="font-heading text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4 border-b border-border pb-2">
@@ -208,7 +208,6 @@ export default function BlogPostClient({ post, markdownContent }: BlogPostClient
                         height={675}
                         className="w-full h-auto object-cover mx-auto"
                         sizes="(max-width: 768px) 100vw, 800px"
-                        unoptimized={src.startsWith("http")}
                       />
                     </span>
                   );

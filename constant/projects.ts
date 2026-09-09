@@ -44,7 +44,7 @@ export const selected_works: Project[] = [
       "Prisma",
     ],
     links: {
-      live: "https://next-flow-automation.vercel.app/",
+      live: "https://nextflow.aarab.me",
       github: "https://github.com/aarabii/next-flow",
     },
   },
@@ -72,7 +72,7 @@ export const selected_works: Project[] = [
     technologies: ["Next.js", "TypeScript", "Convex", "BlockNote"],
     links: {
       github: "https://github.com/aarabii/ideascribe",
-      live: "https://ideascribe.vercel.app/",
+      live: "https://ideascribe.aarab.me",
     },
   },
 ];

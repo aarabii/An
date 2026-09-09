@@ -3,9 +3,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowLeft, Download, ExternalLink, RefreshCw } from "lucide-react";
+import { ArrowLeft, Briefcase, Download, ExternalLink, GraduationCap, RefreshCw } from "lucide-react";
 
-import { Footer, Navbar } from "@/components/common";
+import { Footer, Navbar, SectionHeader } from "@/components/common";
+import { experience, profile } from "@/constant";
 
 const RESUME_PATH = "/docs/aarab_nishchal_resume.pdf";
 
@@ -18,13 +19,12 @@ export default function ResumeClient() {
 
       {/* Backdrop filter overlay above background layer */}
       <div className="relative z-10 bg-black/40 backdrop-blur-md flex-1 flex flex-col w-full">
-        <main className="flex-1 pt-28 sm:pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full space-y-6">
-          {/* Action Bar */}
+        <main className="flex-1 pt-24 sm:pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full space-y-8">
+          {/* Top Navigation & Return */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="flex flex-wrap items-center justify-between gap-4"
           >
             <Link
               href="/"
@@ -33,6 +33,73 @@ export default function ResumeClient() {
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
               <span>Return to Portfolio</span>
             </Link>
+          </motion.div>
+
+          {/* Section Header */}
+          <div className="pt-2">
+            <SectionHeader as="h1" number="05" title="Resume & Experience" align="left" />
+            <p className="text-xs sm:text-sm font-mono text-muted-foreground max-w-2xl leading-relaxed -mt-10">
+              AI Engineer Intern & Full-Stack Developer specializing in Next.js, LLM integrations, and intelligent automation systems.
+            </p>
+          </div>
+
+          {/* Semantic, Crawlable Executive Summary for Search Engines and Recruiters */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            aria-label="Resume Overview"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
+            <div className="p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-xl space-y-4">
+              <div className="flex items-center gap-2 text-accent font-mono text-xs font-bold uppercase tracking-wider">
+                <Briefcase className="w-4 h-4" />
+                <span>Professional Experience</span>
+              </div>
+              <div className="space-y-4 font-mono text-xs text-muted-foreground">
+                {experience.map((exp, i) => (
+                  <div key={i} className="space-y-1 border-b border-border/40 pb-3 last:border-0 last:pb-0">
+                    <div className="flex items-center justify-between text-foreground font-semibold">
+                      <span>{exp.role}</span>
+                      <span className="text-accent text-[11px]">{exp.company}</span>
+                    </div>
+                    <p className="text-[11px] text-muted-foreground/80 leading-relaxed">
+                      {exp.description[0]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-6 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-xl space-y-4">
+              <div className="flex items-center gap-2 text-accent font-mono text-xs font-bold uppercase tracking-wider">
+                <GraduationCap className="w-4 h-4" />
+                <span>Education & Key Stack</span>
+              </div>
+              <div className="space-y-3 font-mono text-xs text-muted-foreground">
+                <div>
+                  <p className="text-foreground font-semibold">{profile.education.degree} in {profile.education.major}</p>
+                  <p className="text-accent text-[11px]">{profile.education.uni} ({profile.education.batch})</p>
+                </div>
+                <div className="pt-2 border-t border-border/40 space-y-1.5">
+                  <span className="text-foreground text-[11px] font-semibold block">Core Technologies:</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Next.js", "React", "TypeScript", "Python", "LLMs", "AI Agents", "n8n", "PostgreSQL"].map((t) => (
+                      <span key={t} className="px-2 py-0.5 rounded bg-muted text-[10px] border border-border text-foreground">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* Action Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/40">
+            <span className="font-mono text-xs text-muted-foreground">
+              Official Document Preview (PDF)
+            </span>
 
             <div className="flex items-center gap-2.5">
               <motion.button
@@ -70,7 +137,7 @@ export default function ResumeClient() {
                 <span>Download PDF</span>
               </motion.a>
             </div>
-          </motion.div>
+          </div>
 
           {/* PDF Viewer Container */}
           <motion.div

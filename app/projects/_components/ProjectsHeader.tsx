@@ -26,7 +26,7 @@ export const ProjectsHeader: React.FC = () => {
 
       {/* Section Header with Main Page Numbering & Styling */}
       <div className="pt-4">
-        <SectionHeader number="06" title="Projects & Open Source" align="left" />
+        <SectionHeader as="h1" number="06" title="Projects & Open Source" align="left" />
         <p className="text-xs sm:text-sm font-mono text-neutral-400 max-w-2xl leading-relaxed -mt-10">
           Projects, tools, and late-night experiments. Featured builds upfront,
           live GitHub repositories below.

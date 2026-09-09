@@ -1,11 +1,24 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getPostBySlug, getPostContent } from "@/lib/notion";
+import { getAllPosts, getPostBySlug, getPostContent } from "@/lib/notion";
 import BlogPostClient from "./_components/BlogPostClient";
 import { constructMetadata, generateArticleJsonLd, generateBreadcrumbJsonLd } from "@/lib/seo";
 import { SITE_SEO } from "@/constant/seo";
 
 export const revalidate = 86400; // Revalidate post content once a day (86400 seconds)
+export const dynamicParams = true; // Support ISR for posts created between builds
+
+export async function generateStaticParams() {
+  try {
+    const posts = await getAllPosts();
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error("Error in generateStaticParams for blog posts:", error);
+    return [];
+  }
+}
 
 type Props = {
   params: Promise<{ slug: string }>;
