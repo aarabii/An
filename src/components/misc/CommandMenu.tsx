@@ -85,7 +85,7 @@ export const CommandMenu = ({
                                 )}
                                 <span>+</span>
 
-                                <Kbd>{item.shortcut}</Kbd>
+                                <Kbd>{item.shortcut?.toUpperCase()}</Kbd>
                             </CommandShortcut>
                         </CommandItem>
                     ))}
@@ -113,7 +113,7 @@ export const CommandMenu = ({
                                 )}
                                 <span>+</span>
 
-                                <Kbd>{item.shortcut}</Kbd>
+                                <Kbd>{item.shortcut?.toUpperCase()}</Kbd>
                             </CommandShortcut>
                         </CommandItem>
                     ))}

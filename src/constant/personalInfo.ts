@@ -63,7 +63,7 @@ export const PERSONAL_INFO = {
     ],
 
     profile_image: "/images/me1.png",
-    profile_image_alt: "Aarab Nishchal - AI Enginner & Software Developer",
+    profile_image_alt: "Aarab Nishchal - AI Engineer & Software Developer",
 
     custom_roles: ["AI Engineer", "Software Engineer"],
 

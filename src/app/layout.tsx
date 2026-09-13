@@ -24,15 +24,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             )}
         >
             <body className="min-h-full flex flex-col">
-                <div className="relative min-h-screen">
-                    <div className="pointer-events-none absolute top-0 bottom-0 -left-2 z-0 w-2 border-r border-primary md:-left-6 md:w-6" />
-                    <div className="pointer-events-none absolute top-0 -right-2 bottom-0 z-0 w-2 border-l border-primary md:-right-6 md:w-6" />
+                <div className="relative mx-auto min-h-screen w-full max-w-178 border-x border-border">
                     <Navbar />
-
-                    <div className="relative z-10">
-                        {children}
-                        {/*Footer*/}
-                    </div>
+                    <main className="relative z-10 flex-1">{children}</main>
+                    {/* <Footer /> */}
                 </div>
             </body>
         </html>

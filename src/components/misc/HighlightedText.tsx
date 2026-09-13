@@ -19,7 +19,7 @@ export function HighlightedText({
                 highlights.includes(part) ? (
                     <b
                         key={i}
-                        className="font-para text-primary/90 underline underline-offset-2"
+                        className="font-mono text-primary/90 underline underline-offset-2"
                     >
                         {part}
                     </b>

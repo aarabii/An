@@ -6,10 +6,9 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 
 import Container from "./Container";
-import { MobileNav } from "../mics/MobileNav";
-import { CommandMenu } from "@/components/mics/CommandMenu";
+import { MobileNav } from "../misc/MobileNav";
+import { CommandMenu } from "@/components/misc/CommandMenu";
 import { Button } from "@/components/ui/button";
-import { Kbd } from "@/components/ui/kbd";
 import { PERSONAL_INFO } from "@/constant";
 import { useIsMac } from "@/hooks/useIsMac";
 import { useCommand } from "@/hooks/useCommand";

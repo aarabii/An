@@ -5,7 +5,7 @@
 @theme inline {
     /* Fonts */
     --font-heading: var(--font-heading); /* heading font */
-    --font-sans: var(--font-para); /* para font */
+    --font-para: var(--font-para); /* para font utility */
     --font-mono: var(--font-mono); /* mono font */
 
     /* colors */

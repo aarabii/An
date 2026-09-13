@@ -15,13 +15,16 @@ export function useCommand({ onCmdOpn }: UseCommandProps) {
         // This makes "c" and "shift+c" distinct, non-overlapping combos by construction.
         const shortcuts: Record<string, () => void> = {
             "0:k": onCmdOpn,
-            "0:p": () => router.push("/projects"),
-            "0:b": () => router.push("/blogs"),
-            "0:e": () => router.push("/resources"),
-            "0:h": () => router.push("/"),
+
+            "0:g": () => router.push("/"),
+            "0:j": () => router.push("/projects"),
+            "0:w": () => router.push("/blogs"),
+            "0:a": () => router.push("/resources"),
+            "0:r": () => router.push("/resources"),
+
             "1:c": () => router.push("/contact"),
-            "1:r": () => router.push("/resume"),
-            "1:s": () => router.push("/recommendations"),
+            "1:v": () => router.push("/resume"),
+            "1:m": () => router.push("/recommendations"),
         };
 
         function handleKeyDown(event: KeyboardEvent) {
