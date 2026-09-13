@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Search } from "lucide-react";
 
 import Container from "./Container";
-import { MobileNav } from "./MobileNav";
+import { MobileNav } from "../mics/MobileNav";
 import { CommandMenu } from "@/components/mics/CommandMenu";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
