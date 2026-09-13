@@ -18,6 +18,7 @@ export interface NavItem {
     type: NavType;
     icons?: IconType;
     shortcut?: string;
+    shift?: boolean;
 }
 
 export const mainNav: NavItem[] = [
@@ -48,6 +49,7 @@ export const mainNav: NavItem[] = [
         type: "route",
         icons: FaPhone,
         shortcut: "c",
+        shift: true,
     },
     {
         label: "Resume",
@@ -55,6 +57,7 @@ export const mainNav: NavItem[] = [
         type: "route",
         icons: FaRegFileLines,
         shortcut: "/",
+        shift: true,
     },
 ];
 
@@ -72,6 +75,7 @@ export const moreNav: NavItem[] = [
         type: "route",
         icons: FaStar,
         shortcut: "s",
+        shift: true,
     },
 ];
 

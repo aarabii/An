@@ -11,8 +11,8 @@ import { CommandMenu } from "@/components/mics/CommandMenu";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { PERSONAL_INFO } from "@/constant";
-import { useIsMac } from "@/hook/useIsMac";
-import { useCommand } from "@/hook/useCommand";
+import { useIsMac } from "@/hooks/useIsMac";
+import { useCommand } from "@/hooks/useCommand";
 
 const Navbar = () => {
     const [commandOpen, setCommandOpen] = useState(false);
@@ -59,8 +59,7 @@ const Navbar = () => {
                                 className="cursor-pointer rounded-full"
                             >
                                 <Search data-icon="inline-start" />
-                                <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
-                                <Kbd>K</Kbd>
+                                {isMac ? "⌘" : "Ctrl"} + K
                             </Button>
                         </div>
 

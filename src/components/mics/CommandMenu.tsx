@@ -16,7 +16,7 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 
 import { mainNav, moreNav, homeSections } from "@/constant";
-import { useIsMac } from "@/hook/useIsMac";
+import { useIsMac } from "@/hooks/useIsMac";
 
 interface CommandMenuProps {
     open?: boolean;
@@ -76,7 +76,15 @@ export const CommandMenu = ({
 
                             <CommandShortcut>
                                 <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
+
+                                {item.shift && (
+                                    <>
+                                        <span>+</span>
+                                        <Kbd>Shift</Kbd>
+                                    </>
+                                )}
                                 <span>+</span>
+
                                 <Kbd>{item.shortcut}</Kbd>
                             </CommandShortcut>
                         </CommandItem>
@@ -96,7 +104,15 @@ export const CommandMenu = ({
 
                             <CommandShortcut>
                                 <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
+
+                                {item.shift && (
+                                    <>
+                                        <span>+</span>
+                                        <Kbd>Shift</Kbd>
+                                    </>
+                                )}
                                 <span>+</span>
+
                                 <Kbd>{item.shortcut}</Kbd>
                             </CommandShortcut>
                         </CommandItem>
