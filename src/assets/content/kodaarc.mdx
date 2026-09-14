@@ -1,0 +1,237 @@
+# KodaArc
+
+KodaArc is a terminal-native AI coding assistant. Instead of switching between a browser-based AI chat and your terminal, it puts the whole conversational coding workflow inside the terminal where you're already working.
+
+It can inspect a project, reason about the codebase, propose a plan, make changes, run shell commands, interact with Git, and stream the model's output back to you as it works. The core design decision is the split between **PLAN** and **BUILD** modes: PLAN is read-only, BUILD unlocks the tools that actually change your project.
+
+KodaArc is a Bun monorepo with four packages: a React/OpenTUI terminal client, a Hono API server, a Prisma/PostgreSQL data layer, and a shared package holding schemas, model definitions, and types. The server streams model output over SSE and persists sessions and messages so you can pick a conversation back up later.
+
+## Stack
+
+<table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+    <thead className="bg-muted">
+        <tr>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Technology
+            </th>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Role in KodaArc
+            </th>
+        </tr>
+    </thead>
+
+    <tbody className="divide-y divide-border bg-card text-card-foreground">
+        <tr>
+            <td className="px-4 py-2 font-medium">Bun</td>
+            <td className="px-4 py-2">
+                Runtime, package manager, and workspace tool for the monorepo
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">TypeScript</td>
+            <td className="px-4 py-2">
+                Covers the CLI, server, database layer, model registry, request
+                schemas, and shared contracts
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">React 19 + OpenTUI</td>
+            <td className="px-4 py-2">
+                Build the terminal UI. React handles screens, hooks, and
+                providers; OpenTUI renders it inside the terminal
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Hono</td>
+            <td className="px-4 py-2">
+                Runs the local HTTP API the terminal client talks to, and gives
+                the CLI a type-safe RPC contract through shared server types
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Vercel AI SDK</td>
+            <td className="px-4 py-2">
+                Coordinates model requests, streaming, tool calls, reasoning
+                output, and provider-specific config
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">
+                Anthropic, OpenAI, Google Gemini
+            </td>
+            <td className="px-4 py-2">
+                Supported model backends. KodaArc maps a chosen model ID to the
+                right provider and applies provider-specific reasoning/thinking
+                options where they exist
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Prisma + PostgreSQL</td>
+            <td className="px-4 py-2">
+                Persist sessions, messages, message parts, statuses,
+                working-directory info, and other conversation state
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Zod</td>
+            <td className="px-4 py-2">
+                Validates API payloads and streaming event shapes, and provides
+                the runtime schemas shared between client and server
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Git</td>
+            <td className="px-4 py-2">
+                Exposed through the <code>gitHelper</code> tool, so the assistant
+                can inspect repo state always, and modify it once BUILD mode is
+                on
+            </td>
+        </tr>
+
+        <tr>
+            <td className="px-4 py-2 font-medium">Sentry</td>
+            <td className="px-4 py-2">
+                Server-side error tracking and observability
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+## Architecture
+
+KodaArc is a client-server system inside one monorepo.
+
+```text
+                    User's Terminal
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │  @koda-arc/cli        │
+              │  React + OpenTUI       │
+              │                       │
+              │  Screens / Hooks      │
+              │  Providers / Input    │
+              └───────────┬───────────┘
+                          │
+                      HTTP + SSE
+                          │
+                          ▼
+              ┌───────────────────────┐
+              │  @koda-arc/server     │
+              │  Hono + Bun           │
+              │                       │
+              │ Routes                │
+              │ AI orchestration      │
+              │ Tool execution        │
+              └───────┬───────┬───────┘
+                      │       │
+                Prisma│       │AI SDK
+                      │       │
+                      ▼       ▼
+              ┌──────────┐  ┌──────────────┐
+              │PostgreSQL│  │AI Providers  │
+              │ sessions │  │Anthropic     │
+              │ messages │  │OpenAI        │
+              └──────────┘  │Gemini        │
+                            └──────────────┘
+```
+
+The shared package sits underneath all of this, providing the Zod schemas, model IDs, stream event types, and TypeScript contracts that both the CLI and server depend on.
+
+### How a prompt becomes a response
+
+1. You submit a prompt from the terminal.
+2. The CLI creates a new session or resumes an existing one through the Hono API.
+3. The server loads that session's conversation history from PostgreSQL.
+4. It assembles a system prompt based on the current agent mode and which tools are enabled.
+5. It resolves the selected provider and model.
+6. The AI SDK streams back reasoning, text, tool calls, and tool results.
+7. The server pushes those events over SSE.
+8. The CLI parses the stream and renders it as it arrives.
+9. The finished assistant message gets saved to PostgreSQL.
+
+### Tools
+
+KodaArc exposes eight project-oriented tools: `readFile`, `writeFile`, `editFile`, `listDirectory`, `glob`, `grep`, `bash`, and `gitHelper`.
+
+PLAN mode only allows inspection and read-only Git operations. BUILD mode turns on file modification, shell execution, and full Git access.
+
+## Installing and running
+
+### Prerequisites
+
+- Bun 1.1+
+- PostgreSQL 15+
+- Node.js 18+
+- Git 2.30+
+- `grep` available on your system
+
+### Clone and install
+
+```bash
+git clone https://github.com/aarabii/KodaArc.git
+cd KodaArc
+bun install
+```
+
+### Environment
+
+```bash
+cp .env.example .env
+```
+
+Set:
+
+```env
+API_URL=http://localhost:6969
+DATABASE_URL=postgresql://user:password@localhost:5432/kodaarc
+```
+
+You also need at least one model provider key:
+
+```env
+ANTHROPIC_API_KEY=...
+OPENAI_API_KEY=...
+GOOGLE_GENERATIVE_AI_API_KEY=...
+```
+
+### Database setup
+
+```bash
+cd packages/database
+bunx prisma generate
+bunx prisma db push
+```
+
+### Run it
+
+Start the API:
+
+```bash
+bun run dev:server
+```
+
+In a second terminal, start the CLI:
+
+```bash
+bun run dev:cli
+```
+
+## Why this architecture matters
+
+KodaArc is built around a local developer loop: inspect the code, reason about it, make a change, run the relevant command, keep talking. The terminal isn't just where output gets printed, it's the actual environment the AI operates in.
+
+The PLAN/BUILD split is the main safety boundary. It lets you point the agent at a problem and let it investigate without handing it write or shell access until you decide it should have it.
+
+## Current focus
+
+Right now the project is a testbed for terminal-native AI agents: tool orchestration, streaming interfaces, model abstraction, and workflows built specifically for developers.

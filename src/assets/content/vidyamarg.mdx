@@ -1,0 +1,230 @@
+# Vidya Marg
+
+Vidya Marg is an AI-powered adaptive learning-path generator. Its goal is to solve a common learning problem: a learner often knows some prerequisites already, does not know which concepts are missing, and therefore ends up following a rigid curriculum that is inefficient for their actual level.
+
+Instead of presenting a fixed course, Vidya Marg constructs a prerequisite knowledge graph for a target skill, assesses the learner's baseline understanding through an adaptive quiz, and then derives a personalized learning path from the concepts that still need to be learned.
+
+The project combines LLM generation with graph theory. The frontend provides the interactive visual experience, while a Python FastAPI backend handles graph generation, assessment logic, path construction, external resource discovery, and persistence.
+
+## Technologies
+
+### Next.js
+
+Provides the web application framework and routing for the learning experience.
+
+### React
+
+Builds the interactive learning interface.
+
+### Tailwind CSS
+
+Provides the styling system.
+
+### Framer Motion
+
+Adds animated interactions and transitions to the learning experience.
+
+### React Flow
+
+Visualizes the generated prerequisite graph so users can understand how concepts depend on one another.
+
+### FastAPI
+
+Provides the backend API and routes for graph generation, quizzes, learning paths, and health checks.
+
+### Python
+
+Implements the backend domain logic and learning algorithms.
+
+### Groq
+
+Provides the LLM integration for generating prerequisite concepts and adaptive assessment content.
+
+### NetworkX
+
+Represents and validates the prerequisite graph as a directed acyclic graph and supports graph traversal used by the learning-path engine.
+
+### Supabase / PostgreSQL
+
+Persists sessions, graphs, quiz state, quiz results, paths, and cached learning resources.
+
+### BeautifulSoup
+
+Used by the path engine to scrape and cache useful external learning resources returned by search.
+
+### Pydantic
+
+Provides typed request/response models and backend data validation.
+
+## Architecture
+
+```text
+                         Learner
+                            │
+                            ▼
+                  ┌───────────────────┐
+                  │     Next.js       │
+                  │ React + UI        │
+                  │ React Flow        │
+                  └─────────┬─────────┘
+                            │ HTTP
+                            ▼
+                  ┌───────────────────┐
+                  │    FastAPI API    │
+                  ├───────────────────┤
+                  │ Graph Router      │
+                  │ Quiz Router       │
+                  │ Path Router       │
+                  └───────┬───────────┘
+                          │
+           ┌──────────────┼───────────────┐
+           │              │               │
+           ▼              ▼               ▼
+       ┌────────┐   ┌──────────┐   ┌────────────┐
+       │  Groq  │   │ NetworkX │   │  Supabase  │
+       │  LLM   │   │ DAG Logic│   │ PostgreSQL │
+       └────────┘   └──────────┘   └────────────┘
+                                            │
+                                      ┌─────▼──────┐
+                                      │  Learning  │
+                                      │  Resources │
+                                      └────────────┘
+```
+
+## Learning Pipeline
+
+### 1. Skill input
+
+The learner provides a target skill.
+
+### 2. Knowledge graph generation
+
+The backend asks the LLM to identify prerequisite concepts and relationships between them.
+
+### 3. Graph validation
+
+NetworkX validates and operates on the generated graph as a DAG.
+
+### 4. Visualization
+
+The graph is returned to the frontend and rendered through React Flow.
+
+### 5. Adaptive assessment
+
+The quiz engine begins with concepts that can be assessed independently and generates targeted questions through the LLM.
+
+### 6. Knowledge-state update
+
+Answers update the session's known and unknown concept sets.
+
+### 7. Curriculum construction
+
+The path engine removes concepts the learner already knows and derives an ordered path through the remaining prerequisite gaps.
+
+### 8. Resource discovery
+
+The system finds and caches useful learning resources for the concepts in the resulting path.
+
+## Data Model
+
+The application uses separate persisted structures for different parts of a learning session:
+
+- `sessions` — target skill and session-level information.
+- `graphs` — graph nodes and edges.
+- `quiz_state` — concepts assessed, known, and unknown.
+- `quiz_results` — answer history.
+- `paths` — generated curriculum steps.
+- `concept_resources` — cached study resources.
+
+## API Surface
+
+### Graph
+
+```text
+POST /api/graph
+GET  /api/graph/{session_id}
+```
+
+### Quiz
+
+```text
+POST /api/quiz/start
+POST /api/quiz/answer
+```
+
+### Path
+
+```text
+POST /api/path
+GET  /api/path/{session_id}
+```
+
+### Health
+
+```text
+GET /
+```
+
+## Local Development
+
+### Backend
+
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+Configure environment variables such as:
+
+```env
+GROQ_API_KEY=...
+SUPABASE_URL=...
+SUPABASE_ANON_KEY=...
+```
+
+Run the API:
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create `.env.local`:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+Start Next.js:
+
+```bash
+npm run dev
+```
+
+## Why the project is interesting
+
+Vidya Marg explores a different use of generative AI: the model is not simply generating educational text. It is helping construct a structured representation of prerequisite knowledge, which is then processed algorithmically.
+
+That combination is the core idea:
+
+```text
+LLM
+ ↓
+Knowledge Graph
+ ↓
+Graph Algorithms
+ ↓
+Adaptive Assessment
+ ↓
+Knowledge Gaps
+ ↓
+Personalized Curriculum
+```
+
+The result is an attempt to make a learning path respond to the learner rather than forcing every learner through the same sequence.

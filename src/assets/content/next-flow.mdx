@@ -1,0 +1,249 @@
+# Next Flow
+
+Next Flow is a web app for building and running AI workflows visually. It turns multi-step AI operations into a node-based graph you assemble and explore through a UI, instead of hard-coding a sequence of API calls.
+
+The core idea is to separate **workflow design** from **workflow execution**. You work with a visual graph while the app handles persistence, authentication, background execution, media processing, and AI calls behind it.
+
+The frontend is Next.js and React, React Flow provides the visual graph layer, Prisma and PostgreSQL-compatible infrastructure handle persistence, Clerk handles authentication, Trigger.dev runs background workflow execution, Gemini provides AI, and Transloadit handles media/file processing.
+
+## Stack
+
+<table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+    <thead className="bg-muted">
+        <tr>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Technology
+            </th>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Role in Next Flow
+            </th>
+        </tr>
+    </thead>
+    <tbody className="divide-y divide-border bg-card text-card-foreground">
+        <tr>
+            <td className="px-4 py-2 font-medium">Next.js 16</td>
+            <td className="px-4 py-2">
+                Application framework: routing, server-side capabilities,
+                frontend runtime
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">React 19</td>
+            <td className="px-4 py-2">
+                Powers the interactive workflow editor and application UI
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">TypeScript</td>
+            <td className="px-4 py-2">
+                Static typing across workflow definitions, API contracts, state,
+                components, and integrations
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">
+                React Flow (@xyflow/react)
+            </td>
+            <td className="px-4 py-2">
+                Node-based canvas used to visualize and edit workflow graphs
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Tailwind CSS</td>
+            <td className="px-4 py-2">Styling system for the interface</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">shadcn/ui</td>
+            <td className="px-4 py-2">
+                Reusable UI primitives and application-level components
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Prisma</td>
+            <td className="px-4 py-2">
+                Relational database access and schema management
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Neon / PostgreSQL</td>
+            <td className="px-4 py-2">
+                Hosted relational persistence for application data
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Clerk</td>
+            <td className="px-4 py-2">
+                Authentication and user management, ties workflow data to
+                individual users
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Trigger.dev</td>
+            <td className="px-4 py-2">
+                Background execution for jobs that shouldn't depend on a
+                long-running browser request
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Gemini</td>
+            <td className="px-4 py-2">
+                AI model integration for workflow nodes that need generative
+                intelligence
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Transloadit (+ FFmpeg)</td>
+            <td className="px-4 py-2">
+                File uploads and media processing, FFmpeg runs inside the
+                Transloadit pipeline for media transforms
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Zod</td>
+            <td className="px-4 py-2">
+                Runtime validation for structured inputs and application data
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Zustand</td>
+            <td className="px-4 py-2">
+                Lightweight client-side state for the workflow/editor state
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+## Architecture
+
+```text
+                         Browser
+                            │
+                            ▼
+                  ┌──────────────────┐
+                  │   Next.js App    │
+                  │ React + UI       │
+                  └────────┬─────────┘
+                           │
+                  ┌────────▼─────────┐
+                  │ Workflow Editor  │
+                  │ React Flow       │
+                  └────────┬─────────┘
+                           │
+                           ▼
+                  ┌──────────────────┐
+                  │ Application/API  │
+                  │ Validation       │
+                  │ Persistence      │
+                  └───────┬────┬─────┘
+                          │    │
+                    Prisma│    │Jobs
+                          │    │
+                          ▼    ▼
+                    ┌────────┐ ┌────────────┐
+                    │Postgres│ │ Trigger.dev│
+                    │ / Neon │ │ Background │
+                    └────────┘ └─────┬──────┘
+                                     │
+                          ┌──────────┴─────────┐
+                          │                    │
+                       Gemini             Transloadit
+                       AI work             Media work
+```
+
+### Workflow lifecycle
+
+1. You create or open a workflow.
+2. Nodes are placed and connected in the React Flow editor.
+3. Workflow state lives in the browser and gets persisted through the application.
+4. A run request kicks off execution.
+5. Background work gets delegated to Trigger.dev.
+6. AI nodes talk to Gemini.
+7. Media nodes run through Transloadit/FFmpeg.
+8. Results come back to the application and show up in the workflow UI.
+
+## Project structure
+
+The repository is a fairly standard Next.js app, with the workflow editor, database layer, authentication, and execution integrations all living together.
+
+The one boundary that actually matters architecturally is the split between what the user is designing, what needs to survive a refresh, what a running workflow is doing right now, and what gets handed off to an outside service:
+
+<table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+    <thead className="bg-muted">
+        <tr>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                State
+            </th>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Description
+            </th>
+        </tr>
+    </thead>
+
+    <tbody className="divide-y divide-border bg-card text-card-foreground">
+        <tr>
+            <td className="px-4 py-2 font-medium">Editor state</td>
+            <td className="px-4 py-2">
+                What the user is currently designing
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Persistent state</td>
+            <td className="px-4 py-2">
+                What should survive a refresh or session
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Execution state</td>
+            <td className="px-4 py-2">
+                What a running workflow is currently doing
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">External processing</td>
+            <td className="px-4 py-2">
+                AI and media jobs handled by integrated services
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+## The workflow model
+
+A visual workflow is a directed graph:
+
+```text
+[Input]
+    │
+    ▼
+[Prompt / Data]
+    │
+    ▼
+[AI Node]
+    │
+    ├──────────────► [Transform]
+    │                      │
+    └──────────────► [Media]
+                           │
+                           ▼
+                        [Output]
+```
+
+Thinking of it as a graph means a workflow is a composition of independent steps, not one monolithic operation.
+
+## Local development
+
+```bash
+git clone https://github.com/aarabii/next-flow.git
+cd next-flow
+npm install
+npm run dev
+```
+
+Because the app touches authentication, the database, Trigger.dev, Gemini, and Transloadit, a local environment that actually behaves like production needs the matching environment variables and service credentials for each of those.
+
+## Design goals
+
+Next Flow is an exploration of what an AI workflow builder looks like when the workflow itself is a first-class visual object, not an afterthought bolted onto a settings page.
+
+Instead of making you understand API chaining, job queues, and media pipelines directly, the app exposes those capabilities as nodes and connections. That keeps the interface approachable without giving up the power of a programmable workflow system underneath.

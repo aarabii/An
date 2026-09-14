@@ -1,0 +1,286 @@
+# TestIQ
+
+TestIQ is a local AI-powered unit-test assistant for developers. It ingests a codebase, builds a searchable representation of it, retrieves the most relevant context for a target, generates unit tests with a local language model, validates them, and can explain failures or point out what's still undertested.
+
+The project is deliberately local-first. It uses Ollama for inference and embeddings instead of a cloud AI API, so your source code never has to leave your machine.
+
+The core idea is retrieval-augmented generation instead of dumping the whole codebase into an LLM. Tree-sitter extracts structural code context, ChromaDB stores searchable vectors, the retriever pulls relevant context, Ollama generates the tests, and Pytest acts as the validation layer.
+
+## Stack
+
+<table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+    <thead className="bg-muted">
+        <tr>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Technology
+            </th>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Role in TestIQ
+            </th>
+        </tr>
+    </thead>
+    <tbody className="divide-y divide-border bg-card text-card-foreground">
+        <tr>
+            <td className="px-4 py-2 font-medium">Python</td>
+            <td className="px-4 py-2">
+                Main implementation language for the CLI and AI/testing pipeline
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Typer</td>
+            <td className="px-4 py-2">
+                Command-line interface and command-oriented developer experience
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Tree-sitter</td>
+            <td className="px-4 py-2">
+                Parses source into an AST-like structure so TestIQ reads code,
+                not just text chunks
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">ChromaDB</td>
+            <td className="px-4 py-2">
+                Stores embeddings, provides local vector search for retrieving
+                relevant code context
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">LangChain</td>
+            <td className="px-4 py-2">
+                Wires retrieval, prompt, model, and embedding pieces into a RAG
+                pipeline
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Ollama</td>
+            <td className="px-4 py-2">
+                Runs the LLM and embedding models locally. Default config:{" "}
+                <code>gemma4:e2b</code> for generation,{" "}
+                <code>mxbai-embed-large</code> for embeddings
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">Pytest</td>
+            <td className="px-4 py-2">
+                Validates generated tests and feeds the self-correction loop
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2 font-medium">TOML config</td>
+            <td className="px-4 py-2">
+                Lets you configure local model providers and endpoints without
+                hard-coding anything
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+## Architecture
+
+```text
+                 ┌────────────────────┐
+                 │      Codebase      │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │ Tree-sitter Parser │
+                 │ AST / code chunks  │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │     Embeddings     │
+                 │ mxbai-embed-large  │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │     ChromaDB       │
+                 │  Local Vector DB   │
+                 └─────────┬──────────┘
+                           │
+                    Retrieval
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │     Ollama         │
+                 │    gemma4:e2b      │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │ Generated Tests    │
+                 └─────────┬──────────┘
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │      Pytest        │
+                 │     Validator      │
+                 └─────────┬──────────┘
+                           │
+                    failures / feedback
+                           │
+                           ▼
+                 ┌────────────────────┐
+                 │ Self-correction    │
+                 │ / improved tests   │
+                 └────────────────────┘
+```
+
+## RAG pipeline
+
+The most important architectural decision here is retrieving context before generation.
+
+1. **Indexing.** A codebase is handed to TestIQ with `testiq index ./my_project`, and source files get parsed into searchable representations.
+2. **Embedding.** The relevant code representations get embedded with the configured Ollama embedding model.
+3. **Storage.** Embeddings and their code context are stored locally in ChromaDB.
+4. **Retrieval.** When you ask for tests on a file, function, or directory, the retriever pulls the related code and context.
+5. **Generation.** That retrieved context goes to the local Ollama model.
+6. **Validation.** Generated tests run through Pytest. Failures feed back into improving the result.
+
+## Installation and running
+
+### Prerequisites
+
+Ollama needs to be installed and running locally.
+
+Start it:
+
+```bash
+ollama serve
+```
+
+Pull the required models:
+
+```bash
+ollama pull gemma4:e2b
+ollama pull mxbai-embed-large
+```
+
+### Install TestIQ
+
+```bash
+git clone https://github.com/aarabii/testiq.git
+cd testiq
+pip install -e .
+```
+
+### Configuration
+
+Create `testiq.config.toml` in the project root:
+
+```toml
+[llm]
+provider = "ollama"
+model = "gemma4:e2b"
+base_url = "http://localhost:11434"
+
+[embeddings]
+model = "mxbai-embed-large"
+base_url = "http://localhost:11434"
+```
+
+## Command guide
+
+<table className="w-full border border-border rounded-lg overflow-hidden text-sm">
+    <thead className="bg-muted">
+        <tr>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                Command
+            </th>
+            <th className="text-left font-medium text-muted-foreground px-4 py-2 border-b border-border">
+                What it does
+            </th>
+        </tr>
+    </thead>
+    <tbody className="divide-y divide-border bg-card text-card-foreground">
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq index ./my_project</code>
+            </td>
+            <td className="px-4 py-2">Indexes a project</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq show</code>
+            </td>
+            <td className="px-4 py-2">Shows indexed directories</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq generate ./my_project</code>
+            </td>
+            <td className="px-4 py-2">Generates tests for a whole directory</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq generate ./my_project/math_utils.py</code>
+            </td>
+            <td className="px-4 py-2">Generates tests for one file</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>
+                    testiq generate ./my_project/math_utils.py --function add
+                </code>
+            </td>
+            <td className="px-4 py-2">
+                Generates tests for a specific function
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq assume ./my_project/math_utils.py</code>
+            </td>
+            <td className="px-4 py-2">
+                Predicts likely happy paths, failure scenarios, and critical
+                points
+            </td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq explain ./tests/test_math_utils.py</code>
+            </td>
+            <td className="px-4 py-2">Explains why a test is failing</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq scan ./my_project</code>
+            </td>
+            <td className="px-4 py-2">Scans test coverage</td>
+        </tr>
+        <tr>
+            <td className="px-4 py-2">
+                <code>testiq run ./my_project</code>
+            </td>
+            <td className="px-4 py-2">Runs the generated tests</td>
+        </tr>
+    </tbody>
+</table>
+
+## Why local AI matters
+
+Source code is sensitive. Keeping both embeddings and generation on the local machine means the codebase never gets sent to a hosted inference API, and you're not stuck paying for cloud model credentials either.
+
+## The actual engineering problem
+
+Generating a syntactically correct test is easy. Generating a test that understands what the target project actually does is the hard part. TestIQ closes that gap by wrapping the model in retrieval and validation:
+
+```text
+Code Understanding
+       ↓
+Relevant Context
+       ↓
+Model Generation
+       ↓
+Executable Test
+       ↓
+Real Feedback
+       ↓
+Correction
+```
+
+That loop is what makes this a developer-tool pipeline rather than a prompt wrapper with extra steps.
