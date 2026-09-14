@@ -15,7 +15,9 @@ import {
 } from "@/components/ui/command";
 import { Kbd } from "@/components/ui/kbd";
 
-import { mainNav, moreNav, homeSections } from "@/constant";
+import { IoDocumentText } from "react-icons/io5";
+
+import { mainNav, moreNav, homeSections, projectNav } from "@/constant";
 import { useIsMac } from "@/hooks/useIsMac";
 
 interface CommandMenuProps {
@@ -120,6 +122,19 @@ export const CommandMenu = ({
                 </CommandGroup>
 
                 <CommandSeparator />
+
+                <CommandGroup heading="Projects">
+                    {projectNav.map((item) => (
+                        <CommandItem
+                            onSelect={() => handleNavigate(item.href)}
+                            key={item.href}
+                        >
+                            <IoDocumentText className="text-foreground/80" />
+                            <span className="text-foreground/80">projects</span>
+                            / <span>{item.label}</span>
+                        </CommandItem>
+                    ))}
+                </CommandGroup>
             </CommandList>
         </>
     );

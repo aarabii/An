@@ -87,3 +87,36 @@ export const homeSections: NavItem[] = [
     { label: "Blogs", href: "#blogs", type: "anchor" },
     { label: "Contact", href: "#contact", type: "anchor" },
 ];
+
+export const projectNav: NavItem[] = [
+    {
+        label: "KodaArc",
+        href: "/projects/kodaarc",
+        type: "route",
+    },
+    {
+        label: "NextFlow",
+        href: "/projects/next-flow",
+        type: "route",
+    },
+    {
+        label: "TestIQ",
+        href: "/projects/testiq",
+        type: "route",
+    },
+    {
+        label: "Ideascribe",
+        href: "/projects/ideascribe",
+        type: "route",
+    },
+    {
+        label: "VidyaMarg",
+        href: "/projects/vidya-marg",
+        type: "route",
+    },
+    {
+        label: "Orphia",
+        href: "/projects/orphia",
+        type: "route",
+    },
+];

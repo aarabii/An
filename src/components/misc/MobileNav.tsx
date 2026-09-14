@@ -16,7 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-import { mainNav, moreNav } from "@/constant";
+import { mainNav, moreNav, projectNav } from "@/constant";
 
 export const MobileNav = () => {
     const [open, setOpen] = useState(false);
@@ -109,6 +109,31 @@ export const MobileNav = () => {
                                     <item.icons className="size-4 text-muted-foreground" />
                                 )}
                                 <span>{item.label}</span>
+                            </Link>
+                        );
+                    })}
+
+                    <Separator className="my-2" />
+
+                    <p className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                        Projects
+                    </p>
+
+                    {projectNav.map((item) => {
+                        const isActive = pathname === item.href;
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => setOpen(false)}
+                                data-active={isActive || undefined}
+                                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-muted data-active:bg-muted data-active:font-medium"
+                            >
+                                <span className="text-foreground/80">
+                                    projects
+                                </span>
+                                / <span>{item.label}</span>
+                                {/*{item.label}*/}
                             </Link>
                         );
                     })}
