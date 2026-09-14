@@ -1,5 +1,5 @@
-import Container from "@/components/common/Container";
-import Title from "@/components/common/Title";
+import { Container, Title } from "@/components/common";
+
 import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
 import { SKILLS } from "@/constant";

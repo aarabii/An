@@ -1,7 +1,4 @@
-import Hero from "./_components/Hero";
-import About from "./_components/About";
-import Skills from "./_components/Skills";
-import Experience from "./_components/Experience";
+import { Hero, About, Skills, Experience } from "./_components";
 
 import RepeatSeparator from "../../components/ui/repeat-separator";
 import TopBanner from "@/components/misc/TopBanner";

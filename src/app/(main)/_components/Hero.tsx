@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Container from "@/components/common/Container";
+import { Container } from "@/components/common";
 import { PERSONAL_INFO } from "@/constant";
 import { Button } from "@/components/ui/button";
 import { Fragment } from "react/jsx-runtime";

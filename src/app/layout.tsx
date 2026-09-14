@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { oxaniumHeading, manrope, jetBrainMono } from "./font";
-import Navbar from "@/components/common/Navbar";
+import { Navbar, Footer } from "@/components/common";
 
 export const metadata: Metadata = {
     title: "Aarab Nishchal",
@@ -27,7 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <div className="relative mx-auto min-h-screen w-full max-w-178 border-x border-border">
                     <Navbar />
                     <main className="relative z-10 flex-1">{children}</main>
-                    {/* <Footer /> */}
+                    <Footer />
                 </div>
             </body>
         </html>

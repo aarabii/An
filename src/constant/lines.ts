@@ -1,4 +1,4 @@
-export const BANNER_LINES = [
+export const LINES = [
     {
         top: "Everyone is building a version of themselves to be seen.",
         main: "I am building the version that refuses to be seen and still wins.",

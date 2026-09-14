@@ -1,8 +1,7 @@
-import Container from "@/components/common/Container";
-import Title from "@/components/common/Title";
+import { Container, Title } from "@/components/common";
 
 import { EXPERIENCE } from "@/constant";
-import ExperienceCard from "@/components/cards/ExperienceCard";
+import { ExperienceCard } from "@/components/cards";
 
 const Experience = () => {
     return (

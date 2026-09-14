@@ -1,6 +1,5 @@
-import Container from "@/components/common/Container";
-import Title from "@/components/common/Title";
-import { HighlightedText } from "@/components/misc/HighlightedText";
+import { Container, Title } from "@/components/common";
+import { HighlightedText } from "@/components/misc";
 import { PERSONAL_INFO } from "@/constant";
 
 const About = () => {

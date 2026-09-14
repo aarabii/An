@@ -3,4 +3,4 @@ export * from "./navigation";
 export * from "./social";
 export * from "./skills";
 export * from "./experience";
-export * from "./banner";
+export * from "./lines";
