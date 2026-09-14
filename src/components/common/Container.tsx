@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
 
 interface ContainerProps {
-    id?: string;
-    children?: React.ReactNode;
+    id: string;
+    children: React.ReactNode;
     className?: string;
 }
 

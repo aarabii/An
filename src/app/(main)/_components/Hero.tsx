@@ -7,7 +7,10 @@ import { Fragment } from "react/jsx-runtime";
 
 const Hero = () => {
     return (
-        <Container className={`flex flex-col items-start justify-center`}>
+        <Container
+            id="#"
+            className={`flex flex-col items-start justify-center`}
+        >
             <div className="flex h-full w-full">
                 <div className="p-5">
                     <ImageDiv />
@@ -23,8 +26,8 @@ const Hero = () => {
 
 const ImageDiv = () => {
     return (
-        <div className="w-fit rounded-[9px] border p-[3.8px]">
-            <div className="box-border h-25 w-25 overflow-hidden rounded-xl border bg-neutral-200 object-cover p-1 select-none md:h-30 md:w-30">
+        <div className="w-fit rounded-xl border p-1">
+            <div className="box-border h-25 w-25 overflow-hidden rounded-lg border bg-primary object-cover p-1 select-none md:h-30 md:w-30">
                 <Image
                     src={PERSONAL_INFO.profile_image}
                     alt={PERSONAL_INFO.profile_image_alt}

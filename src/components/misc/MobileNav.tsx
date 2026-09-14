@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
@@ -21,6 +21,31 @@ import { mainNav, moreNav } from "@/constant";
 export const MobileNav = () => {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
+
+    // Lock page scroll only when the mobile sidebar menu is open
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
+        }
+
+        return () => {
+            document.body.style.overflow = "";
+        };
+    }, [open]);
+
+    // Auto-close menu if resized to desktop viewport
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setOpen(false);
+            }
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>

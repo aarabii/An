@@ -19,7 +19,7 @@ interface Social {
     icon: IconType;
 }
 
-export const socials = [
+export const SOCIALS = [
     {
         name: "GitHub",
         handle: "aarabii",

@@ -26,7 +26,7 @@ const Navbar = () => {
     return (
         <>
             <nav className="bg-background sticky top-0 isolate z-50 pt-1">
-                <Container>
+                <Container id="nav">
                     <div className="before:bg-border after:bg-border relative flex w-full items-center justify-between gap-2 px-4 py-3 before:absolute before:top-0 before:left-1/2 before:z-1 before:h-px before:w-screen before:-translate-x-1/2 before:content-[''] after:absolute after:bottom-0 after:left-1/2 after:z-1 after:h-px after:w-screen after:-translate-x-1/2 after:content-['']">
                         <Link href="/" className="flex items-center gap-2">
                             <Image
