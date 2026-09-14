@@ -15,7 +15,7 @@ const Skills = () => {
                             <Badge
                                 key={skillIdx}
                                 variant="outline"
-                                className="rounded-lg"
+                                className="rounded-lg font-mono text-sm m-2 p-3 flex flex-row items-center"
                                 style={{
                                     borderColor: `${skills.color}90`,
                                     backgroundColor: `${skills.color}10`,
