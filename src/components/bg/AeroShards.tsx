@@ -1601,7 +1601,7 @@ export default function AeroShards({
     const lightSurface =
         lightBackground * lightBackground * (3 - 2 * lightBackground);
 
-    settingsRef.current = {
+    const currentSettings = {
         background: resolvedBackground,
         shard: resolvedShardColor,
         highlight: mixColor(
@@ -1677,8 +1677,12 @@ export default function AeroShards({
             paused,
         ].join("|"),
     };
-    const settingsSignature = settingsRef.current.signature;
-    onErrorRef.current = onError;
+    const settingsSignature = currentSettings.signature;
+
+    useEffect(() => {
+        settingsRef.current = currentSettings;
+        onErrorRef.current = onError;
+    });
 
     useEffect(() => {
         wakeRef.current();
@@ -1699,6 +1703,7 @@ export default function AeroShards({
         let timeoutId = 0;
         let unsubscribeResize: (() => void) | undefined;
         let unsubscribeGpuError: (() => void) | undefined;
+        // eslint-disable-next-line prefer-const
         let visibilityObserver: IntersectionObserver | undefined;
         let resizeObserver: ResizeObserver | undefined;
         let visible = true;

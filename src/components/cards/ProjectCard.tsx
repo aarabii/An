@@ -3,7 +3,8 @@ import Image from "next/image";
 import { ExternalLink, BookOpen } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 
-import { type ProjectItem } from "@/constant/projects";
+import type { SanityProject } from "@/types/project";
+import { urlFor } from "@/sanity/lib/image";
 import {
     Card,
     CardHeader,
@@ -18,12 +19,19 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
-    project: ProjectItem;
+    project: SanityProject;
     className?: string;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
     const isWebsite = project.type === "website";
+
+    const imageUrl =
+        typeof project.image === "string"
+            ? project.image
+            : project.image
+              ? urlFor(project.image).width(720).height(405).quality(85).url()
+              : null;
 
     return (
         <Card
@@ -39,13 +47,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
                     className="block overflow-hidden rounded-md"
                 >
                     <div className="relative aspect-video w-full overflow-hidden rounded-md border border-border/50 bg-muted/40">
-                        <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            sizes="(min-width: 768px) 50vw, 100vw"
-                            className="object-cover object-top transition-transform duration-300 ease-out group-hover/card:scale-[1.03]"
-                        />
+                        {imageUrl ? (
+                            <Image
+                                src={imageUrl}
+                                alt={project.title}
+                                fill
+                                sizes="(min-width: 768px) 50vw, 100vw"
+                                className="object-cover object-top transition-transform duration-300 ease-out group-hover/card:scale-[1.03]"
+                            />
+                        ) : (
+                            <div className="flex h-full w-full items-center justify-center font-mono text-xs text-muted-foreground">
+                                No preview available
+                            </div>
+                        )}
                     </div>
                 </Link>
             </div>
