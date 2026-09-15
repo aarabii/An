@@ -31,9 +31,9 @@ export default function Home() {
       <RepeatSeparator />
       <Blogs />
       <RepeatSeparator />
-      <Quotes />
-      <RepeatSeparator />
       <Contact />
+      <RepeatSeparator />
+      <Quotes />
       <RepeatSeparator />
     </main>
   );
