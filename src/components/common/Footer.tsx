@@ -31,7 +31,7 @@ const Footer = () => {
                     href={item.href}
                     className="group -mx-2.5 flex items-center rounded-sm px-2.5 py-1 text-sm text-muted-foreground transition-all duration-200 ease-out hover:bg-muted/40 hover:pl-4 hover:text-foreground hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                   >
-                    <span className="font-sans">{item.label}</span>
+                    <span className="font-para">{item.label}</span>
                   </Link>
                 </li>
               ))}

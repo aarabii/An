@@ -3,7 +3,7 @@ import "@/app/globals.css";
 
 import { cn } from "@/lib/utils";
 
-import { oxaniumHeading, manrope, jetBrainMono } from "@/app/font";
+import { oxaniumHeading, manrope, jetBrainMono, lora } from "@/app/font";
 import { Navbar, Footer } from "@/components/common";
 
 export const metadata: Metadata = {
@@ -24,7 +24,7 @@ export default function MainLayout({
         oxaniumHeading.variable,
         manrope.variable,
         jetBrainMono.variable,
-        "font-sans",
+        lora.variable,
       )}
     >
       <body className="min-h-full flex flex-col">

@@ -11,7 +11,7 @@ const Container: React.FC<ContainerProps> = ({ children, className, id }) => {
     <section
       id={id}
       className={cn(
-        "container mx-auto md:max-w-178 px-2 font-sans md:px-0",
+        "container mx-auto md:max-w-178 px-2 font-para md:px-0",
         className,
       )}
     >
