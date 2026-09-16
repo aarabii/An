@@ -211,3 +211,6 @@ export async function getAllProjectSlugs(): Promise<string[]> {
     );
     return results.map((r) => r.slug).filter(Boolean);
 }
+
+// ---------------------- Bookmark Queries ----------------------
+export * from "./queries/bookmarks";

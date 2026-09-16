@@ -10,13 +10,13 @@ const ILove = () => {
         <LinkCard
           href="/recommendations"
           icon={BookOpen}
-          label="Recommendations"
+          label="Things worth sharing"
           hint="Books, games, and things worth your time."
         />
         <LinkCard
           href="/bookmarks"
           icon={Bookmark}
-          label="Bookmarks"
+          label="Things I didn't want to lose"
           hint="Links I keep coming back to."
         />
       </div>
@@ -31,7 +31,9 @@ const LinkCard = ({
   hint,
 }: {
   href: string;
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement> & { "data-icon"?: string }>;
+  icon: React.ComponentType<
+    React.SVGProps<SVGSVGElement> & { "data-icon"?: string }
+  >;
   label: string;
   hint: string;
 }) => {
@@ -46,9 +48,7 @@ const LinkCard = ({
 
       <div className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="font-heading text-sm text-foreground">{label}</span>
-        <span className="font-para text-xs text-muted-foreground">
-          {hint}
-        </span>
+        <span className="font-para text-xs text-muted-foreground">{hint}</span>
       </div>
 
       <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground" />

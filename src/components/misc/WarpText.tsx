@@ -683,7 +683,7 @@ const WarpText = ({
   return (
     <div
       ref={containerRef}
-      className={`relative block min-h-[220px] w-full overflow-hidden isolate ${className}`.trim()}
+      className={`relative block min-h-55 w-full overflow-hidden isolate ${className}`.trim()}
       style={style}
       role="img"
       aria-label={text}

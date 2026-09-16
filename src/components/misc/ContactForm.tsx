@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { ArrowLeft, ArrowRight, Check, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface FormData {
   name: string;
@@ -22,10 +23,16 @@ export const ContactForm = () => {
   });
   const [error, setError] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
     if (step <= 4) {
-      inputRef.current?.focus();
+      inputRef.current?.focus({ preventScroll: true });
     }
   }, [step]);
 
@@ -100,8 +107,8 @@ export const ContactForm = () => {
             Message Prepared
           </h4>
           <p className="font-para text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto">
-            Thanks, {formData.name.split(" ")[0]}! Send handler is ready for
-            integration.
+            Thanks, {formData.name.split(" ")[0]}! We will get back to you
+            soon...
           </p>
         </div>
         <Button
@@ -179,12 +186,12 @@ export const ContactForm = () => {
       </div>
 
       {/* Active Question Prompt */}
-      <label
+      <Label
         htmlFor={`contact-input-${step}`}
         className="font-heading text-base sm:text-xl font-semibold text-foreground transition-all duration-200"
       >
         {current.title}
-      </label>
+      </Label>
 
       {/* Minimalist Full-Width Underline Input Dock */}
       <div className="flex items-end gap-3 border-b border-border/70 pb-2 focus-within:border-foreground transition-colors duration-200">
@@ -203,6 +210,7 @@ export const ContactForm = () => {
           onKeyDown={handleKeyDown}
           placeholder={current.placeholder}
           aria-invalid={!!error}
+          autoFocus={false}
           className="flex-1 bg-transparent py-1 font-para text-base sm:text-lg text-foreground placeholder:text-muted-foreground/40 focus:outline-none "
         />
 
