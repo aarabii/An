@@ -1,6 +1,22 @@
 import { defineField, defineType } from "sanity";
 import { BookIcon } from "@sanity/icons";
 
+export interface Book {
+  _id: string;
+  title: string;
+  coverImage?: {
+    _type: "image";
+    asset: {
+      _ref: string;
+      _type: "reference";
+    };
+    alt?: string;
+  };
+  description: string;
+  link: string;
+  _createdAt?: string;
+}
+
 export const bookType = defineType({
   name: "book",
   title: "Book Recommendation",

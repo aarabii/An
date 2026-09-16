@@ -214,3 +214,7 @@ export async function getAllProjectSlugs(): Promise<string[]> {
 
 // ---------------------- Bookmark Queries ----------------------
 export * from "./queries/bookmarks";
+
+// ---------------------- Recommendation Queries (Games & Books) ----------------------
+export * from "./queries/recommendations";
+
