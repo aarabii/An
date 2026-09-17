@@ -59,7 +59,7 @@ export const mainNav: NavItem[] = [
     shortcut: "v",
     shift: true,
   },
-];
+] satisfies NavItem[];
 
 export const moreNav: NavItem[] = [
   {
@@ -77,7 +77,12 @@ export const moreNav: NavItem[] = [
     shortcut: "m",
     shift: true,
   },
-];
+] satisfies NavItem[];
+
+export const recommendationsNav: NavItem[] = [
+  { label: "Games", href: "/recommendations/games", type: "route" },
+  { label: "Books", href: "/recommendations/books", type: "route" },
+] satisfies NavItem[];
 
 export const homeSections: NavItem[] = [
   { label: "About", href: "#about", type: "anchor" },
@@ -86,37 +91,48 @@ export const homeSections: NavItem[] = [
   { label: "Projects", href: "#projects", type: "anchor" },
   { label: "Blogs", href: "#blogs", type: "anchor" },
   { label: "Contact", href: "#contact", type: "anchor" },
-];
+] satisfies NavItem[];
 
-export const projectNav: NavItem[] = [
-  {
-    label: "KodaArc",
-    href: "/projects/kodaarc",
-    type: "route",
-  },
-  {
-    label: "NextFlow",
-    href: "/projects/next-flow",
-    type: "route",
-  },
-  {
-    label: "TestIQ",
-    href: "/projects/testiq",
-    type: "route",
-  },
-  {
-    label: "Ideascribe",
-    href: "/projects/ideascribe",
-    type: "route",
-  },
-  {
-    label: "VidyaMarg",
-    href: "/projects/vidya-marg",
-    type: "route",
-  },
-  {
-    label: "Orphia",
-    href: "/projects/orphia",
-    type: "route",
-  },
-];
+import { getFeaturedProjects, getFeaturedBlogs } from "@/sanity/lib/queries";
+
+/**
+ * Dynamically fetches all featured projects and returns them as navigation items.
+ */
+export async function getProjectNav(): Promise<NavItem[]> {
+  try {
+    const projects = await getFeaturedProjects();
+    if (!projects || projects.length === 0) return [];
+    return projects.map((project) => ({
+      label: project.title,
+      href: `/projects/${project.slug}`,
+      type: "route",
+    }));
+  } catch (error) {
+    console.error("Error loading dynamic project navigation:", error);
+    return [];
+  }
+}
+
+/**
+ * Dynamically fetches all featured blogs and returns them as navigation items.
+ */
+export async function getBlogNav(): Promise<NavItem[]> {
+  try {
+    const blogs = await getFeaturedBlogs();
+    if (!blogs || blogs.length === 0) return [];
+    return blogs.map((blog) => ({
+      label: blog.title,
+      href: `/blogs/${blog.slug}`,
+      type: "route",
+    }));
+  } catch (error) {
+    console.error("Error loading dynamic blog navigation:", error);
+    return [];
+  }
+}
+
+/**
+ * Backward compatibility aliases for dynamic navigation functions
+ */
+export const projectNav = getProjectNav;
+export const blogNav = getBlogNav;
