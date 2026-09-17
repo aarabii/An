@@ -13,14 +13,19 @@ interface GamesSectionProps {
 
 export const GamesSection: React.FC<GamesSectionProps> = ({ games }) => {
   return (
-    <div className="flex flex-col gap-6 py-8 md:py-12">
+    <div className="flex flex-col gap-6">
       {/* Title Header with Top Action Button */}
       <Title heading="Games" className="mb-2">
         <Button
           nativeButton={false}
           variant="outline"
           size="sm"
-          render={<Link className="flex items-center gap-1.5" href="/recommendations/games" />}
+          render={
+            <Link
+              className="flex items-center gap-1.5"
+              href="/recommendations/games"
+            />
+          }
         >
           <span>View all games</span>
           <ArrowRight className="size-3.5 shrink-0" />
