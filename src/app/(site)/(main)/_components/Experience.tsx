@@ -7,7 +7,7 @@ const Experience = () => {
   return (
     <Container id="experience">
       <Title heading="Places I've worked" />
-      <div className="space-y-8 p-5 sm:p-8">
+      <div className="space-y-6">
         {EXPERIENCE.map((item, index) => (
           <ExperienceCard
             key={`exp-${item.id}`}

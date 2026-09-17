@@ -70,7 +70,7 @@ export const MobileNav = () => {
                     </SheetDescription>
                 </SheetHeader>
 
-                <nav className="flex flex-col gap-0.5 px-4 pb-4">
+                <nav className="flex flex-col gap-1 px-6 pb-6">
                     {mainNav.map((item) => {
                         const isActive = pathname === item.href;
                         return (
@@ -79,7 +79,7 @@ export const MobileNav = () => {
                                 href={item.href}
                                 onClick={() => setOpen(false)}
                                 data-active={isActive || undefined}
-                                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-muted data-active:bg-muted data-active:font-medium"
+                                className="flex items-center gap-3 rounded-md px-3 py-3 font-para text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:text-accent-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                                 {item.icons && (
                                     <item.icons className="size-4 text-muted-foreground" />
@@ -91,7 +91,7 @@ export const MobileNav = () => {
 
                     <Separator className="my-2" />
 
-                    <p className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                    <p className="px-3 py-1.5 font-heading text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                         More
                     </p>
 
@@ -103,7 +103,7 @@ export const MobileNav = () => {
                                 href={item.href}
                                 onClick={() => setOpen(false)}
                                 data-active={isActive || undefined}
-                                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-muted data-active:bg-muted data-active:font-medium"
+                                className="flex items-center gap-3 rounded-md px-3 py-3 font-para text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:text-accent-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
                                 {item.icons && (
                                     <item.icons className="size-4 text-muted-foreground" />
@@ -115,7 +115,7 @@ export const MobileNav = () => {
 
                     <Separator className="my-2" />
 
-                    <p className="px-3 py-1.5 text-xs font-medium text-muted-foreground">
+                    <p className="px-3 py-1.5 font-heading text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                         Projects
                     </p>
 
@@ -127,13 +127,12 @@ export const MobileNav = () => {
                                 href={item.href}
                                 onClick={() => setOpen(false)}
                                 data-active={isActive || undefined}
-                                className="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-colors hover:bg-muted data-active:bg-muted data-active:font-medium"
+                                className="flex items-center gap-3 rounded-md px-3 py-3 font-para text-sm font-medium text-muted-foreground transition-colors duration-150 hover:bg-accent hover:text-accent-foreground data-active:bg-accent data-active:text-accent-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                             >
-                                <span className="text-foreground/80">
+                                <span className="text-muted-foreground">
                                     projects
                                 </span>
                                 / <span>{item.label}</span>
-                                {/*{item.label}*/}
                             </Link>
                         );
                     })}

@@ -12,13 +12,13 @@ const AllBlogs: React.FC<AllBlogsProps> = ({ blogs }) => {
       <Title heading="All Blogs" />
 
       {blogs.length === 0 ? (
-        <div className="flex min-h-48 items-center justify-center p-8 sm:p-12">
-          <p className="font-mono text-sm text-muted-foreground">
-            No blog available
+        <div className="flex min-h-48 items-center justify-center py-12 text-center">
+          <p className="font-para text-sm text-muted-foreground">
+            No blogs available
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 p-5 sm:gap-6 sm:p-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
           {blogs.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}

@@ -17,12 +17,12 @@ export function HighlightedText({
         <>
             {parts.map((part, i) =>
                 highlights.includes(part) ? (
-                    <b
+                    <strong
                         key={i}
-                        className="font-mono text-primary/90 underline underline-offset-2"
+                        className="font-semibold text-foreground underline decoration-border underline-offset-4"
                     >
                         {part}
-                    </b>
+                    </strong>
                 ) : (
                     part
                 ),

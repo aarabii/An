@@ -28,21 +28,21 @@ export const ContactEmail = () => {
       <button
         type="button"
         onClick={handleCopy}
-        className="group -mx-2 flex w-[calc(100%+1rem)] items-center justify-between rounded-lg p-2 text-left transition-all duration-200 cursor-pointer select-none hover:bg-muted/40 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+        className="group -mx-2 flex w-[calc(100%+1rem)] items-center justify-between gap-4 rounded-md p-2 text-left transition-colors duration-150 cursor-pointer select-none hover:bg-muted/40 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         aria-label={copied ? "Email copied to clipboard" : "Copy email address"}
       >
-        <span className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground transition-colors duration-200 group-hover:text-muted-foreground">
+        <span className="font-heading text-3xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-foreground break-all">
           {email}
         </span>
 
-        <div className="flex items-center gap-2 text-muted-foreground transition-colors group-hover:text-foreground">
+        <div className="flex shrink-0 items-center gap-2 text-muted-foreground transition-colors duration-150 group-hover:text-foreground">
           <span className="font-mono text-xs tracking-wider uppercase hidden sm:inline">
             {copied ? "Copied!" : "Copy"}
           </span>
           {copied ? (
-            <Check className="size-5 sm:size-7 text-emerald-400" />
+            <Check className="size-5 sm:size-6 text-success" />
           ) : (
-            <ArrowUpRight className="size-5 sm:size-7 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="size-5 sm:size-6" />
           )}
         </div>
       </button>

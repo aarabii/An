@@ -243,6 +243,7 @@ const buildTextCanvas = ({
     pointerEvents: "none",
     whiteSpace: "pre",
     inset: "0 auto auto 0",
+    color: props.color || "var(--color-foreground)",
     fontFamily: props.fontFamily,
     fontSize: getFontValue(props.fontSize),
     fontWeight: String(props.fontWeight),
@@ -254,6 +255,7 @@ const buildTextCanvas = ({
   });
   container.appendChild(probe);
   const computed = window.getComputedStyle(probe);
+  const resolvedColor = computed.color || props.color;
   let fontSizePx = parseFloat(computed.fontSize) || 96;
   const fontFamily = computed.fontFamily || "font-serif";
   const fontWeight = computed.fontWeight || String(props.fontWeight);
@@ -273,7 +275,7 @@ const buildTextCanvas = ({
   ctx.clearRect(0, 0, width, height);
   ctx.textAlign = "left";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = props.color;
+  ctx.fillStyle = resolvedColor;
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = "high";
 
@@ -342,7 +344,7 @@ const syncUniforms = (program: Program, props: RuntimeProps): void => {
 
 const WarpText = ({
   text = "Bend the moment",
-  color = "#f8f5ff",
+  color = "var(--color-foreground)",
   warpStrength = 0.08,
   warpScale = 1.7,
   speed = 0.55,

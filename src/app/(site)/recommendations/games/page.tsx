@@ -28,14 +28,15 @@ export default async function GamesPage() {
       <RepeatSeparator />
 
       {/* Main Container */}
-      <Container id="games-archive" className="py-4 sm:py-6">
+      <Container id="games-archive">
         <Title heading="Games Archive" />
 
-        <div className="px-5 py-4 sm:px-8 md:px-10 sm:py-6">
-          <p className="font-para text-xs/relaxed sm:text-sm text-muted-foreground">
-            A comprehensive catalog of games I&apos;ve experienced over the years.
-            Ranked and organized into tiers ranging from all-time GOAT titles to
-            noteworthy achievements in game design, narrative storytelling, and artistic execution.
+        <div className="max-w-prose mb-8 md:mb-12">
+          <p className="font-para text-sm text-muted-foreground leading-relaxed">
+            A comprehensive catalog of games I&apos;ve experienced over the
+            years. Ranked and organized into tiers ranging from all-time GOAT
+            titles to noteworthy achievements in game design, narrative
+            storytelling, and artistic execution.
           </p>
         </div>
 

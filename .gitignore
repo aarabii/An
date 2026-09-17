@@ -25,6 +25,7 @@
 *.pem
 
 /_local/
+/_agent/
 
 # debug
 npm-debug.log*

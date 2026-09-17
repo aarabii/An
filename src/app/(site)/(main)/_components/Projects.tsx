@@ -20,18 +20,16 @@ const Projects = async () => {
           nativeButton={false}
           variant="outline"
           size="sm"
-          className="group p-2"
-          render={<Link className="flex items-center gap-1" href="/projects" />}
+          render={
+            <Link className="flex items-center gap-1.5" href="/projects" />
+          }
         >
           View all projects
-          <ArrowUpRight
-            data-icon="inline-end"
-            className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
+          <ArrowUpRight data-icon="inline-end" className="size-4 shrink-0" />
         </Button>
       </Title>
 
-      <div className="grid grid-cols-1 gap-4 p-5 sm:gap-6 sm:p-8 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-8">
         {projects.map((project) => (
           <ProjectCard key={project._id || project.slug} project={project} />
         ))}

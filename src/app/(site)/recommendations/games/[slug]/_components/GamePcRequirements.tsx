@@ -90,10 +90,10 @@ export const GamePcRequirements: React.FC<GamePcRequirementsProps> = ({ pcReq })
   if (!hasMin && !hasRec) return null;
 
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-border/60 bg-card/40 p-5 sm:p-7 shadow-xs">
+    <div className="flex flex-col gap-4 rounded-lg border border-border bg-card p-6 shadow-sm">
       {/* Header */}
       <div className="flex items-center gap-2">
-        <Monitor className="size-4 text-primary" />
+        <Monitor className="size-4 text-muted-foreground" />
         <h3 className="font-heading text-base font-semibold text-foreground sm:text-lg">
           System Requirements
         </h3>
@@ -101,12 +101,12 @@ export const GamePcRequirements: React.FC<GamePcRequirementsProps> = ({ pcReq })
 
       {hasMin && hasRec ? (
         <Tabs defaultValue="min" className="w-full">
-          <TabsList className="bg-secondary/50 p-1">
+          <TabsList className="bg-muted p-1">
             <TabsTrigger value="min" className="gap-1.5 font-mono text-xs">
-              <Cpu className="size-3" /> Minimum
+              <Cpu className="size-3.5" /> Minimum
             </TabsTrigger>
             <TabsTrigger value="rec" className="gap-1.5 font-mono text-xs">
-              <Monitor className="size-3" /> Recommended
+              <Monitor className="size-3.5" /> Recommended
             </TabsTrigger>
           </TabsList>
 

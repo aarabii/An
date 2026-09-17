@@ -8,7 +8,7 @@ const Contact = () => {
     <Container id="contact">
       <Title heading="Let's Talk" />
 
-      <div className="flex flex-col gap-10 px-5 py-8 sm:gap-12 sm:px-8 sm:py-12">
+      <div className="flex flex-col gap-4 sm:gap-6">
         {/* Section 1: Full-Width Email Bar with Click-to-Copy */}
         <ContactEmail />
 
@@ -35,14 +35,16 @@ const Contact = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group -mx-2.5 flex items-center gap-2 rounded-sm px-2 py-1 text-sm text-muted-foreground transition-all duration-200 ease-out hover:bg-muted/40 hover:pl-4 hover:text-foreground underline-offset-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    className="group flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm font-para text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                   >
                     <Icon
-                      className="size-3.5 shrink-0 text-muted-foreground/70 transition-colors duration-200 group-hover:text-foreground"
+                      className="size-4 shrink-0 text-muted-foreground transition-colors duration-150 group-hover:text-foreground"
                       aria-hidden="true"
                     />
-                    /
-                    <span className="font-mono text-xs group-hover:underline">
+                    <span className="text-muted-foreground/60 select-none">
+                      /
+                    </span>
+                    <span className="font-mono text-xs truncate">
                       @{social.handle}
                     </span>
                     <span className="sr-only"> (opens in a new tab)</span>

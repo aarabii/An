@@ -56,7 +56,7 @@ const PageNav: React.FC<PageNavProps> = ({ items, className }) => {
   return (
     <Container
       id="page-nav"
-      className={cn("px-6 sm:px-10 py-4 font-mono text-xs", className)}
+      className={cn("py-4 font-mono text-xs", className)}
     >
       <Breadcrumb>
         <BreadcrumbList>

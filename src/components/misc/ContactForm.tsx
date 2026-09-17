@@ -98,8 +98,8 @@ export const ContactForm = () => {
 
   if (step === 5) {
     return (
-      <div className="flex w-full flex-col items-center justify-center text-center py-8 gap-3 animate-in fade-in-50 duration-300">
-        <div className="flex size-11 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+      <div className="flex w-full flex-col items-center justify-center text-center py-8 gap-3 animate-in fade-in-50 duration-150">
+        <div className="flex size-11 items-center justify-center rounded-full bg-success/10 text-success border border-success/20">
           <Check className="size-5" />
         </div>
         <div className="space-y-1">
@@ -115,7 +115,7 @@ export const ContactForm = () => {
           variant="outline"
           size="sm"
           onClick={handleReset}
-          className="mt-3 font-mono text-xs active:scale-95"
+          className="mt-3 font-mono text-xs"
         >
           Send another message
         </Button>
@@ -165,12 +165,12 @@ export const ContactForm = () => {
             <Button
               type="button"
               variant="ghost"
-              size="icon-xs"
+              size="icon"
               onClick={handleBack}
               aria-label="Previous step"
-              className="size-6 text-muted-foreground hover:text-foreground active:scale-95"
+              className="size-8 text-muted-foreground hover:text-foreground"
             >
-              <ArrowLeft className="size-3" />
+              <ArrowLeft className="size-4" />
             </Button>
           )}
           <span className="font-heading text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -188,13 +188,13 @@ export const ContactForm = () => {
       {/* Active Question Prompt */}
       <Label
         htmlFor={`contact-input-${step}`}
-        className="font-heading text-base sm:text-xl font-semibold text-foreground transition-all duration-200"
+        className="font-heading text-base sm:text-xl font-semibold text-foreground transition-colors duration-150"
       >
         {current.title}
       </Label>
 
       {/* Minimalist Full-Width Underline Input Dock */}
-      <div className="flex items-end gap-3 border-b border-border/70 pb-2 focus-within:border-foreground transition-colors duration-200">
+      <div className="flex items-end gap-3 border-b border-border pb-2 focus-within:border-foreground transition-colors duration-150">
         <Input
           ref={inputRef}
           id={`contact-input-${step}`}
@@ -211,16 +211,16 @@ export const ContactForm = () => {
           placeholder={current.placeholder}
           aria-invalid={!!error}
           autoFocus={false}
-          className="flex-1 bg-transparent py-1 font-para text-base sm:text-lg text-foreground placeholder:text-muted-foreground/40 focus:outline-none "
+          className="flex-1 bg-transparent py-1 font-mono text-base tracking-widest sm:text-lg text-foreground placeholder:text-muted-foreground/40 border-0 rounded-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
         />
 
         <Button
           type="button"
-          size="icon-sm"
+          size="icon"
           variant={step === 4 ? "default" : "secondary"}
           onClick={handleNext}
           aria-label={step === 4 ? "Prepare message" : "Next step"}
-          className="size-8 shrink-0 cursor-pointer transition-transform duration-150 active:scale-95"
+          className="size-8 shrink-0 cursor-pointer"
         >
           {step === 4 ? (
             <Send className="size-4" />
@@ -234,7 +234,7 @@ export const ContactForm = () => {
       {error && (
         <p
           role="alert"
-          className="font-mono text-xs text-destructive animate-in fade-in-50 duration-150 pt-0.5"
+          className="font-para text-sm text-destructive animate-in fade-in-50 duration-150 mt-1"
         >
           {error}
         </p>

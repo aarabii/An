@@ -25,10 +25,16 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-background sticky top-0 isolate z-50 pt-1">
-        <Container id="nav">
-          <div className="before:bg-border after:bg-border relative flex w-full items-center justify-between gap-2 px-4 py-3 before:absolute before:top-0 before:left-1/2 before:z-1 before:h-px before:w-screen before:-translate-x-1/2 before:content-[''] after:absolute after:bottom-0 after:left-1/2 after:z-1 after:h-px after:w-screen after:-translate-x-1/2 after:content-['']">
-            <Link href="/" className="flex items-center gap-2">
+      <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-xs supports-backdrop-filter:bg-background/80">
+        <section
+          id="nav"
+          className="mx-auto max-w-4xl px-2 sm:px-4 lg:px-6 font-para"
+        >
+          <div className="flex h-16 w-full items-center justify-between gap-4">
+            <Link
+              href="/"
+              className="flex items-center gap-2 rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
               <Image
                 src="/images/logo.svg"
                 alt={`${PERSONAL_INFO.firstName} logo`}
@@ -36,29 +42,29 @@ const Navbar = () => {
                 height={24}
                 className="size-6"
               />
-              <span className="font-heading text-lg uppercase tracking-wide">
+              <span className="font-heading text-lg font-semibold tracking-tight text-foreground">
                 {PERSONAL_INFO.firstName}.
               </span>
             </Link>
 
-            <div className="hidden items-center gap-3 md:flex">
+            <div className="hidden items-center gap-4 md:flex">
               <Link
                 href="/resume"
-                className="text-sm font-light underline-offset-5 hover:underline"
+                className="rounded-sm font-para text-sm font-medium text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               >
                 Resume
               </Link>
 
-              <span className="bg-border h-4 w-px" />
+              <span className="h-4 w-px bg-border" />
 
               <Button
                 onClick={() => setCommandOpen(true)}
                 variant="outline"
                 size="sm"
-                className="cursor-pointer rounded-full"
+                className="gap-2 font-mono text-xs text-muted-foreground hover:text-foreground"
               >
-                <Search data-icon="inline-start" />
-                {isMac ? "⌘" : "Ctrl"} + K
+                <Search className="size-3.5" />
+                <span>{isMac ? "⌘" : "Ctrl"} + K</span>
               </Button>
             </div>
 
@@ -66,7 +72,7 @@ const Navbar = () => {
               <MobileNav />
             </div>
           </div>
-        </Container>
+        </section>
       </nav>
 
       <CommandMenu

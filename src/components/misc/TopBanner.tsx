@@ -137,9 +137,9 @@ export const TopBanner: React.FC<TopBannerProps> = ({
     topTag = "p",
     topText = DEFAULT_TOP_TEXT,
     mainText = DEFAULT_MAIN_TEXT,
-    backgroundColor = "#000000",
-    shardColor = "#896ABD",
-    accentColor = "#A855F7",
+    backgroundColor = "#09090b",
+    shardColor = "#52525b",
+    accentColor = "#a1a1aa",
 }) => {
     const [gpuFailed, setGpuFailed] = useState(false);
 
@@ -193,7 +193,7 @@ export const TopBanner: React.FC<TopBannerProps> = ({
                         text={topText}
                         maxFontSize={15}
                         minFontSize={9}
-                        className="font-para text-muted-foreground tracking-normal text-center drop-shadow-md"
+                        className="font-para text-muted-foreground tracking-normal text-center"
                     />
 
                     {/* Main line (h2 tag) */}
@@ -202,7 +202,7 @@ export const TopBanner: React.FC<TopBannerProps> = ({
                         text={mainText}
                         maxFontSize={28}
                         minFontSize={12}
-                        className="font-heading font-bold text-foreground tracking-tight text-center drop-shadow-lg"
+                        className="font-heading font-bold text-foreground tracking-tight text-center"
                     />
                 </div>
             </div>

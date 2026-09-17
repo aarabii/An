@@ -6,19 +6,14 @@ const About = () => {
   return (
     <Container id="about">
       <Title heading="A Little About Me" />
-      <div className="space-y-5 p-8">
-        <div className="flex flex-wrap items-center gap-x-1 gap-y-2 text-base font-para text-primary/80 whitespace-pre-wrap md:text-base">
-          <ul className="list-disc space-y-2">
-            {PERSONAL_INFO.about.map((item, i) => (
-              <li key={i}>
-                <HighlightedText
-                  text={item.text}
-                  highlights={item.highlights}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="max-w-prose">
+        <ul className="list-disc pl-5 space-y-3 text-base font-para text-foreground leading-relaxed">
+          {PERSONAL_INFO.about.map((item, i) => (
+            <li key={i} className="pl-1">
+              <HighlightedText text={item.text} highlights={item.highlights} />
+            </li>
+          ))}
+        </ul>
       </div>
     </Container>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Globe, ExternalLink } from "lucide-react";
-import { FaSteam, FaCrown } from "react-icons/fa6";
+import { Globe, ExternalLink, Crown } from "lucide-react";
+import { FaSteam } from "react-icons/fa6";
 
 import type { Game } from "@/sanity/schemaTypes/gameType";
 import { urlFor } from "@/sanity/lib/image";
@@ -16,13 +16,13 @@ interface GameHeroProps {
 const getCategoryColor = (category?: string) => {
   switch (category) {
     case "GOAT":
-      return "border-amber-500/40 bg-amber-500/10 text-amber-400";
+      return "border-chart-1/30 bg-chart-1/10 text-chart-1";
     case "Hall of Fame":
-      return "border-purple-500/40 bg-purple-500/10 text-purple-300";
+      return "border-border bg-secondary text-secondary-foreground";
     case "Pretty Good":
-      return "border-emerald-500/40 bg-emerald-500/10 text-emerald-300";
+      return "border-border bg-muted text-muted-foreground";
     case "Why Did I Play This":
-      return "border-rose-500/40 bg-rose-500/10 text-rose-300";
+      return "border-destructive/30 bg-destructive/10 text-destructive";
     default:
       return "border-border text-muted-foreground";
   }
@@ -51,7 +51,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
     <div className="flex flex-col gap-6">
       {/* Title & Category Badge */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="font-heading text-2xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <h1 className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           {game.name}
         </h1>
 
@@ -59,12 +59,12 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
           <Badge
             variant="outline"
             className={cn(
-              "w-fit font-mono text-xs px-2.5 py-1",
+              "w-fit font-mono text-xs px-2.5 py-1 gap-1.5",
               getCategoryColor(game.category)
             )}
           >
             {game.category === "GOAT" && (
-              <FaCrown className="mr-1.5 size-3 text-amber-400" />
+              <Crown className="size-3 text-chart-1" />
             )}
             {game.category}
           </Badge>
@@ -73,8 +73,8 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
 
       {/* Cinematic Framed Cover Image */}
       {imageUrl && (
-        <div className="overflow-hidden rounded-2xl border border-border/80 bg-card/60 p-2 sm:p-3 shadow-md">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted/40 shadow-inner">
+        <div className="overflow-hidden rounded-xl border border-border bg-card p-2 sm:p-3 shadow-md">
+          <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted select-none">
             <Image
               src={imageUrl}
               alt={game.name}
@@ -90,7 +90,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
       {/* Developer / Publisher Single Line */}
       {devPub && (
         <div className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-          <span className="text-foreground/60 uppercase tracking-wider text-[0.6875rem]">Credits:</span>
+          <span className="text-muted-foreground uppercase tracking-wider text-[0.6875rem]">Credits:</span>
           <span className="text-foreground font-medium">{devPub}</span>
         </div>
       )}
@@ -103,7 +103,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
             <Badge
               key={genre}
               variant="outline"
-              className="rounded-md font-mono text-xs text-muted-foreground"
+              className="rounded-sm font-mono text-xs text-muted-foreground"
             >
               {genre}
             </Badge>
@@ -119,7 +119,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
               nativeButton={false}
               variant="outline"
               size="sm"
-              className="gap-2 rounded-md font-mono text-xs"
+              className="gap-2 font-para text-xs"
               render={
                 <a
                   href={game.website}
@@ -139,7 +139,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
               nativeButton={false}
               variant="outline"
               size="sm"
-              className="gap-2 rounded-md font-mono text-xs"
+              className="gap-2 font-para text-xs"
               render={
                 <a
                   href={game.steam_link}
@@ -161,7 +161,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
                 nativeButton={false}
                 variant="outline"
                 size="sm"
-                className="gap-2 rounded-md font-mono text-xs"
+                className="gap-2 font-para text-xs"
                 render={
                   <a
                     href={link}

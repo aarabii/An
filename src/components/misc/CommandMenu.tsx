@@ -14,8 +14,7 @@ import {
     CommandShortcut,
 } from "@/components/ui/command";
 import { Kbd } from "@/components/ui/kbd";
-
-import { IoDocumentText } from "react-icons/io5";
+import { FileText } from "lucide-react";
 
 import { mainNav, moreNav, homeSections, projectNav } from "@/constant";
 import { useIsMac } from "@/hooks/useIsMac";
@@ -129,8 +128,8 @@ export const CommandMenu = ({
                             onSelect={() => handleNavigate(item.href)}
                             key={item.href}
                         >
-                            <IoDocumentText className="text-foreground/80" />
-                            <span className="text-foreground/80">projects</span>
+                            <FileText className="size-4 text-muted-foreground" />
+                            <span className="text-muted-foreground">projects</span>
                             / <span>{item.label}</span>
                         </CommandItem>
                     ))}
@@ -150,7 +149,7 @@ export const CommandMenu = ({
     }
 
     return (
-        <Command className="max-w-sm rounded-lg border">
+        <Command className="max-w-sm rounded-lg border border-border shadow-sm">
             {commandContent}
         </Command>
     );

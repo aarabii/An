@@ -43,10 +43,12 @@ export async function generateMetadata({
 
   return {
     title: `${game.name} | Game Recommendations`,
-    description: game.desc || `Game recommendations and personal review for ${game.name}.`,
+    description:
+      game.desc || `Game recommendations and personal review for ${game.name}.`,
     openGraph: {
       title: game.name,
-      description: game.desc || `Explore game details, notes, and specs for ${game.name}.`,
+      description:
+        game.desc || `Explore game details, notes, and specs for ${game.name}.`,
       type: "website",
       images: [
         {
@@ -89,34 +91,27 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
       <RepeatSeparator />
 
       {/* Main Container */}
-      <Container
-        id="game-showcase"
-        className="flex flex-col gap-8 px-5 sm:px-8 md:px-8 lg:px-10 py-8 sm:py-12"
-      >
+      <Container id="game-showcase" className="flex flex-col gap-8">
         {/* Hero Section: Title, Cover, Credits, Genres, Links */}
         <GameHero game={game} />
 
         {/* Short Description */}
         {game.desc && (
-          <div className="flex flex-col gap-2 rounded-xl border border-border/50 bg-card/30 p-5 sm:p-6">
-            <h2 className="font-heading text-sm font-semibold tracking-tight uppercase text-muted-foreground sm:text-base">
+          <div className="flex flex-col gap-2 rounded-lg border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-heading text-sm font-semibold tracking-tight uppercase text-muted-foreground">
               Overview & Premise
             </h2>
-            <p className="font-para text-xs/relaxed sm:text-sm/relaxed leading-relaxed text-muted-foreground whitespace-pre-line">
+            <p className="font-para text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
               {game.desc}
             </p>
           </div>
         )}
 
         {/* Custom Comments / Personal Review */}
-        {game.customeCmt && (
-          <GamePersonalNote comment={game.customeCmt} />
-        )}
+        {game.customeCmt && <GamePersonalNote comment={game.customeCmt} />}
 
         {/* PC System Requirements */}
-        {game.pc_req && (
-          <GamePcRequirements pcReq={game.pc_req} />
-        )}
+        {game.pc_req && <GamePcRequirements pcReq={game.pc_req} />}
       </Container>
     </div>
   );

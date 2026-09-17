@@ -85,7 +85,7 @@ export default async function BlogArticlePage({
   const formattedDate = formatDate(blog.date);
 
   return (
-    <div className="min-h-screen px-4">
+    <div className="min-h-screen">
       {/* Breadcrumb Navigation */}
       <PageNav
         items={[
@@ -97,20 +97,17 @@ export default async function BlogArticlePage({
       <RepeatSeparator />
 
       {/* Article Overview */}
-      <Container
-        id="overview"
-        className="flex flex-col gap-8 px-6 sm:px-10 py-8 sm:py-12"
-      >
+      <Container id="overview" className="flex flex-col gap-8">
         {/* Header Information: Title, Date, Description */}
         <div className="flex flex-col gap-4">
-          <h1 className="font-heading text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
             {blog.title}
           </h1>
 
           {/* Metadata: Date and initial tags */}
           <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-muted-foreground">
             <time dateTime={blog.date} className="flex items-center gap-1.5">
-              <Calendar className="size-3.5 text-muted-foreground/80" />
+              <Calendar className="size-3.5 text-muted-foreground" />
               <span>{formattedDate}</span>
             </time>
             {blog.tags && blog.tags.length > 0 && (
@@ -120,7 +117,7 @@ export default async function BlogArticlePage({
               <Badge
                 key={tag}
                 variant="outline"
-                className="font-mono text-[0.625rem] text-muted-foreground"
+                className="font-mono text-xs text-muted-foreground"
               >
                 {tag}
               </Badge>
@@ -128,15 +125,15 @@ export default async function BlogArticlePage({
           </div>
 
           {/* Description */}
-          <p className="text-sm sm:text-base leading-relaxed text-muted-foreground font-para">
+          <p className="text-base sm:text-lg leading-relaxed text-muted-foreground font-para max-w-prose">
             {blog.description}
           </p>
         </div>
 
         {/* Framed Cover Image */}
         {coverImageUrl && (
-          <div className="overflow-hidden rounded-2xl border border-border/70 bg-card/60 p-2 sm:p-3 shadow-md">
-            <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted/40">
+          <div className="overflow-hidden rounded-xl border border-border bg-card p-2 sm:p-3 shadow-md">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted select-none">
               <Image
                 src={coverImageUrl}
                 alt={blog.coverImage?.alt || blog.title}
@@ -151,7 +148,7 @@ export default async function BlogArticlePage({
 
         {/* Tags & Topics Area */}
         {blog.tags && blog.tags.length > 0 && (
-          <div className="flex flex-col gap-3 rounded-2xl border border-border/50 bg-card/40 p-5 sm:p-7 shadow-xs">
+          <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-6 shadow-sm">
             <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
               Tags & Topics
             </span>
@@ -160,7 +157,7 @@ export default async function BlogArticlePage({
                 <Badge
                   key={tag}
                   variant="outline"
-                  className="font-mono text-xs px-2.5 py-1 text-foreground/90"
+                  className="font-mono text-xs px-2.5 py-1 text-foreground"
                 >
                   {tag}
                 </Badge>
@@ -175,11 +172,8 @@ export default async function BlogArticlePage({
       {/* Rendered PortableText Content */}
       {blog.content && blog.content.length > 0 && (
         <>
-          <Container
-            id="article-content"
-            className="px-8 sm:px-10 py-8 sm:py-12"
-          >
-            <article className="prose prose-invert max-w-none font-para">
+          <Container id="article-content">
+            <article className="prose prose-invert max-w-prose font-para mx-auto">
               <CustomPortableText value={blog.content} />
             </article>
           </Container>

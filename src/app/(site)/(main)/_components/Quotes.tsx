@@ -62,8 +62,12 @@ const Quotes = () => {
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  // rAF-driven progress bar + auto-advance
+  // rAF-driven progress bar + auto-advance with reduced-motion support
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) return;
+
     const start = Date.now();
     let raf: number;
 
@@ -91,41 +95,47 @@ const Quotes = () => {
   const quote = LINES[active];
 
   return (
-    <Container id="quotes" className="">
+    <Container id="quotes">
       <Title heading="Words that stayed" />
-      <div className="relative w-full overflow-hidden px-6 py-16 sm:px-12 sm:py-24">
+      <div className="relative w-full overflow-hidden py-4 sm:py-8">
         {/* Quote text — key forces remount for clean fade-in per quote */}
         <div
           key={active}
-          className="mx-auto h-20 w-full font-serif text-center"
+          className="mx-auto h-24 w-full font-serif text-center"
         >
-          <FitLine maxSize={22} className="italic text-foreground/70">
+          <FitLine maxSize={22} className="italic text-muted-foreground">
             {quote.top}
           </FitLine>
           <FitLine
             maxSize={34}
-            className="mt-3 font-bold italic text-foreground/90"
+            className="mt-3 font-bold italic text-foreground"
           >
             {quote.main}
           </FitLine>
         </div>
 
         {/* Dot navigation */}
-        <div className="mx-auto mt-12 flex items-center justify-center gap-2">
+        <div className="mx-auto mt-12 flex items-center justify-center gap-1.5">
           {LINES.map((_, i) => (
             <button
+              type="button"
               key={i}
               onClick={() => goTo(i)}
-              className="relative h-2 cursor-pointer overflow-hidden rounded-full bg-foreground/20 transition-[width] duration-500"
-              style={{ width: i === active ? 32 : 8 }}
+              className="relative flex h-8 items-center justify-center p-1.5 cursor-pointer rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
               aria-label={`Quote ${i + 1}`}
+              aria-current={i === active ? "true" : undefined}
             >
-              {i === active && (
-                <span
-                  className="absolute inset-y-0 left-0 rounded-full bg-foreground/60"
-                  style={{ width: `${progress * 100}%` }}
-                />
-              )}
+              <span
+                className="relative block h-2 overflow-hidden rounded-full bg-border transition-[width] duration-300 motion-reduce:transition-none"
+                style={{ width: i === active ? 32 : 8 }}
+              >
+                {i === active && (
+                  <span
+                    className="absolute inset-y-0 left-0 rounded-full bg-foreground"
+                    style={{ width: `${progress * 100}%` }}
+                  />
+                )}
+              </span>
             </button>
           ))}
         </div>

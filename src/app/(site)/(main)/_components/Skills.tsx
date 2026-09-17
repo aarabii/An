@@ -1,6 +1,5 @@
 import { Container, Title } from "@/components/common";
 
-import { Badge } from "@/components/ui/badge";
 import { Marquee } from "@/components/ui/marquee";
 import { SKILLS } from "@/constant";
 
@@ -8,25 +7,25 @@ const Skills = () => {
   return (
     <Container id="skills">
       <Title heading="Things I Know" />
-      <div className="w-full py-2">
+      <div className="w-full space-y-2">
         {SKILLS.map((skillCtg, index) => (
-          <Marquee key={index}>
-            {skillCtg.skills.map((skills, skillIdx) => (
-              <Badge
+          <Marquee key={index} reverse={index % 2 === 1} pauseOnHover>
+            {skillCtg.skills.map((skill, skillIdx) => (
+              <div
                 key={skillIdx}
-                variant="outline"
-                className="rounded-lg font-mono text-sm m-2 p-3 flex flex-row items-center"
-                style={{
-                  borderColor: `${skills.color}90`,
-                  backgroundColor: `${skills.color}10`,
-                }}
+                className="flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 text-sm font-para text-foreground shadow-2xs select-none transition-colors duration-150 hover:bg-accent hover:text-accent-foreground"
               >
-                <skills.icon
-                  data-icon="inline-start"
-                  style={{ color: skills.color }}
+                <skill.icon
+                  className="size-4 shrink-0"
+                  style={{
+                    color: skill.color,
+                  }}
+                  aria-hidden="true"
                 />
-                {skills.title}
-              </Badge>
+                <span className="whitespace-nowrap font-medium">
+                  {skill.title}
+                </span>
+              </div>
             ))}
           </Marquee>
         ))}
