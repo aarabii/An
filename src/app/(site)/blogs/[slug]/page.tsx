@@ -42,14 +42,14 @@ export async function generateMetadata({
 
   return {
     title: `${blog.title} | Blogs`,
-    description: blog.description,
+    description: blog.description ?? undefined,
     openGraph: {
       title: blog.title,
-      description: blog.description,
+      description: blog.description ?? undefined,
       type: "article",
       publishedTime: blog.date,
       authors: ["Aarab Nishchal"],
-      tags: blog.tags,
+      tags: blog.tags ?? undefined,
       images: [
         {
           url: ogImage,
@@ -62,7 +62,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: blog.title,
-      description: blog.description,
+      description: blog.description ?? undefined,
       images: [ogImage],
     },
   };
@@ -81,6 +81,11 @@ export default async function BlogArticlePage({
   const coverImageUrl = blog.coverImage
     ? urlFor(blog.coverImage).width(1200).height(675).quality(90).url()
     : null;
+
+  const lqip =
+    typeof blog.coverImage === "object"
+      ? (blog.coverImage as any)?.asset?.metadata?.lqip
+      : null;
 
   const formattedDate = formatDate(blog.date);
 
@@ -140,6 +145,8 @@ export default async function BlogArticlePage({
                 fill
                 priority
                 sizes="(min-width: 768px) 768px, 100vw"
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip || undefined}
                 className="object-cover object-center"
               />
             </div>

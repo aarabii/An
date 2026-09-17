@@ -1,7 +1,11 @@
 import { defineQuery } from "next-sanity";
 import { client } from "../client";
-import type { Game } from "../../schemaTypes/gameType";
-import type { Book } from "../../schemaTypes/bookType";
+import type {
+  ALL_GAMES_QUERY_RESULT,
+  GOAT_GAMES_QUERY_RESULT,
+  GAME_BY_SLUG_QUERY_RESULT,
+  ALL_BOOKS_QUERY_RESULT,
+} from "@/sanity.types";
 
 // ---------------------- Game Queries ----------------------
 
@@ -13,7 +17,23 @@ export const ALL_GAMES_QUERY = defineQuery(
     desc,
     customeCmt,
     category,
-    imge_link,
+    imge_link {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
     steam_link,
     website,
     other_links,
@@ -32,7 +52,23 @@ export const GOAT_GAMES_QUERY = defineQuery(
     desc,
     customeCmt,
     category,
-    imge_link,
+    imge_link {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
     steam_link,
     website,
     other_links,
@@ -51,7 +87,23 @@ export const GAME_BY_SLUG_QUERY = defineQuery(
     desc,
     customeCmt,
     category,
-    imge_link,
+    imge_link {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
     steam_link,
     website,
     other_links,
@@ -68,8 +120,8 @@ export const GAME_SLUGS_QUERY = defineQuery(
   }`
 );
 
-export async function getAllGames(): Promise<Game[]> {
-  return await client.fetch<Game[]>(
+export async function getAllGames(): Promise<ALL_GAMES_QUERY_RESULT> {
+  return await client.fetch(
     ALL_GAMES_QUERY,
     {},
     {
@@ -81,8 +133,8 @@ export async function getAllGames(): Promise<Game[]> {
   );
 }
 
-export async function getGoatGames(): Promise<Game[]> {
-  return await client.fetch<Game[]>(
+export async function getGoatGames(): Promise<GOAT_GAMES_QUERY_RESULT> {
+  return await client.fetch(
     GOAT_GAMES_QUERY,
     {},
     {
@@ -94,8 +146,8 @@ export async function getGoatGames(): Promise<Game[]> {
   );
 }
 
-export async function getGameBySlug(slug: string): Promise<Game | null> {
-  return await client.fetch<Game | null>(
+export async function getGameBySlug(slug: string): Promise<GAME_BY_SLUG_QUERY_RESULT> {
+  return await client.fetch(
     GAME_BY_SLUG_QUERY,
     { slug },
     {
@@ -127,15 +179,31 @@ export const ALL_BOOKS_QUERY = defineQuery(
   `*[_type == "book"] | order(_createdAt desc) {
     _id,
     title,
-    coverImage,
+    coverImage {
+      asset->{
+        _id,
+        url,
+        metadata {
+          lqip,
+          dimensions {
+            width,
+            height,
+            aspectRatio
+          }
+        }
+      },
+      alt,
+      hotspot,
+      crop
+    },
     description,
     link,
     _createdAt
   }`
 );
 
-export async function getAllBooks(): Promise<Book[]> {
-  return await client.fetch<Book[]>(
+export async function getAllBooks(): Promise<ALL_BOOKS_QUERY_RESULT> {
+  return await client.fetch(
     ALL_BOOKS_QUERY,
     {},
     {

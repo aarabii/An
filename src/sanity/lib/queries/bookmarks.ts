@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 import { client } from "../client";
-import type { Bookmark } from "../../schemaTypes/bookmarkType";
+import type { ALL_BOOKMARKS_QUERY_RESULT } from "../../../../sanity.types";
 
 export const ALL_BOOKMARKS_QUERY = defineQuery(
   `*[_type == "bookmark"] | order(_createdAt desc) {
@@ -13,8 +13,8 @@ export const ALL_BOOKMARKS_QUERY = defineQuery(
   }`
 );
 
-export async function getAllBookmarks(): Promise<Bookmark[]> {
-  return await client.fetch<Bookmark[]>(
+export async function getAllBookmarks(): Promise<ALL_BOOKMARKS_QUERY_RESULT> {
+  return await client.fetch(
     ALL_BOOKMARKS_QUERY,
     {},
     {

@@ -8,7 +8,7 @@ import {
 import { urlFor } from "@/sanity/lib/image";
 
 interface PortableTextProps {
-    value?: PortableTextBlock[];
+    value?: PortableTextBlock[] | any;
     className?: string;
 }
 

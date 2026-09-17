@@ -7,7 +7,7 @@ import type {
   PCRequirements,
   GameRequirement,
   GameRequirementItem,
-} from "@/sanity/schemaTypes/gameType";
+} from "@/types/game";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 interface GamePcRequirementsProps {
@@ -15,7 +15,7 @@ interface GamePcRequirementsProps {
 }
 
 const normalizeRequirements = (
-  reqs?: Record<string, string> | GameRequirementItem[]
+  reqs?: Record<string, string> | GameRequirementItem[] | null
 ): GameRequirementItem[] => {
   if (!reqs) return [];
   if (Array.isArray(reqs)) return reqs;
@@ -77,13 +77,13 @@ export const GamePcRequirements: React.FC<GamePcRequirementsProps> = ({ pcReq })
 
   const hasMin = !!pcReq.min && (
     (Array.isArray(pcReq.min.requirements) && pcReq.min.requirements.length > 0) ||
-    (typeof pcReq.min.requirements === "object" && Object.keys(pcReq.min.requirements).length > 0) ||
+    (typeof pcReq.min.requirements === "object" && pcReq.min.requirements !== null && Object.keys(pcReq.min.requirements).length > 0) ||
     (pcReq.min.notes && pcReq.min.notes.length > 0)
   );
 
   const hasRec = !!pcReq.rec && (
     (Array.isArray(pcReq.rec.requirements) && pcReq.rec.requirements.length > 0) ||
-    (typeof pcReq.rec.requirements === "object" && Object.keys(pcReq.rec.requirements).length > 0) ||
+    (typeof pcReq.rec.requirements === "object" && pcReq.rec.requirements !== null && Object.keys(pcReq.rec.requirements).length > 0) ||
     (pcReq.rec.notes && pcReq.rec.notes.length > 0)
   );
 

@@ -6,7 +6,9 @@ import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getAllBookmarks } from "@/sanity/lib/queries";
-import type { Bookmark } from "@/sanity/schemaTypes/bookmarkType";
+import type { ALL_BOOKMARKS_QUERY_RESULT } from "@/sanity.types";
+
+type Bookmark = ALL_BOOKMARKS_QUERY_RESULT[number];
 
 export const metadata: Metadata = {
   title: "Bookmarks | Aarab Nishchal",

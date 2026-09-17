@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ExternalLink, Globe, ArrowRight } from "lucide-react";
 import { FaSteam } from "react-icons/fa6";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { urlFor } from "@/sanity/lib/image";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +32,11 @@ export const GameCard: React.FC<GameCardProps> = ({
         ? urlFor(game.imge_link).width(800).height(450).quality(85).url()
         : null;
 
+  const lqip =
+    typeof game.imge_link === "object" && game.imge_link !== null
+      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      : null;
+
   const isFeatured = variant === "featured";
 
   return (
@@ -55,6 +60,8 @@ export const GameCard: React.FC<GameCardProps> = ({
                 alt={game.name}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip || undefined}
                 className="object-cover object-center"
               />
             ) : (

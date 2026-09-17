@@ -1,54 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import { JoystickIcon } from '@sanity/icons'
 
-export interface GameRequirementItem {
-  key: string
-  value: string
-}
-
-export interface GameRequirement {
-  title?: string
-  requirements?: Record<string, string> | GameRequirementItem[]
-  notes?: string[]
-}
-
-export interface PCRequirements {
-  min?: GameRequirement
-  rec?: GameRequirement
-}
-
-export type GameCategory =
-  | 'GOAT'
-  | 'Hall of Fame'
-  | 'Pretty Good'
-  | 'Why Did I Play This'
-
-export interface Game {
-  _id?: string
-  name: string
-  slug: {
-    _type: 'slug'
-    current: string
-  } | string
-  desc?: string
-  customeCmt?: string
-  category?: GameCategory
-  imge_link: {
-    _type: 'image'
-    asset: {
-      _ref: string
-      _type: 'reference'
-    }
-  } | string
-  steam_link?: string
-  website?: string
-  other_links?: string[]
-  pc_req?: PCRequirements
-  developer?: string
-  publisher?: string
-  genres?: string[]
-}
-
 const createGameRequirementFields = () => [
   defineField({
     name: 'title',

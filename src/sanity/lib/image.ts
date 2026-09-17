@@ -6,5 +6,5 @@ import { dataset, projectId } from '../env'
 const builder = createImageUrlBuilder({ projectId, dataset })
 
 export const urlFor = (source: SanityImageSource) => {
-  return builder.image(source).auto('format')
+  return builder.image(source).auto('format').fit('crop')
 }

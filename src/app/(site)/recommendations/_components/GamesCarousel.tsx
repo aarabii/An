@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Gamepad2, ArrowRight } from "lucide-react";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import {
   Carousel,
   CarouselContent,

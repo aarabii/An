@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Globe, ExternalLink, Crown, ArrowRight } from "lucide-react";
 import { FaSteam } from "react-icons/fa6";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { urlFor } from "@/sanity/lib/image";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -35,6 +35,11 @@ export const GoatGameCard: React.FC<GoatGameCardProps> = ({ game, className }) =
         ? urlFor(game.imge_link).width(1200).height(675).quality(88).url()
         : null;
 
+  const lqip =
+    typeof game.imge_link === "object" && game.imge_link !== null
+      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      : null;
+
   const truncatedDesc = game.desc ? truncateText(game.desc, 180) : null;
 
   return (
@@ -62,6 +67,8 @@ export const GoatGameCard: React.FC<GoatGameCardProps> = ({ game, className }) =
               alt={game.name}
               fill
               sizes="(min-width: 768px) 720px, 100vw"
+              placeholder={lqip ? "blur" : "empty"}
+              blurDataURL={lqip || undefined}
               className="object-cover object-center transition-opacity duration-150 group-hover/goat:opacity-95"
             />
           ) : (

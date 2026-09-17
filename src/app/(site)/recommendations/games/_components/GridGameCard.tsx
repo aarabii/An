@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Globe, ExternalLink, ArrowRight } from "lucide-react";
 import { FaSteam } from "react-icons/fa6";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { urlFor } from "@/sanity/lib/image";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -44,6 +44,11 @@ export const GridGameCard: React.FC<GridGameCardProps> = ({ game, className }) =
         ? urlFor(game.imge_link).width(800).height(450).quality(85).url()
         : null;
 
+  const lqip =
+    typeof game.imge_link === "object" && game.imge_link !== null
+      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      : null;
+
   return (
     <Card
       className={cn(
@@ -69,6 +74,8 @@ export const GridGameCard: React.FC<GridGameCardProps> = ({ game, className }) =
               alt={game.name}
               fill
               sizes="(min-width: 640px) 340px, 90vw"
+              placeholder={lqip ? "blur" : "empty"}
+              blurDataURL={lqip || undefined}
               className="object-cover object-center transition-opacity duration-150 group-hover/grid-game:opacity-95"
             />
           ) : (

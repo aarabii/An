@@ -25,6 +25,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
         ? urlFor(project.image).width(720).height(405).quality(85).url()
         : null;
 
+  const lqip =
+    typeof project.image === "object" && project.image !== null
+      ? (project.image as any)?.asset?.metadata?.lqip
+      : null;
+
   return (
     <Card
       className={cn(
@@ -42,9 +47,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
             {imageUrl ? (
               <Image
                 src={imageUrl}
-                alt={project.title}
+                alt={
+                  (typeof project.image === "object" && (project.image as any)?.alt) ||
+                  project.title
+                }
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip || undefined}
                 className="object-cover object-top"
               />
             ) : (
@@ -89,25 +99,27 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-1.5">
-            {project.technologies.slice(0, 4).map((tech) => (
-              <Badge
-                key={tech}
-                variant="outline"
-                className="rounded-sm font-mono text-xs text-muted-foreground"
-              >
-                {tech}
-              </Badge>
-            ))}
-            {project.technologies.length > 4 && (
-              <Badge
-                variant="outline"
-                className="rounded-sm font-mono text-xs text-muted-foreground"
-              >
-                +{project.technologies.length - 4}
-              </Badge>
-            )}
-          </div>
+          {project.technologies && project.technologies.length > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {project.technologies.slice(0, 4).map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="rounded-sm font-mono text-xs text-muted-foreground"
+                >
+                  {tech}
+                </Badge>
+              ))}
+              {project.technologies.length > 4 && (
+                <Badge
+                  variant="outline"
+                  className="rounded-sm font-mono text-xs text-muted-foreground"
+                >
+                  +{project.technologies.length - 4}
+                </Badge>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -121,7 +133,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
             className="flex-1"
             render={
               <a
-                href={project.demo}
+                href={project.demo || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
               />
@@ -156,7 +168,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
           className="flex-1"
           render={
             <a
-              href={project.github}
+              href={project.github || undefined}
               target="_blank"
               rel="noopener noreferrer"
             />

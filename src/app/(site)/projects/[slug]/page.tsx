@@ -49,10 +49,10 @@ export async function generateMetadata({
 
   return {
     title: `${project.title} | Projects`,
-    description: project.description,
+    description: project.description ?? undefined,
     openGraph: {
       title: project.title,
-      description: project.description,
+      description: project.description ?? undefined,
       type: "article",
       images: [
         {
@@ -66,7 +66,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: project.title,
-      description: project.description,
+      description: project.description ?? undefined,
       images: [ogImage],
     },
   };
@@ -90,6 +90,11 @@ export default async function ProjectDetailsPage({
       : project.image
         ? urlFor(project.image).width(1200).height(675).quality(90).url()
         : null;
+
+  const lqip =
+    typeof project.image === "object" && project.image !== null
+      ? (project.image as any)?.asset?.metadata?.lqip
+      : null;
 
   return (
     <div className="min-h-screen">
@@ -197,10 +202,15 @@ export default async function ProjectDetailsPage({
             <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted select-none">
               <Image
                 src={imageUrl}
-                alt={project.title}
+                alt={
+                  (typeof project.image === "object" && (project.image as any)?.alt) ||
+                  project.title
+                }
                 fill
                 priority
                 sizes="(min-width: 768px) 768px, 100vw"
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip || undefined}
                 className="object-cover object-top"
               />
             </div>

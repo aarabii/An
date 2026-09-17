@@ -1,15 +1,6 @@
 import { defineField, defineType, defineArrayMember } from "sanity";
 import { LinkIcon } from "@sanity/icons";
 
-export interface Bookmark {
-  _id: string;
-  title: string;
-  link: string;
-  description?: string;
-  tags?: string[];
-  _createdAt?: string;
-}
-
 export const bookmarkType = defineType({
   name: "bookmark",
   title: "Bookmarks",

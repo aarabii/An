@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { BookOpen, ExternalLink, Eye } from "lucide-react";
 
-import type { Book } from "@/sanity/schemaTypes/bookType";
+import type { ALL_BOOKS_QUERY_RESULT } from "@/sanity.types";
+
+export type Book = ALL_BOOKS_QUERY_RESULT[number];
 import { urlFor } from "@/sanity/lib/image";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,6 +33,11 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
         ? urlFor(book.coverImage).width(600).height(900).quality(90).url()
         : null;
 
+  const lqip =
+    typeof book.coverImage === "object" && book.coverImage !== null
+      ? (book.coverImage as any)?.asset?.metadata?.lqip
+      : null;
+
   return (
     <>
       <Card
@@ -50,6 +57,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
                   alt={book.coverImage?.alt || book.title}
                   fill
                   sizes="(min-width: 640px) 340px, 150px"
+                  placeholder={lqip ? "blur" : "empty"}
+                  blurDataURL={lqip || undefined}
                   className="object-cover object-center"
                 />
               ) : (
@@ -93,7 +102,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
             onClick={(e: React.MouseEvent) => e.stopPropagation()}
             render={
               <a
-                href={book.link}
+                href={book.link || undefined}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Read ${book.title}`}
@@ -119,6 +128,8 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
                     alt={book.coverImage?.alt || book.title}
                     fill
                     sizes="(min-width: 768px) 240px, 160px"
+                    placeholder={lqip ? "blur" : "empty"}
+                    blurDataURL={lqip || undefined}
                     className="object-cover object-center"
                   />
                 ) : (
@@ -135,7 +146,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
                 className="w-full max-w-55 gap-2"
                 render={
                   <a
-                    href={book.link}
+                    href={book.link || undefined}
                     target="_blank"
                     rel="noopener noreferrer"
                   />
@@ -169,7 +180,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
                   <BookOpen className="size-4" /> Recommended Reading
                 </span>
                 <a
-                  href={book.link}
+                  href={book.link || undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-sm hover:underline underline-offset-4 text-foreground/80 hover:text-foreground focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"

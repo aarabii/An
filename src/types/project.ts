@@ -1,23 +1,28 @@
-import type { PortableTextBlock } from "next-sanity";
-import type { SanityImage } from "./blog";
+import type {
+  ALL_PROJECTS_QUERY_RESULT,
+  PROJECT_BY_SLUG_QUERY_RESULT,
+  Project,
+} from "../../sanity.types";
+
+export type ProjectItem = ALL_PROJECTS_QUERY_RESULT[number];
+export type ProjectDetail = NonNullable<PROJECT_BY_SLUG_QUERY_RESULT>;
 
 export type ProjectStatus = "live" | "building" | "completed" | "archived";
 export type ProjectType = "website" | "app" | "library" | "other";
 
-export interface SanityProject {
-    _id: string;
-    title: string;
-    slug: string;
-    description: string;
-    image?: SanityImage | string;
-    github?: string;
-    demo?: string;
-    type?: ProjectType;
-    status?: ProjectStatus;
-    technologies: string[];
-    featured?: boolean;
-    content?: PortableTextBlock[] | string;
-}
+export type SanityProject = {
+  _id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image?: ProjectItem["image"] | string | null;
+  github?: string | null;
+  demo?: string | null;
+  type?: ProjectType | null;
+  status?: ProjectStatus | null;
+  technologies?: string[] | null;
+  featured?: boolean | null;
+  content?: ProjectDetail["content"] | string | null;
+};
 
-// Alias for backward compatibility if imported elsewhere
-export type ProjectItem = SanityProject;
+export type { Project };

@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Crown } from "lucide-react";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { urlFor } from "@/sanity/lib/image";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -27,6 +27,11 @@ export const GameCarouselCard: React.FC<GameCarouselCardProps> = ({
       : game.imge_link?.asset
         ? urlFor(game.imge_link).width(1200).height(675).quality(90).url()
         : null;
+
+  const lqip =
+    typeof game.imge_link === "object" && game.imge_link !== null
+      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      : null;
 
   return (
     <Card
@@ -52,6 +57,8 @@ export const GameCarouselCard: React.FC<GameCarouselCardProps> = ({
           fill
           priority
           sizes="(min-width: 768px) 700px, 90vw"
+          placeholder={lqip ? "blur" : "empty"}
+          blurDataURL={lqip || undefined}
           className="object-cover object-center brightness-75 transition-all duration-150 group-hover:brightness-90"
         />
       ) : (

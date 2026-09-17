@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Globe, ExternalLink, Crown } from "lucide-react";
 import { FaSteam } from "react-icons/fa6";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { urlFor } from "@/sanity/lib/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -45,6 +45,11 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
         ? urlFor(game.imge_link).width(1200).height(675).quality(92).url()
         : null;
 
+  const lqip =
+    typeof game.imge_link === "object" && game.imge_link !== null
+      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      : null;
+
   const devPub = [game.developer, game.publisher].filter(Boolean).join(" / ");
 
   return (
@@ -81,6 +86,8 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
               fill
               priority
               sizes="(min-width: 768px) 768px, 100vw"
+              placeholder={lqip ? "blur" : "empty"}
+              blurDataURL={lqip || undefined}
               className="object-cover object-center"
             />
           </div>

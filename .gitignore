@@ -15,6 +15,7 @@
 
 # next.js
 /.next/
+/dist/
 /out/
 
 # production
@@ -42,3 +43,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sanity
+schema.json
+.sanity

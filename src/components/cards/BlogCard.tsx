@@ -20,6 +20,11 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className }) => {
     ? urlFor(blog.coverImage).width(720).height(405).quality(85).url()
     : null;
 
+  const lqip =
+    typeof blog.coverImage === "object"
+      ? (blog.coverImage as any)?.asset?.metadata?.lqip
+      : null;
+
   const formattedDate = formatDate(blog.date);
 
   return (
@@ -42,6 +47,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, className }) => {
                 alt={blog.coverImage?.alt || blog.title}
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
+                placeholder={lqip ? "blur" : "empty"}
+                blurDataURL={lqip || undefined}
                 className="object-cover object-center"
               />
             ) : (

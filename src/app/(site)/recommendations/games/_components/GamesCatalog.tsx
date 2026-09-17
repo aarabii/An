@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import type { Game, GameCategory } from "@/sanity/schemaTypes/gameType";
+import type { Game, GameCategory } from "@/types/game";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import GoatGameCard from "./GoatGameCard";

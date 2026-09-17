@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import type { Game } from "@/sanity/schemaTypes/gameType";
+import type { Game } from "@/types/game";
 import { Title } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import GamesCarousel from "./GamesCarousel";

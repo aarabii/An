@@ -2,7 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { BookOpen, ArrowRight } from "lucide-react";
 
-import type { Book } from "@/sanity/schemaTypes/bookType";
+import type { ALL_BOOKS_QUERY_RESULT } from "@/sanity.types";
+
+type Book = ALL_BOOKS_QUERY_RESULT[number];
 import { Title } from "@/components/common";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
