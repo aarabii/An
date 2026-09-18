@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { ArrowLeft, ArrowRight, Check, Send } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Loader2, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,6 +22,8 @@ export const ContactForm = () => {
     message: "",
   });
   const [error, setError] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [lastSentTime, setLastSentTime] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isFirstRender = useRef(true);
 
@@ -67,23 +69,87 @@ export const ContactForm = () => {
     return true;
   };
 
+  const handleSubmit = async () => {
+    if (!validateStep()) return;
+
+    if (lastSentTime) {
+      const elapsed = Date.now() - lastSentTime;
+      if (elapsed < 30000) {
+        const remaining = Math.ceil((30000 - elapsed) / 1000);
+        setError(`Please wait ${remaining}s before sending another message.`);
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sender_name: formData.name.trim(),
+          sender_email: formData.email.trim(),
+          sender_message: formData.message.trim(),
+          sender_reason: formData.reason.trim(),
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok) {
+        const errorMsg =
+          data?.error?.message ||
+          data?.error ||
+          "Failed to send email. Please try again or reach out directly at hello@aarab.me.";
+        const resolvedError =
+          typeof errorMsg === "string"
+            ? errorMsg
+            : "Failed to send email. Please try again.";
+
+        setError(resolvedError);
+
+        // If error is related to email or domain, automatically navigate back to Step 2 (Email)
+        if (
+          resolvedError.toLowerCase().includes("email") ||
+          resolvedError.toLowerCase().includes("domain")
+        ) {
+          setStep(2);
+        }
+        return;
+      }
+
+      setLastSentTime(Date.now());
+      setStep(5);
+    } catch {
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const handleNext = () => {
+    if (isSubmitting) return;
     if (!validateStep()) return;
     if (step === 4) {
-      setStep(5);
+      handleSubmit();
     } else {
       setStep((prev) => (prev + 1) as 1 | 2 | 3 | 4);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !isSubmitting) {
       e.preventDefault();
       handleNext();
     }
   };
 
   const handleBack = () => {
+    if (isSubmitting) return;
     setError("");
     if (step > 1 && step <= 4) {
       setStep((prev) => (prev - 1) as 1 | 2 | 3 | 4);
@@ -93,6 +159,7 @@ export const ContactForm = () => {
   const handleReset = () => {
     setFormData({ name: "", email: "", reason: "", message: "" });
     setError("");
+    setIsSubmitting(false);
     setStep(1);
   };
 
@@ -104,11 +171,11 @@ export const ContactForm = () => {
         </div>
         <div className="space-y-1">
           <h4 className="font-heading text-lg sm:text-xl font-bold text-foreground">
-            Message Prepared
+            Message Sent
           </h4>
           <p className="font-para text-xs sm:text-sm text-muted-foreground max-w-sm mx-auto">
-            Thanks, {formData.name.split(" ")[0]}! We will get back to you
-            soon...
+            Thanks, {formData.name.split(" ")[0]}! I received your note and a
+            confirmation email has been sent to {formData.email}.
           </p>
         </div>
         <Button
@@ -166,9 +233,10 @@ export const ContactForm = () => {
               type="button"
               variant="ghost"
               size="icon"
+              disabled={isSubmitting}
               onClick={handleBack}
               aria-label="Previous step"
-              className="size-8 text-muted-foreground hover:text-foreground"
+              className="size-8 text-muted-foreground hover:text-foreground disabled:opacity-50"
             >
               <ArrowLeft className="size-4" />
             </Button>
@@ -194,12 +262,19 @@ export const ContactForm = () => {
       </Label>
 
       {/* Minimalist Full-Width Underline Input Dock */}
-      <div className="flex items-end gap-3 border-b border-border pb-2 focus-within:border-foreground transition-colors duration-150">
+      <div
+        className={`flex items-end gap-3 border-b pb-2 transition-colors duration-150 ${
+          error
+            ? "border-destructive focus-within:border-destructive"
+            : "border-border focus-within:border-foreground"
+        }`}
+      >
         <Input
           ref={inputRef}
           id={`contact-input-${step}`}
           type={current.type}
           value={current.value}
+          disabled={isSubmitting}
           onChange={(e) => {
             setError("");
             setFormData((prev) => ({
@@ -211,7 +286,7 @@ export const ContactForm = () => {
           placeholder={current.placeholder}
           aria-invalid={!!error}
           autoFocus={false}
-          className="flex-1 bg-transparent py-1 font-mono text-base tracking-widest sm:text-lg text-foreground placeholder:text-muted-foreground/40 border-0 rounded-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
+          className="flex-1 bg-transparent py-1 font-mono text-base tracking-widest sm:text-lg text-foreground placeholder:text-muted-foreground/40 border-0 rounded-none shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 p-0 disabled:opacity-50"
         />
 
         <Button
@@ -219,10 +294,13 @@ export const ContactForm = () => {
           size="icon"
           variant={step === 4 ? "default" : "secondary"}
           onClick={handleNext}
-          aria-label={step === 4 ? "Prepare message" : "Next step"}
-          className="size-8 shrink-0 cursor-pointer"
+          disabled={isSubmitting}
+          aria-label={step === 4 ? "Send message" : "Next step"}
+          className="size-8 shrink-0 cursor-pointer disabled:opacity-50"
         >
-          {step === 4 ? (
+          {isSubmitting ? (
+            <Loader2 className="size-4 animate-spin" />
+          ) : step === 4 ? (
             <Send className="size-4" />
           ) : (
             <ArrowRight className="size-4" />
