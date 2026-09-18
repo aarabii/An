@@ -47,7 +47,7 @@ export const GameHero: React.FC<GameHeroProps> = ({ game }) => {
 
   const lqip =
     typeof game.imge_link === "object" && game.imge_link !== null
-      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      ? game.imge_link.asset?.metadata?.lqip
       : null;
 
   const devPub = [game.developer, game.publisher].filter(Boolean).join(" / ");

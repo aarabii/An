@@ -850,5 +850,6 @@ declare global {
 }
 // Lets @sanity/client releases that predate the global registry read it too
 declare module "@sanity/client" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface SanityQueries extends globalThis.SanityQueries {}
 }

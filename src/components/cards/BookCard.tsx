@@ -35,7 +35,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book, className }) => {
 
   const lqip =
     typeof book.coverImage === "object" && book.coverImage !== null
-      ? (book.coverImage as any)?.asset?.metadata?.lqip
+      ? book.coverImage.asset?.metadata?.lqip
       : null;
 
   return (

@@ -96,7 +96,7 @@ export default async function ProjectDetailsPage({
 
   const lqip =
     typeof project.image === "object" && project.image !== null
-      ? (project.image as any)?.asset?.metadata?.lqip
+      ? project.image.asset?.metadata?.lqip
       : null;
 
   const jsonLd = [
@@ -227,7 +227,7 @@ export default async function ProjectDetailsPage({
                 src={imageUrl}
                 alt={
                   (typeof project.image === "object" &&
-                    (project.image as any)?.alt) ||
+                    project.image?.alt) ||
                   project.title
                 }
                 fill

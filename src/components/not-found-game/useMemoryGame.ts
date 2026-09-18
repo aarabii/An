@@ -137,8 +137,8 @@ export function useMemoryGame() {
   // This must stay an effect (not a lazy initializer) to avoid a
   // hydration mismatch: the server can't know the random shuffle order,
   // so we render deterministically first and randomize after mount.
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setTiles(generateShuffledDeck());
   }, []);
 

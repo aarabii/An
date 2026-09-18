@@ -19,6 +19,7 @@ export const NotFoundGame: React.FC = () => {
     if (typeof window !== "undefined") {
       const full = window.location.pathname + window.location.search;
       if (full) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setExactPath(full);
       }
     }

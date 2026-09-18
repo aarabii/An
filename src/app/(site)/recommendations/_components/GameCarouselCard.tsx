@@ -30,7 +30,7 @@ export const GameCarouselCard: React.FC<GameCarouselCardProps> = ({
 
   const lqip =
     typeof game.imge_link === "object" && game.imge_link !== null
-      ? (game.imge_link as any)?.asset?.metadata?.lqip
+      ? game.imge_link.asset?.metadata?.lqip
       : null;
 
   return (

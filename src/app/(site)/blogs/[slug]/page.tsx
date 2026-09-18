@@ -89,7 +89,7 @@ export default async function BlogArticlePage({
 
   const lqip =
     typeof blog.coverImage === "object"
-      ? (blog.coverImage as any)?.asset?.metadata?.lqip
+      ? blog.coverImage?.asset?.metadata?.lqip
       : null;
 
   const formattedDate = formatDate(blog.date);

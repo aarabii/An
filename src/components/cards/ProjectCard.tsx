@@ -27,7 +27,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
 
   const lqip =
     typeof project.image === "object" && project.image !== null
-      ? (project.image as any)?.asset?.metadata?.lqip
+      ? project.image.asset?.metadata?.lqip
       : null;
 
   return (
@@ -48,7 +48,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, className }) => {
               <Image
                 src={imageUrl}
                 alt={
-                  (typeof project.image === "object" && (project.image as any)?.alt) ||
+                  (typeof project.image === "object" && project.image?.alt) ||
                   project.title
                 }
                 fill

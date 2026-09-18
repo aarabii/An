@@ -2,13 +2,12 @@ import Image from "next/image";
 import {
     PortableText as BasePortableText,
     type PortableTextComponents,
-    type PortableTextBlock,
 } from "next-sanity";
 
 import { urlFor } from "@/sanity/lib/image";
 
 interface PortableTextProps {
-    value?: PortableTextBlock[] | any;
+    value?: React.ComponentProps<typeof BasePortableText>["value"];
     className?: string;
 }
 
@@ -111,7 +110,7 @@ const components: PortableTextComponents = {
 };
 
 export function CustomPortableText({ value, className }: PortableTextProps) {
-    if (!value || value.length === 0) return null;
+    if (!value || (Array.isArray(value) && value.length === 0)) return null;
     return (
         <div className={className}>
             <BasePortableText value={value} components={components} />
