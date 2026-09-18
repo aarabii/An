@@ -2,20 +2,32 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Download, ExternalLink, FileText } from "lucide-react";
 
-import { Container, PageNav, Title } from "@/components/common";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  PAGE_SEO,
+  createPageMetadata,
+  getProfilePageJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
-export const metadata: Metadata = {
-  title: "Resume | Aarab Nishchal",
-  description:
-    "Curriculum Vitae and professional background of Aarab Nishchal — AI Engineer & Software Developer.",
-};
+export const metadata: Metadata = createPageMetadata(PAGE_SEO.resume);
 
 export default function ResumePage() {
+  const jsonLd = [
+    getProfilePageJsonLd("/resume"),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Resume", url: "/resume" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Top Breadcrumb Navigation */}
       <PageNav />
 

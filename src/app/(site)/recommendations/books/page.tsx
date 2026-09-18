@@ -1,21 +1,40 @@
 import type { Metadata } from "next";
 
-import { Container, PageNav, Title } from "@/components/common";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { getAllBooks } from "@/sanity/lib/queries";
 import { BookCard } from "@/components/cards";
+import {
+  PAGE_SEO,
+  createPageMetadata,
+  getCollectionPageJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
-export const metadata: Metadata = {
-  title: "Bookshelf | Aarab Nishchal",
-  description:
-    "Curated collection of books, essays, and written works that shaped my thinking across software engineering, architecture, design, and philosophy.",
-};
+export const metadata: Metadata = createPageMetadata(
+  PAGE_SEO.recommendationsBooks,
+);
 
 export default async function BooksPage() {
   const books = await getAllBooks();
 
+  const jsonLd = [
+    getCollectionPageJsonLd(
+      PAGE_SEO.recommendationsBooks.title,
+      PAGE_SEO.recommendationsBooks.description,
+      PAGE_SEO.recommendationsBooks.path,
+    ),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Recommendations", url: "/recommendations" },
+      { name: "Books", url: "/recommendations/books" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Breadcrumbs Navigation */}
       <PageNav
         items={[

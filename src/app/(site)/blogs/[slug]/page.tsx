@@ -3,13 +3,20 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Calendar } from "lucide-react";
 
-import { Container, PageNav } from "@/components/common";
+import { Container, PageNav, JsonLd } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Badge } from "@/components/ui/badge";
 import { CustomPortableText } from "@/components/portable-text";
 import { getBlogBySlug, getAllBlogSlugs } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { formatDate } from "@/lib/date";
+import {
+  SITE_CONFIG,
+  createPageMetadata,
+  getArticleJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
 interface BlogArticlePageProps {
   params: Promise<{
@@ -31,41 +38,39 @@ export async function generateMetadata({
   const blog = await getBlogBySlug(slug);
 
   if (!blog) {
-    return {
-      title: "Blog Not Found | Aarab Nishchal",
-    };
+    return createPageMetadata({
+      title: "Blog Not Found",
+      description: "The requested blog article could not be found.",
+      path: `/blogs/${slug}`,
+      noIndex: true,
+    });
   }
 
-  const ogImage = blog.coverImage
+  const ogImageUrl = blog.coverImage
     ? urlFor(blog.coverImage).width(1200).height(630).quality(85).url()
-    : "/images/social_card.png";
+    : `${SITE_CONFIG.url}${SITE_CONFIG.defaultOgImage}`;
 
-  return {
+  return createPageMetadata({
     title: `${blog.title} | Blogs`,
-    description: blog.description ?? undefined,
-    openGraph: {
-      title: blog.title,
-      description: blog.description ?? undefined,
-      type: "article",
-      publishedTime: blog.date,
-      authors: ["Aarab Nishchal"],
-      tags: blog.tags ?? undefined,
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: blog.coverImage?.alt || blog.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog.title,
-      description: blog.description ?? undefined,
-      images: [ogImage],
-    },
-  };
+    description:
+      blog.description ||
+      `Read ${blog.title} by Aarab Nishchal — technical insights on AI systems, full-stack architecture, and software craftsmanship.`,
+    path: `/blogs/${slug}`,
+    ogType: "article",
+    ogImage: ogImageUrl,
+    ogImageAlt: blog.coverImage?.alt || blog.title,
+    publishedTime: blog.date,
+    authors: [SITE_CONFIG.name],
+    tags: blog.tags || [],
+    keywords: [
+      blog.title,
+      ...(blog.tags || []),
+      "AI Engineering",
+      "Next.js",
+      "Software Craftsmanship",
+    ],
+    category: "Technology",
+  });
 }
 
 export default async function BlogArticlePage({
@@ -89,8 +94,25 @@ export default async function BlogArticlePage({
 
   const formattedDate = formatDate(blog.date);
 
+  const jsonLd = [
+    getArticleJsonLd({
+      title: blog.title,
+      description: blog.description,
+      slug,
+      date: blog.date,
+      tags: blog.tags,
+      coverImage: coverImageUrl,
+    }),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Blogs", url: "/blogs" },
+      { name: blog.title, url: `/blogs/${slug}` },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Breadcrumb Navigation */}
       <PageNav
         items={[

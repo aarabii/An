@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Container, PageNav } from "@/components/common";
+import { Container, PageNav, JsonLd } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { getGameBySlug, getAllGameSlugs } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import GameHero from "./_components/GameHero";
 import GamePersonalNote from "./_components/GamePersonalNote";
 import GamePcRequirements from "./_components/GamePcRequirements";
+import {
+  SITE_CONFIG,
+  createPageMetadata,
+  getVideoGameJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
 interface GameDetailPageProps {
   params: Promise<{
@@ -29,43 +36,38 @@ export async function generateMetadata({
   const game = await getGameBySlug(slug);
 
   if (!game) {
-    return {
-      title: "Game Not Found | Recommendations",
-    };
+    return createPageMetadata({
+      title: "Game Not Found",
+      description: "The requested game recommendation could not be found.",
+      path: `/recommendations/games/${slug}`,
+      noIndex: true,
+    });
   }
 
-  const ogImage =
+  const ogImageUrl =
     typeof game.imge_link === "string"
       ? game.imge_link
       : game.imge_link?.asset
         ? urlFor(game.imge_link).width(1200).height(630).quality(85).url()
-        : "/images/social_card.png";
+        : `${SITE_CONFIG.url}${SITE_CONFIG.defaultOgImage}`;
 
-  return {
+  return createPageMetadata({
     title: `${game.name} | Game Recommendations`,
     description:
-      game.desc || `Game recommendations and personal review for ${game.name}.`,
-    openGraph: {
-      title: game.name,
-      description:
-        game.desc || `Explore game details, notes, and specs for ${game.name}.`,
-      type: "website",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: game.name,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: game.name,
-      description: game.desc,
-      images: [ogImage],
-    },
-  };
+      game.desc ||
+      `Explore personal review, ranking, PC benchmarks, and gameplay reflections on ${game.name} by Aarab Nishchal.`,
+    path: `/recommendations/games/${slug}`,
+    ogImage: ogImageUrl,
+    ogImageAlt: game.name,
+    keywords: [
+      game.name,
+      ...(game.genres || []),
+      "Game Recommendation",
+      "PC Gaming Review",
+      "Interactive Art",
+    ],
+    category: "Video Games",
+  });
 }
 
 export default async function GameDetailPage({ params }: GameDetailPageProps) {
@@ -76,8 +78,36 @@ export default async function GameDetailPage({ params }: GameDetailPageProps) {
     notFound();
   }
 
+  const gameImageUrl =
+    typeof game.imge_link === "string"
+      ? game.imge_link
+      : game.imge_link?.asset
+        ? urlFor(game.imge_link).url()
+        : null;
+
+  const jsonLd = [
+    getVideoGameJsonLd({
+      name: game.name,
+      desc: game.desc,
+      slug,
+      genres: game.genres,
+      developer: game.developer,
+      publisher: game.publisher,
+      image: gameImageUrl,
+      steam_link: game.steam_link,
+      website: game.website,
+    }),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Recommendations", url: "/recommendations" },
+      { name: "Games", url: "/recommendations/games" },
+      { name: game.name, url: `/recommendations/games/${slug}` },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Breadcrumb Navigation */}
       <PageNav
         items={[

@@ -1,26 +1,42 @@
 import type { Metadata } from "next";
 import { Bookmark as BookmarkIcon, ExternalLink } from "lucide-react";
 
-import { Container, PageNav, Title } from "@/components/common";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getAllBookmarks } from "@/sanity/lib/queries";
 import type { ALL_BOOKMARKS_QUERY_RESULT } from "@/sanity.types";
+import {
+  PAGE_SEO,
+  createPageMetadata,
+  getCollectionPageJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
 type Bookmark = ALL_BOOKMARKS_QUERY_RESULT[number];
 
-export const metadata: Metadata = {
-  title: "Bookmarks | Aarab Nishchal",
-  description:
-    "A collection of things I've found while wandering around the internet. Some were useful, some were interesting, and some just made me think, \"I'm definitely coming back to this.\"",
-};
+export const metadata: Metadata = createPageMetadata(PAGE_SEO.bookmarks);
 
 export default async function BookmarksPage() {
   const bookmarks = await getAllBookmarks();
 
+  const jsonLd = [
+    getCollectionPageJsonLd(
+      PAGE_SEO.bookmarks.title,
+      PAGE_SEO.bookmarks.description,
+      PAGE_SEO.bookmarks.path,
+    ),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Bookmarks", url: "/bookmarks" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Top Breadcrumb Navigation */}
       <PageNav />
 

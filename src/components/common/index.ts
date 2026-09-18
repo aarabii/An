@@ -4,3 +4,4 @@ export { default as FooterWarpText } from "./FooterWarpText";
 export { default as Navbar } from "./Navbar";
 export { default as PageNav } from "./PageNav";
 export { default as Title } from "./Title";
+export * from "./JsonLd";

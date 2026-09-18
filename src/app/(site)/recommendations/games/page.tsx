@@ -1,21 +1,40 @@
 import type { Metadata } from "next";
 
-import { Container, PageNav, Title } from "@/components/common";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { getAllGames } from "@/sanity/lib/queries";
 import GamesCatalog from "./_components/GamesCatalog";
+import {
+  PAGE_SEO,
+  createPageMetadata,
+  getCollectionPageJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
-export const metadata: Metadata = {
-  title: "Games Archive | Aarab Nishchal",
-  description:
-    "Explore my complete archive of played games, personal rankings from GOAT to experimental, developer notes, and PC specifications.",
-};
+export const metadata: Metadata = createPageMetadata(
+  PAGE_SEO.recommendationsGames,
+);
 
 export default async function GamesPage() {
   const games = await getAllGames();
 
+  const jsonLd = [
+    getCollectionPageJsonLd(
+      PAGE_SEO.recommendationsGames.title,
+      PAGE_SEO.recommendationsGames.description,
+      PAGE_SEO.recommendationsGames.path,
+    ),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Recommendations", url: "/recommendations" },
+      { name: "Games", url: "/recommendations/games" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Breadcrumb Navigation */}
       <PageNav
         items={[

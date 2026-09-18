@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
 
-import { Container, PageNav, Title } from "@/components/common";
-import RepeatSeparator from "@/components/ui/repeat-separator";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | Aarab Nishchal",
-};
+import RepeatSeparator from "@/components/ui/repeat-separator";
+import { PAGE_SEO, createPageMetadata, getBreadcrumbJsonLd } from "@/constant";
+
+export const metadata: Metadata = createPageMetadata(PAGE_SEO.privacy);
 
 export default async function PrivacyPage() {
+  const jsonLd = getBreadcrumbJsonLd([
+    { name: "Home", url: "/" },
+    { name: "Privacy Policy", url: "/privacy" },
+  ]);
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       <PageNav />
       <RepeatSeparator />
       <Container id="Privacy Policy">
         <Title heading="Privacy Policy" />
 
-        <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 break-words font-para space-y-8 sm:space-y-10">
+        <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 wrap-break-word font-para space-y-8 sm:space-y-10">
           <div>
             <p className="mb-4 font-mono text-xs text-muted-foreground">
               <em className="not-italic">Last updated: 18 September 2026</em>
@@ -23,9 +29,11 @@ export default async function PrivacyPage() {
 
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
               This policy applies to{" "}
-              <strong className="font-semibold text-foreground">aarab.me</strong>
-              , all subdomains of aarab.me, all pages under aarab.me/*, and every
-              project published under{" "}
+              <strong className="font-semibold text-foreground">
+                aarab.me
+              </strong>
+              , all subdomains of aarab.me, all pages under aarab.me/*, and
+              every project published under{" "}
               <a
                 href="https://github.com/aarabii"
                 target="_blank"
@@ -64,21 +72,22 @@ export default async function PrivacyPage() {
                 project needs to function
               </strong>{" "}
               - for example, an account system needs an email, a scheduler needs
-              event details, and so on. What gets stored depends entirely on what
-              the individual project does.
+              event details, and so on. What gets stored depends entirely on
+              what the individual project does.
             </p>
 
             <p className="text-base leading-relaxed text-muted-foreground">
               The main site at aarab.me does not collect anything directly. That
-              said, infrastructure and analytics tools used to run and monitor the
-              site, such as{" "}
-              <strong className="font-semibold text-foreground">Vercel</strong> and{" "}
+              said, infrastructure and analytics tools used to run and monitor
+              the site, such as{" "}
+              <strong className="font-semibold text-foreground">Vercel</strong>{" "}
+              and{" "}
               <strong className="font-semibold text-foreground">
                 Google Search Console
               </strong>
               , do their own standard collection in the background (things like
-              page views, general location, browser and device info). That data is
-              handled by those providers under their own policies, not by me
+              page views, general location, browser and device info). That data
+              is handled by those providers under their own policies, not by me
               directly.
             </p>
           </section>
@@ -89,12 +98,12 @@ export default async function PrivacyPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              Most projects rely on external databases, APIs, or hosting tools to
-              work at all (databases, auth providers, email services, hosting
+              Most projects rely on external databases, APIs, or hosting tools
+              to work at all (databases, auth providers, email services, hosting
               platforms, and similar). If your data passes through one of those,{" "}
               <strong className="font-semibold text-foreground">
-                how that data is handled from that point on is the responsibility
-                of that third party
+                how that data is handled from that point on is the
+                responsibility of that third party
               </strong>
               , not mine. I don&apos;t control their servers, their retention
               policies, or what they do internally.
@@ -116,10 +125,10 @@ export default async function PrivacyPage() {
 
             <p className="text-base leading-relaxed text-muted-foreground">
               I try to send as little data as possible to any third-party tool a
-              project relies on - only what&apos;s actually needed for the feature
-              to work. I&apos;m not trying to build a data profile on anyone, and
-              there&apos;s no advertising or resale of user data happening on my
-              end.
+              project relies on - only what&apos;s actually needed for the
+              feature to work. I&apos;m not trying to build a data profile on
+              anyone, and there&apos;s no advertising or resale of user data
+              happening on my end.
             </p>
           </section>
 
@@ -129,11 +138,12 @@ export default async function PrivacyPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              If you&apos;re concerned about your data, the honest answer is: read
-              the privacy policy of the specific third-party tools each project
-              uses before you sign up or use it. I&apos;ll flag the major ones
-              where I can, but I can&apos;t guarantee I&apos;ll always remember to,
-              and their policies can change independently of anything I do.
+              If you&apos;re concerned about your data, the honest answer is:
+              read the privacy policy of the specific third-party tools each
+              project uses before you sign up or use it. I&apos;ll flag the
+              major ones where I can, but I can&apos;t guarantee I&apos;ll
+              always remember to, and their policies can change independently of
+              anything I do.
             </p>
           </section>
 
@@ -143,9 +153,9 @@ export default async function PrivacyPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              This page can be updated at any time without prior notice. Continued
-              use of any project after an update means you&apos;ve accepted the
-              current version.
+              This page can be updated at any time without prior notice.
+              Continued use of any project after an update means you&apos;ve
+              accepted the current version.
             </p>
           </section>
 
@@ -155,8 +165,8 @@ export default async function PrivacyPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              Questions about this policy or about a specific project&apos;s data
-              handling:
+              Questions about this policy or about a specific project&apos;s
+              data handling:
             </p>
             <ul className="my-4 space-y-2 text-base leading-relaxed text-muted-foreground list-disc pl-5 marker:text-muted-foreground/60">
               <li className="pl-1">

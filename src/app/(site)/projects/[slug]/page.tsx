@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ExternalLink, BookOpen } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 
-import { Container, PageNav } from "@/components/common";
+import { Container, PageNav, JsonLd } from "@/components/common";
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,12 @@ import { CustomPortableText } from "@/components/portable-text";
 import { getProjectBySlug, getAllProjectSlugs } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils";
+import {
+  SITE_CONFIG,
+  createPageMetadata,
+  getSoftwareApplicationJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
 interface ProjectDetailsPageProps {
   params: Promise<{
@@ -35,41 +41,38 @@ export async function generateMetadata({
   const project = await getProjectBySlug(slug);
 
   if (!project) {
-    return {
-      title: "Project Not Found | Aarab Nishchal",
-    };
+    return createPageMetadata({
+      title: "Project Not Found",
+      description: "The requested project could not be found.",
+      path: `/projects/${slug}`,
+      noIndex: true,
+    });
   }
 
-  const ogImage =
+  const ogImageUrl =
     typeof project.image === "string"
       ? project.image
       : project.image
         ? urlFor(project.image).width(1200).height(630).quality(85).url()
-        : "/images/social_card.png";
+        : `${SITE_CONFIG.url}${SITE_CONFIG.defaultOgImage}`;
 
-  return {
+  return createPageMetadata({
     title: `${project.title} | Projects`,
-    description: project.description ?? undefined,
-    openGraph: {
-      title: project.title,
-      description: project.description ?? undefined,
-      type: "article",
-      images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: project.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: project.title,
-      description: project.description ?? undefined,
-      images: [ogImage],
-    },
-  };
+    description:
+      project.description ||
+      `Explore ${project.title} engineered by Aarab Nishchal. Full-stack architecture, technology stack, and live demos.`,
+    path: `/projects/${slug}`,
+    ogImage: ogImageUrl,
+    ogImageAlt: project.title,
+    keywords: [
+      project.title,
+      ...(project.technologies || []),
+      "AI Project",
+      "Full-Stack Application",
+      "Software Engineering",
+    ],
+    category: "Software Development",
+  });
 }
 
 export default async function ProjectDetailsPage({
@@ -96,8 +99,28 @@ export default async function ProjectDetailsPage({
       ? (project.image as any)?.asset?.metadata?.lqip
       : null;
 
+  const jsonLd = [
+    getSoftwareApplicationJsonLd({
+      title: project.title,
+      description: project.description,
+      slug,
+      github: project.github,
+      demo: project.demo,
+      technologies: project.technologies,
+      image: imageUrl,
+      type: project.type,
+      status: project.status,
+    }),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Projects", url: "/projects" },
+      { name: project.title, url: `/projects/${slug}` },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       {/* Breadcrumb Navigation */}
       <PageNav
         items={[
@@ -203,7 +226,8 @@ export default async function ProjectDetailsPage({
               <Image
                 src={imageUrl}
                 alt={
-                  (typeof project.image === "object" && (project.image as any)?.alt) ||
+                  (typeof project.image === "object" &&
+                    (project.image as any)?.alt) ||
                   project.title
                 }
                 fill

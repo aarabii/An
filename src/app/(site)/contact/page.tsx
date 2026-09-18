@@ -1,18 +1,30 @@
 import type { Metadata } from "next";
 
-import { PageNav, Container, Title } from "@/components/common";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
+
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { ContactView } from "./_components";
+import {
+  PAGE_SEO,
+  createPageMetadata,
+  getContactJsonLd,
+  getBreadcrumbJsonLd,
+} from "@/constant";
 
-export const metadata: Metadata = {
-  title: "Contact | Aarab Nishchal",
-  description:
-    "Get in touch with Aarab Nishchal — AI Engineer & Full-Stack Developer available for new projects, advisory, and technical inquiries.",
-};
+export const metadata: Metadata = createPageMetadata(PAGE_SEO.contact);
 
 export default async function ContactPage() {
+  const jsonLd = [
+    getContactJsonLd(),
+    getBreadcrumbJsonLd([
+      { name: "Home", url: "/" },
+      { name: "Contact", url: "/contact" },
+    ]),
+  ];
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       <PageNav />
       <RepeatSeparator />
 

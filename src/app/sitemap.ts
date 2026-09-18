@@ -11,8 +11,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: BASE_URL,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${BASE_URL}/projects`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/blogs`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${BASE_URL}/resume`,
@@ -21,46 +33,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/projects`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/blogs`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
       url: `${BASE_URL}/contact`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/bookmarks`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
       url: `${BASE_URL}/recommendations`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/recommendations/games`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/recommendations/books`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/bookmarks`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/license`,
@@ -103,21 +103,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
               url: `${BASE_URL}/blogs/${slug}`,
               lastModified,
               changeFrequency: "weekly" as const,
-              priority: 0.7,
+              priority: 0.8,
             };
           case "project":
             return {
               url: `${BASE_URL}/projects/${slug}`,
               lastModified,
               changeFrequency: "monthly" as const,
-              priority: 0.7,
+              priority: 0.8,
             };
           case "game":
             return {
               url: `${BASE_URL}/recommendations/games/${slug}`,
               lastModified,
               changeFrequency: "yearly" as const,
-              priority: 0.5,
+              priority: 0.6,
             };
           default:
             return null;

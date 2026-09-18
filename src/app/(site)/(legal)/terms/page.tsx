@@ -1,20 +1,26 @@
 import type { Metadata } from "next";
 
-import { Container, PageNav, Title } from "@/components/common";
-import RepeatSeparator from "@/components/ui/repeat-separator";
+import { Container, PageNav, JsonLd, Title } from "@/components/common";
 
-export const metadata: Metadata = {
-  title: "Terms | Aarab Nishchal",
-};
+import RepeatSeparator from "@/components/ui/repeat-separator";
+import { PAGE_SEO, createPageMetadata, getBreadcrumbJsonLd } from "@/constant";
+
+export const metadata: Metadata = createPageMetadata(PAGE_SEO.terms);
 
 export default async function TermsPage() {
+  const jsonLd = getBreadcrumbJsonLd([
+    { name: "Home", url: "/" },
+    { name: "Terms of Service", url: "/terms" },
+  ]);
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={jsonLd} />
       <PageNav />
       <RepeatSeparator />
       <Container id="terms">
         <Title heading="Terms of service" />
-        <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 break-words font-para space-y-8 sm:space-y-10">
+        <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 wrap-break-word font-para space-y-8 sm:space-y-10">
           <div>
             <p className="mb-4 font-mono text-xs text-muted-foreground">
               <em className="not-italic">Last updated: 18 September 2026</em>
@@ -22,9 +28,11 @@ export default async function TermsPage() {
 
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
               These terms apply to{" "}
-              <strong className="font-semibold text-foreground">aarab.me</strong>
-              , all subdomains of aarab.me, all pages under aarab.me/*, and every
-              project published under{" "}
+              <strong className="font-semibold text-foreground">
+                aarab.me
+              </strong>
+              , all subdomains of aarab.me, all pages under aarab.me/*, and
+              every project published under{" "}
               <a
                 href="https://github.com/aarabii"
                 target="_blank"
@@ -44,9 +52,9 @@ export default async function TermsPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              By using any of these sites, tools, or projects, you agree to these
-              terms. If you don&apos;t agree, don&apos;t use them - that&apos;s
-              the whole deal.
+              By using any of these sites, tools, or projects, you agree to
+              these terms. If you don&apos;t agree, don&apos;t use them -
+              that&apos;s the whole deal.
             </p>
           </section>
 
@@ -85,16 +93,16 @@ export default async function TermsPage() {
               </a>{" "}
               is released under the{" "}
               <a
-                href="license.html"
+                href="/license"
                 className="font-medium text-foreground underline underline-offset-4 decoration-border transition-colors duration-150 hover:text-muted-foreground hover:decoration-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xs"
               >
                 MIT License
               </a>
-              . That covers the code itself, not the hosted, running version of a
-              project or the data that passes through it - those are covered by
-              these terms and the{" "}
+              . That covers the code itself, not the hosted, running version of
+              a project or the data that passes through it - those are covered
+              by these terms and the{" "}
               <a
-                href="privacy-policy.html"
+                href="/privacy"
                 className="font-medium text-foreground underline underline-offset-4 decoration-border transition-colors duration-150 hover:text-muted-foreground hover:decoration-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xs"
               >
                 Privacy Policy
@@ -113,9 +121,10 @@ export default async function TermsPage() {
               <strong className="font-semibold text-foreground">
                 &quot;as is&quot;
               </strong>
-              , with no warranty of any kind, express or implied. There&apos;s no
-              promise that any tool will be bug-free, secure, available at all
-              times, or fit for any particular purpose. Use at your own risk.
+              , with no warranty of any kind, express or implied. There&apos;s
+              no promise that any tool will be bug-free, secure, available at
+              all times, or fit for any particular purpose. Use at your own
+              risk.
             </p>
           </section>
 
@@ -125,10 +134,11 @@ export default async function TermsPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              To the fullest extent permitted by law, I&apos;m not liable for any
-              damages, direct or indirect, arising from your use of, or inability
-              to use, any of these projects - including data loss, downtime, or
-              issues caused by a third-party service a project depends on.
+              To the fullest extent permitted by law, I&apos;m not liable for
+              any damages, direct or indirect, arising from your use of, or
+              inability to use, any of these projects - including data loss,
+              downtime, or issues caused by a third-party service a project
+              depends on.
             </p>
           </section>
 
@@ -144,7 +154,7 @@ export default async function TermsPage() {
               outages, or how they handle any data that passes through them. See
               the{" "}
               <a
-                href="privacy-policy.html"
+                href="/privacy"
                 className="font-medium text-foreground underline underline-offset-4 decoration-border transition-colors duration-150 hover:text-muted-foreground hover:decoration-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-xs"
               >
                 Privacy Policy
@@ -159,8 +169,8 @@ export default async function TermsPage() {
             </h2>
 
             <p className="text-base leading-relaxed text-muted-foreground">
-              You agree not to use any of these projects for anything illegal, to
-              abuse or attack the infrastructure behind them, or to try to
+              You agree not to use any of these projects for anything illegal,
+              to abuse or attack the infrastructure behind them, or to try to
               extract data you&apos;re not supposed to have access to. Basic
               common sense applies.
             </p>
@@ -173,9 +183,9 @@ export default async function TermsPage() {
 
             <p className="text-base leading-relaxed text-muted-foreground">
               Any project, tool, or page covered by these terms can be changed,
-              taken down, or discontinued at any time without notice. These terms
-              themselves can also be updated at any time - continued use after an
-              update means you&apos;ve accepted the new version.
+              taken down, or discontinued at any time without notice. These
+              terms themselves can also be updated at any time - continued use
+              after an update means you&apos;ve accepted the new version.
             </p>
           </section>
 
