@@ -20,7 +20,7 @@ export default async function LicensePage() {
       <PageNav />
       <RepeatSeparator />
       <Container id="license">
-        <Title heading="License" />
+        <Title as="h1" heading="License" />
         <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 wrap-break-word font-para">
           <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
             This license applies to the source code of projects published under{" "}

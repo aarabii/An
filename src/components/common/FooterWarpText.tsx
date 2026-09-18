@@ -1,8 +1,12 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import WarpText from "@/components/misc/WarpText";
+import dynamic from "next/dynamic";
 import { PERSONAL_INFO } from "@/constant";
+
+const WarpText = dynamic(() => import("@/components/misc/WarpText"), {
+  ssr: false,
+});
 
 interface FooterWarpTextProps {
   firstName?: string;

@@ -36,7 +36,7 @@ export default function ResumePage() {
 
       {/* Main Content Container */}
       <Container id="resume">
-        <Title heading="Resume" />
+        <Title as="h1" heading="Resume" />
 
         {/* Small subtitle text */}
         <div className="max-w-prose mb-8 md:mb-12">

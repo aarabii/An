@@ -45,7 +45,7 @@ export default async function BookmarksPage() {
 
       {/* Main Content Container */}
       <Container id="bookmarks">
-        <Title heading="Things I didn't want to lose" />
+        <Title as="h1" heading="Things I didn't want to lose" />
 
         <div className="max-w-prose mb-8 md:mb-12">
           <p className="font-para text-sm text-muted-foreground leading-relaxed">

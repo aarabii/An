@@ -41,6 +41,8 @@ export default async function RecommendationsPage() {
       {/* Repeating separator line */}
       <RepeatSeparator />
 
+      <h1 className="sr-only">Recommendations - Games & Books</h1>
+
       {/* Section 1: Curated Games (GOAT Tier Carousel) */}
       <Container id="games-recommendations">
         <GamesSection games={goatGames} />

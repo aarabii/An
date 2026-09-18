@@ -9,7 +9,7 @@ interface AllProjectsProps {
 const AllProjects: React.FC<AllProjectsProps> = ({ projects }) => {
   return (
     <Container id="all-projects">
-      <Title heading="All Projects" />
+      <Title as="h1" heading="All Projects" />
 
       {projects.length === 0 ? (
         <div className="flex min-h-48 items-center justify-center py-12 text-center">

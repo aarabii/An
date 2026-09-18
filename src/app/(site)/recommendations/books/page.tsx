@@ -48,7 +48,7 @@ export default async function BooksPage() {
 
       {/* Main Container */}
       <Container id="books-archive">
-        <Title heading="Bookshelf" />
+        <Title as="h1" heading="Bookshelf" />
 
         <div className="max-w-prose mb-8 md:mb-12">
           <p className="font-para text-sm text-muted-foreground leading-relaxed">

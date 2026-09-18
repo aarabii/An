@@ -29,7 +29,7 @@ export default async function ContactPage() {
       <RepeatSeparator />
 
       <Container id="contact">
-        <Title heading="Contact" />
+        <Title as="h1" heading="Contact" />
 
         <div>
           <ContactView />

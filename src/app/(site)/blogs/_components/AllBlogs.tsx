@@ -9,7 +9,7 @@ interface AllBlogsProps {
 const AllBlogs: React.FC<AllBlogsProps> = ({ blogs }) => {
   return (
     <Container id="all-blogs">
-      <Title heading="All Blogs" />
+      <Title as="h1" heading="All Blogs" />
 
       {blogs.length === 0 ? (
         <div className="flex min-h-48 items-center justify-center py-12 text-center">

@@ -7,8 +7,12 @@ import React, {
     useRef,
     useCallback,
 } from "react";
-import AeroShards from "@/components/bg/AeroShards";
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+
+const AeroShards = dynamic(() => import("@/components/bg/AeroShards"), {
+    ssr: false,
+});
 
 const useIsomorphicLayoutEffect =
     typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -119,6 +123,7 @@ export interface TopBannerProps {
     className?: string;
     heightClassName?: string;
     topTag?: "p" | "span";
+    mainTag?: "p" | "span" | "h2";
     topText?: string;
     mainText?: string;
     backgroundColor?: string;
@@ -135,6 +140,7 @@ export const TopBanner: React.FC<TopBannerProps> = ({
     className,
     heightClassName = "h-36 sm:h-40 md:h-44",
     topTag = "p",
+    mainTag = "p",
     topText = DEFAULT_TOP_TEXT,
     mainText = DEFAULT_MAIN_TEXT,
     backgroundColor = "#09090b",
@@ -196,9 +202,9 @@ export const TopBanner: React.FC<TopBannerProps> = ({
                         className="font-para text-muted-foreground tracking-normal text-center"
                     />
 
-                    {/* Main line (h2 tag) */}
+                    {/* Main line (defaults to p to preserve heading hierarchy) */}
                     <FitText
-                        as="h2"
+                        as={mainTag}
                         text={mainText}
                         maxFontSize={28}
                         minFontSize={12}

@@ -19,7 +19,7 @@ export default async function TermsPage() {
       <PageNav />
       <RepeatSeparator />
       <Container id="terms">
-        <Title heading="Terms of service" />
+        <Title as="h1" heading="Terms of service" />
         <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 wrap-break-word font-para space-y-8 sm:space-y-10">
           <div>
             <p className="mb-4 font-mono text-xs text-muted-foreground">

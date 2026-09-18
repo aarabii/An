@@ -4,9 +4,15 @@ interface TitleProps {
   heading?: string;
   children?: React.ReactNode;
   className?: string;
+  as?: "h1" | "h2" | "h3";
 }
 
-const Title: React.FC<TitleProps> = ({ heading, children, className }) => {
+const Title: React.FC<TitleProps> = ({
+  heading,
+  children,
+  className,
+  as: Tag = "h2",
+}) => {
   return (
     <div
       className={cn(
@@ -14,9 +20,9 @@ const Title: React.FC<TitleProps> = ({ heading, children, className }) => {
         className,
       )}
     >
-      <h2 className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-foreground">
+      <Tag className="text-3xl md:text-4xl font-semibold leading-tight tracking-tight text-foreground">
         {heading}
-      </h2>
+      </Tag>
       {children}
     </div>
   );

@@ -48,7 +48,7 @@ export default async function GamesPage() {
 
       {/* Main Container */}
       <Container id="games-archive">
-        <Title heading="Games Archive" />
+        <Title as="h1" heading="Games Archive" />
 
         <div className="max-w-prose mb-8 md:mb-12">
           <p className="font-para text-sm text-muted-foreground leading-relaxed">

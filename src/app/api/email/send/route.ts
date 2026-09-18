@@ -122,10 +122,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // 4. Send transactional confirmation email via Resend
+    // 4. Send transactional confirmation email via Resend with BCC to site owner
     const { data, error } = await resend.emails.send({
       from: "Aarab Nishchal <no-reply@aarab.me>",
       to: sender_email,
+      bcc: ["hello@aarab.me", "aarab.nishchal@gmail.com"],
       replyTo: "hi@aarab.me",
       subject: "You reached me. Bold move.",
       react: EmailTemplate({

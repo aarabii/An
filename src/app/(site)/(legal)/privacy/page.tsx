@@ -19,7 +19,7 @@ export default async function PrivacyPage() {
       <PageNav />
       <RepeatSeparator />
       <Container id="Privacy Policy">
-        <Title heading="Privacy Policy" />
+        <Title as="h1" heading="Privacy Policy" />
 
         <div className="max-w-prose pb-16 pt-4 sm:pb-24 sm:pt-6 wrap-break-word font-para space-y-8 sm:space-y-10">
           <div>
