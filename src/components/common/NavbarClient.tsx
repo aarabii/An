@@ -12,6 +12,8 @@ import { PERSONAL_INFO, type NavItem } from "@/constant";
 import { useIsMac } from "@/hooks/useIsMac";
 import { useCommand } from "@/hooks/useCommand";
 
+import NAV_ICON from "@/app/icon.svg";
+
 interface NavbarClientProps {
   projectNav: NavItem[];
   blogNav: NavItem[];
@@ -43,7 +45,7 @@ export const NavbarClient = ({
               className="flex items-center gap-2 rounded-md focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <Image
-                src="/images/logo.svg"
+                src={NAV_ICON.src}
                 alt={`${PERSONAL_INFO.firstName} logo`}
                 width={24}
                 height={24}
