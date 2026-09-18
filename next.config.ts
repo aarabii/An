@@ -1,4 +1,3 @@
-import { SOCIALS } from "@/constant";
 import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === "development";
@@ -71,31 +70,72 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
+    const socialRedirects = [
+      {
+        source: "/github",
+        destination: "https://github.com/aarabii",
+        permanent: false,
+      },
+      {
+        source: "/linkedin",
+        destination: "https://linkedin.com/in/aarab-nishchal",
+        permanent: false,
+      },
+      {
+        source: "/instagram",
+        destination: "https://instagram.com/aarab.ii",
+        permanent: false,
+      },
+      { source: "/x", destination: "https://x.com/aarab_ii", permanent: false },
+      {
+        source: "/leetcode",
+        destination: "https://leetcode.com/u/aarabii",
+        permanent: false,
+      },
+      {
+        source: "/facebook",
+        destination: "https://facebook.com/zzcwc",
+        permanent: false,
+      },
+      {
+        source: "/snapchat",
+        destination: "https://snapchat.com/add/aarab.ii",
+        permanent: false,
+      },
+      {
+        source: "/telegram",
+        destination: "https://t.me/aarab_ii",
+        permanent: false,
+      },
+    ];
+
     return [
       {
         source: "/home",
         destination: "/",
+        permanent: true,
       },
       {
         source: "/blog",
         destination: "/blogs",
+        permanent: true,
       },
       {
         source: "/security.txt",
         destination: "/.well-known/security.txt",
+        permanent: true,
       },
       {
         source: "/direct-resume",
         destination: "/resume/aarab_nishchal_resume.pdf",
+        permanent: true,
       },
       {
         source: "/email",
         destination: "mailto:hello@aarab.me",
+        permanent: false,
       },
-      ...SOCIALS.map((social) => ({
-        source: `/${social.name.toLowerCase()}`,
-        destination: social.url,
-      })),
+      ...socialRedirects,
     ];
   },
 };
