@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { LinkIcon } from "@sanity/icons";
+import { LinkIcon } from '@sanity/icons/Link'
 
 /**
  * Strips protocol, www., path, query, and domain extensions/TLDs
@@ -43,7 +43,11 @@ export const bookmarkType = defineType({
       description:
         "Auto-generated from the website URL by stripping www. and domain parts",
       options: {
-        source: (doc: any) => doc?.url || doc?.link || doc?.name || "",
+        source: (doc: Record<string, unknown>) =>
+          (typeof doc?.url === "string" && doc.url) ||
+          (typeof doc?.link === "string" && doc.link) ||
+          (typeof doc?.name === "string" && doc.name) ||
+          "",
         slugify: slugifyBookmarkUrl,
         maxLength: 96,
       },

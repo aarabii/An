@@ -1,5 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
-import { RocketIcon } from '@sanity/icons'
+import { RocketIcon } from '@sanity/icons/Rocket'
 
 export const projectType = defineType({
   name: 'project',
@@ -118,6 +118,7 @@ export const projectType = defineType({
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
+            { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
             { title: 'H4', value: 'h4' },
@@ -153,6 +154,13 @@ export const projectType = defineType({
                 ],
               },
             ],
+          },
+        }),
+        defineArrayMember({
+          type: 'code',
+          title: 'Code Block',
+          options: {
+            withFilename: true,
           },
         }),
         defineArrayMember({

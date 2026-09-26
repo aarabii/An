@@ -1,5 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
-import { DocumentTextIcon } from '@sanity/icons'
+import { DocumentTextIcon } from '@sanity/icons/DocumentText'
 
 export const postType = defineType({
   name: 'post',
@@ -80,6 +80,7 @@ export const postType = defineType({
           type: 'block',
           styles: [
             { title: 'Normal', value: 'normal' },
+            { title: 'H1', value: 'h1' },
             { title: 'H2', value: 'h2' },
             { title: 'H3', value: 'h3' },
             { title: 'H4', value: 'h4' },
@@ -115,6 +116,13 @@ export const postType = defineType({
                 ],
               },
             ],
+          },
+        }),
+        defineArrayMember({
+          type: 'code',
+          title: 'Code Block',
+          options: {
+            withFilename: true,
           },
         }),
         defineArrayMember({

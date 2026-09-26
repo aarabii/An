@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
+    "@portabletext/markdown": "^2.4.0",
+    "@sanity/code-input": "^7.3.8",
     "@sanity/image-url": "2",
     "@sanity/vision": "5",
     "class-variance-authority": "^0.7.1",

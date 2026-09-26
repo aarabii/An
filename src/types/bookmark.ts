@@ -1,5 +1,4 @@
 import type {
-  ALL_BOOKMARKS_QUERY_RESULT,
   Bookmark as SanityBookmark,
 } from "../../sanity.types";
 

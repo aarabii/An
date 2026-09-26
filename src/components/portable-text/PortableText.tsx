@@ -35,8 +35,33 @@ const components: PortableTextComponents = {
                 </figure>
             );
         },
+        code: ({ value }) => {
+            if (!value?.code) return null;
+            return (
+                <div className="my-6 overflow-hidden rounded-xl border border-border/60 bg-muted/40 font-mono text-xs sm:text-sm">
+                    {value.filename && (
+                        <div className="flex items-center justify-between border-b border-border/40 bg-muted/60 px-4 py-2 text-xs text-muted-foreground">
+                            <span>{value.filename}</span>
+                            {value.language && (
+                                <span className="uppercase text-[10px] tracking-wider opacity-70">
+                                    {value.language}
+                                </span>
+                            )}
+                        </div>
+                    )}
+                    <pre className="overflow-x-auto p-4 leading-relaxed font-mono">
+                        <code>{value.code}</code>
+                    </pre>
+                </div>
+            );
+        },
     },
     block: {
+        h1: ({ children }) => (
+            <h1 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground mt-10 mb-4">
+                {children}
+            </h1>
+        ),
         h2: ({ children }) => (
             <h2 className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-8 mb-3">
                 {children}

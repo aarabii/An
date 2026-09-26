@@ -1,12 +1,10 @@
 import type { StructureResolver } from "sanity/structure";
-import {
-  DocumentTextIcon,
-  RocketIcon,
-  LinkIcon,
-  JoystickIcon,
-  BookIcon,
-  StarIcon,
-} from "@sanity/icons";
+import { DocumentTextIcon } from "@sanity/icons/DocumentText";
+import { RocketIcon } from "@sanity/icons/Rocket";
+import { LinkIcon } from "@sanity/icons/Link";
+import { JoystickIcon } from "@sanity/icons/Joystick";
+import { BookIcon } from "@sanity/icons/Book";
+import { StarIcon } from "@sanity/icons/Star";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>

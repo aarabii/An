@@ -117,10 +117,10 @@ export type Bookmark = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title: string;
-  tags?: Array<string>;
+  name: string;
+  slug: Slug;
   description?: string;
-  link: string;
+  url: string;
 };
 
 export type Project = {
@@ -154,7 +154,7 @@ export type Project = {
           _type: "span";
           _key: string;
         }>;
-        style?: "normal" | "h2" | "h3" | "h4" | "blockquote";
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -165,6 +165,9 @@ export type Project = {
         _type: "block";
         _key: string;
       }
+    | ({
+        _key: string;
+      } & Code)
     | {
         asset?: SanityImageAssetReference;
         media?: unknown;
@@ -206,7 +209,7 @@ export type Post = {
           _type: "span";
           _key: string;
         }>;
-        style?: "normal" | "h2" | "h3" | "h4" | "blockquote";
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -217,6 +220,9 @@ export type Post = {
         _type: "block";
         _key: string;
       }
+    | ({
+        _key: string;
+      } & Code)
     | {
         asset?: SanityImageAssetReference;
         media?: unknown;
@@ -228,6 +234,14 @@ export type Post = {
         _key: string;
       }
   >;
+};
+
+export type Code = {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: Array<number>;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -337,6 +351,7 @@ export type AllSanitySchemaTypes =
   | Bookmark
   | Project
   | Post
+  | Code
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -435,6 +450,9 @@ export type BLOG_BY_SLUG_QUERY_RESULT = {
   featured: boolean | null;
   tags: Array<string> | null;
   content: Array<
+    | ({
+        _key: string;
+      } & Code)
     | {
         children?: Array<{
           marks?: Array<string>;
@@ -442,7 +460,7 @@ export type BLOG_BY_SLUG_QUERY_RESULT = {
           _type: "span";
           _key: string;
         }>;
-        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -475,15 +493,36 @@ export type BLOG_SLUGS_QUERY_RESULT = Array<{
 
 // Source: src/sanity/lib/queries/bookmarks.ts
 // Variable: ALL_BOOKMARKS_QUERY
-// Query: *[_type == "bookmark"] | order(_createdAt desc) {    _id,    title,    link,    description,    tags,    _createdAt  }
+// Query: *[_type == "bookmark"] | order(_createdAt desc) {    _id,    "name": coalesce(name, title),    "title": coalesce(title, name),    "url": coalesce(url, link),    "link": coalesce(link, url),    "slug": slug.current,    description,    _createdAt  }
 export type ALL_BOOKMARKS_QUERY_RESULT = Array<{
   _id: string;
+  name: string;
   title: string;
+  url: string;
   link: string;
+  slug: string;
   description: string | null;
-  tags: Array<string> | null;
   _createdAt: string;
 }>;
+
+// Source: src/sanity/lib/queries/bookmarks.ts
+// Variable: BOOKMARK_BY_SLUG_QUERY
+// Query: *[_type == "bookmark" && (slug.current == $slug || slug.current == lower($slug))][0] {    _id,    "name": coalesce(name, title),    "title": coalesce(title, name),    "url": coalesce(url, link),    "link": coalesce(link, url),    "slug": slug.current,    description,    _createdAt  }
+export type BOOKMARK_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  name: string;
+  title: string;
+  url: string;
+  link: string;
+  slug: string;
+  description: string | null;
+  _createdAt: string;
+} | null;
+
+// Source: src/sanity/lib/queries/bookmarks.ts
+// Variable: ALL_BOOKMARK_SLUGS_QUERY
+// Query: *[_type == "bookmark" && defined(slug.current)].slug.current
+export type ALL_BOOKMARK_SLUGS_QUERY_RESULT = Array<string>;
 
 // Source: src/sanity/lib/queries/projects.ts
 // Variable: FEATURED_PROJECTS_QUERY
@@ -583,6 +622,9 @@ export type PROJECT_BY_SLUG_QUERY_RESULT = {
   technologies: Array<string> | null;
   featured: boolean | null;
   content: Array<
+    | ({
+        _key: string;
+      } & Code)
     | {
         children?: Array<{
           marks?: Array<string>;
@@ -590,7 +632,7 @@ export type PROJECT_BY_SLUG_QUERY_RESULT = {
           _type: "span";
           _key: string;
         }>;
-        style?: "blockquote" | "h2" | "h3" | "h4" | "normal";
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -829,6 +871,33 @@ export type ALL_BOOKS_QUERY_RESULT = Array<{
   _createdAt: string;
 }>;
 
+// Source: src/sanity/lib/queries/sitemap.ts
+// Variable: SITEMAP_DATA_QUERY
+// Query: *[_type in ["post", "project", "game"] && defined(slug.current)] {    _type,    "slug": slug.current,    _updatedAt,    _createdAt,    date  }
+export type SITEMAP_DATA_QUERY_RESULT = Array<
+  | {
+      _type: "game";
+      slug: string;
+      _updatedAt: string;
+      _createdAt: string;
+      date: null;
+    }
+  | {
+      _type: "post";
+      slug: string;
+      _updatedAt: string;
+      _createdAt: string;
+      date: string;
+    }
+  | {
+      _type: "project";
+      slug: string;
+      _updatedAt: string;
+      _createdAt: string;
+      date: null;
+    }
+>;
+
 // Query TypeMap
 declare global {
   interface SanityQueries {
@@ -836,7 +905,9 @@ declare global {
     '*[_type == "post" && defined(slug.current)] | order(date desc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        coverImage {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        date,\n        featured,\n        tags\n    }': ALL_BLOGS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0] {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        coverImage {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        date,\n        featured,\n        tags,\n        content\n    }': BLOG_BY_SLUG_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)] | order(date desc) [0...20] {\n        "slug": slug.current\n    }': BLOG_SLUGS_QUERY_RESULT;
-    '*[_type == "bookmark"] | order(_createdAt desc) {\n    _id,\n    title,\n    link,\n    description,\n    tags,\n    _createdAt\n  }': ALL_BOOKMARKS_QUERY_RESULT;
+    '*[_type == "bookmark"] | order(_createdAt desc) {\n    _id,\n    "name": coalesce(name, title),\n    "title": coalesce(title, name),\n    "url": coalesce(url, link),\n    "link": coalesce(link, url),\n    "slug": slug.current,\n    description,\n    _createdAt\n  }': ALL_BOOKMARKS_QUERY_RESULT;
+    '*[_type == "bookmark" && (slug.current == $slug || slug.current == lower($slug))][0] {\n    _id,\n    "name": coalesce(name, title),\n    "title": coalesce(title, name),\n    "url": coalesce(url, link),\n    "link": coalesce(link, url),\n    "slug": slug.current,\n    description,\n    _createdAt\n  }': BOOKMARK_BY_SLUG_QUERY_RESULT;
+    '*[_type == "bookmark" && defined(slug.current)].slug.current': ALL_BOOKMARK_SLUGS_QUERY_RESULT;
     '*[_type == "project" && defined(slug.current) && featured == true] | order(_createdAt asc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured\n    }': FEATURED_PROJECTS_QUERY_RESULT;
     '*[_type == "project" && defined(slug.current)] | order(_createdAt asc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured\n    }': ALL_PROJECTS_QUERY_RESULT;
     '*[_type == "project" && slug.current == $slug][0] {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured,\n        content\n    }': PROJECT_BY_SLUG_QUERY_RESULT;
@@ -846,10 +917,10 @@ declare global {
     '*[_type == "game" && slug.current == $slug][0] {\n    _id,\n    name,\n    "slug": slug.current,\n    desc,\n    customeCmt,\n    category,\n    imge_link {\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height,\n            aspectRatio\n          }\n        }\n      },\n      alt,\n      hotspot,\n      crop\n    },\n    steam_link,\n    website,\n    other_links,\n    pc_req,\n    developer,\n    publisher,\n    genres\n  }': GAME_BY_SLUG_QUERY_RESULT;
     '*[_type == "game" && defined(slug.current)] {\n    "slug": slug.current\n  }': GAME_SLUGS_QUERY_RESULT;
     '*[_type == "book"] | order(_createdAt desc) {\n    _id,\n    title,\n    coverImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height,\n            aspectRatio\n          }\n        }\n      },\n      alt,\n      hotspot,\n      crop\n    },\n    description,\n    link,\n    _createdAt\n  }': ALL_BOOKS_QUERY_RESULT;
+    '*[_type in ["post", "project", "game"] && defined(slug.current)] {\n    _type,\n    "slug": slug.current,\n    _updatedAt,\n    _createdAt,\n    date\n  }': SITEMAP_DATA_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too
 declare module "@sanity/client" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface SanityQueries extends globalThis.SanityQueries {}
 }

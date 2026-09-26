@@ -1,5 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
-import { JoystickIcon } from '@sanity/icons'
+import { JoystickIcon } from '@sanity/icons/Joystick'
 
 const createGameRequirementFields = () => [
   defineField({
