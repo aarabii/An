@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 
 import { Container, PageNav } from "@/components/common";
 import RepeatSeparator from "@/components/ui/repeat-separator";
-import { CustomPortableText } from "@/components/portable-text";
-import { getSecretBySlug, getAllSecretSlugs } from "@/sanity/lib/queries";
-import { createPageMetadata } from "@/constant";
+import CustomPortableText from "@/components/portable-text/PortableText";
+import { getSecretBySlug } from "@/sanity/lib/queries";
 
 interface SecretPageProps {
   params: Promise<{
@@ -15,56 +14,22 @@ interface SecretPageProps {
 
 export const dynamicParams = true;
 
-export async function generateStaticParams() {
-  try {
-    const slugs = await getAllSecretSlugs();
-    return slugs.map((slug) => ({ slug }));
-  } catch {
-    return [];
-  }
-}
-
-export async function generateMetadata({
-  params,
-}: SecretPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const secret = await getSecretBySlug(slug);
-
-  if (!secret) {
-    return createPageMetadata({
-      title: "Secret Not Found",
-      description: "The requested secret could not be found.",
-      path: `/s/${slug}`,
-      noIndex: true,
-    });
-  }
-
-  let title = slug;
-  if (Array.isArray(secret.content)) {
-    for (const block of secret.content) {
-      if (block && typeof block === "object" && "children" in block) {
-        const children = (block as { children?: Array<{ text?: string }> })
-          .children;
-        if (Array.isArray(children)) {
-          const text = children
-            .map((c) => c.text || "")
-            .join("")
-            .trim();
-          if (text) {
-            title = text;
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  return createPageMetadata({
-    title: `${title} | Secret`,
-    description: "Confidential document",
-    path: `/s/${slug}`,
-    noIndex: true,
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: true,
+        "max-video-preview": -1,
+        "max-image-preview": "none",
+        "max-snippet": -1,
+      },
+    },
+  };
 }
 
 export default async function SecretPage({ params }: SecretPageProps) {
@@ -90,6 +55,7 @@ export default async function SecretPage({ params }: SecretPageProps) {
 
       {/* Main Content Container with standard styling wrappers */}
       <Container id="secret" className="py-8 md:py-12">
+        <h1 className="sr-only">Document</h1>
         {secret.content && secret.content.length > 0 ? (
           <article className="prose prose-invert max-w-prose mx-auto font-para [&>*:first-child]:mt-0">
             <CustomPortableText value={secret.content} />

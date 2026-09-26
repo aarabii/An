@@ -1,11 +1,23 @@
+import { timingSafeEqual } from "node:crypto";
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     const secret = req.headers.get("sanity-webhook-secret");
+    const expectedSecret = process.env.SANITY_WEBHOOK_SECRET;
 
-    // Protect the endpoint using a shared secret
-    if (!process.env.SANITY_WEBHOOK_SECRET || secret !== process.env.SANITY_WEBHOOK_SECRET) {
+    // Protect the endpoint using a shared secret with constant-time comparison
+    if (!expectedSecret || !secret) {
+        return new Response("Unauthorized", { status: 401 });
+    }
+
+    const secretBuffer = Buffer.from(secret);
+    const expectedBuffer = Buffer.from(expectedSecret);
+
+    if (
+        secretBuffer.length !== expectedBuffer.length ||
+        !timingSafeEqual(secretBuffer, expectedBuffer)
+    ) {
         return new Response("Unauthorized", { status: 401 });
     }
 

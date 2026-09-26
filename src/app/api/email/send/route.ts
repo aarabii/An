@@ -2,8 +2,6 @@ import dns from "node:dns/promises";
 import EmailTemplate from "@/components/template/EmailTemplate";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // In-memory rate limiting map: identifier -> timestamp (ms)
 const rateLimitMap = new Map<string, number>();
 const RATE_LIMIT_WINDOW_MS = 30 * 1000; // 30 seconds cooldown
@@ -75,8 +73,17 @@ export async function POST(req: Request) {
       );
     }
 
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.error("Missing RESEND_API_KEY environment variable");
+      return Response.json(
+        { error: "Email service is temporarily unavailable." },
+        { status: 500 }
+      );
+    }
+
     const body = await req.json().catch(() => null);
-    if (!body) {
+    if (!body || typeof body !== "object") {
       return Response.json(
         { error: "Invalid request payload." },
         { status: 400 }
@@ -85,9 +92,36 @@ export async function POST(req: Request) {
 
     const { sender_name, sender_email, sender_message, sender_reason } = body;
 
-    if (!sender_name || !sender_email || !sender_message) {
+    if (
+      typeof sender_name !== "string" ||
+      typeof sender_email !== "string" ||
+      typeof sender_message !== "string" ||
+      !sender_name.trim() ||
+      !sender_email.trim() ||
+      !sender_message.trim()
+    ) {
       return Response.json(
-        { error: "Name, email, and message are required." },
+        { error: "Name, email, and message are required strings." },
+        { status: 400 }
+      );
+    }
+
+    if (
+      sender_name.length > 100 ||
+      sender_email.length > 254 ||
+      sender_message.length > 5000 ||
+      (sender_reason && typeof sender_reason === "string" && sender_reason.length > 100)
+    ) {
+      return Response.json(
+        { error: "Input exceeds maximum allowed length." },
+        { status: 400 }
+      );
+    }
+
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!EMAIL_REGEX.test(sender_email.trim())) {
+      return Response.json(
+        { error: "Invalid email format." },
         { status: 400 }
       );
     }
@@ -123,6 +157,7 @@ export async function POST(req: Request) {
     }
 
     // 4. Send transactional confirmation email via Resend with BCC to site owner
+    const resend = new Resend(resendApiKey);
     const { data, error } = await resend.emails.send({
       from: "Aarab Nishchal <no-reply@aarab.me>",
       to: sender_email,

@@ -1,6 +1,7 @@
 import { defineQuery } from "next-sanity";
 import { client } from "../client";
 import type { BlogPost } from "@/types/blog";
+import { imageFragment } from "./fragments";
 
 export const FEATURED_BLOGS_QUERY = defineQuery(
     `*[_type == "post" && defined(slug.current) && featured == true] | order(date desc) {
@@ -9,21 +10,7 @@ export const FEATURED_BLOGS_QUERY = defineQuery(
         "slug": slug.current,
         description,
         coverImage {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         date,
         featured,
@@ -38,21 +25,7 @@ export const ALL_BLOGS_QUERY = defineQuery(
         "slug": slug.current,
         description,
         coverImage {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         date,
         featured,
@@ -67,21 +40,7 @@ export const BLOG_BY_SLUG_QUERY = defineQuery(
         "slug": slug.current,
         description,
         coverImage {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         date,
         featured,

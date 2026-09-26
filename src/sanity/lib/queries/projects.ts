@@ -1,6 +1,7 @@
 import { defineQuery } from "next-sanity";
 import { client } from "../client";
 import type { SanityProject } from "@/types/project";
+import { imageFragment } from "./fragments";
 
 export const FEATURED_PROJECTS_QUERY = defineQuery(
     `*[_type == "project" && defined(slug.current) && featured == true] | order(_createdAt asc) {
@@ -9,21 +10,7 @@ export const FEATURED_PROJECTS_QUERY = defineQuery(
         "slug": slug.current,
         description,
         image {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         github,
         demo,
@@ -41,21 +28,7 @@ export const ALL_PROJECTS_QUERY = defineQuery(
         "slug": slug.current,
         description,
         image {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         github,
         demo,
@@ -73,21 +46,7 @@ export const PROJECT_BY_SLUG_QUERY = defineQuery(
         "slug": slug.current,
         description,
         image {
-            asset->{
-                _id,
-                url,
-                metadata {
-                    lqip,
-                    dimensions {
-                        width,
-                        height,
-                        aspectRatio
-                    }
-                }
-            },
-            alt,
-            hotspot,
-            crop
+            ${imageFragment}
         },
         github,
         demo,

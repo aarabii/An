@@ -7,7 +7,7 @@ import { Container, PageNav, JsonLd } from "@/components/common";
 
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Badge } from "@/components/ui/badge";
-import { CustomPortableText } from "@/components/portable-text";
+import CustomPortableText from "@/components/portable-text/PortableText";
 import { getBlogBySlug, getAllBlogSlugs } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { formatDate } from "@/lib/date";
@@ -163,7 +163,7 @@ export default async function BlogArticlePage({
             <div className="relative aspect-video w-full overflow-hidden rounded-lg bg-muted select-none">
               <Image
                 src={coverImageUrl}
-                alt={blog.coverImage?.alt || blog.title}
+                alt={blog.coverImage?.alt || `Cover image for ${blog.title}`}
                 fill
                 priority
                 sizes="(min-width: 768px) 768px, 100vw"

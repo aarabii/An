@@ -29,6 +29,7 @@ export async function getSitemapData(): Promise<SitemapEntryItem[]> {
         tags: ["post", "project", "game"],
       },
       stega: false,
+      perspective: "published",
     }
   );
 }

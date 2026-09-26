@@ -4,7 +4,7 @@ import { PageNav, JsonLd } from "@/components/common";
 
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { getAllBlogs } from "@/sanity/lib/queries";
-import { AllBlogs } from "./_components";
+import AllBlogs from "./_components/AllBlogs";
 import {
   PAGE_SEO,
   createPageMetadata,

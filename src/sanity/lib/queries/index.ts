@@ -4,3 +4,4 @@ export * from "./bookmarks";
 export * from "./recommendations";
 export * from "./sitemap";
 export * from "./secrets";
+export * from "./fragments";

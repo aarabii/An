@@ -155,18 +155,23 @@ export async function GET() {
             fork?: boolean;
         }
 
-        const repos: GitHubRepo[] = (data as GitHubApiItem[]).map((item) => ({
-            id: item.id,
-            name: item.name,
-            full_name: item.full_name,
-            html_url: item.html_url,
-            description: item.description,
-            stargazers_count: item.stargazers_count ?? 0,
-            forks_count: item.forks_count ?? 0,
-            language: item.language,
-            updated_at: item.updated_at,
-            fork: item.fork ?? false,
-        }));
+        const repos: GitHubRepo[] = data
+            .filter(
+                (item): item is GitHubApiItem =>
+                    Boolean(item && typeof item === "object" && typeof item.id === "number" && typeof item.name === "string")
+            )
+            .map((item) => ({
+                id: item.id,
+                name: item.name,
+                full_name: item.full_name || item.name,
+                html_url: item.html_url || `https://github.com/${username}/${item.name}`,
+                description: typeof item.description === "string" ? item.description : null,
+                stargazers_count: typeof item.stargazers_count === "number" ? item.stargazers_count : 0,
+                forks_count: typeof item.forks_count === "number" ? item.forks_count : 0,
+                language: typeof item.language === "string" ? item.language : null,
+                updated_at: typeof item.updated_at === "string" ? item.updated_at : new Date().toISOString(),
+                fork: Boolean(item.fork),
+            }));
 
         return NextResponse.json(repos);
     } catch (error) {

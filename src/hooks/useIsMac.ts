@@ -6,14 +6,15 @@ interface NavigatorUAData {
     platform: string;
 }
 
+declare global {
+    interface Navigator {
+        userAgentData?: NavigatorUAData;
+    }
+}
+
 function getIsMac(): boolean {
     if (typeof navigator === "undefined") return false;
-
-    const uaData = (
-        navigator as Navigator & { userAgentData?: NavigatorUAData }
-    ).userAgentData;
-
-    return uaData?.platform === "macOS" || /Mac/i.test(navigator.userAgent);
+    return navigator.userAgentData?.platform === "macOS" || /Mac/i.test(navigator.userAgent);
 }
 
 // Platform never changes during a session, so subscribe is a no-op.

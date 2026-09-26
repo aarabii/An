@@ -8,7 +8,7 @@ import { Container, PageNav, JsonLd } from "@/components/common";
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CustomPortableText } from "@/components/portable-text";
+import CustomPortableText from "@/components/portable-text/PortableText";
 import { getProjectBySlug, getAllProjectSlugs } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import { cn } from "@/lib/utils";
@@ -228,7 +228,7 @@ export default async function ProjectDetailsPage({
                 alt={
                   (typeof project.image === "object" &&
                     project.image?.alt) ||
-                  project.title
+                  `${project.title} project screenshot preview`
                 }
                 fill
                 priority

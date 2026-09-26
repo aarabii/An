@@ -33,8 +33,8 @@ export const bookType = defineType({
     defineField({
       name: "description",
       title: "Description",
-      type: "string",
-      validation: (rule) => rule.required().error("Book title is required"),
+      type: "text",
+      validation: (rule) => rule.required().error("Book description is required"),
     }),
     defineField({
       name: "link",
