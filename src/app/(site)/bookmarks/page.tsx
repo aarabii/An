@@ -7,7 +7,7 @@ import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { getAllBookmarks } from "@/sanity/lib/queries";
-import type { ALL_BOOKMARKS_QUERY_RESULT } from "@/sanity.types";
+import type { Bookmark } from "@/types";
 import {
   PAGE_SEO,
   createPageMetadata,
@@ -15,7 +15,6 @@ import {
   getBreadcrumbJsonLd,
 } from "@/constant";
 
-type Bookmark = ALL_BOOKMARKS_QUERY_RESULT[number];
 
 export const metadata: Metadata = createPageMetadata(PAGE_SEO.bookmarks);
 
@@ -85,17 +84,24 @@ function EmptyBookmarks() {
 }
 
 function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
+  const title = bookmark.name || bookmark.title || "Bookmark";
+  const slug =
+    typeof bookmark.slug === "string"
+      ? bookmark.slug
+      : bookmark.slug?.current || "";
+  const targetHref = slug ? `/bookmarks/${slug}` : bookmark.url || bookmark.link;
+
   return (
     <Card className="group relative flex w-full flex-row items-start sm:items-center gap-4 rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-150 hover:border-border/80 hover:shadow-md">
       {/* Clickable Overlay Link */}
       <a
-        href={bookmark.link}
+        href={targetHref}
         target="_blank"
         rel="noopener noreferrer"
         className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-        aria-label={`Open ${bookmark.title} in a new tab`}
+        aria-label={`Open ${title} in a new tab`}
       >
-        <span className="sr-only">{bookmark.title}</span>
+        <span className="sr-only">{title}</span>
       </a>
 
       {/* Bookmark Icon Box */}
@@ -105,28 +111,24 @@ function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
 
       {/* Middle Content */}
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <h3 className="font-heading text-base font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary sm:text-lg">
-          {bookmark.title}
-        </h3>
+        <div className="flex items-center gap-2">
+          <h3 className="font-heading text-base font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary sm:text-lg">
+            {title}
+          </h3>
+          {slug && (
+            <Badge
+              variant="outline"
+              className="font-mono text-[11px] text-muted-foreground hidden sm:inline-flex"
+            >
+              /{slug}
+            </Badge>
+          )}
+        </div>
 
         {bookmark.description && (
           <p className="line-clamp-2 font-para text-sm leading-relaxed text-muted-foreground">
             {bookmark.description}
           </p>
-        )}
-
-        {bookmark.tags && bookmark.tags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 pt-1">
-            {bookmark.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="font-mono text-xs text-muted-foreground"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
         )}
       </div>
 
