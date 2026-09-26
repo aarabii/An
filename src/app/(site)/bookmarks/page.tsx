@@ -5,7 +5,6 @@ import { Container, PageNav, JsonLd, Title } from "@/components/common";
 
 import RepeatSeparator from "@/components/ui/repeat-separator";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { getAllBookmarks } from "@/sanity/lib/queries";
 import type { Bookmark } from "@/types";
 import {
@@ -14,7 +13,6 @@ import {
   getCollectionPageJsonLd,
   getBreadcrumbJsonLd,
 } from "@/constant";
-
 
 export const metadata: Metadata = createPageMetadata(PAGE_SEO.bookmarks);
 
@@ -85,11 +83,7 @@ function EmptyBookmarks() {
 
 function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
   const title = bookmark.name || bookmark.title || "Bookmark";
-  const slug =
-    typeof bookmark.slug === "string"
-      ? bookmark.slug
-      : bookmark.slug?.current || "";
-  const targetHref = slug ? `/bookmarks/${slug}` : bookmark.url || bookmark.link;
+  const targetHref = bookmark.url || bookmark.link || "#";
 
   return (
     <Card className="group relative flex w-full flex-row items-start sm:items-center gap-4 rounded-lg border border-border bg-card p-6 shadow-sm transition-all duration-150 hover:border-border/80 hover:shadow-md">
@@ -115,14 +109,6 @@ function BookmarkCard({ bookmark }: { bookmark: Bookmark }) {
           <h3 className="font-heading text-base font-semibold tracking-tight text-foreground transition-colors duration-150 group-hover:text-primary sm:text-lg">
             {title}
           </h3>
-          {slug && (
-            <Badge
-              variant="outline"
-              className="font-mono text-[11px] text-muted-foreground hidden sm:inline-flex"
-            >
-              /{slug}
-            </Badge>
-          )}
         </div>
 
         {bookmark.description && (

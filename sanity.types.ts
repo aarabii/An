@@ -118,9 +118,11 @@ export type Bookmark = {
   _updatedAt: string;
   _rev: string;
   name: string;
-  slug: Slug;
   description?: string;
   url: string;
+  title?: string;
+  link?: string;
+  slug?: Slug;
 };
 
 export type Project = {
@@ -493,36 +495,16 @@ export type BLOG_SLUGS_QUERY_RESULT = Array<{
 
 // Source: src/sanity/lib/queries/bookmarks.ts
 // Variable: ALL_BOOKMARKS_QUERY
-// Query: *[_type == "bookmark"] | order(_createdAt desc) {    _id,    "name": coalesce(name, title),    "title": coalesce(title, name),    "url": coalesce(url, link),    "link": coalesce(link, url),    "slug": slug.current,    description,    _createdAt  }
+// Query: *[_type == "bookmark"] | order(_createdAt desc) {    _id,    "name": coalesce(name, title),    "title": coalesce(title, name),    "url": coalesce(url, link),    "link": coalesce(link, url),    description,    _createdAt  }
 export type ALL_BOOKMARKS_QUERY_RESULT = Array<{
   _id: string;
   name: string;
   title: string;
   url: string;
   link: string;
-  slug: string;
   description: string | null;
   _createdAt: string;
 }>;
-
-// Source: src/sanity/lib/queries/bookmarks.ts
-// Variable: BOOKMARK_BY_SLUG_QUERY
-// Query: *[_type == "bookmark" && (slug.current == $slug || slug.current == lower($slug))][0] {    _id,    "name": coalesce(name, title),    "title": coalesce(title, name),    "url": coalesce(url, link),    "link": coalesce(link, url),    "slug": slug.current,    description,    _createdAt  }
-export type BOOKMARK_BY_SLUG_QUERY_RESULT = {
-  _id: string;
-  name: string;
-  title: string;
-  url: string;
-  link: string;
-  slug: string;
-  description: string | null;
-  _createdAt: string;
-} | null;
-
-// Source: src/sanity/lib/queries/bookmarks.ts
-// Variable: ALL_BOOKMARK_SLUGS_QUERY
-// Query: *[_type == "bookmark" && defined(slug.current)].slug.current
-export type ALL_BOOKMARK_SLUGS_QUERY_RESULT = Array<string>;
 
 // Source: src/sanity/lib/queries/projects.ts
 // Variable: FEATURED_PROJECTS_QUERY
@@ -905,9 +887,7 @@ declare global {
     '*[_type == "post" && defined(slug.current)] | order(date desc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        coverImage {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        date,\n        featured,\n        tags\n    }': ALL_BLOGS_QUERY_RESULT;
     '*[_type == "post" && slug.current == $slug][0] {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        coverImage {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        date,\n        featured,\n        tags,\n        content\n    }': BLOG_BY_SLUG_QUERY_RESULT;
     '*[_type == "post" && defined(slug.current)] | order(date desc) [0...20] {\n        "slug": slug.current\n    }': BLOG_SLUGS_QUERY_RESULT;
-    '*[_type == "bookmark"] | order(_createdAt desc) {\n    _id,\n    "name": coalesce(name, title),\n    "title": coalesce(title, name),\n    "url": coalesce(url, link),\n    "link": coalesce(link, url),\n    "slug": slug.current,\n    description,\n    _createdAt\n  }': ALL_BOOKMARKS_QUERY_RESULT;
-    '*[_type == "bookmark" && (slug.current == $slug || slug.current == lower($slug))][0] {\n    _id,\n    "name": coalesce(name, title),\n    "title": coalesce(title, name),\n    "url": coalesce(url, link),\n    "link": coalesce(link, url),\n    "slug": slug.current,\n    description,\n    _createdAt\n  }': BOOKMARK_BY_SLUG_QUERY_RESULT;
-    '*[_type == "bookmark" && defined(slug.current)].slug.current': ALL_BOOKMARK_SLUGS_QUERY_RESULT;
+    '*[_type == "bookmark"] | order(_createdAt desc) {\n    _id,\n    "name": coalesce(name, title),\n    "title": coalesce(title, name),\n    "url": coalesce(url, link),\n    "link": coalesce(link, url),\n    description,\n    _createdAt\n  }': ALL_BOOKMARKS_QUERY_RESULT;
     '*[_type == "project" && defined(slug.current) && featured == true] | order(_createdAt asc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured\n    }': FEATURED_PROJECTS_QUERY_RESULT;
     '*[_type == "project" && defined(slug.current)] | order(_createdAt asc) {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured\n    }': ALL_PROJECTS_QUERY_RESULT;
     '*[_type == "project" && slug.current == $slug][0] {\n        _id,\n        title,\n        "slug": slug.current,\n        description,\n        image {\n            asset->{\n                _id,\n                url,\n                metadata {\n                    lqip,\n                    dimensions {\n                        width,\n                        height,\n                        aspectRatio\n                    }\n                }\n            },\n            alt,\n            hotspot,\n            crop\n        },\n        github,\n        demo,\n        type,\n        status,\n        technologies,\n        featured,\n        content\n    }': PROJECT_BY_SLUG_QUERY_RESULT;

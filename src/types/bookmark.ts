@@ -5,9 +5,9 @@ import type {
 export type Bookmark = {
   _id: string;
   name?: string | null;
-  title: string;
+  title?: string | null;
   url?: string | null;
-  link: string;
+  link?: string | null;
   slug?: string | { current?: string } | null;
   description?: string | null;
   tags?: string[] | null;
@@ -17,4 +17,3 @@ export type Bookmark = {
 export type BookmarkItem = Bookmark;
 
 export type { SanityBookmark };
-
