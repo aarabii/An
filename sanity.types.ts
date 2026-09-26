@@ -22,6 +22,70 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
+export type Secret = {
+  _id: string;
+  _type: "secret";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  slug: Slug;
+  content: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Code)
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        caption?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x: number;
+  y: number;
+  height: number;
+  width: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type Book = {
   _id: string;
   _type: "book";
@@ -39,22 +103,6 @@ export type Book = {
   };
   description: string;
   link?: string;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x: number;
-  y: number;
-  height: number;
-  width: number;
 };
 
 export type Game = {
@@ -103,12 +151,6 @@ export type Game = {
   developer?: string;
   publisher?: string;
   genres?: Array<string>;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type Bookmark = {
@@ -345,11 +387,12 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | SanityImageAssetReference
-  | Book
+  | Secret
   | SanityImageCrop
   | SanityImageHotspot
-  | Game
   | Slug
+  | Book
+  | Game
   | Bookmark
   | Project
   | Post
@@ -853,6 +896,54 @@ export type ALL_BOOKS_QUERY_RESULT = Array<{
   _createdAt: string;
 }>;
 
+// Source: src/sanity/lib/queries/secrets.ts
+// Variable: SECRET_BY_SLUG_QUERY
+// Query: *[_type in ["secret", "secrets"] && slug.current == $slug][0] {    _id,    "slug": slug.current,    content,    _createdAt,    _updatedAt  }
+export type SECRET_BY_SLUG_QUERY_RESULT = {
+  _id: string;
+  slug: string;
+  content: Array<
+    | ({
+        _key: string;
+      } & Code)
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        caption?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
+  _createdAt: string;
+  _updatedAt: string;
+} | null;
+
+// Source: src/sanity/lib/queries/secrets.ts
+// Variable: ALL_SECRET_SLUGS_QUERY
+// Query: *[_type in ["secret", "secrets"] && defined(slug.current)].slug.current
+export type ALL_SECRET_SLUGS_QUERY_RESULT = Array<string>;
+
 // Source: src/sanity/lib/queries/sitemap.ts
 // Variable: SITEMAP_DATA_QUERY
 // Query: *[_type in ["post", "project", "game"] && defined(slug.current)] {    _type,    "slug": slug.current,    _updatedAt,    _createdAt,    date  }
@@ -897,6 +988,8 @@ declare global {
     '*[_type == "game" && slug.current == $slug][0] {\n    _id,\n    name,\n    "slug": slug.current,\n    desc,\n    customeCmt,\n    category,\n    imge_link {\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height,\n            aspectRatio\n          }\n        }\n      },\n      alt,\n      hotspot,\n      crop\n    },\n    steam_link,\n    website,\n    other_links,\n    pc_req,\n    developer,\n    publisher,\n    genres\n  }': GAME_BY_SLUG_QUERY_RESULT;
     '*[_type == "game" && defined(slug.current)] {\n    "slug": slug.current\n  }': GAME_SLUGS_QUERY_RESULT;
     '*[_type == "book"] | order(_createdAt desc) {\n    _id,\n    title,\n    coverImage {\n      asset->{\n        _id,\n        url,\n        metadata {\n          lqip,\n          dimensions {\n            width,\n            height,\n            aspectRatio\n          }\n        }\n      },\n      alt,\n      hotspot,\n      crop\n    },\n    description,\n    link,\n    _createdAt\n  }': ALL_BOOKS_QUERY_RESULT;
+    '*[_type in ["secret", "secrets"] && slug.current == $slug][0] {\n    _id,\n    "slug": slug.current,\n    content,\n    _createdAt,\n    _updatedAt\n  }': SECRET_BY_SLUG_QUERY_RESULT;
+    '*[_type in ["secret", "secrets"] && defined(slug.current)].slug.current': ALL_SECRET_SLUGS_QUERY_RESULT;
     '*[_type in ["post", "project", "game"] && defined(slug.current)] {\n    _type,\n    "slug": slug.current,\n    _updatedAt,\n    _createdAt,\n    date\n  }': SITEMAP_DATA_QUERY_RESULT;
   }
 }

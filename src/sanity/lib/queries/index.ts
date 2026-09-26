@@ -3,3 +3,4 @@ export * from "./projects";
 export * from "./bookmarks";
 export * from "./recommendations";
 export * from "./sitemap";
+export * from "./secrets";

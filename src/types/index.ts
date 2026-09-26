@@ -3,3 +3,4 @@ export * from "./project";
 export * from "./game";
 export * from "./bookmark";
 export * from "./book";
+export * from "./secret";
