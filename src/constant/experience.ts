@@ -44,6 +44,33 @@ export type ExperienceItem = CurrentExperience | PastExperience;
 export const EXPERIENCE = [
     {
         id: "1",
+        title: "Software Engineer Intern",
+        company: {
+            name: "RedSeal Inc",
+            url: "https://redseal.net/",
+            linkedin: "https://www.linkedin.com/company/redseal-co",
+        },
+        type: "internship",
+        startDate: {
+            month: "Nov",
+            year: "2026",
+        },
+        present: true,
+        responsibilities: [
+            "Will update this desc soon"
+        ],
+        stack: [
+            "Java",
+            "Python",
+            "LLMs",
+            "Plugins",
+            "Prompt Engineering",
+            "AI Agents",
+            "Automation",
+        ],
+    },
+    {
+        id: "2",
         title: "AI Enginner Intern",
         company: {
             name: "Ascend HSI",
@@ -55,7 +82,10 @@ export const EXPERIENCE = [
             month: "Jul",
             year: "2026",
         },
-        present: true,
+        endDate: {
+            month: "Oct",
+            year: "2026",
+        },
         responsibilities: [
             "Building AI-powered features for internal SaaS products, integrating LLM providers into production workflows.",
             "Developing AI agents to automate repetitive business processes across case management, CRM intelligence, and media placement systems.",
@@ -73,7 +103,7 @@ export const EXPERIENCE = [
         ],
     },
     {
-        id: "2",
+        id: "3",
         title: "Software Developer Intern",
         company: {
             name: "Unstop",
