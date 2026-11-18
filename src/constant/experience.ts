@@ -86,6 +86,7 @@ export const EXPERIENCE = [
             month: "Oct",
             year: "2026",
         },
+        present: false,
         responsibilities: [
             "Building AI-powered features for internal SaaS products, integrating LLM providers into production workflows.",
             "Developing AI agents to automate repetitive business processes across case management, CRM intelligence, and media placement systems.",
